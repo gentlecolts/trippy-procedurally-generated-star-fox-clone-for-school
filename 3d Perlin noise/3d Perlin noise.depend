@@ -1,0 +1,51 @@
+# depslib dependency file v1.0
+1361912962 source:g:\blair\grade 11\comp sci\c++\3d perlin noise\main.cpp
+	<iostream>
+	<cstdlib>
+	<stdint.h>
+	<cmath>
+	<climits>
+	<xmmintrin.h>
+	"noise.h"
+	"noise2.h"
+	<SDL/SDL.h>
+	"render.h"
+
+1361845750 g:\blair\grade 11\comp sci\c++\3d perlin noise\noise.h
+
+1361218832 g:\blair\grade 11\comp sci\c++\3d perlin noise\noise2.h
+
+1361833844 g:\blair\grade 11\comp sci\c++\3d perlin noise\render.h
+	"paint.h"
+	"paint2.h"
+	"cube2.h"
+	"paintcube.h"
+	"precomp.h"
+	"precomp2.h"
+	"solve.h"
+	"trace.h"
+	"quad.h"
+	"oct.h"
+
+1361835600 g:\blair\grade 11\comp sci\c++\3d perlin noise\paint.h
+
+1361818060 g:\blair\grade 11\comp sci\c++\3d perlin noise\paint2.h
+
+1361461688 g:\blair\grade 11\comp sci\c++\3d perlin noise\solve.h
+
+1360812518 g:\blair\grade 11\comp sci\c++\3d perlin noise\solve2.h
+
+1360810274 g:\blair\grade 11\comp sci\c++\3d perlin noise\trace.h
+
+1361226064 g:\blair\grade 11\comp sci\c++\3d perlin noise\quad.h
+
+1361225954 g:\blair\grade 11\comp sci\c++\3d perlin noise\oct.h
+
+1361471076 g:\blair\grade 11\comp sci\c++\3d perlin noise\paintcube.h
+
+1361568308 g:\blair\grade 11\comp sci\c++\3d perlin noise\cube2.h
+
+1361846478 g:\blair\grade 11\comp sci\c++\3d perlin noise\precomp.h
+
+1361846398 g:\blair\grade 11\comp sci\c++\3d perlin noise\precomp2.h
+

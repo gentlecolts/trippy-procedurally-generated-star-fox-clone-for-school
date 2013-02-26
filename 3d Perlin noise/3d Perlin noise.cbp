@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="3d Perlin noise" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/3d Perlin noise" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-march=core2" />
+					<Add option="-pg" />
+					<Add option="-g" />
+					<Add option="-fauto-inc-dec" />
+					<Add option="-fcompare-elim" />
+					<Add option="-fcprop-registers" />
+					<Add option="-fdce" />
+					<Add option="-fdefer-pop" />
+					<Add option="-fdse" />
+					<Add option="-fif-conversion2" />
+					<Add option="-fif-conversion" />
+					<Add option="-fipa-reference" />
+					<Add option="-fsplit-wide-types" />
+					<Add option="-ftree-bit-ccp" />
+					<Add option="-ftree-builtin-call-dce" />
+					<Add option="-ftree-ccp" />
+					<Add option="-ftree-ch" />
+					<Add option="-ftree-copyrename" />
+					<Add option="-ftree-dce" />
+					<Add option="-ftree-dominator-opts" />
+					<Add option="-ftree-dse" />
+					<Add option="-ftree-forwprop" />
+					<Add option="-ftree-fre" />
+					<Add option="-ftree-phiprop" />
+					<Add option="-ftree-sra" />
+					<Add option="-ftree-pta" />
+					<Add option="-ftree-ter" />
+					<Add option="-funit-at-a-time" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg -lgmon" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/3d Perlin noise" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-march=core2" />
+					<Add option="-fomit-frame-pointer" />
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-O3" />
+					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="Main.cpp" />
+		<Unit filename="cube2.h" />
+		<Unit filename="noise.h" />
+		<Unit filename="noise2.h" />
+		<Unit filename="oct.h" />
+		<Unit filename="paint.h" />
+		<Unit filename="paint2.h" />
+		<Unit filename="paintcube.h" />
+		<Unit filename="precomp.h" />
+		<Unit filename="precomp2.h" />
+		<Unit filename="quad.h" />
+		<Unit filename="render.h" />
+		<Unit filename="solve.h" />
+		<Unit filename="trace.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

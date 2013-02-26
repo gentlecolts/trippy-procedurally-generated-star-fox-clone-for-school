@@ -1,0 +1,69 @@
+#include <iostream>
+#include "noise.h"
+
+#define xmax 640
+#define ymax 480
+const long double pi=3.141592653589793238462643383279502884197169l;
+#define viewangle 75
+#define tolerance 0.0
+const double d=2*tan(viewangle/2.0)/perlin3d::grid;//tan(viewangle/2.0)/(perlin3d.grid/2);
+SDL_Surface* screen=NULL;
+
+struct pixel{
+	double dist;
+	uint32_t color;
+
+	void init(uint32_t col,double distance){
+		dist=distance;
+		color=col;
+	}
+	pixel(){
+		init(0,-1);
+	}
+	pixel(uint32_t col,double distance){
+		init(col,distance);
+	}
+};
+
+SDL_Event e;
+void chkCloseEvent(){
+	if(SDL_PollEvent(&e)) {
+		switch(e.type) {
+		case SDL_QUIT:
+			exit(0);
+			break;
+		}
+	}
+}
+
+//vWind wind(xmax,ymax,SDL_HWSURFACE | SDL_ASYNCBLIT | SDL_RLEACCEL | SDL_DOUBLEBUF | SDL_ANYFORMAT);
+perlin3d perlin(0xdeadbeef);
+pixel vals[xmax*ymax];
+//double vals[xmax*ymax];
+void render(){
+	cout<<"render start"<<endl;
+
+	double val,scl;
+	const double delta=0.5;
+	const double grid=perlin3d::grid;
+	const double grid2=grid/2;
+	const double raise=5;
+	double xleft,xright,ytop,ybottom;
+
+	SDL_Rect rect1;
+	rect1.x=0;
+	rect1.y=0;
+	rect1.w=xmax/2;
+	rect1.h=ymax;
+	SDL_Rect rect2;
+	rect1.x=xmax/2;
+	rect1.y=0;
+	rect1.w=xmax/2;
+	rect1.h=ymax;
+
+	uint32_t color;
+	double maxdst=-1;
+
+	for(double x=0;x<grid;x+=delta){
+		for(double y=0;y<grid;y+=delta){
+			fo
