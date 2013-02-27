@@ -98,7 +98,7 @@ void render(){
 				//dst=abs(vals[i+xmax*j].dist-avg/c);
 				//if(abs(vals[i+xmax*j].dist-avg/c)>1){//sqrt(3)){
 				//if(avg/(c-1)>1.0/(1*grid)){
-				#define tol2 1//0.75
+				#define tol2 1.25//0.75
 				if(avg*grid>tol2*(c-1)){
 					//cout<<"set blue with avg="<<avg<<endl;
 

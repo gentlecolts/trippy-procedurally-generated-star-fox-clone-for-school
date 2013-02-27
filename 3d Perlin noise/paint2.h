@@ -11,10 +11,10 @@ for(double z=lowz+delta/10;z<grid;z+=delta/5){
 //for(double z=delta/20+lowz;z<grid;z+=delta/(grid-z*z/grid) ){
 	scl=d/(d+(z+raise)/(grid+raise));
 	/*
-	xleft=xmax*((0-grid2)*scl+grid2)/grid;
-	xright=xmax*((grid-grid2+delta)*scl+grid2)/grid;
-	ybottom=ymax*((0-grid2)*scl+grid2)/grid;
-	ytop=ymax*((grid-grid2+delta)*scl+grid2)/grid;
+	xleft=max(xmax*(-camx*scl+grid2)/grid,0.0);
+	xright=min(xmax*((grid-camx)*scl+grid2)/grid,(double)xmax);
+	ybottom=max(ymax*(-camy*scl+grid2)/grid,0.0);
+	ytop=min(ymax*((grid-camy)*scl+grid2)/grid,(double)ymax);
 	/*/
 	xleft=max(xmax*(1-scl)/2,0.0);
 	//xright=xmax*(scl*(delta/grid+0.5)+0.5);

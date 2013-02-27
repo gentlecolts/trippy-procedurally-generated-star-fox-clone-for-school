@@ -26,8 +26,13 @@ struct pixel{
 	}
 };
 
-const int divs=8;
-double delta=1.0/divs;
+//const int
+#define divs 4
+const double delta=1.0/divs;
+//const int
+#define isnoisebase2 true//requires that precompdivs*grid is a power of 2
+#define precompdivs 32
+const double precompdelta=1.0/precompdivs;
 //#define delta 0.1
 const double delt2=delta/2;
 //const int deep=8;//did i have some plan to use this? i can only assume for oct/quadtrees
@@ -47,19 +52,35 @@ double camx=grid2,camy=grid2;
 #define drawmethod -1
 #endif
 
-#define outline 0
+#define outline 1
 #define test2d 0
 
 #if drawmethod>=6
-#define res (grid*divs)
+//*
+#define res (grid*precompdivs)/*/
+#define res precompdivs
+const double biznitch=precompdivs/grid;
+//*/
 #define res3 (res*res*res)
-pixel noise[res3];
+double noise[res3];
 
 int precompindx(double x,double y,double z){
-	x*=divs;
-	y*=divs;
-	z*=divs;
+	//*
+	x*=precompdivs;
+	y*=precompdivs;
+	z*=precompdivs;
+	/*/
+	x*=biznitch;
+	y*=biznitch;
+	z*=biznitch;
+	//*/
 
+	#if isnoisebase2
+	int
+	i=((int)x)&(res-1),
+	j=((int)y)&(res-1),
+	k=((int)z)&(res-1);
+	#else
 	int
 	i=((int)x)%res,
 	j=((int)y)%res,
@@ -68,6 +89,7 @@ int precompindx(double x,double y,double z){
 	if(i<0){i+=res;}
 	if(j<0){j+=res;}
 	if(k<0){k+=res;}
+	#endif
 
 	//cout<<"("<<x<<", "<<y<<", "<<z<<") -> "<<(int)(i+res*(j+res*k))<<endl;
 	return (int)(i+res*(j+res*k));
@@ -79,7 +101,8 @@ double smoothxy(double x,double y,double z){
 		sy=y-int(y);
 
 	#define g(x,y,z) (precompindx(x,y,z))
-	#define n(x,y,z) noise[g(x,y,z)].dist
+	//#define n(x,y,z) noise[g(x,y,z)].dist
+	#define n(x,y,z) noise[g(x,y,z)]
 	return
 		(1-sy)*((1-sx)*n(x,y,z)+sx*n(x+1,y,z))+
 		sy*((1-sx)*n(x,y+1,z)+sx*n(x+1,y+1,z));
@@ -105,6 +128,9 @@ int xmax,ymax;
 #endif
 #define pi 3.141592653589793238462643383279502884197169l
 #define viewangle 60*pi/180
+const double d1=2*tan(viewangle/2.0)/grid;
+const double d2=d1/2;//2*tan(viewangle/4.0)/grid;
+double d=d1;
 
 ///Look into sse sqrt, see:
 ///http://assemblyrequired.crashworks.org/2009/10/16/timing-square-root/
@@ -141,7 +167,7 @@ float invsqrt (float x){
 #else
 
 #endif
-bool leftmov,rightmov,upmov,downmov;
+bool leftmov,rightmov,upmov,downmov,space;
 SDL_Event e;
 #define dcamera 0.2
 void chkCloseEvent(){
@@ -169,6 +195,10 @@ void chkCloseEvent(){
 			if(key==SDLK_LEFT || key==SDLK_a){//LEFT
 				leftmov=true;
 			}
+			if(key==SDLK_SPACE){
+				d=d2;
+				space=true;
+			}
 			//cout<<key<<endl;
 			break;
 			}
@@ -186,6 +216,10 @@ void chkCloseEvent(){
 			}
 			if(key==SDLK_LEFT || key==SDLK_a){//LEFT
 				leftmov=false;
+			}
+			if(key==SDLK_SPACE){
+				d=d1;
+				space=false;
 			}
 			//cout<<key<<endl;
 			break;
@@ -246,7 +280,6 @@ pixel vals[xmax*ymax];
 const double raise=-0.1;//0.1;
 double zshft=0;
 
-const double d=2*tan(viewangle/2.0)/grid;
 SDL_Surface* screen=NULL;
 
 //#define distanceNotDepth 1
@@ -301,7 +334,7 @@ int main(int argc,char** argv){
 	while(true){
 		chkCloseEvent();
 		movecam();
-		zshft+=shftstep;
+		zshft+=shftstep*(space?2:1);
 		zshft=(zshft>grid)?0:zshft;
 		#if docamdemo
 		camx=grid/4*cos(rotspeed*2*pi*zshft/grid)+grid2;

@@ -346,11 +346,12 @@ public:
 
 		#if drawmethod>=6
 		//cout<<"note: tolerance is "<<tolerance<<endl;
-		for(double x=0;x<grid;x+=delta){
-			for(double y=0;y<grid;y+=delta){
-				for(double z=0;z<grid;z+=delta){
+		for(double x=0;x<grid;x+=precompdelta){
+			for(double y=0;y<grid;y+=precompdelta){
+				for(double z=0;z<grid;z+=precompdelta){
 					//cout<<"value at ("<<x<<", "<<y<<", "<<z<<") is "<<get(x,y,z)<<endl;
-					noise[precompindx(x,y,z)].dist=get(x,y,z);
+					//noise[precompindx(x,y,z)].dist=get(x,y,z);
+					noise[precompindx(x,y,z)]=get(x,y,z);
 				}
 			}
 		}
