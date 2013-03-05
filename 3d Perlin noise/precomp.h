@@ -2,12 +2,12 @@
 #define PRECOMP_H_INCLUDED
 
 //cout<<"better get here..."<<endl;
-double z2;
+//double z2;
 //for(double z=lowz+delta/10;z<grid;z-=delta/5){
 for(double z=grid-delta/10;z>lowz;z-=delta/5){
 //for(double z=grid-1;z>lowz;z-=delta/(grid-z*z/grid) ){//z-=delta/(grid* (1-z*z/(grid*grid)) )
 //for(double z=delta/20+lowz;z<grid;z+=delta/(grid-z*z/grid) ){
-	z2=(z-lowz)*(z-lowz);
+	//z2=(z-lowz)*(z-lowz);
 	for(double x=0;x<grid;x+=delta){
 		for(double y=0;y<grid;y+=delta){
 			//if(noise[precompindx(x,y,z+zshft)].dist>tolerance){

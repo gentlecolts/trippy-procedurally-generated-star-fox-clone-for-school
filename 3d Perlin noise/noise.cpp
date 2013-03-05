@@ -175,6 +175,7 @@ public:
 	//double maxval;//may want for quadtree
 
 	double get(double x,double y,double z){
+		/*
 		gx=((int)x)%grid;
 		gy=((int)y)%grid;
 		gz=((int)z)%grid;
@@ -182,6 +183,11 @@ public:
 		if(gx<0){gx+=grid;}
 		if(gy<0){gy+=grid;}
 		if(gz<0){gz+=grid;}
+		/*/
+		if((gx=((int)x)%grid)<0){gx+=grid;}
+		if((gy=((int)y)%grid)<0){gy+=grid;}
+		if((gz=((int)z)%grid)<0){gz+=grid;}
+		//*/
 
 		x=(x-gx);
 		y=(y-gy);
@@ -344,7 +350,7 @@ public:
 		}
 		//*/
 
-		#if drawmethod>=6
+		#if drawmethod>=6 || drawmethod==4
 		//cout<<"note: tolerance is "<<tolerance<<endl;
 		for(double x=0;x<grid;x+=precompdelta){
 			for(double y=0;y<grid;y+=precompdelta){
@@ -355,6 +361,19 @@ public:
 				}
 			}
 		}
+
+		/*
+		//optimize, in other words, if the point cannot be seen, dont bother with it
+		bool blahl;
+		bool* shouldremove=new bool[res3];
+		int indx;
+		#if 0
+		#include "optimizePrecomp.h"
+		#else
+		#include "optimizePrecomp2.h"
+		#endif
+		//*/
+
 		#endif
 
 		#if quad!=0

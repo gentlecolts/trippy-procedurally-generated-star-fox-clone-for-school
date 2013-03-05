@@ -8,7 +8,14 @@
 //#include <iostream>
 #include <climits>
 #include <xmmintrin.h>//-mfpmath=sse -msse -DHAVE_STDINT_H -m32
+/*
+#if defined(_WIN32) || defined(_WIN64)
+#include <windows.h>
+#endif
+//*/
 using namespace std;
+
+#include "constants.h"
 
 struct pixel{
 	double dist;
@@ -26,36 +33,7 @@ struct pixel{
 	}
 };
 
-//const int
-#define divs 4
-const double delta=1.0/divs;
-//const int
-#define isnoisebase2 true//requires that precompdivs*grid is a power of 2
-#define precompdivs 32
-const double precompdelta=1.0/precompdivs;
-//#define delta 0.1
-const double delt2=delta/2;
-//const int deep=8;//did i have some plan to use this? i can only assume for oct/quadtrees
-const int grid=8;
-const double grid2=grid/2;
-
-#define shftstep (delta/5)
-
-#define docamdemo 0
-double camx=grid2,camy=grid2;
-
-#define fullscreen 0///TODO make this work
-
-#if quad==0
-#define drawmethod 6
-#else
-#define drawmethod -1
-#endif
-
-#define outline 1
-#define test2d 0
-
-#if drawmethod>=6
+#if drawmethod>=6 || drawmethod==4
 //*
 #define res (grid*precompdivs)/*/
 #define res precompdivs
@@ -111,26 +89,7 @@ double smoothxy(double x,double y,double z){
 }
 #endif
 
-#define doSDL 1
-#define quad 0
-#define tolerance 0.2
 
-#if fullscreen
-int xmax,ymax;
-#else
-/*
-#define xmax 1280
-#define ymax 720
-/*/
-#define xmax 640
-#define ymax 480
-//*/
-#endif
-#define pi 3.141592653589793238462643383279502884197169l
-#define viewangle 60*pi/180
-const double d1=2*tan(viewangle/2.0)/grid;
-const double d2=d1/2;//2*tan(viewangle/4.0)/grid;
-double d=d1;
 
 ///Look into sse sqrt, see:
 ///http://assemblyrequired.crashworks.org/2009/10/16/timing-square-root/
@@ -158,15 +117,24 @@ float invsqrt (float x){
 //*/
 
 //*
-#include "noise.h"/*/
-#include "noise2.h"
+#include "noise.cpp"/*/
+#include "noise2.cpp"
 //*/
 
-#if doSDL==1
-#include <SDL/SDL.h>
-#else
+struct point3d{
+	#if doGL
+	GLdouble x,y,z;
+	#else
+	double x,y,z;
+	#endif
 
-#endif
+	point3d(double x0=0,double y0=0,double z0=0){
+		x=x0;
+		y=y0;
+		z=z0;
+	}
+};
+
 bool leftmov,rightmov,upmov,downmov,space;
 SDL_Event e;
 #define dcamera 0.2
@@ -174,13 +142,15 @@ void chkCloseEvent(){
 	if(SDL_PollEvent(&e)) {
 		switch(e.type) {
 		case SDL_QUIT:
+			quitnow:
+			SDL_Quit();
 			exit(0);
 			break;
 		case SDL_KEYDOWN:
 			{
 			int key=e.key.keysym.sym;
 			if(key==27){
-				exit(0);
+				goto quitnow;
 			}
 
 			if(key==SDLK_DOWN || key==SDLK_s){//DOWN
@@ -196,7 +166,7 @@ void chkCloseEvent(){
 				leftmov=true;
 			}
 			if(key==SDLK_SPACE){
-				d=d2;
+				//d=d2;
 				space=true;
 			}
 			//cout<<key<<endl;
@@ -218,7 +188,7 @@ void chkCloseEvent(){
 				leftmov=false;
 			}
 			if(key==SDLK_SPACE){
-				d=d1;
+				//d=d1;
 				space=false;
 			}
 			//cout<<key<<endl;
@@ -262,6 +232,30 @@ void movecam(){
 	camx=max(min(camx,(double)grid),0.0);
 	camy=max(min(camy,(double)grid),0.0);
 
+	if(space){
+		anm8=min(anm8+anm8step,1.0);
+	}else{
+		anm8=max(anm8-anm8step,0.0);
+	}
+
+	d=(1-anm8)*d1+anm8*d2;
+
+	#if doGL
+	//*
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	//gluPerspective((1-anm8)*viewangle+anm8*viewangle*1.1,1,1,-1);
+	//gluPerspective(180/pi*2.0 * atan2(1/2.0, d),1,1,grid+1);
+	//gluPerspective(180/pi*2.0 * atan(d/2),1,1,2);
+	gluPerspective(viewangle,1,1,1/d+1);
+	//gluPerspective((1-anm8)*2*atan(d1)*180/pi+180/pi*anm8*2*atan(d1*grid/2),1,1,-1);//2*atan(d2*grid)*180/pi
+	//gluPerspective(179,1,1,-1);
+	//glFrustum(-1,1,-1,1,3,10*d);
+	//*/
+	#else
+
+	#endif
+
 	/*
 	if(!(rightmov||leftmov)){camx=(camx+grid2)/2;}
 	if(!(upmov||downmov)){camy=(camy+grid2)/2;}
@@ -275,7 +269,11 @@ void movecam(){
 
 perlin3d perlin(theseed);
 #undef theseed
+#if fullscreen
+pixel* vals;
+#else
 pixel vals[xmax*ymax];
+#endif
 //double vals[xmax*ymax];
 const double raise=-0.1;//0.1;
 double zshft=0;
@@ -284,7 +282,7 @@ SDL_Surface* screen=NULL;
 
 //#define distanceNotDepth 1
 
-#include "render.h"
+#include "render.cpp"
 
 //#define SDL_STDIO_REDIRECT
 int main(int argc,char** argv){
@@ -296,23 +294,45 @@ int main(int argc,char** argv){
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL_EnableKeyRepeat(0,0);
 
-	#if fullscreen
-	xmax=SDL_GetVideoInfo().current_w;
-	#endif
-
 	//ofstream ctt("CON");
 	//FILE * ctt = fopen("CON", "w" );
 	//freopen("CON","w",stdout);
 	//freopen( "CON", "w", stderr );
 
+	#if fullscreen
+	vals=new pixel[xmax*ymax];
+	#endif
+
 	cout<<"test"<<endl;
 
+	#if doGL
+	glPreInit();
+	//screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_OPENGL);// | SDL_FULLSCREEN);
+
+	#if fullscreen
+	screen=SDL_SetVideoMode(xmax,ymax,32,SDL_OPENGL | SDL_FULLSCREEN);
+	#else
+	//screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_GL_DOUBLEBUFFER | SDL_OPENGL);
+	screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_OPENGL);
+	#endif
+	#else
+	#if fullscreen
+	screen=SDL_SetVideoMode(xmax,ymax,SDL_GetVideoInfo()->vfmt->BitsPerPixel,SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_FULLSCREEN);
+	#else
+	//screen=SDL_SetVideoMode(xmax,ymax,SDL_GetVideoInfo()->vfmt->BitsPerPixel,SDL_HWSURFACE | SDL_DOUBLEBUF);// | SDL_FULLSCREEN);
 	screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_DOUBLEBUF);// | SDL_FULLSCREEN);
+	#endif
+	#endif
+
 	cout<<"test2"<<endl;
 	if(screen==NULL){
 		cout<<"screen is null";
 		exit(0xdeadbeef);
 	}
+
+	#if doGL
+	glInit();
+	#endif
 
 	/*
 	const int grid=perlin3d::grid;
@@ -331,17 +351,53 @@ int main(int argc,char** argv){
 	/*
 	while(true){chkCloseEvent();zshft+=delta/5;render();SDL_Flip(screen);}/*/
 	#define rotspeed 4
+
+	#if doGL
+	glMatrixMode(GL_MODELVIEW);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	#endif
 	while(true){
+		#if doGL
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		#endif
+
 		chkCloseEvent();
 		movecam();
-		zshft+=shftstep*(space?2:1);
+		zshft+=shftstep*(space?2:1)/4;
 		zshft=(zshft>grid)?0:zshft;
 		#if docamdemo
 		camx=grid/4*cos(rotspeed*2*pi*zshft/grid)+grid2;
 		camy=grid/4*sin(rotspeed*2*pi*zshft/grid)+grid2;
 		#endif
+		//*
 		render();
-		SDL_Flip(screen);
+		/*/
+		glMatrixMode(GL_MODELVIEW);//dont need to do this each time
+		glLoadIdentity( );//do need to do this each time
+		glTranslatef( 0.0, 0.0, -1.0 );
+		glRotated(360*zshft/grid-180,0,1,0);
+		//double co=cos(2*pi*zshft/grid),si=sin(2*pi*zshft/grid);
+		glBegin(GL_QUADS);
+
+		glColor3f(0.5f,0.5f,0.5f);glVertex3f(-0.5f,-0.5f,-0.5);
+		glColor3f(0.5f,0.5f,0.5f);glVertex3f(-0.5f,-0.5f,0.5);
+		glColor3f(0.5f,0.5f,0.5f);glVertex3f(-0.5f,0.5f,0.5f);
+		glColor3f(0.5f,0.5f,0.5f);glVertex3f(-0.5f,0.5f,-0.5f);
+
+		glColor3f(0.5f,0.5f,0.5f);glVertex3f(-0.5f,0.5f,0.0f);
+		glColor3f(0.5f,0.5f,0.5f);glVertex3f(-0.5f,-0.5f,0.0f);
+		glColor3f(0.5f,0.5f,0.5f);glVertex3f(0.5f,-0.5f,0.0f);
+		glColor3f(0.5f,0.5f,0.5f);glVertex3f(0.5f,0.5f,0.0f);
+
+		//glColor3f(1, 0, 0); glVertex3f(0, 0, 0);
+        //glColor3f(1, 1, 0); glVertex3f(100, 0, 0);
+        //glColor3f(1, 0, 1); glVertex3f(100, 100, 0);
+        //glColor3f(1, 1, 1); glVertex3f(0, 100, 0);
+		glEnd();
+		//*/
+
+		SDL_GL_SwapBuffers();
+		//SDL_Flip(screen);
 	}//*/
 	return 0;
 }

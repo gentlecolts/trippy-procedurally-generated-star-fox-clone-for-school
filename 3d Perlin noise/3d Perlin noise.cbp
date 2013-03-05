@@ -68,17 +68,38 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="Main.cpp" />
+		<Unit filename="constants.h" />
 		<Unit filename="cube2.h" />
-		<Unit filename="noise.h" />
-		<Unit filename="noise2.h" />
+		<Unit filename="glQuad.h" />
+		<Unit filename="glbullshit.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="gloutline.h" />
+		<Unit filename="glrender.h" />
+		<Unit filename="glrender2.h" />
+		<Unit filename="noise.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="noise2.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="oct.h" />
+		<Unit filename="optimizePrecomp.h" />
+		<Unit filename="optimizePrecomp2.h" />
+		<Unit filename="outline.h" />
 		<Unit filename="paint.h" />
 		<Unit filename="paint2.h" />
 		<Unit filename="paintcube.h" />
 		<Unit filename="precomp.h" />
 		<Unit filename="precomp2.h" />
 		<Unit filename="quad.h" />
-		<Unit filename="render.h" />
+		<Unit filename="render.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="solve.h" />
 		<Unit filename="trace.h" />
 		<Extensions>
