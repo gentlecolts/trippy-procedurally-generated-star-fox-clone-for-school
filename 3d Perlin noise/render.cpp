@@ -45,7 +45,7 @@ void render(){
 			#include "solve.h"
 		#elif drawmethod==4
 			#include "trace.h"
-		#elif drawmethod>=8
+		#elif drawmethod>=8 && drawmethod<=10
 			glMatrixMode(GL_MODELVIEW);
 			glLoadIdentity();
 			glTranslatef(1-camx/grid2,camy/grid2-1,0);
@@ -59,6 +59,8 @@ void render(){
 				#include "glQuad.h"
 			#endif
 			glEnd();
+		#elif drawmethod==11///awww yeah turn it up to 11
+			#include "cltrace.h"
 		#else
 			#if quad==1
 			#include "quad.h"

@@ -2,27 +2,47 @@
 #define OUTLINE_H_INCLUDED
 
 uint32_t* pixels=(uint32_t *)screen->pixels;
-double tmp,avg,dst;
+double tmp,avg,dst,t;
 int c=0;
 //bool edge;
+
+#define outline_red 0
+#define outline_green 0
+#define outline_blue 0
+
+uint8_t r,g,b;
+
+//double nmin=50,nmax=-33;
 for(int i=0;i<xmax;i++){
 	for(int j=0;j<ymax;j++){
 		//#define crap
 		#if !test2d
+		#define colcap (255/4.0)
+
+		#if shadenorm
+		#define falloffcolor colcap*( ((grid-2)/(0.125*vals[i+xmax*j].dist+2))*((2+normals[i+xmax*j])/4) )
+		//#define falloffcolor colcap*( ((grid-2)/(0.125*vals[i+xmax*j].dist+2))*(normals[i+xmax*j]*normals[i+xmax*j]) )
+		//nmin=min(nmin,normals[i+xmax*j]);
+		//nmax=max(nmax,normals[i+xmax*j]);
+		#else
+		#define falloffcolor colcap*((grid-2)/(0.125*vals[i+xmax*j].dist+2))
+		#endif
+
 		if(vals[i+xmax*j].dist>0){
 			#if outline==1
 			c=0;
 			avg=0;
 			//edge=false;
 
-			for(int a=-1;a<=1;a++){
-				for(int b=-1;b<=1;b++){
-					if(!(a==0 && b==0) && i+a>=0 && i+a<xmax && j+b>=0 && j+b<ymax){
-						if(vals[i+a+xmax*(j+b)].dist<0){
+			for(int h=-1;h<=1;h++){
+				for(int k=-1;k<=1;k++){
+					if(!(h==0 && k==0) && i+h>=0 && i+h<xmax && j+k>=0 && j+k<ymax){
+						if(vals[i+h+xmax*(j+k)].dist<0){
 							//edge=true;
-							goto drawout;
+							color=(outline_red<<16)|(outline_green<<8)|outline_blue;
+							goto endofloop;
 						}
-						#define d1 vals[i+a+xmax*(j+b)].dist
+						#define d1 vals[i+h+xmax*(j+k)].dist
 						#define d2 vals[i+xmax*j].dist
 						//cout<<"d1: "<<d1<<"\t1/invsqrt: "<<1/invsqrt(d1)<<"\td2: "<<d2<<"\t1/invsqrt: "<<1/invsqrt(d2)<<endl;
 						/*
@@ -33,9 +53,13 @@ for(int i=0;i<xmax;i++){
 						dst=d1+d2-2/invsqrt(d1*d2);
 						avg+=dst;
 						/*/
+						#if 0
 						//dst=d1-d2;
 						dst=1-d1/d2;
 						avg+=dst*dst;
+						#else
+						avg+=1-d1*d1/(d2*d2);
+						#endif
 						//*/
 						#undef d1
 						#undef d2
@@ -45,46 +69,58 @@ for(int i=0;i<xmax;i++){
 			}
 			//dst=abs(vals[i+xmax*j].dist-avg/c);
 			//if(abs(vals[i+xmax*j].dist-avg/c)>1){//sqrt(3)){
-			//if(avg/(c-1)>1.0/(1*grid)){
-			#define tol2 1.25//0.75
+
+			/*
+			#if 0
+			t=(c-1)/(avg*tol2*grid);
+			#else
+			t=tol2*(c-1)/(avg*grid);
+			#endif
+
+			if(abs(t)<1){
+			/*/
+			#if 0
+			//+tol2 -> thicker
+			#define tol2 2//1.25
+			//if(avg/(c-1)>1.0/(tol2*grid)){
+			if(tol2*grid*avg>(c-1)){
+				t=(c-1)/(avg*tol2*grid);
+			#else
+			//+tol2 -> thinner
+			#define tol2 2//1.25//0.75
+			//if(avg/(c-1)>tol2/grid){
 			if(avg*grid>tol2*(c-1)){
+				t=tol2*(c-1)/(avg*grid);
+			#endif
+
+			//*/
+
 				//cout<<"set blue with avg="<<avg<<endl;
 
 				//cout<<"setting to blue"<<endl;
-				#define colcap (255/4.0)
-				#define range 200.0
-				#define base vals[i+xmax*j].dist+range/colcap
-				if(false){
-					drawout:
-					color=0xff;//<<16;
-				}else{
-					const double t=tol2*(c-1)/(avg*grid);
-					color=colcap+range/(base);
-					const uint8_t
-						r=t*color,
-						g=t*color,
-						b=255*(1-t)+t*color;
-					color=(r<<16)|(g<<8)|b;
-				}
-				goto endofloop;//just in case?
+				//#define range 200.0
+				//#define base vals[i+xmax*j].dist+range/colcap
+
+				//color=colcap+range/(base);
+				//color=colcap*((grid-2)/(0.125*vals[i+xmax*j].dist+0.5/invsqrt(vals[i+xmax*j].dist)+2));
+				color=falloffcolor;
+				//const uint8_t
+				r=outline_red*(1-t)+t*color;
+				g=outline_green*(1-t)+t*color;
+				b=outline_blue*(1-t)+t*color;
+				color=(r<<16)|(g<<8)|b;
 			}else{
 			#endif
 				/*
-				#else
-				#define dst vals[i+xmax*j].dist
-				#define sqr(x) (x)*(x)
-				#define deep (dst*dst/(grid*grid)+sqr((double)i/xmax-0.5)+sqr((double)j/ymax-0.5))
-
-				#define base deep/3+2
-				#endif
-				//*/
 				#if outline==0
-				#define colcap (255/4.0)
 				#define range 200.0
 				#define base vals[i+xmax*j].dist+range/colcap
 				#endif
 
-				color=colcap+range/(base);
+				//color=colcap+ra0nge/(base);
+				/*/
+				color=falloffcolor;
+				//*/
 				#undef colcap
 				#undef range
 				#undef base
@@ -126,6 +162,8 @@ for(int i=0;i<xmax;i++){
 	}
 	//cout<<endl;
 }
+
+//cout<<"min: "<<nmin<<"\tmax: "<<nmax<<endl;
 
 SDL_Flip(screen);
 

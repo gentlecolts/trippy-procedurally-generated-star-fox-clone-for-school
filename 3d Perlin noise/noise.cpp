@@ -229,6 +229,36 @@ public:
 		#endif
 	}
 
+	#if shadenorm
+	point3d normal(double x,double y,double z){
+		#define h 0.0001
+		const double g=get(x,y,z);
+		return point3d(
+			(get(x+h,y,z)-g)/h,
+			(get(x,y+h,z)-g)/h,
+			(get(x,y,z+h)-g)/h);
+		#undef h
+	}
+
+	point3d normal(double x,double y,double z,double* val){
+		#define h 0.0001
+		*val=get(x,y,z);
+		return point3d(
+			(get(x+h,y,z)-*val)/h,
+			(get(x,y+h,z)-*val)/h,
+			(get(x,y,z+h)-*val)/h);
+		#undef h
+	}
+
+	double absnormal(double x,double y,double z){
+		point3d norm=normal(x,y,z);
+		//return sqrt(norm.x*norm.x+norm.y*norm.y+norm.z*norm.z);
+		return 1.0/invsqrt(norm.x*norm.x+norm.y*norm.y+norm.z*norm.z);
+	}
+	#endif
+
+	///note: this is incorrect, process involves solving a quintic, not likely to get done but leaving it just in case
+	/*
 	double solvez(double x,double y,int z){
 		gx=((int)x)%grid;
 		gy=((int)y)%grid;
@@ -257,6 +287,7 @@ public:
 
 		return dotp[0]/(dotp[0]-dotp[1]);
 	}
+	//*/
 
 	#if quad==1
 	void buildtree(quadtree* q,double x,double y,double z,int scale){//x and y of top corner of square with size grid/scale
@@ -352,25 +383,42 @@ public:
 
 		#if drawmethod>=6 || drawmethod==4
 		//cout<<"note: tolerance is "<<tolerance<<endl;
+		/*
 		for(double x=0;x<grid;x+=precompdelta){
 			for(double y=0;y<grid;y+=precompdelta){
 				for(double z=0;z<grid;z+=precompdelta){
+		/*/
+		double x,y,z;
+		for(int i=0;i<grid/precompdelta;i++){
+			x=i*precompdelta;
+			for(int j=0;j<grid/precompdelta;j++){
+				y=j*precompdelta;
+				for(int k=0;k<grid/precompdelta;k++){
+					z=k*precompdelta;
+		//*/
 					//cout<<"value at ("<<x<<", "<<y<<", "<<z<<") is "<<get(x,y,z)<<endl;
 					//noise[precompindx(x,y,z)].dist=get(x,y,z);
+					#if shadenorm
+					int indx=precompindx(x,y,z);
+					//noise[indx]=get(x,y,z);
+					//normlist[indx]=normal(x,y,z);
+					normlist[indx]=normal(x,y,z,&(noise[indx])).y;
+					#else
 					noise[precompindx(x,y,z)]=get(x,y,z);
+					#endif
 				}
 			}
 		}
 
-		/*
+		/*NOTE: this is bad for raytrace
 		//optimize, in other words, if the point cannot be seen, dont bother with it
 		bool blahl;
 		bool* shouldremove=new bool[res3];
 		int indx;
 		#if 0
-		#include "optimizePrecomp.h"
+		#include "optimizePrecomp.h"//uses doubles for loop index
 		#else
-		#include "optimizePrecomp2.h"
+		#include "optimizePrecomp2.h"//uses int for loop index
 		#endif
 		//*/
 

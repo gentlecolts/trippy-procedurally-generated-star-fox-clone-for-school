@@ -16,11 +16,14 @@ for(double x=0;x<grid;x+=delta/2){
 	for(double y=0;y<grid;y+=delta/2){
 /*/
 double x,y,z;
-for(int a=0;a<grid/(delta/2);a++){
+const double step=delta/2;
+
+///NOTE: need to resolve the issue of the last rect not being drawn
+for(int a=0;a<grid/step;a++){
 	//x=grid*a/(grid/(delta/2));
-	x=a*delta/2;
-	for(int b=0;b<grid/(delta/2);b++){
-	y=b*delta/2;
+	x=a*step;
+	for(int b=0;b<grid/step;b++){
+	y=b*step;
 //*/
 		//glBegin(GL_QUADS);glColor3f(0.5f,0.5f,0.5f);
 		inCube=false;
@@ -30,7 +33,7 @@ for(int a=0;a<grid/(delta/2);a++){
 		for(double z=0;z<grid;z+=delta){
 		/*/
 		for(int c=0;c<grid/delta;c++){
-		z=c*delta;
+		z=c*step;
 		//*/
 			if(noise[precompindx(x,y,z+zshft)]>tolerance){
 				if(!inCube){
@@ -64,6 +67,26 @@ for(int a=0;a<grid/(delta/2);a++){
 
 					//glBegin(GL_QUADS);glColor3f(0.5f,0.5f,0.5f);
 					///zyx
+					#if 1
+					//000,001,011,010
+					drawquad(corners[0],corners[1],corners[3],corners[2]);
+
+					//000,001,101,100
+					drawquad(corners[0],corners[1],corners[5],corners[4]);
+
+					//000,010,110,100
+					drawquad(corners[0],corners[2],corners[6],corners[4]);
+
+					//011,010,110,111
+					drawquad(corners[3],corners[2],corners[6],corners[7]);
+
+					//011,001,101,111
+					drawquad(corners[3],corners[1],corners[5],corners[7]);
+
+					//110,100,101,111
+					drawquad(corners[6],corners[4],corners[5],corners[7]);
+					//glEnd();
+					#else
 					face[0]=corners[0];//000
 					face[1]=corners[1];//001
 					face[2]=corners[3];//011
@@ -79,7 +102,7 @@ for(int a=0;a<grid/(delta/2);a++){
 					//face[0]=corners[0];//000
 					face[1]=corners[2];//010
 					face[2]=corners[6];//110
-					//face[3]=corners[6];//100
+					//face[3]=corners[4];//100
 					drawquad();
 
 					face[0]=corners[3];//011
@@ -100,6 +123,7 @@ for(int a=0;a<grid/(delta/2);a++){
 					//face[3]=corners[7];//111
 					drawquad();
 					//glEnd();
+					#endif
 				}
 			}
 		}

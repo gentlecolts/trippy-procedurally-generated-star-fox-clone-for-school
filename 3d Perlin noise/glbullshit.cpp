@@ -43,8 +43,10 @@ void glInit(){
 	glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 2.0);
-	glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 1.0);
-	glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.5);
+	//glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 1.0);
+	glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.5);
+	//glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.5);
+	glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.125);
 
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
@@ -88,12 +90,12 @@ inline void drawquad(point3d p0,point3d p1,point3d p2,point3d p3){
 }
 
 void drawquad(point3d p[4]){
-	glBegin(GL_QUADS);
+	//glBegin(GL_QUADS);
 	glVertex3d(p[0].x,p[0].y,p[0].z);
 	glVertex3d(p[1].x,p[1].y,p[1].z);
 	glVertex3d(p[2].x,p[2].y,p[2].z);
 	glVertex3d(p[3].x,p[3].y,p[3].z);
-	glEnd();
+	//glEnd();
 }
 
 void drawquad(){

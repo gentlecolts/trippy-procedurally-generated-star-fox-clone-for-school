@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <stdint.h>
+//#include <cstdint>
 #include <cmath>
 //#include <string>
 //#include <sstream>
@@ -40,7 +41,18 @@ struct pixel{
 const double biznitch=precompdivs/grid;
 //*/
 #define res3 (res*res*res)
+//double noise[res3];
 double noise[res3];
+
+#if shadenorm
+	///remember to also change noise.cpp
+	//*
+	double normlist[res3];
+	/*/
+	point3d normlist[res3];
+	//*/
+	double normals[xmax*ymax];
+#endif
 
 int precompindx(double x,double y,double z){
 	//*
@@ -53,7 +65,7 @@ int precompindx(double x,double y,double z){
 	z*=biznitch;
 	//*/
 
-	#if isnoisebase2
+	#if 0//isnoisebase2
 	int
 	i=((int)x)&(res-1),
 	j=((int)y)&(res-1),
@@ -73,6 +85,7 @@ int precompindx(double x,double y,double z){
 	return (int)(i+res*(j+res*k));
 }
 
+/*removed until i actually need interpolation, as according to the code profiler, it was somehow being used
 double smoothxy(double x,double y,double z){
 	double
 		sx=x-int(x),
@@ -87,6 +100,7 @@ double smoothxy(double x,double y,double z){
 	#undef g
 	#undef n
 }
+//*/
 #endif
 
 
@@ -96,6 +110,7 @@ double smoothxy(double x,double y,double z){
 ///http://www.programmingforums.org/thread29168.html
 ///http://supercomputingblog.com/optimization/getting-started-with-sse-programming/
 
+#if 1 & !doGL///add conditions as necessary
 //*
 double invsqrt(double x) {
     double xhalf = x/2;
@@ -115,11 +130,7 @@ float invsqrt (float x){
     return x;
 }
 //*/
-
-//*
-#include "noise.cpp"/*/
-#include "noise2.cpp"
-//*/
+#endif
 
 struct point3d{
 	#if doGL
@@ -134,6 +145,11 @@ struct point3d{
 		z=z0;
 	}
 };
+
+//*
+#include "noise.cpp"/*/
+#include "noise2.cpp"
+//*/
 
 bool leftmov,rightmov,upmov,downmov,space;
 SDL_Event e;
@@ -247,7 +263,7 @@ void movecam(){
 	//gluPerspective((1-anm8)*viewangle+anm8*viewangle*1.1,1,1,-1);
 	//gluPerspective(180/pi*2.0 * atan2(1/2.0, d),1,1,grid+1);
 	//gluPerspective(180/pi*2.0 * atan(d/2),1,1,2);
-	gluPerspective(viewangle,1,1,1/d+1);
+	gluPerspective(viewangle,1,d/2,1/d+1);
 	//gluPerspective((1-anm8)*2*atan(d1)*180/pi+180/pi*anm8*2*atan(d1*grid/2),1,1,-1);//2*atan(d2*grid)*180/pi
 	//gluPerspective(179,1,1,-1);
 	//glFrustum(-1,1,-1,1,3,10*d);
@@ -396,8 +412,15 @@ int main(int argc,char** argv){
 		glEnd();
 		//*/
 
+		#if doGL
 		SDL_GL_SwapBuffers();
-		//SDL_Flip(screen);
+		#else
+		SDL_Flip(screen);
+		#endif
 	}//*/
 	return 0;
 }
+
+///catching div by zero, etc
+///http://stackoverflow.com/questions/3013757/are-there-possible-approaches-to-map-signal-handling-c-library-into-a-c-exce/3014035#3014035
+///http://stackoverflow.com/questions/618215/how-do-i-catch-system-level-exceptions-in-linux-c

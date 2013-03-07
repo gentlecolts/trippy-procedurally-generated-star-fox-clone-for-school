@@ -23,7 +23,14 @@
 
 	#define fullscreen 0
 
-	#define drawmethod 9
+	/**important values for drawmethod
+	 * 4 -> trace
+	 * 6 -> best non-gl squares
+	 * 9 -> opengl
+	 * 11-> opencl trace, needs to be finished
+	 */
+	#define drawmethod 4
+	#define shadenorm 1
 
 	#if drawmethod<0 || drawmethod==10
 		#define quad 1
@@ -32,6 +39,8 @@
 	#endif
 
 	#define outline 1
+	//#define line_thick 2
+
 	#define test2d 0
 
 	#define doSDL 1
@@ -66,6 +75,10 @@
 	#define res res2
 	#undef quad2
 	#undef res2
+	#endif
+
+	#if drawmethod==11
+	#include <CL/cl.hpp>
 	#endif
 
 	#if fullscreen

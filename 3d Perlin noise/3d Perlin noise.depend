@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1362436778 source:g:\blair\grade 11\comp sci\c++\3d perlin noise\main.cpp
+1362616472 source:g:\blair\grade 11\comp sci\c++\3d perlin noise\main.cpp
 	<iostream>
 	<cstdlib>
 	<stdint.h>
@@ -42,7 +42,7 @@
 
 1360812518 g:\blair\grade 11\comp sci\c++\3d perlin noise\solve2.h
 
-1362444548 g:\blair\grade 11\comp sci\c++\3d perlin noise\trace.h
+1362612072 g:\blair\grade 11\comp sci\c++\3d perlin noise\trace.h
 
 1361226064 g:\blair\grade 11\comp sci\c++\3d perlin noise\quad.h
 
@@ -58,15 +58,16 @@
 
 1362341342 g:\blair\grade 11\comp sci\c++\3d perlin noise\glbullshit.h
 
-1362445748 g:\blair\grade 11\comp sci\c++\3d perlin noise\constants.h
+1362616718 g:\blair\grade 11\comp sci\c++\3d perlin noise\constants.h
 	<SDL/SDL.h>
 	<SDL/SDL_opengl.h>
 	<GL/gl.h>
 	<GL/glu.h>
+	<CL/cl.hpp>
 
 1362361992 g:\blair\grade 11\comp sci\c++\3d perlin noise\glrender.h
 
-1362436504 g:\blair\grade 11\comp sci\c++\3d perlin noise\noise.cpp
+1362614952 g:\blair\grade 11\comp sci\c++\3d perlin noise\noise.cpp
 	"optimizePrecomp.h"
 	"optimizePrecomp2.h"
 
@@ -74,7 +75,7 @@
 
 1361218832 g:\blair\grade 11\comp sci\c++\3d perlin noise\noise2.cpp
 
-1362432870 g:\blair\grade 11\comp sci\c++\3d perlin noise\render.cpp
+1362457170 g:\blair\grade 11\comp sci\c++\3d perlin noise\render.cpp
 	"glbullshit.cpp"
 	"paint.h"
 	"paint2.h"
@@ -87,6 +88,7 @@
 	"glrender.h"
 	"glrender2.h"
 	"glQuad.h"
+	"cltrace.h"
 	"quad.h"
 	"oct.h"
 	"gloutline.h"
@@ -94,19 +96,19 @@
 
 1362372250 "
 
-1362372488 g:\blair\grade 11\comp sci\c++\3d perlin noise\glbullshit.cpp
+1362590430 g:\blair\grade 11\comp sci\c++\3d perlin noise\glbullshit.cpp
 
-1362430096 g:\blair\grade 11\comp sci\c++\3d perlin noise\glrender2.h
+1362593814 g:\blair\grade 11\comp sci\c++\3d perlin noise\glrender2.h
 
 1362351152 g:\blair\grade 11\comp sci\c++\3d perlin noise\glquad.h
 
-1362352608 g:\blair\grade 11\comp sci\c++\3d perlin noise\outline.h
+1362617404 g:\blair\grade 11\comp sci\c++\3d perlin noise\outline.h
 
 1362353180 g:\blair\grade 11\comp sci\c++\3d perlin noise\gloutline.h
 
 1362367572 g:\blair\grade 11\comp sci\c++\3d perlin noise\optimizeprecomp.h
 
-1362368386 g:\blair\grade 11\comp sci\c++\3d perlin noise\optimizeprecomp2.h
+1362452180 g:\blair\grade 11\comp sci\c++\3d perlin noise\optimizeprecomp2.h
 
 1362372394 source:/media/USB20FD/Blair/Grade 11/comp sci/c++/3d Perlin noise/Main.cpp
 	<iostream>
@@ -186,4 +188,6 @@
 1362353180 /media/USB20FD/Blair/Grade 11/comp sci/c++/3d Perlin noise/gloutline.h
 
 1362352608 /media/USB20FD/Blair/Grade 11/comp sci/c++/3d Perlin noise/outline.h
+
+1362457184 g:\blair\grade 11\comp sci\c++\3d perlin noise\cltrace.h
 

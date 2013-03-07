@@ -68,6 +68,7 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="Main.cpp" />
+		<Unit filename="cltrace.h" />
 		<Unit filename="constants.h" />
 		<Unit filename="cube2.h" />
 		<Unit filename="glQuad.h" />
