@@ -11,7 +11,7 @@ SpaceObject::~SpaceObject()
 }
 
 void SpaceObject::render() {
-    glTranslatef(offsetX*4/3, offsetY*4/3, 0);
+    /*glTranslatef(camx*4/3, camy*4/3, 0);
 
     gl.glRotatef(-90, 1.0f, 0.0f, 0.0f);
     gl.glRotatef(velX/maxV*90, 0.0f, 1.0f, 0.0f);
@@ -22,7 +22,7 @@ void SpaceObject::render() {
         glColor3f(model[i][4],model[i][5],model[i][6]);
         glVertex3f(model[i][1],model[i][2],model[i][3]);
 
-    }
+    }*/
 }
 
 void SpaceObject::update() {

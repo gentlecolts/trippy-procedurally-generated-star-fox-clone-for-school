@@ -191,7 +191,7 @@
 
 1362457184 g:\blair\grade 11\comp sci\c++\3d perlin noise\cltrace.h
 
-1362962667 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\3d perlin noise\main.cpp
+1362963721 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\3d perlin noise\main.cpp
 	<iostream>
 	<cstdlib>
 	<stdint.h>
@@ -205,7 +205,7 @@
 	"noise2.cpp"
 	"render.cpp"
 
-1362961927 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\3d perlin noise\constants.h
+1362963772 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\3d perlin noise\constants.h
 	<SDL/SDL.h>
 	<SDL/SDL_opengl.h>
 	<GL/gl.h>
@@ -280,6 +280,11 @@
 
 1362961181 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\3d perlin noise\spaceobject.h
 
-1362962774 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\3d perlin noise\playership.cpp
+1362963149 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\3d perlin noise\playership.cpp
+	"constants.h"
+	"PlayerShip.h"
+
+1362963149 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\3d perlin noise\playership.cpp
+	"constants.h"
 	"PlayerShip.h"
 

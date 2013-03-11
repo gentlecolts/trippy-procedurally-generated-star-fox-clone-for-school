@@ -21,7 +21,7 @@
 	#define docamdemo 0
 	double camx=0,camy=0;
 	double velX=0, velY=0;
-	#define maxV 0.5;
+	#define maxV 0.5
 	#define accel 0.005
 
 	#define fullscreen 0

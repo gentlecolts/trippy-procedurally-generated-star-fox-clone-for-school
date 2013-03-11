@@ -223,13 +223,14 @@ void movecam(){
 		}else{
 			velX-=accel;
 		}
-	}
-	if(rightmov){
+	} else if(rightmov){
 		if(upmov!=downmov){
 			velX+=accel*rt2;
 		}else{
 			velX+=accel;
 		}
+	} else {
+        velX*=0.8;
 	}
 	if(upmov){
 		if(leftmov!=rightmov){
@@ -237,13 +238,14 @@ void movecam(){
 		}else{
 			velY-=accel;
 		}
-	}
-	if(downmov){
+	} else if(downmov){
 		if(leftmov!=rightmov){
 			velY+=accel*rt2;
 		}else{
 			velY+=accel;
 		}
+	} else {
+        velY*=.8;
 	}
 
 
