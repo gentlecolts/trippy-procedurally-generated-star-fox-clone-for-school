@@ -4,7 +4,7 @@
 #include "SpaceObject.h"
 
 
-class PlayerShip : public SpaceObject
+class PlayerShip
 {
     public:
         PlayerShip();
@@ -12,6 +12,7 @@ class PlayerShip : public SpaceObject
         void render();
     protected:
     private:
+        int modelSize;
 };
 
 #endif // PLAYERSHIP_H

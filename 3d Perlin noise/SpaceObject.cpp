@@ -1,4 +1,5 @@
 #include "SpaceObject.h"
+#include <iostream>
 
 SpaceObject::SpaceObject()
 {

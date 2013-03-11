@@ -48,7 +48,7 @@ void render(){
 		#elif drawmethod>=8 && drawmethod<=10
 			glMatrixMode(GL_MODELVIEW);
 			glLoadIdentity();
-			glTranslatef(1-camx/grid2,camy/grid2-1,0);
+			glTranslatef(-camx/grid2,camy/grid2,0);
 			glBegin(GL_QUADS);glColor3f(0.5f,0.5f,0.5f);
 			//glColor3f(1,1,1);
 			#if drawmethod==8
@@ -69,6 +69,11 @@ void render(){
 			#endif
 		#endif
 	#endif
+
+    //glLoadIdentity();
+    for(int i=0;i<numGameObjects;i++) {
+        gameObjects[i].render();
+    }
 
 	chkCloseEvent();
 	//cout<<"drawing"<<endl;

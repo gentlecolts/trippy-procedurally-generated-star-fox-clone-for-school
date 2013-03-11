@@ -256,8 +256,8 @@ void movecam(){
     camx+=velX;
     camy+=velY;
 
-	camx=max(min(camx,(double)grid),0.0);
-	camy=max(min(camy,(double)grid),0.0);
+	camx=max(min(camx,(double)grid2),(double)(-grid2));
+	camy=max(min(camy,(double)grid2),(double)(-grid2));
 
 	if(space){
 		anm8=min(anm8+anm8step,1.0);
@@ -309,6 +309,8 @@ SDL_Surface* screen=NULL;
 
 //#define distanceNotDepth 1
 
+PlayerShip gameObjects[1];
+int numGameObjects=1;
 #include "render.cpp"
 
 //#define SDL_STDIO_REDIRECT
@@ -380,8 +382,6 @@ int main(int argc,char** argv){
 	#define rotspeed 4
 
     //*****************************************************GAME STUFFFFFFFFFFFFFFFFFFFFFFFFFFF***********************************************
-    SpaceObject gameObjects[1];
-    int numGameObjects=1;
     gameObjects[0]=PlayerShip();
 
 	#if doGL
