@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="3d Perlin noise" />
+		<Option title="The Game" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -70,6 +70,12 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="Main.cpp" />
+		<Unit filename="PlayerShip.cpp">
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="PlayerShip.h">
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="cltrace.h" />
 		<Unit filename="constants.h" />
 		<Unit filename="cube2.h" />
@@ -81,8 +87,6 @@
 		<Unit filename="gloutline.h" />
 		<Unit filename="glrender.h" />
 		<Unit filename="glrender2.h" />
-		<Unit filename="include/PlayerShip.h" />
-		<Unit filename="include/SpaceObject.h" />
 		<Unit filename="noise.cpp">
 			<Option compile="0" />
 			<Option link="0" />
@@ -106,8 +110,6 @@
 			<Option link="0" />
 		</Unit>
 		<Unit filename="solve.h" />
-		<Unit filename="src/PlayerShip.cpp" />
-		<Unit filename="src/SpaceObject.cpp" />
 		<Unit filename="trace.h" />
 		<Extensions>
 			<code_completion />

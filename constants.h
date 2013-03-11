@@ -6,7 +6,7 @@
 	const double delta=1.0/divs;
 	//const int
 	//#define isnoisebase2 true//requires that precompdivs*grid is a power of 2
-	#define precompdivs 32//should be at least divs times 2
+	#define precompdivs 64//should be at least divs times 2
 	const double precompdelta=1.0/precompdivs;
 	//#define delta 0.1
 	const double delt2=delta/2;
@@ -33,7 +33,7 @@
 	 * 11-> opencl trace, needs to be finished
 	 */
 	#define drawmethod 9
-	#define shadenorm 1
+	#define shadenorm 0
 
 	#if drawmethod<0 || drawmethod==10
 		#define quad 1
@@ -53,7 +53,7 @@
 		#define doGL 0
 	#endif
 
-	#define tolerance 0.2
+	#define tolerance 0.5
 
 	#if doSDL
 	#include <SDL/SDL.h>

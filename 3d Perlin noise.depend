@@ -291,3 +291,106 @@
 	"SpaceObject.h"
 	<iostream>
 
+<<<<<<< HEAD:3d Perlin noise/3d Perlin noise.depend
+=======
+1363011622 source:g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\main.cpp
+	<iostream>
+	<cstdlib>
+	<stdint.h>
+	<cmath>
+	<climits>
+	<xmmintrin.h>
+	<windows.h>
+	"constants.h"
+	"PlayerShip.h"
+	"noise.cpp"
+	"noise2.cpp"
+	"render.cpp"
+
+1363012908 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\constants.h
+	<SDL/SDL.h>
+	<SDL/SDL_opengl.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<CL/cl.hpp>
+
+1363011380 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\playership.cpp
+	"PlayerShip.h"
+	<cmath>
+	"constants.h"
+
+1363011912 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\playership.h
+	"SpaceObject.h"
+	"PlayerShip.h"
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\spaceobject.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\noise.cpp
+	"optimizePrecomp.h"
+	"optimizePrecomp2.h"
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\optimizeprecomp.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\optimizeprecomp2.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\noise2.cpp
+
+1363011806 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\render.cpp
+	"glbullshit.cpp"
+	"paint.h"
+	"paint2.h"
+	"cube2.h"
+	"paintcube.h"
+	"precomp.h"
+	"precomp2.h"
+	"solve.h"
+	"trace.h"
+	"glrender.h"
+	"glrender2.h"
+	"glQuad.h"
+	"cltrace.h"
+	"quad.h"
+	"oct.h"
+	"gloutline.h"
+	"outline.h"
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\glbullshit.cpp
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\paint.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\paint2.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\cube2.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\paintcube.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\precomp.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\precomp2.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\solve.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\trace.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\glrender.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\glrender2.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\glquad.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\cltrace.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\quad.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\oct.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\gloutline.h
+
+1362959994 g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\outline.h
+
+1363011380 source:g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\playership.cpp
+	"PlayerShip.h"
+	<cmath>
+	"constants.h"
+
+>>>>>>> shit getting real:3d Perlin noise.depend
