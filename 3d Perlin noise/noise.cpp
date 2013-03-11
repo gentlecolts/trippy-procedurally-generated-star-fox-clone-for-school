@@ -252,8 +252,8 @@ public:
 
 	double absnormal(double x,double y,double z){
 		point3d norm=normal(x,y,z);
-		//return sqrt(norm.x*norm.x+norm.y*norm.y+norm.z*norm.z);
-		return 1.0/invsqrt(norm.x*norm.x+norm.y*norm.y+norm.z*norm.z);
+		return sqrt(norm.x*norm.x+norm.y*norm.y+norm.z*norm.z);
+		//return 1.0/invsqrt(norm.x*norm.x+norm.y*norm.y+norm.z*norm.z);
 	}
 	#endif
 

@@ -17,6 +17,7 @@
 using namespace std;
 
 #include "constants.h"
+#include "PlayerShip.cpp"
 
 struct pixel{
 	double dist;
@@ -218,32 +219,40 @@ const double rt2=1/sqrt(2);
 void movecam(){
 	if(leftmov){
 		if(upmov!=downmov){//aka xor operator, deal w/ it
-			camx-=dcamera*rt2;
+			velX-=accel*rt2;
 		}else{
-			camx-=dcamera;
+			velX-=accel;
 		}
 	}
 	if(rightmov){
 		if(upmov!=downmov){
-			camx+=dcamera*rt2;
+			velX+=accel*rt2;
 		}else{
-			camx+=dcamera;
+			velX+=accel;
 		}
 	}
 	if(upmov){
 		if(leftmov!=rightmov){
-			camy-=dcamera*rt2;
+			velY-=accel*rt2;
 		}else{
-			camy-=dcamera;
+			velY-=accel;
 		}
 	}
 	if(downmov){
 		if(leftmov!=rightmov){
-			camy+=dcamera*rt2;
+			velY+=accel*rt2;
 		}else{
-			camy+=dcamera;
+			velY+=accel;
 		}
 	}
+
+
+
+    velX=max(min((double)velX, 0.5),-0.5);
+    velY=max(min((double)velY, 0.5),-0.5);
+
+    camx+=velX;
+    camy+=velY;
 
 	camx=max(min(camx,(double)grid),0.0);
 	camy=max(min(camy,(double)grid),0.0);
@@ -368,6 +377,11 @@ int main(int argc,char** argv){
 	while(true){chkCloseEvent();zshft+=delta/5;render();SDL_Flip(screen);}/*/
 	#define rotspeed 4
 
+    //*****************************************************GAME STUFFFFFFFFFFFFFFFFFFFFFFFFFFF***********************************************
+    SpaceObject gameObjects[1];
+    int numGameObjects=1;
+    gameObjects[0]=PlayerShip();
+
 	#if doGL
 	glMatrixMode(GL_MODELVIEW);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -387,6 +401,11 @@ int main(int argc,char** argv){
 		#endif
 		//*
 		render();
+
+		for(int i=0;i<numGameObjects;i++) {
+            gameObjects[0].render();
+		}
+
 		/*/
 		glMatrixMode(GL_MODELVIEW);//dont need to do this each time
 		glLoadIdentity( );//do need to do this each time

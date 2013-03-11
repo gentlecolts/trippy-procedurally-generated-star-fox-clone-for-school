@@ -19,7 +19,10 @@
 	#define shftstep (1.0/20)
 
 	#define docamdemo 0
-	double camx=grid2,camy=grid2;
+	double camx=0,camy=0;
+	double velX=0, velY=0;
+	#define maxV 0.5;
+	#define accel 0.005
 
 	#define fullscreen 0
 
@@ -29,7 +32,7 @@
 	 * 9 -> opengl
 	 * 11-> opencl trace, needs to be finished
 	 */
-	#define drawmethod 4
+	#define drawmethod 9
 	#define shadenorm 1
 
 	#if drawmethod<0 || drawmethod==10

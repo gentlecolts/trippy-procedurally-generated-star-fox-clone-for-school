@@ -43,6 +43,8 @@
 				</Compiler>
 				<Linker>
 					<Add option="-pg -lgmon" />
+					<Add option="-lmingw32 -lSDLmain -lSDL" />
+					<Add option="-lopengl32 -lglu32" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -79,6 +81,8 @@
 		<Unit filename="gloutline.h" />
 		<Unit filename="glrender.h" />
 		<Unit filename="glrender2.h" />
+		<Unit filename="include/PlayerShip.h" />
+		<Unit filename="include/SpaceObject.h" />
 		<Unit filename="noise.cpp">
 			<Option compile="0" />
 			<Option link="0" />
@@ -102,6 +106,8 @@
 			<Option link="0" />
 		</Unit>
 		<Unit filename="solve.h" />
+		<Unit filename="src/PlayerShip.cpp" />
+		<Unit filename="src/SpaceObject.cpp" />
 		<Unit filename="trace.h" />
 		<Extensions>
 			<code_completion />
