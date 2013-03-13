@@ -13,38 +13,16 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-march=core2" />
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-O3" />
+					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
 					<Add option="-pg" />
 					<Add option="-g" />
-					<Add option="-fauto-inc-dec" />
-					<Add option="-fcompare-elim" />
-					<Add option="-fcprop-registers" />
-					<Add option="-fdce" />
-					<Add option="-fdefer-pop" />
-					<Add option="-fdse" />
-					<Add option="-fif-conversion2" />
-					<Add option="-fif-conversion" />
-					<Add option="-fipa-reference" />
-					<Add option="-fsplit-wide-types" />
-					<Add option="-ftree-bit-ccp" />
-					<Add option="-ftree-builtin-call-dce" />
-					<Add option="-ftree-ccp" />
-					<Add option="-ftree-ch" />
-					<Add option="-ftree-copyrename" />
-					<Add option="-ftree-dce" />
-					<Add option="-ftree-dominator-opts" />
-					<Add option="-ftree-dse" />
-					<Add option="-ftree-forwprop" />
-					<Add option="-ftree-fre" />
-					<Add option="-ftree-phiprop" />
-					<Add option="-ftree-sra" />
-					<Add option="-ftree-pta" />
-					<Add option="-ftree-ter" />
-					<Add option="-funit-at-a-time" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg -lgmon" />
-					<Add option="-lmingw32 -lSDLmain -lSDL" />
-					<Add option="-lopengl32 -lglu32" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -69,15 +47,21 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Linker>
+			<Add option="-lmingw32 -lSDLmain -lSDL" />
+			<Add option="-lopengl32 -lglu32" />
+		</Linker>
 		<Unit filename="GameController.cpp">
-			<Option target="&lt;{~None~}&gt;" />
+			<Option compile="0" />
+			<Option link="0" />
 		</Unit>
 		<Unit filename="GameObject.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="Main.cpp" />
 		<Unit filename="PlayerShip.cpp">
-			<Option target="Release" />
+			<Option compile="0" />
+			<Option link="0" />
 		</Unit>
 		<Unit filename="PlayerShip.h">
 			<Option target="Release" />

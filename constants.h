@@ -6,7 +6,7 @@
 	const double delta=1.0/divs;
 	//const int
 	//#define isnoisebase2 true//requires that precompdivs*grid is a power of 2
-	#define precompdivs 64//should be at least divs times 2
+	#define precompdivs 32//should be at least divs times 2
 	const double precompdelta=1.0/precompdivs;
 	//#define delta 0.1
 	const double delt2=delta/2;
@@ -35,12 +35,6 @@
 	#define drawmethod 9
 	#define shadenorm 0
 
-	#if drawmethod<0 || drawmethod==10
-		#define quad 1
-	#else
-		#define quad 0
-	#endif
-
 	#define outline 1
 	//#define line_thick 2
 
@@ -53,7 +47,7 @@
 		#define doGL 0
 	#endif
 
-	#define tolerance 0.4
+	#define tolerance 0.3
 
 	#if doSDL
 	#include <SDL/SDL.h>
@@ -62,10 +56,6 @@
 	#endif
 
 	#if doGL
-	#define quad2 quad
-	#define res2 res
-	#undef quad
-	#undef res
 
 	/*
 	#include <SDL/SDL_opengl.h>
@@ -73,15 +63,17 @@
 	#include <GL/gl.h>
 	#include <GL/glu.h>
 	//*/
-
-	#define quad quad2
-	#define res res2
-	#undef quad2
-	#undef res2
 	#endif
 
 	#if drawmethod==11
 	#include <CL/cl.hpp>
+	#endif
+
+	//here because glu.h has something called quad
+	#if drawmethod<0 || drawmethod==10
+		#define quad 1
+	#else
+		#define quad 0
 	#endif
 
 	#if fullscreen

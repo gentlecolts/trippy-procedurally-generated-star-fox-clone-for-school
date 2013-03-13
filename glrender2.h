@@ -62,7 +62,8 @@ for(int a=0;a<grid/step;a++){
 					//corners[indx].z=-2*(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/grid-1.5;
 					//corners[indx].z=(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/grid-1.5;
 					//corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)-1;
-					corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-1;
+					//corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-1;
+					corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-d/2;
 					}}}
 
 					//glBegin(GL_QUADS);glColor3f(0.5f,0.5f,0.5f);
