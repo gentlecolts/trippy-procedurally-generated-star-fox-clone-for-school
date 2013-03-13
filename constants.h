@@ -53,7 +53,7 @@
 		#define doGL 0
 	#endif
 
-	#define tolerance 0.5
+	#define tolerance 0.4
 
 	#if doSDL
 	#include <SDL/SDL.h>

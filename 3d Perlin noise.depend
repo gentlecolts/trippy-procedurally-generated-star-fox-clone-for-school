@@ -291,8 +291,8 @@
 	"SpaceObject.h"
 	<iostream>
 
-<<<<<<< HEAD:3d Perlin noise/3d Perlin noise.depend
-=======
+1362965020 D:3d Perlin noise/3d Perlin noise.depend
+
 1363011622 source:g:\trippy-procedurally-generated-star-fox-clone-for-school-master\3d perlin noise\main.cpp
 	<iostream>
 	<cstdlib>
@@ -393,4 +393,95 @@
 	<cmath>
 	"constants.h"
 
->>>>>>> shit getting real:3d Perlin noise.depend
+1363011380 t getting real:3d Perlin noise.depend
+
+1363140057 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\main.cpp
+	<iostream>
+	<cstdlib>
+	<stdint.h>
+	<cmath>
+	<climits>
+	<xmmintrin.h>
+	<windows.h>
+	"constants.h"
+	"PlayerShip.h"
+	"noise.cpp"
+	"noise2.cpp"
+	"render.cpp"
+
+1363140569 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\constants.h
+	<SDL/SDL.h>
+	<SDL/SDL_opengl.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<CL/cl.hpp>
+
+1363140994 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\playership.h
+	"SpaceObject.h"
+	"PlayerShip.h"
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\spaceobject.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\noise.cpp
+	"optimizePrecomp.h"
+	"optimizePrecomp2.h"
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\optimizeprecomp.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\optimizeprecomp2.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\noise2.cpp
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\render.cpp
+	"glbullshit.cpp"
+	"paint.h"
+	"paint2.h"
+	"cube2.h"
+	"paintcube.h"
+	"precomp.h"
+	"precomp2.h"
+	"solve.h"
+	"trace.h"
+	"glrender.h"
+	"glrender2.h"
+	"glQuad.h"
+	"cltrace.h"
+	"quad.h"
+	"oct.h"
+	"gloutline.h"
+	"outline.h"
+
+1363140414 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glbullshit.cpp
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\paint.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\paint2.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\cube2.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\paintcube.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\precomp.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\precomp2.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\solve.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\trace.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glrender.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glrender2.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glquad.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\cltrace.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\quad.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\oct.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gloutline.h
+
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\outline.h
+

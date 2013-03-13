@@ -311,6 +311,7 @@ SDL_Surface* screen=NULL;
 
 PlayerShip gameObjects[1];
 int numGameObjects=1;
+#include "GameObject.h"
 #include "render.cpp"
 
 //#define SDL_STDIO_REDIRECT
@@ -382,7 +383,7 @@ int main(int argc,char** argv){
 	#define rotspeed 4
 
     //*****************************************************GAME STUFFFFFFFFFFFFFFFFFFFFFFFFFFF***********************************************
-    gameObjects[0]=PlayerShip();
+    setupGame();
 
 	#if doGL
 	glMatrixMode(GL_MODELVIEW);
@@ -403,10 +404,7 @@ int main(int argc,char** argv){
 		#endif
 		//*
 		render();
-
-		for(int i=0;i<numGameObjects;i++) {
-            gameObjects[0].render();
-		}
+		updateObjects();
 
 		/*/
 		glMatrixMode(GL_MODELVIEW);//dont need to do this each time
