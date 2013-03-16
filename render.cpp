@@ -71,9 +71,9 @@ void render(){
 	#endif
 
     //glLoadIdentity();
-    chkCloseEvent();
-
-	renderObjects();
+    for(int i=0;i<numGameObjects;i++) {
+        gameObjects[i].render();
+    }
 
 	chkCloseEvent();
 	//cout<<"drawing"<<endl;

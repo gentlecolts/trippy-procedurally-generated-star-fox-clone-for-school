@@ -31,6 +31,7 @@ void glPreInit(){
 }
 
 void glInit(){
+	//*
 	GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
 	GLfloat mat_shininess[] = { 50.0 };
 	//GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
@@ -52,6 +53,7 @@ void glInit(){
 	glEnable(GL_LIGHT0);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_COLOR_MATERIAL);
+	//*/
 	/*
 	glCullFace(GL_BACK);
     glFrontFace(GL_CCW);

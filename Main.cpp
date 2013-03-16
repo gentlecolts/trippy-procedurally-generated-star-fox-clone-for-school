@@ -230,7 +230,7 @@ void movecam(){
 			velX+=accel;
 		}
 	} else {
-        velX*=0.8;
+        velX*=0.7;
 	}
 	if(upmov){
 		if(leftmov!=rightmov){
@@ -245,7 +245,7 @@ void movecam(){
 			velY+=accel;
 		}
 	} else {
-        velY*=.8;
+        velY*=.7;
 	}
 
 
@@ -275,7 +275,6 @@ void movecam(){
 	//gluPerspective(180/pi*2.0 * atan2(1/2.0, d),1,1,grid+1);
 	//gluPerspective(180/pi*2.0 * atan(d/2),1,1,2);
 	gluPerspective(viewangle,1,d/2,1/d+1);
-	//gluPerspective(viewangle,1,d/2,1/d+d/2);
 	//gluPerspective((1-anm8)*2*atan(d1)*180/pi+180/pi*anm8*2*atan(d1*grid/2),1,1,-1);//2*atan(d2*grid)*180/pi
 	//gluPerspective(179,1,1,-1);
 	//glFrustum(-1,1,-1,1,3,10*d);
@@ -309,9 +308,9 @@ double zshft=0;
 SDL_Surface* screen=NULL;
 
 //#define distanceNotDepth 1
-#define numGameObjects 1
-GameObject* gameObjects[numGameObjects];
-#include "GameController.cpp"
+
+PlayerShip gameObjects[1];
+int numGameObjects=1;
 #include "render.cpp"
 
 //#define SDL_STDIO_REDIRECT
@@ -383,7 +382,7 @@ int main(int argc,char** argv){
 	#define rotspeed 4
 
     //*****************************************************GAME STUFFFFFFFFFFFFFFFFFFFFFFFFFFF***********************************************
-    setupGame();
+    gameObjects[0]=PlayerShip();
 
 	#if doGL
 	glMatrixMode(GL_MODELVIEW);
@@ -404,7 +403,6 @@ int main(int argc,char** argv){
 		#endif
 		//*
 		render();
-		updateObjects();
 
 		/*/
 		glMatrixMode(GL_MODELVIEW);//dont need to do this each time
