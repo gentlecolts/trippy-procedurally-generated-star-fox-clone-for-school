@@ -152,6 +152,11 @@ struct point3d{
 #include "noise2.cpp"
 //*/
 
+#include "GameObject.h"
+
+GameObject* gameObjects[numGameObjects];
+#include "GameController.cpp"
+
 bool leftmov,rightmov,upmov,downmov,space;
 SDL_Event e;
 #define dcamera 0.2
@@ -160,6 +165,7 @@ void chkCloseEvent(){
 		switch(e.type) {
 		case SDL_QUIT:
 			quitnow:
+			for(int i=0;i<numGameObjects;i++){delete gameObjects[i];}
 			SDL_Quit();
 			exit(0);
 			break;
@@ -230,7 +236,7 @@ void movecam(){
 			velX+=accel;
 		}
 	} else {
-        velX*=0.7;
+        velX*=0.8;
 	}
 	if(upmov){
 		if(leftmov!=rightmov){
@@ -250,8 +256,8 @@ void movecam(){
 
 
 
-    velX=max(min((double)velX, 0.5),-0.5);
-    velY=max(min((double)velY, 0.5),-0.5);
+    velX=max(min((double)velX, maxV),-maxV);
+    velY=max(min((double)velY, maxV),-maxV);
 
     camx+=velX;
     camy+=velY;
@@ -274,7 +280,8 @@ void movecam(){
 	//gluPerspective((1-anm8)*viewangle+anm8*viewangle*1.1,1,1,-1);
 	//gluPerspective(180/pi*2.0 * atan2(1/2.0, d),1,1,grid+1);
 	//gluPerspective(180/pi*2.0 * atan(d/2),1,1,2);
-	gluPerspective(viewangle,1,d/2,1/d+1);
+	gluPerspective(viewangle,1,0.5,1/d+1);
+	//gluPerspective(viewangle,1,d/2,1/d+d/2);
 	//gluPerspective((1-anm8)*2*atan(d1)*180/pi+180/pi*anm8*2*atan(d1*grid/2),1,1,-1);//2*atan(d2*grid)*180/pi
 	//gluPerspective(179,1,1,-1);
 	//glFrustum(-1,1,-1,1,3,10*d);
@@ -308,9 +315,6 @@ double zshft=0;
 SDL_Surface* screen=NULL;
 
 //#define distanceNotDepth 1
-
-PlayerShip gameObjects[1];
-int numGameObjects=1;
 #include "render.cpp"
 
 //#define SDL_STDIO_REDIRECT
@@ -373,7 +377,6 @@ int main(int argc,char** argv){
 	chkCloseEvent();
 	cout<<"test3"<<endl;
 	//SDL_Delay(1000);
-	render();
 	SDL_WM_SetCaption("done",NULL);
 	cout<<"success";
 
@@ -382,7 +385,7 @@ int main(int argc,char** argv){
 	#define rotspeed 4
 
     //*****************************************************GAME STUFFFFFFFFFFFFFFFFFFFFFFFFFFF***********************************************
-    gameObjects[0]=PlayerShip();
+    setupGame();
 
 	#if doGL
 	glMatrixMode(GL_MODELVIEW);
@@ -403,6 +406,7 @@ int main(int argc,char** argv){
 		#endif
 		//*
 		render();
+		updateObjects();
 
 		/*/
 		glMatrixMode(GL_MODELVIEW);//dont need to do this each time

@@ -395,7 +395,7 @@
 
 1363011380 t getting real:3d Perlin noise.depend
 
-1363358188 source:e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\main.cpp
+1363475545 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\main.cpp
 	<iostream>
 	<cstdlib>
 	<stdint.h>
@@ -407,32 +407,33 @@
 	"PlayerShip.h"
 	"noise.cpp"
 	"noise2.cpp"
+	"GameObject.h"
+	"GameController.cpp"
 	"render.cpp"
 
-1363358320 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\constants.h
+1363475384 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\constants.h
 	<SDL/SDL.h>
 	<SDL/SDL_opengl.h>
 	<GL/gl.h>
 	<GL/glu.h>
 	<CL/cl.hpp>
 
-1363358774 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\playership.h
-	"SpaceObject.h"
-	"PlayerShip.h"
+1363652002 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\playership.h
+	"GameObject.h"
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\spaceobject.h
+1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\spaceobject.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\noise.cpp
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\noise.cpp
 	"optimizePrecomp.h"
 	"optimizePrecomp2.h"
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\optimizeprecomp.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\optimizeprecomp.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\optimizeprecomp2.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\optimizeprecomp2.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\noise2.cpp
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\noise2.cpp
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\render.cpp
+1363475384 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\render.cpp
 	"glbullshit.cpp"
 	"paint.h"
 	"paint2.h"
@@ -451,41 +452,230 @@
 	"gloutline.h"
 	"outline.h"
 
-1363357676 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\glbullshit.cpp
+1363475384 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glbullshit.cpp
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\paint.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\paint.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\paint2.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\paint2.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\cube2.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\cube2.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\paintcube.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\paintcube.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\precomp.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\precomp.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\precomp2.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\precomp2.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\solve.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\solve.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\trace.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\trace.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\glrender.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glrender.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\glrender2.h
+1363475384 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glrender2.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\glquad.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glquad.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\cltrace.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\cltrace.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\quad.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\quad.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\oct.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\oct.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\gloutline.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gloutline.h
 
-1363035602 e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\outline.h
+1363475175 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\outline.h
 
-1363035602 source:e:\trippy-procedurally-generated-star-fox-clone-for-school-292da9361b4496e016b68f28b09eb926ba066785\playership.cpp
+1363188284 source:e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\main.cpp
+	<iostream>
+	<cstdlib>
+	<stdint.h>
+	<cmath>
+	<climits>
+	<xmmintrin.h>
+	<windows.h>
+	"constants.h"
+	"PlayerShip.h"
+	"noise.cpp"
+	"noise2.cpp"
+	"GameController.cpp"
+	"render.cpp"
+
+1363186182 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\constants.h
+	<SDL/SDL.h>
+	<SDL/SDL_opengl.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<CL/cl.hpp>
+
+1363189618 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\playership.h
+	"GameObject.h"
+
+1363189616 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\gameobject.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\noise.cpp
+	"optimizePrecomp.h"
+	"optimizePrecomp2.h"
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\optimizeprecomp.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\optimizeprecomp2.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\noise2.cpp
+
+1363185712 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\render.cpp
+	"glbullshit.cpp"
+	"paint.h"
+	"paint2.h"
+	"cube2.h"
+	"paintcube.h"
+	"precomp.h"
+	"precomp2.h"
+	"solve.h"
+	"trace.h"
+	"glrender.h"
+	"glrender2.h"
+	"glQuad.h"
+	"cltrace.h"
+	"quad.h"
+	"oct.h"
+	"gloutline.h"
+	"outline.h"
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\glbullshit.cpp
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\paint.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\paint2.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\cube2.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\paintcube.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\precomp.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\precomp2.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\solve.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\trace.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\glrender.h
+
+1363186448 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\glrender2.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\glquad.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\cltrace.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\quad.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\oct.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\gloutline.h
+
+1363135610 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\outline.h
+
+1363188642 e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\gamecontroller.cpp
+
+1363135610 source:e:\trippy-procedurally-generated-star-fox-clone-for-school-master-1\playership.cpp
 	<cmath>
 	"constants.h"
+
+1363651998 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gameobject.h
+
+1363646014 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gamecontroller.cpp
+
+1363706264 source:e:\trippy-procedurally-generated-star-fox-clone-for-school\main.cpp
+	<iostream>
+	<cstdlib>
+	<stdint.h>
+	<cmath>
+	<climits>
+	<xmmintrin.h>
+	<windows.h>
+	"constants.h"
+	"PlayerShip.h"
+	"noise.cpp"
+	"noise2.cpp"
+	"GameObject.h"
+	"GameController.cpp"
+	"render.cpp"
+
+1363706264 e:\trippy-procedurally-generated-star-fox-clone-for-school\constants.h
+	<SDL/SDL.h>
+	<SDL/SDL_opengl.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<CL/cl.hpp>
+
+1363707108 e:\trippy-procedurally-generated-star-fox-clone-for-school\playership.h
+	"GameObject.h"
+
+1363707272 e:\trippy-procedurally-generated-star-fox-clone-for-school\gameobject.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\noise.cpp
+	"optimizePrecomp.h"
+	"optimizePrecomp2.h"
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\optimizeprecomp.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\optimizeprecomp2.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\noise2.cpp
+
+1363704100 e:\trippy-procedurally-generated-star-fox-clone-for-school\gamecontroller.cpp
+
+1363478986 e:\trippy-procedurally-generated-star-fox-clone-for-school\render.cpp
+	"glbullshit.cpp"
+	"paint.h"
+	"paint2.h"
+	"cube2.h"
+	"paintcube.h"
+	"precomp.h"
+	"precomp2.h"
+	"solve.h"
+	"trace.h"
+	"glrender.h"
+	"glrender2.h"
+	"glQuad.h"
+	"cltrace.h"
+	"quad.h"
+	"oct.h"
+	"gloutline.h"
+	"outline.h"
+
+1363707108 e:\trippy-procedurally-generated-star-fox-clone-for-school\glbullshit.cpp
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\paint.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\paint2.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\cube2.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\paintcube.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\precomp.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\precomp2.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\solve.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\trace.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\glrender.h
+
+1363478986 e:\trippy-procedurally-generated-star-fox-clone-for-school\glrender2.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\glquad.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\cltrace.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\quad.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\oct.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\gloutline.h
+
+1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\outline.h
 

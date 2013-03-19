@@ -1,100 +1,52 @@
 #ifndef PLAYERSHIP_H
 #define PLAYERSHIP_H
 
-#include "SpaceObject.h"
+#include "GameObject.h"
 
-float playerModel[18][6]={
-        {0.0f, 2.0f, 0.0f, 1.0f, 0.f, 0.0f},
-        {0.0f, 0.0f, 0.5f, 0.0f, 1.0f, 0.0f},
-        {1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f},
-        {0.0f, 2.0f, 0.0f, 1.0f, 0.f, 0.0f},
-        {0.0f, 0.0f, -0.5f, 0.0f, 1.0f, 0.0f},
-        {1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f},
-        {0.0f, 2.0f, 0.0f, 1.0f, 0.f, 0.0f},
-        {0.0f, 0.0f, 0.5f, 0.0f, 1.0f, 0.0f},
-        {-1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f},
-        {0.0f, 2.0f, 0.0f, 1.0f, 0.f, 0.0f},
-        {0.0f, 0.0f, -0.5f, 0.0f, 1.0f, 0.0f},
-        {-1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f},
-        {0.0f, 0.0f, 0.5f, 0.0f, 1.0f, 0.0f},
-        {0.0f, 0.0f, -0.5f, 0.0f, 1.0f, 0.0f},
-        {-1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f},
-        {0.0f, 0.0f, 0.5f, 0.0f, 1.0f, 0.0f},
-        {0.0f, 0.0f, -0.5f, 0.0f, 1.0f, 0.0f},
-        {1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f},
-    };
-
-class PlayerShip
+class PlayerShip : public GameObject
 {
 public:
-	PlayerShip(){
-		//model=&playerModel;
+	void init(){
 		modelSize=18;
+
+        model=new vertex[modelSize];
+		model[0]=vertex(0.0f, 0.0f, -2.0f, 1.0f, 0.f, 0.0f);
+		model[1]=vertex(0.0f, 0.5f, -0.0f, 0.0f, 1.0f, 0.0f);
+		model[2]=vertex(1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
+		model[3]=vertex(0.0f, 0.0f, -2.0f, 1.0f, 0.f, 0.0f);
+		model[4]=vertex(0.0f, -0.5f, -0.0f, 0.0f, 1.0f, 0.0f);
+		model[5]=vertex(1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
+		model[6]=vertex(0.0f, 0.0f, -2.0f, 1.0f, 0.f, 0.0f);
+		model[7]=vertex(0.0f, 0.5f, -0.0f, 0.0f, 1.0f, 0.0f);
+		model[8]=vertex(-1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
+		model[9]=vertex(0.0f, 0.0f, -2.0f, 1.0f, 0.f, 0.0f);
+		model[10]=vertex(0.0f, -0.5f, -0.0f, 0.0f, 1.0f, 0.0f);
+		model[11]=vertex(-1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
+		model[12]=vertex(0.0f, 0.5f, -0.0f, 0.0f, 1.0f, 0.0f);//lost track here
+		model[13]=vertex(0.0f, -0.5f, -0.0f, 0.0f, 1.0f, 0.0f);
+		model[14]=vertex(-1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
+		model[15]=vertex(0.0f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f);
+		model[16]=vertex(0.0f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f);
+		model[17]=vertex(1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
+
+		/*
+		cout<<"init()"<<endl;
+        cout<<"this in init:"<<endl;
+        cout<<this<<endl;
+        //*/
 	}
 
-	void render(){
-		glTranslatef(0,0,-2);
-		glScalef(0.3f,0.3f,0.3f);
-		glTranslatef(camx, -camy, 0);
+	PlayerShip(){init();}
+	~PlayerShip(){delete[] model;}
 
-		glRotatef(-90, 1.0f, 0.0f, 0.0f);
-		glRotatef(velX/maxV*90, 0.0f, 1.0f, 0.0f);
+	void update() {
+        xpos=camx;
+        ypos=-camy;
 
-		glBegin(GL_TRIANGLES); // of the pyramid
-
-		for(int i=0;i<modelSize;i++) {
-			glColor3f(playerModel[i][3],playerModel[i][4],playerModel[i][5]);
-			glVertex3f(playerModel[i][0],playerModel[i][1],playerModel[i][2]);
-		}
-
-			  // Font-face triangle
-		  /*glColor3f(1.0f, 0.f, 0.0f); // Red
-		  glVertex3f(0.0f, 2.0f, 0.0f);
-		  glColor3f(0.0f, 1.0f, 0.0f); // Green
-		  glVertex3f(0.0f, 0.0f, 0.5f);
-		  glColor3f(0.0f, 0.0f, 1.0f); // Blue
-		  glVertex3f(1.0f, -1.0f, 0.0f);
-
-		  // Back-face triangle
-		  glColor3f(1.0f, 0.0f, 0.0f); // Red
-		  glVertex3f(0.0f, 2.0f, 0.0f);
-		  glColor3f(0.0f, 1.0f, 0.0f); // Green
-		  glVertex3f(0.0f, 0.0f, 0.5f);
-		  glColor3f(0.0f, 0.0f, 1.0f); // Blue
-		  glVertex3f(-1.0f, -1.0f, 0.0f);
-			  // Font-face triangle
-		  glColor3f(1.0f, 0.f, 0.0f); // Red
-		  glVertex3f(0.0f, 2.0f, 0.0f);
-		  glColor3f(0.0f, 1.0f, 0.0f); // Green
-		  glVertex3f(0.0f, 0.0f, -0.5f);
-		  glColor3f(0.0f, 0.0f, 1.0f); // Blue
-		  glVertex3f(1.0f, -1.0f, 0.0f);
-
-		  // Back-face triangle
-		  glColor3f(1.0f, 0.0f, 0.0f); // Red
-		  glVertex3f(0.0f, 2.0f, 0.0f);
-		  glColor3f(0.0f, 1.0f, 0.0f); // Green
-		  glVertex3f(0.0f, 0.0f, -0.5f);
-		  glColor3f(0.0f, 0.0f, 1.0f); // Blue
-		  glVertex3f(-1.0f, -1.0f, 0.0f);
-
-		  glColor3f(0.0f, 1.0f, 0.0f); // Green
-		  glVertex3f(0.0f, 0.0f, 0.5f);
-		  glVertex3f(0.0f, 0.0f, -0.5f);
-		  glColor3f(0.0f, 0.0f, 1.0f); // Blue
-		  glVertex3f(-1.0f, -1.0f, 0.0f);
-
-		  glColor3f(0.0f, 1.0f, 0.0f); // Green
-		  glVertex3f(0.0f, 0.0f, 0.5f);
-		  glVertex3f(0.0f, 0.0f, -0.5f);
-		  glColor3f(0.0f, 0.0f, 1.0f); // Blue
-		  glVertex3f(1.0f, -1.0f, 0.0f);*/
-
-		glEnd();
+        xvel=velX;  //camera acceleration; this is kind of backwards but oh well
+        yvel=velY;
 	}
 protected:
 private:
-	int modelSize;
 };
-#include "PlayerShip.h"
 #endif // PLAYERSHIP_H

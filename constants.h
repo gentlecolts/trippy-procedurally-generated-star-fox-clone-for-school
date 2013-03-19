@@ -1,19 +1,22 @@
 #ifndef CONSTANTS_H_INCLUDED
 #define CONSTANTS_H_INCLUDED
 
+	#define grid 8
+	const double grid2=grid/2;
+
 	//const int
 	#define divs 4
 	const double delta=1.0/divs;
 	//const int
 	//#define isnoisebase2 true//requires that precompdivs*grid is a power of 2
-	#define precompdivs 32//should be at least divs times 2
+	#define precompdivs (grid*divs/2)//should be at least divs times 2
 	const double precompdelta=1.0/precompdivs;
 	//#define delta 0.1
 	const double delt2=delta/2;
 	//const int deep=8;//did i have some plan to use this? i can only assume for oct/quadtrees
 	//const int grid=8;
-	#define grid 8
-	const double grid2=grid/2;
+
+	#define numGameObjects 1
 
 	//#define shftstep (delta/5)
 	#define shftstep (1.0/20)
@@ -21,25 +24,19 @@
 	#define docamdemo 0
 	double camx=0,camy=0;
 	double velX=0, velY=0;
-	#define maxV 0.5
+	#define maxV 0.2
 	#define accel 0.01
 
 	#define fullscreen 0
 
 	/**important values for drawmethod
 	 * 4 -> trace
-	 * 6 -> best non-gl squares
+	 * 6 -> best non-gl squares (may be broken)
 	 * 9 -> opengl
 	 * 11-> opencl trace, needs to be finished
 	 */
 	#define drawmethod 9
 	#define shadenorm 0
-
-	#if drawmethod<0 || drawmethod==10
-		#define quad 1
-	#else
-		#define quad 0
-	#endif
 
 	#define outline 1
 	//#define line_thick 2
@@ -62,10 +59,6 @@
 	#endif
 
 	#if doGL
-	#define quad2 quad
-	#define res2 res
-	#undef quad
-	#undef res
 
 	/*
 	#include <SDL/SDL_opengl.h>
@@ -73,15 +66,17 @@
 	#include <GL/gl.h>
 	#include <GL/glu.h>
 	//*/
-
-	#define quad quad2
-	#define res res2
-	#undef quad2
-	#undef res2
 	#endif
 
 	#if drawmethod==11
 	#include <CL/cl.hpp>
+	#endif
+
+	//here because glu.h has something called quad
+	#if drawmethod<0 || drawmethod==10
+		#define quad 1
+	#else
+		#define quad 0
 	#endif
 
 	#if fullscreen
