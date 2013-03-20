@@ -51,6 +51,7 @@
 			<Add option="-lmingw32 -lSDLmain -lSDL" />
 			<Add option="-lopengl32 -lglu32" />
 		</Linker>
+		<Unit filename="EnemyShip.h" />
 		<Unit filename="GameController.cpp">
 			<Option compile="0" />
 			<Option link="0" />

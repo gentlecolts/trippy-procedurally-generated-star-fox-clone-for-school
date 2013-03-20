@@ -16,7 +16,7 @@
 	//const int deep=8;//did i have some plan to use this? i can only assume for oct/quadtrees
 	//const int grid=8;
 
-	#define numGameObjects 1
+	#define numGameObjects 4
 
 	//#define shftstep (delta/5)
 	#define shftstep (1.0/20)

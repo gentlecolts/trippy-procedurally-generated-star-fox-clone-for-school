@@ -21,7 +21,7 @@ class GameObject
 {
 public:
     vertex *model;
-    float xpos,ypos,xvel,yvel;
+    float xpos,ypos,zpos,xvel,yvel,zvel;
 
     virtual void init(){}
 	GameObject(){
@@ -41,9 +41,12 @@ public:
 	}
 
 	void render(){
-		//cout<<modelSize<<endl;
-		//glLoadIdentity();
-		glTranslatef(xpos, ypos, 3);
+	    cout<<"Model Size: ";
+		cout<<modelSize<<endl;
+		cout<<"X pos: ";
+		cout<<xpos<<endl;
+		glPushMatrix();
+		glTranslatef(xpos, ypos, zpos);
 
 		glScalef(0.3f,0.3f,0.3f);
 		//glRotatef(-90, 1.0f, 0.0f, 0.0f);
@@ -71,6 +74,8 @@ public:
 
 		glDisable(GL_LIGHT1);
         glEnable(GL_LIGHT0);
+
+        glPopMatrix();
 	}
 	~GameObject(){delete[] model;}
 

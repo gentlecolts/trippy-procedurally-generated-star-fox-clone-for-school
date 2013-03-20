@@ -18,6 +18,7 @@ using namespace std;
 
 #include "constants.h"
 #include "PlayerShip.h"
+#include "EnemyShip.h"
 
 struct pixel{
 	double dist;

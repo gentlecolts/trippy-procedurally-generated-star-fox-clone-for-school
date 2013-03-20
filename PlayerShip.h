@@ -29,6 +29,8 @@ public:
 		model[16]=vertex(0.0f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f);
 		model[17]=vertex(1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
 
+
+        zpos=-3;
 		/*
 		cout<<"init()"<<endl;
         cout<<"this in init:"<<endl;
