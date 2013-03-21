@@ -1,8 +1,6 @@
 #ifndef ENEMYSHIP_H
 #define ENEMYSHIP_H
 
-#include "GameObject.h"
-
 class EnemyShip : public GameObject
 {
 public:

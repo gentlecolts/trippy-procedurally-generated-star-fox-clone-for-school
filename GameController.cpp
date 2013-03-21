@@ -19,6 +19,10 @@ void updateObjects() {
 	for(int i=0;i<numGameObjects;i++) {
         gameObjects[i]->update();
     }
+
+    for(int i=0;i<lasers.size();i++) {
+        lasers.at(i).update();
+    }
 }
 
 void renderObjects() {
@@ -28,6 +32,10 @@ void renderObjects() {
 
     for(int i=0;i<numGameObjects;i++) {
         gameObjects[i]->render();
+    }
+
+    for(int i=0;i<lasers.size();i++) {
+        lasers.at(i).render();
     }
 }
 

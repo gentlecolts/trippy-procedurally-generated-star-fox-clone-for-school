@@ -1,6 +1,7 @@
 #ifndef PLAYERSHIP_H
 #define PLAYERSHIP_H
 
+#include "Laser.h"
 #include "GameObject.h"
 
 class PlayerShip : public GameObject
@@ -47,6 +48,14 @@ public:
 
         xvel=velX;  //camera acceleration; this is kind of backwards but oh well
         yvel=velY;
+
+        xrot=-xvel/maxV*90*2/5;
+        yrot=-yvel/maxV*90*2/5;
+
+        if(collidesWithNoise) {
+            velX=0;
+            velY=0;
+        }
 	}
 protected:
 private:

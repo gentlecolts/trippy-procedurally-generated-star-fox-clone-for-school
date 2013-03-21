@@ -9,6 +9,7 @@
 //#include <iostream>
 #include <climits>
 #include <xmmintrin.h>//-mfpmath=sse -msse -DHAVE_STDINT_H -m32
+#include <vector>
 /*
 #if defined(_WIN32) || defined(_WIN64)
 #include <windows.h>
@@ -153,9 +154,10 @@ struct point3d{
 #include "noise2.cpp"
 //*/
 
-#include "GameObject.h"
 
+#include "GameObject.h"
 GameObject* gameObjects[numGameObjects];
+
 #include "GameController.cpp"
 
 bool leftmov,rightmov,upmov,downmov,space;
@@ -214,6 +216,9 @@ void chkCloseEvent(){
 			if(key==SDLK_SPACE){
 				//d=d1;
 				space=false;
+			}
+			if(key==SDLK_RETURN){
+                gameObjects[0]->fireWeapon();
 			}
 			//cout<<key<<endl;
 			break;

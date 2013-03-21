@@ -395,13 +395,14 @@
 
 1363011380 t getting real:3d Perlin noise.depend
 
-1363739219 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\main.cpp
+1363830610 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\main.cpp
 	<iostream>
 	<cstdlib>
 	<stdint.h>
 	<cmath>
 	<climits>
 	<xmmintrin.h>
+	<vector>
 	<windows.h>
 	"constants.h"
 	"PlayerShip.h"
@@ -419,7 +420,8 @@
 	<GL/glu.h>
 	<CL/cl.hpp>
 
-1363739753 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\playership.h
+1363829905 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\playership.h
+	"Laser.h"
 	"GameObject.h"
 
 1363140057 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\spaceobject.h
@@ -583,9 +585,10 @@
 	<cmath>
 	"constants.h"
 
-1363739728 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gameobject.h
+1363831706 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gameobject.h
+	"Laser.h"
 
-1363739678 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gamecontroller.cpp
+1363830859 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gamecontroller.cpp
 
 1363706264 source:e:\trippy-procedurally-generated-star-fox-clone-for-school\main.cpp
 	<iostream>
@@ -680,6 +683,8 @@
 
 1363478776 e:\trippy-procedurally-generated-star-fox-clone-for-school\outline.h
 
-1363739949 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\enemyship.h
+1363831650 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\enemyship.h
 	"GameObject.h"
+
+1363831686 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\laser.h
 
