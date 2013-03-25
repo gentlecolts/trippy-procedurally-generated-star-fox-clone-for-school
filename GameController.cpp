@@ -22,6 +22,10 @@ void updateObjects() {
 
     for(int i=0;i<lasers.size();i++) {
         lasers.at(i).update();
+<<<<<<< HEAD
+=======
+        ///may want this to be a linked list at some point
+>>>>>>> shit gettin mo and mo legit yo
     }
 }
 

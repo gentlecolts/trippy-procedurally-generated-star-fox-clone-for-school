@@ -18,8 +18,6 @@
 using namespace std;
 
 #include "constants.h"
-#include "PlayerShip.h"
-#include "EnemyShip.h"
 
 struct pixel{
 	double dist;
@@ -154,8 +152,20 @@ struct point3d{
 #include "noise2.cpp"
 //*/
 
+<<<<<<< HEAD
 
 #include "GameObject.h"
+=======
+double zshft=0;
+
+#if doGL
+#include "glbullshit.cpp"
+#endif
+
+#include "GameObject.h"
+#include "PlayerShip.h"
+#include "EnemyShip.h"
+>>>>>>> shit gettin mo and mo legit yo
 GameObject* gameObjects[numGameObjects];
 
 #include "GameController.cpp"
@@ -316,7 +326,6 @@ pixel vals[xmax*ymax];
 #endif
 //double vals[xmax*ymax];
 const double raise=-0.1;//0.1;
-double zshft=0;
 
 SDL_Surface* screen=NULL;
 

@@ -1,10 +1,6 @@
 #ifndef RENDER_H_INCLUDED
 #define RENDER_H_INCLUDED
 
-#if doGL
-#include "glbullshit.cpp"
-#endif
-
 void render(){
 	//cout<<"render start"<<endl;
 

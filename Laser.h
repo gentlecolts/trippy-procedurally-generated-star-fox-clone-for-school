@@ -18,7 +18,11 @@ public:
 
         xvel=sin(xr)*cos(yr);
         yvel=sin(xr)*sin(yr);
+<<<<<<< HEAD
         zvel=cos(xr);;
+=======
+        zvel=cos(xr);
+>>>>>>> shit gettin mo and mo legit yo
 	}
 
 	Laser(double x, double y, double z, double xr, double yr, double zr){init(x,y,z,xr,yr,zr);}
@@ -27,7 +31,11 @@ public:
 	void update() {
         xpos+=xvel;
         ypos-=yvel;
+<<<<<<< HEAD
         zpos-=zvel;
+=======
+        zpos+=zvel;
+>>>>>>> shit gettin mo and mo legit yo
 	}
 
 	void render() {

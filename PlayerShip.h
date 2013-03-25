@@ -10,7 +10,7 @@ public:
 	void init(){
 		modelSize=18;
 
-        model=new vertex[modelSize];
+		model=new vertex[modelSize];
 		model[0]=vertex(0.0f, 0.0f, -2.0f, 1.0f, 0.f, 0.0f);
 		model[1]=vertex(0.0f, 0.5f, -0.0f, 0.0f, 1.0f, 0.0f);
 		model[2]=vertex(1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
@@ -31,21 +31,22 @@ public:
 		model[17]=vertex(1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
 
 
-        zpos=-3;
+		zpos=-3;
 		/*
 		cout<<"init()"<<endl;
-        cout<<"this in init:"<<endl;
-        cout<<this<<endl;
-        //*/
+		cout<<"this in init:"<<endl;
+		cout<<this<<endl;
+		//*/
 	}
 
 	PlayerShip(){init();}
 	~PlayerShip(){delete[] model;}
 
 	void update() {
-        xpos=camx;
-        ypos=-camy;
+		xpos=camx;
+		ypos=-camy;
 
+<<<<<<< HEAD
         xvel=velX;  //camera acceleration; this is kind of backwards but oh well
         yvel=velY;
 
@@ -56,6 +57,19 @@ public:
             velX=0;
             velY=0;
         }
+=======
+		xvel=velX;  //camera acceleration; this is kind of backwards but oh well
+		yvel=velY;
+
+		xrot=-xvel/maxV*36;//90*2/5;
+		yrot=-yvel/maxV*36;
+
+		/*
+		if(collidesWithNoise()) {
+			velX=0;
+			velY=0;
+		}//*/
+>>>>>>> shit gettin mo and mo legit yo
 	}
 protected:
 private:

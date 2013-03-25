@@ -9,7 +9,7 @@
 	const double delta=1.0/divs;
 	//const int
 	//#define isnoisebase2 true//requires that precompdivs*grid is a power of 2
-	#define precompdivs (grid*divs/2)//should be at least divs times 2
+	#define precompdivs 8//should be at least divs times 2
 	const double precompdelta=1.0/precompdivs;
 	//#define delta 0.1
 	const double delt2=delta/2;
