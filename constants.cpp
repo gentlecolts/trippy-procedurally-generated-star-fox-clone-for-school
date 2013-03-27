@@ -25,13 +25,6 @@ const double precompdelta=1.0/precompdivs;
  * 11-> opencl trace, needs to be finished
  */
 #define drawmethod 9
-
-#if drawmethod>4
-#define doGL 1
-#else
-#define doGL 0
-#endif
-
 #define shadenorm 0
 
 #define outline 1
@@ -58,7 +51,8 @@ const double rt2=1/sqrt(2);
 const double d1=2*tan(viewangle/2.0*pi/180)/grid;
 const double d2=d1/2;//2*tan(viewangle/4.0)/grid;
 const double anm8step=0.1;
-const double raise=-0.1;//0.1;
+double anm8=0;
+double d=d1;
 
 #define res (grid*precompdivs)
 #define res3 (res*res*res)

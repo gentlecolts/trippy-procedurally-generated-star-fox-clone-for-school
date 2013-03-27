@@ -1,6 +1,0 @@
-#ifndef GLQUAD_H_INCLUDED
-#define GLQUAD_H_INCLUDED
-
-
-
-#endif // GLQUAD_H_INCLUDED

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="TheGame2" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/TheGame2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/TheGame2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add library="sdl" />
+					<Add library="SDLMain" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Linker>
+			<Add option="-lmingw32 -lSDLmain -lSDL" />
+			<Add option="-lopengl32 -lglu32" />
+		</Linker>
+		<Unit filename="GLHelper.cpp" />
+		<Unit filename="GLHelper.h" />
+		<Unit filename="IO.cpp" />
+		<Unit filename="IO.h" />
+		<Unit filename="Main.cpp" />
+		<Unit filename="camera.cpp" />
+		<Unit filename="camera.h" />
+		<Unit filename="constants.h" />
+		<Unit filename="enemyShip.cpp" />
+		<Unit filename="enemyShip.h" />
+		<Unit filename="gameController.cpp" />
+		<Unit filename="gameController.h" />
+		<Unit filename="gameObject.cpp" />
+		<Unit filename="gameObject.h" />
+		<Unit filename="glRender.cpp" />
+		<Unit filename="glRender.h" />
+		<Unit filename="globals.cpp" />
+		<Unit filename="globals.h" />
+		<Unit filename="laser.cpp" />
+		<Unit filename="laser.h" />
+		<Unit filename="math.cpp" />
+		<Unit filename="math.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="outline.cpp" />
+		<Unit filename="outline.h" />
+		<Unit filename="perlin3d.cpp" />
+		<Unit filename="perlin3d.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="playerShip.cpp" />
+		<Unit filename="playerShip.h" />
+		<Unit filename="structs.h" />
+		<Unit filename="terrain.cpp" />
+		<Unit filename="terrain.h" />
+		<Unit filename="trace.cpp" />
+		<Unit filename="trace.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

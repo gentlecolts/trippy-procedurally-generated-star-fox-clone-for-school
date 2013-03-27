@@ -1,18 +1,18 @@
-#ifndef GAMEBAIJDONABDFONFANIBF_CPP
-#define GAMEBAIJDONABDFONFANIBF_CPP
+#include "gameController.h"
+
+#include <GL/gl.h>
+#include <GL/glu.h>
+
+#include "globals.h"
+#include "playerShip.h"
+#include "enemyShip.h"
 
 void setupGame() {
-	//PlayerShip p;
     gameObjects[0]=new PlayerShip();
 
     for(int i=1;i<numGameObjects;i++) {
         gameObjects[i]=new EnemyShip();
     }
-
-    /*
-    cout<<gameObjects[0]->model[16].r<<endl;
-    cout<<"WTFF?????"<<endl;
-    //*/
 }
 
 void updateObjects() {
@@ -22,16 +22,10 @@ void updateObjects() {
 
     for(int i=0;i<lasers.size();i++) {
         lasers.at(i).update();
-<<<<<<< HEAD
-=======
-        ///may want this to be a linked list at some point
->>>>>>> shit gettin mo and mo legit yo
     }
 }
 
 void renderObjects() {
-	//glMatrixMode(GL_MODELVIEW);
-	//glLoadIdentity();
     glScalef(0.3f,0.3f,0.3f);
 
     for(int i=0;i<numGameObjects;i++) {
@@ -43,4 +37,12 @@ void renderObjects() {
     }
 }
 
-#endif //GAMEBAIJDONABDFONFANIBF_CPP
+void addLaser(Laser las) {      //THIS NEEDS TO BE ELSEWHERE BUT FKING includeS
+	lasers.push_back(las);
+}
+
+void unloadGame() {
+    for(int i=0;i<numGameObjects;i++){
+        delete gameObjects[i];
+    }
+}
