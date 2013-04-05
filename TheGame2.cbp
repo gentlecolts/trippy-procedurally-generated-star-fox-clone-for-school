@@ -12,8 +12,17 @@
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-O3" />
+					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
+					<Add option="-pg" />
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add option="-pg -lgmon" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/TheGame2" prefix_auto="1" extension_auto="1" />
@@ -21,7 +30,12 @@
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-fomit-frame-pointer" />
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-O3" />
 					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -33,6 +47,7 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-march=core2" />
 			<Add option="-Wall" />
 		</Compiler>
 		<Linker>
@@ -43,6 +58,7 @@
 		<Unit filename="GLHelper.h" />
 		<Unit filename="IO.cpp" />
 		<Unit filename="IO.h" />
+		<Unit filename="Laser.h" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="camera.cpp" />
 		<Unit filename="camera.h" />
@@ -54,11 +70,10 @@
 		<Unit filename="gameObject.cpp" />
 		<Unit filename="gameObject.h" />
 		<Unit filename="glRender.cpp" />
-		<Unit filename="glRender.h" />
 		<Unit filename="globals.cpp" />
 		<Unit filename="globals.h" />
+		<Unit filename="glrender.h" />
 		<Unit filename="laser.cpp" />
-		<Unit filename="laser.h" />
 		<Unit filename="math.cpp" />
 		<Unit filename="math.h">
 			<Option target="&lt;{~None~}&gt;" />

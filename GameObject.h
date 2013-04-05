@@ -11,7 +11,7 @@ public:
     float xrot,yrot,zrot;
 
 	GameObject();
-	~GameObject();
+	virtual ~GameObject();
 
 	bool collidesWithNoise();
 	void render();

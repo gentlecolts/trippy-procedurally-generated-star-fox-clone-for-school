@@ -1,4 +1,5 @@
-#import "globals.h"
+//#import "globals.h"
+#include "globals.h"
 
 class GameObject;
 

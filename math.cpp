@@ -1,4 +1,6 @@
-#import "math.h"
+//#import "math.h"
+//#include <cmath>
+#include "math.h"///WHY THE FLYING FUCK DO WE HAVE math.h?!?!?! see above line for my confusion
 
 double invsqrt(double x) {
     double xhalf = x/2;

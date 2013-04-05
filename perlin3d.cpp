@@ -1,4 +1,5 @@
-#import "perlin3d.h"
+//#import "perlin3d.h"
+#include "perlin3d.h"
 
 #include <climits>
 

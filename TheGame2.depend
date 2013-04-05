@@ -303,3 +303,163 @@
 	"globals.h"
 	"camera.h"
 
+1365120128 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\camera.cpp
+	"camera.h"
+	<cmath>
+	<GL/gl.h>
+	<GL/glu.h>
+	"globals.h"
+	"gameController.h"
+	"trace.h"
+	"glRender.h"
+	"outline.h"
+	"cltrace.h"
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\camera.h
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\globals.h
+	<SDL/SDL.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<vector>
+	"constants.h"
+	"structs.h"
+	"perlin3d.h"
+	"laser.h"
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\constants.h
+	<cmath>
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\structs.h
+	<iostream>
+	<stdint.h>
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\perlin3d.h
+	"structs.h"
+	"constants.h"
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\laser.h
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\gamecontroller.h
+	"laser.h"
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\trace.h
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\glrender.h
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\outline.h
+
+1365120128 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\enemyship.cpp
+	"enemyShip.h"
+	"globals.h"
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\enemyship.h
+	"gameObject.h"
+
+1365127594 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\gameobject.h
+	"globals.h"
+
+1365127548 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\gamecontroller.cpp
+	"gameController.h"
+	<GL/gl.h>
+	<GL/glu.h>
+	"globals.h"
+	"playerShip.h"
+	"enemyShip.h"
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\playership.h
+	"gameObject.h"
+
+1365120128 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\gameobject.cpp
+	"gameObject.h"
+	<GL/gl.h>
+	<GL/glu.h>
+	"camera.h"
+	"GLHelper.h"
+	"gameController.h"
+	<iostream>
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\glhelper.h
+	<GL/gl.h>
+	<GL/glu.h>
+	"structs.h"
+
+1365127234 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\glhelper.cpp
+	"GLHelper.h"
+	<SDL/SDL.h>
+	<iostream>
+	"constants.h"
+	"globals.h"
+
+1365127260 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\globals.cpp
+	"globals.h"
+
+1365120128 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\glrender.cpp
+	"glRender.h"
+	"structs.h"
+	"constants.h"
+	"globals.h"
+	"camera.h"
+	"GLHelper.h"
+
+1365120128 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\io.cpp
+	"IO.h"
+	<SDL/SDL.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	"gameController.h"
+	"gameObject.h"
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\io.h
+	"globals.h"
+
+1365120128 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\laser.cpp
+	"laser.h"
+	<cmath>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1365120128 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\main.cpp
+	<SDL/SDL.h>
+	<iostream>
+	"constants.h"
+	"IO.h"
+	"terrain.h"
+	"gameController.h"
+	"camera.h"
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\terrain.h
+
+1365127366 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\math.cpp
+	"math.h"
+
+1365120128 e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\math.h
+
+1365120128 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\outline.cpp
+	"outline.h"
+	<stdint.h>
+	"globals.h"
+
+1365127408 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\perlin3d.cpp
+	"perlin3d.h"
+	<climits>
+	"globals.h"
+	"camera.h"
+	"optimizePrecomp.h"
+	"optimizePrecomp2.h"
+
+1365120128 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\playership.cpp
+	"playerShip.h"
+	<iostream>
+
+1365120128 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\terrain.cpp
+	"terrain.h"
+	"globals.h"
+
+1365120128 source:e:\blair\grade 11\comp sci\c++\aaaaaaaaaaaaaaaaaaaaaaaaaa\trace.cpp
+	"trace.h"
+	"structs.h"
+	"constants.h"
+	"globals.h"
+	"camera.h"
+

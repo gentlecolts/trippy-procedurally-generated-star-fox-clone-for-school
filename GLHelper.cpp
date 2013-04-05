@@ -1,4 +1,5 @@
-#import "GLHelper.h"
+//#import "GLHelper.h"
+#include "GLHelper.h"
 
 #include <SDL/SDL.h>
 #include <iostream>
