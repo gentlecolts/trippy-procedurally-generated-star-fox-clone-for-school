@@ -34,6 +34,7 @@ void PlayerShip::init(){
     //*/
 }
 
+PlayerShip::PlayerShip(){init();}
 
 void PlayerShip::update() {
     xpos=camx;
@@ -42,8 +43,8 @@ void PlayerShip::update() {
     xvel=velX;  //camera acceleration; this is kind of backwards but oh well
     yvel=velY;
 
-    xrot=-xvel/maxV*36;//90*2/5;
-    yrot=-yvel/maxV*36;
+    zrot=-xvel/maxV*36;//90*2/5;
+    xrot=-yvel/maxV*36;
 
     /*
     if(collidesWithNoise()) {

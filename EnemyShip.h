@@ -6,6 +6,7 @@
 class EnemyShip : public GameObject
 {
 public:
+	EnemyShip();
 	void init();
 	void update();
 protected:

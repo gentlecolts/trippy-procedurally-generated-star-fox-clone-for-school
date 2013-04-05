@@ -4,6 +4,12 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
+#include <iostream>
+#include <stdlib.h>
+
+#include "constants.h"
+using namespace std;
+
 Laser::Laser(double x, double y, double z, double xr, double yr, double zr){
     init(x,y,z,xr,yr,zr);
 }
@@ -18,10 +24,11 @@ void Laser::init(double x, double y, double z, double xr, double yr, double zr){
     yrot=yr;
     zrot=zr;
 
-    xvel=sin(xr)*cos(yr);
-    yvel=sin(xr)*sin(yr);
+    //xvel=-sin(xr)*cos(yr)*.3;
+    yvel=-sin(xr)*.1;
+    cout<<yvel<<endl;
 
-    zvel=cos(xr);
+    zvel=-sin(xr+pi/2)*.1;
 }
 
 void Laser::render() {
@@ -29,8 +36,8 @@ void Laser::render() {
     glTranslatef(xpos, ypos, zpos);
 
     glScalef(0.3f,0.3f,0.3f);
-    glRotatef(xrot,1.0,0,0);
-    glRotatef(yrot,0.0,1.0,0);
+	glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+	glRotatef(zrot, 0.0f, 0.0f, 1.0f);
 
     glDisable(GL_LIGHT0);
     glEnable(GL_LIGHT1);
@@ -52,7 +59,7 @@ void Laser::render() {
 
 void Laser::update() {
     xpos+=xvel;
-    ypos-=yvel;
+    ypos+=yvel;
 
     zpos+=zvel;
 }

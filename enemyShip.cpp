@@ -2,6 +2,8 @@
 
 #include "globals.h"
 
+EnemyShip::EnemyShip(){init();}
+
 void EnemyShip::init(){
     modelSize=24;
 

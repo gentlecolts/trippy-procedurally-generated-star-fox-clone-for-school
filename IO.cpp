@@ -3,8 +3,11 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
+#include "globals.h"
 #include "gameController.h"
 #include "gameObject.h"
+//#include "glHelfagoot/j"
+#include "glhelper.h"
 
 void initSDL() {
     putenv("SDL_VIDEO_WINDOW_POS=center");
@@ -15,13 +18,21 @@ void initSDL() {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL_EnableKeyRepeat(0,0);
 
-    screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_DOUBLEBUF);// | SDL_FULLSCREEN);
+    #if doGL
+	glPreInit();
+	screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_OPENGL);
+	#else
+	screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_DOUBLEBUF);// | SDL_FULLSCREEN);
+	#endif
 
 	if(screen==NULL){
 		cout<<"screen is null";
 		exit(0xdeadbeef);
 	}
 
+	#if doGL
+	glInit();
+	#endif
 
 	chkCloseEvent();
 

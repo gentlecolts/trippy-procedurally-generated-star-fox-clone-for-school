@@ -7,7 +7,6 @@
 #include "GLHelper.h"
 
 void glRender() {
-	cout<<"starting render"<<endl;
 	point3d corners[8];
 	int indx;
 	//glMatrixMode(GL_MODELVIEW);

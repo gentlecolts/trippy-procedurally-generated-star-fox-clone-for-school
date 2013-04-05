@@ -12,7 +12,7 @@ using namespace std;
 ///libsdl.org/docs/html/guidevideoopengl.html
 ///http://www.sdltutorials.com/sdl-opengl-tutorial-basics
 ///http://www710.univ-lyon1.fr/~jciehl/Public/OpenGL_PG/index.html
-///http://www.opengl.org/sdk/docs/man2/xhtml/glLightModel.xml\
+///http://www.opengl.org/sdk/docs/man2/xhtml/glLightModel.xml
 
 void glPreInit(){
 	SDL_GL_SetAttribute(SDL_GL_RED_SIZE,8);

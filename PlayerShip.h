@@ -7,6 +7,7 @@ class PlayerShip : public GameObject
 {
 public:
 	void update();
+	PlayerShip();
 	void init();
 protected:
 private:

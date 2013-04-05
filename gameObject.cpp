@@ -30,8 +30,8 @@ void GameObject::render() {
 		glTranslatef(xpos, ypos, zpos);
 
 		glScalef(0.3f,0.3f,0.3f);
-		glRotatef(xrot, 0.0f, 0.0f, 1.0f);
-		glRotatef(yrot, 1.0f, 0.0f, 0.0f);
+		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+		glRotatef(zrot, 0.0f, 0.0f, 1.0f);
 		//glRotatef(-90, 1.0f, 0.0f, 0.0f);
 		/*
 		cout<<"model:"<<endl;

@@ -75,8 +75,6 @@ void movecam(){
         velY*=.7;
 	}
 
-
-
     velX=max(min((double)velX, maxV),-maxV);
     velY=max(min((double)velY, maxV),-maxV);
 
@@ -93,6 +91,14 @@ void movecam(){
 	}
 
 	d=(1-anm8)*d1+anm8*d2;
+
+	#if doGL
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(viewangle,1,0.5,1/d+1);
+	#else
+
+	#endif
 }
 
 void render(){
@@ -109,20 +115,20 @@ void render(){
 	uint32_t color;
 	double maxdst=-1;
 
-	#if !test2d
-		#if drawmethod==4
-			trace();
-        #elif drawmethod==9
-			glRender();
-            glEnd();
-		#elif drawmethod==11///awww yeah turn it up to 11
-			#include "cltrace.h"
-		#endif
-	#endif
+	#if drawmethod==4
+		trace();
+		doOutline();
+	#elif drawmethod==9
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		glTranslatef(-camx/grid2,camy/grid2,0);
+		glBegin(GL_QUADS);glColor3f(0.5f,0.5f,0.5f);
+		glRender();
+		glEnd();
 
-	renderObjects();
-
-	#if !doGL
-	doOutline();
+		renderObjects();
+	#elif drawmethod==11///awww yeah turn it up to 11
+		#include "cltrace.h"
+		renderObjects();
 	#endif
 }
