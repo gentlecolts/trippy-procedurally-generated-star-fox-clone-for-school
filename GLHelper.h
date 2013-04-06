@@ -1,8 +1,8 @@
 #ifndef GLHELPER_H_INCLUDED
 #define GLHELPER_H_INCLUDED
 
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 
 #include "structs.h"
 

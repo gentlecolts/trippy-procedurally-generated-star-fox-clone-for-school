@@ -2,8 +2,8 @@
 #define GLOBALS_H_INCLUDED
 
 #include <SDL/SDL.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #include <vector>
 
 #include "constants.h"

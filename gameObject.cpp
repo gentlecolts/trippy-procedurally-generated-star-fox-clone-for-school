@@ -1,7 +1,7 @@
 #include "gameObject.h"
 
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 
 #include "camera.h"
 #include "GLHelper.h"

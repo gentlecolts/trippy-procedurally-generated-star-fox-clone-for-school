@@ -44,6 +44,7 @@ void PlayerShip::update() {
     yvel=velY;
 
     zrot=-xvel/maxV*36;//90*2/5;
+    yrot=-yvel/maxV*36;
     xrot=-yvel/maxV*36;
 
     /*

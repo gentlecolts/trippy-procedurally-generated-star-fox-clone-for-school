@@ -61,7 +61,7 @@ struct octree{
 				delete child[i];
 			}
 		}
-		delete[] child;
+		//delete[] child;
 	}
 };
 
@@ -76,7 +76,7 @@ struct quadtree{
 				delete child[i];
 			}
 		}
-		delete[] child;
+//		delete[] child;
 	}
 };
 

@@ -1,13 +1,14 @@
 #include "laser.h"
 
 #include <cmath>
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 
 #include <iostream>
 #include <stdlib.h>
 
 #include "constants.h"
+#include "math.h"
 using namespace std;
 
 Laser::Laser(double x, double y, double z, double xr, double yr, double zr){
@@ -24,11 +25,19 @@ void Laser::init(double x, double y, double z, double xr, double yr, double zr){
     yrot=yr;
     zrot=zr;
 
-    //xvel=-sin(xr)*cos(yr)*.3;
+    /*//xvel=-sin(xr)*cos(yr)*.3;
     yvel=-sin(xr)*.1;
-    cout<<yvel<<endl;
+    //cout<<yvel<<endl;
 
     zvel=-sin(xr+pi/2)*.1;
+    if(zvel<0) {
+        cout<<zvel<<" "<<xr<<endl;
+    }*/
+    
+    xvel=0.3*sin(radians(zrot))*cos(radians(xrot));
+    yvel=0.3*sin(radians(zrot))*sin(radians(xrot));
+    zvel=-0.3*cos(radians(zrot));
+
 }
 
 void Laser::render() {

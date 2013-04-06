@@ -2,6 +2,8 @@
 //#include <cmath>
 #include "math.h"///WHY THE FLYING FUCK DO WE HAVE math.h?!?!?! see above line for my confusion
 
+#include "constants.h"
+
 double invsqrt(double x) {
     double xhalf = x/2;
     long long i =*(long long*)&x;
@@ -20,3 +22,7 @@ float invsqrt (float x){
     return x;
 }
 //*/
+
+double radians(double degrees) {
+    return degrees*pi/180;
+}
