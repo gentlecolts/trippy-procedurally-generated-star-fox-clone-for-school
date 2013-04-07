@@ -45,6 +45,8 @@ void movecam(){
 	camx=thePlayerShip->xpos*objScale;
 	camy=-thePlayerShip->ypos*objScale;
 
+//	camx=max(-)
+
 	if(space){
 		anm8=min(anm8+anm8step,1.0);
 	}else{
@@ -82,7 +84,10 @@ void render(){
 	#elif drawmethod==9
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
-		glTranslatef(-camx,camy,0);
+		//glTranslatef(-camx+.3,camy,0);
+
+		gluLookAt(0,0,0,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);
+
 		glBegin(GL_QUADS);glColor3f(0.5f,0.5f,0.5f);
 		glRender();
 		glEnd();

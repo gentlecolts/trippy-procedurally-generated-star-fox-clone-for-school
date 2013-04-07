@@ -49,13 +49,15 @@ const double rt2=1/sqrt(2);
 /**************** CAMERA ********************/
 #define objScale 0.3
 
-#define maxV 0.2/objScale
-#define accel 0.01/objScale
+#define maxV 0.2
+#define accel 0.01
 
 #define xmax 640
 #define ymax 480
 
 #define viewangle 60
+#define playerOffset 3
+#define cameraSideOffset 2.598	//playerOffset*sin(viewangle)
 
 const double d1=2*tan(viewangle/2.0*pi/180)/grid;
 const double d2=d1/2;//2*tan(viewangle/4.0)/grid;

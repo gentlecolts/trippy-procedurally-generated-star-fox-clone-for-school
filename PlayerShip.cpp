@@ -27,7 +27,7 @@ void PlayerShip::init(){
     model[17]=vertex(1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
 
 
-    zpos=-3;
+    zpos=-playerOffset;
     /*
     cout<<"init()"<<endl;
     cout<<"this in init:"<<endl;
@@ -117,7 +117,7 @@ void PlayerShip::update() {
 
     zrot=-xvel/maxV*18;//90*2/5;
     yrot=-xvel/maxV*36;
-    xrot=-yvel/maxV*36;
+    xrot=yvel/maxV*36;
 
     /*
     if(collidesWithNoise()) {
