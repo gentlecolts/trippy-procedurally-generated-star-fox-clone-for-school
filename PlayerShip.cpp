@@ -1,6 +1,7 @@
 #include "playerShip.h"
 
 #include "math.h"
+#include "imports.h"
 
 void PlayerShip::init(){
     modelSize=18;
@@ -106,11 +107,13 @@ void PlayerShip::uniqueRenderAfterPop() {
 }
 
 void PlayerShip::update() {
-    xpos=camx;
-    ypos=-camy;
+	handleKeyInput();
 
-    xvel=velX;  //camera acceleration; this is kind of backwards but oh well
-    yvel=velY;
+    xpos+=xvel;
+    ypos+=yvel;
+
+	xpos=max(min((double)xpos,1/objScale),-1/objScale);
+	ypos=max(min((double)ypos,1/objScale),-1/objScale);
 
     zrot=-xvel/maxV*18;//90*2/5;
     yrot=-xvel/maxV*36;
@@ -121,4 +124,40 @@ void PlayerShip::update() {
         velX=0;
         velY=0;
     }//*/
+}
+
+void PlayerShip::handleKeyInput() {
+	if(leftmov){
+		if(upmov!=downmov){//aka xor operator, deal w/ it
+			xvel-=accel*rt2;
+		}else{
+			xvel-=accel;
+		}
+	} else if(rightmov){
+		if(upmov!=downmov){
+			xvel+=accel*rt2;
+		}else{
+			xvel+=accel;
+		}
+	} else {
+		xvel*=0.8;
+	}
+	if(upmov){
+		if(leftmov!=rightmov){
+			yvel+=accel*rt2;
+		}else{
+			yvel+=accel;
+		}
+	} else if(downmov){
+		if(leftmov!=rightmov){
+			yvel-=accel*rt2;
+		}else{
+			yvel-=accel;
+		}
+	} else {
+		yvel*=.7;
+	}
+
+	xvel=max(min((double)xvel, maxV),-maxV);
+	yvel=max(min((double)yvel, maxV),-maxV);
 }

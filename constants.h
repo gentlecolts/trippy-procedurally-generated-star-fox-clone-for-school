@@ -47,8 +47,10 @@ const double rt2=1/sqrt(2);
 #define pi 3.141592653589793238462643383279502884197169l
 
 /**************** CAMERA ********************/
-#define maxV 0.2
-#define accel 0.01
+#define objScale 0.3
+
+#define maxV 0.2/objScale
+#define accel 0.01/objScale
 
 #define xmax 640
 #define ymax 480

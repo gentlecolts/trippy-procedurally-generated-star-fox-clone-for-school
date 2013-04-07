@@ -152,7 +152,7 @@
 
 1364416764 source:c:\users\jonah\desktop\c++\thegame2\globals.cpp
 
-1365357990 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\camera.cpp
+1365374597 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\camera.cpp
 	"camera.h"
 	"imports.h"
 	"globals.h"
@@ -160,11 +160,12 @@
 	"trace.h"
 	"glRender.h"
 	"outline.h"
+	"gameObject.h"
 	"cltrace.h"
 
 1365357181 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\camera.h
 
-1365358053 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\globals.h
+1365374548 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\globals.h
 	"imports.h"
 	<vector>
 	"constants.h"
@@ -172,7 +173,7 @@
 	"perlin3d.h"
 	"laser.h"
 
-1365357919 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\constants.h
+1365374658 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\constants.h
 	<cmath>
 
 1365358075 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\structs.h
@@ -212,10 +213,10 @@
 	"playerShip.h"
 	"enemyShip.h"
 
-1365359313 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\playership.h
+1365372139 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\playership.h
 	"gameObject.h"
 
-1365364873 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gameobject.cpp
+1365371963 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gameobject.cpp
 	"gameObject.h"
 	"imports.h"
 	"camera.h"
@@ -227,14 +228,14 @@
 	"imports.h"
 	"structs.h"
 
-1365361444 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glhelper.cpp
+1365365007 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glhelper.cpp
 	"GLHelper.h"
 	<SDL/SDL.h>
 	<iostream>
 	"constants.h"
 	"globals.h"
 
-1365357181 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\globals.cpp
+1365374542 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\globals.cpp
 	"globals.h"
 
 1365357181 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glrender.cpp
@@ -257,7 +258,7 @@
 1365357181 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\io.h
 	"globals.h"
 
-1365364662 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\laser.cpp
+1365364920 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\laser.cpp
 	"laser.h"
 	"imports.h"
 	"constants.h"
@@ -284,9 +285,10 @@
 
 1363738660 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\optimizeprecomp2.h
 
-1365364493 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\playership.cpp
+1365374312 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\playership.cpp
 	"playerShip.h"
 	"math.h"
+	"imports.h"
 
 1365357181 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\terrain.cpp
 	"terrain.h"
@@ -294,7 +296,7 @@
 
 1365357181 c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\terrain.h
 
-1365357181 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\trace.cpp
+1365371693 source:c:\users\jonah\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\trace.cpp
 	"trace.h"
 	"structs.h"
 	"constants.h"

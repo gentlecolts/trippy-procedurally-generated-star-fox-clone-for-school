@@ -7,6 +7,7 @@
 #include "trace.h"
 #include "glRender.h"
 #include "outline.h"
+#include "gameObject.h"
 
 
 int precompindx(double x,double y,double z){
@@ -41,45 +42,8 @@ int precompindx(double x,double y,double z){
 }
 
 void movecam(){
-	if(leftmov){
-		if(upmov!=downmov){//aka xor operator, deal w/ it
-			velX-=accel*rt2;
-		}else{
-			velX-=accel;
-		}
-	} else if(rightmov){
-		if(upmov!=downmov){
-			velX+=accel*rt2;
-		}else{
-			velX+=accel;
-		}
-	} else {
-        velX*=0.8;
-	}
-	if(upmov){
-		if(leftmov!=rightmov){
-			velY-=accel*rt2;
-		}else{
-			velY-=accel;
-		}
-	} else if(downmov){
-		if(leftmov!=rightmov){
-			velY+=accel*rt2;
-		}else{
-			velY+=accel;
-		}
-	} else {
-        velY*=.7;
-	}
-
-    velX=max(min((double)velX, maxV),-maxV);
-    velY=max(min((double)velY, maxV),-maxV);
-
-    camx+=velX;
-    camy+=velY;
-
-	camx=max(min(camx,(double)grid2),(double)(-grid2));
-	camy=max(min(camy,(double)grid2),(double)(-grid2));
+	camx=thePlayerShip->xpos*objScale;
+	camy=-thePlayerShip->ypos*objScale;
 
 	if(space){
 		anm8=min(anm8+anm8step,1.0);
@@ -99,9 +63,9 @@ void movecam(){
 }
 
 void render(){
-    #if doGL
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    #endif
+	#if doGL
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	#endif
 
 	for(int i=0;i<xmax*ymax;i++){
 		vals[i].dist=-1;
@@ -118,7 +82,7 @@ void render(){
 	#elif drawmethod==9
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
-		glTranslatef(-camx/grid2,camy/grid2,0);
+		glTranslatef(-camx,camy,0);
 		glBegin(GL_QUADS);glColor3f(0.5f,0.5f,0.5f);
 		glRender();
 		glEnd();

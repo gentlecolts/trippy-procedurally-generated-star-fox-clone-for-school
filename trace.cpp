@@ -15,7 +15,7 @@ void trace() {
 	const point3d from(grid2,grid2,-grid*d);
 	point3d D(0,0,grid*d);
 
-	const double xshft=camx-grid2,yshft=camy-grid2;
+	const double xshft=camx*grid2-1,yshft=camy*grid2-1;
 
 	///creative names incomming
 	const double consts[]={

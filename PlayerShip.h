@@ -10,6 +10,7 @@ public:
 	PlayerShip();
 	void init();
 	void uniqueRenderAfterPop();
+	void handleKeyInput();
 protected:
 private:
 };

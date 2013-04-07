@@ -32,6 +32,7 @@ extern double d;
 
 /**************** GAME  *********************/
 extern GameObject* gameObjects[numGameObjects];
+#define thePlayerShip gameObjects[0]		//slightly hacky, oh well
 extern std::vector<Laser> lasers;
 
 /**************** IO    *********************/
