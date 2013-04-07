@@ -1,6 +1,6 @@
 #include "playerShip.h"
 
-#include <iostream>
+#include "math.h"
 
 void PlayerShip::init(){
     modelSize=18;
@@ -36,6 +36,75 @@ void PlayerShip::init(){
 
 PlayerShip::PlayerShip(){init();}
 
+void PlayerShip::uniqueRenderAfterPop() {
+    glPushMatrix();
+
+	double vect[3];
+	getVector(xrot,yrot,vect);
+
+    /*double x=-sin(radians(yrot));
+    double y=sin(radians(xrot))*cos(radians(yrot));
+	double z=-cos(radians(xrot))*cos(radians(yrot*/
+
+	double x=vect[0];
+    double y=vect[1];
+	double z=vect[2];
+
+    double dist=3;
+
+    glTranslatef(x*dist+xpos,y*dist+ypos,z*dist+zpos);
+
+    glBegin(GL_LINES);
+    glColor3f(0.0,0.0,1.0);
+
+    double halfLength=0.3;
+
+    glVertex3f(halfLength,halfLength,0);
+    glVertex3f(-halfLength,halfLength,0);
+    glVertex3f(-halfLength,halfLength,0);
+    glVertex3f(-halfLength,-halfLength,0);
+    glVertex3f(-halfLength,-halfLength,0);
+    glVertex3f(halfLength,-halfLength,0);
+    glVertex3f(halfLength,-halfLength,0);
+    glVertex3f(halfLength,halfLength,0);
+
+    glEnd();
+
+    glTranslatef(x*dist,y*dist,z*dist);
+
+    glBegin(GL_LINES);
+
+    glVertex3f(halfLength,halfLength,0);
+    glVertex3f(-halfLength,halfLength,0);
+    glVertex3f(-halfLength,halfLength,0);
+    glVertex3f(-halfLength,-halfLength,0);
+    glVertex3f(-halfLength,-halfLength,0);
+    glVertex3f(halfLength,-halfLength,0);
+    glVertex3f(halfLength,-halfLength,0);
+    glVertex3f(halfLength,halfLength,0);
+
+    glEnd();
+    glPopMatrix();
+
+    /*glTranslatef(xpos,ypos,zpos);
+    glPushMatrix();
+    glBegin(GL_LINES);
+
+    glColor3f(1.0,0.0,0.0);
+    glVertex3f(0.0,0.0,0.0);
+    glVertex3f(1.0,0.0,0.0);
+    glColor3f(0.0,1.0,0.0);
+    glVertex3f(0.0,0.0,0.0);
+    glVertex3f(0.0,1.0,0.0);
+    glColor3f(0.0,0.0,1.0);
+    glVertex3f(0.0,0.0,0.0);
+    glVertex3f(0.0,0.0,1.0);
+
+    glEnd();
+
+    glPopMatrix();*/
+}
+
 void PlayerShip::update() {
     xpos=camx;
     ypos=-camy;
@@ -43,8 +112,8 @@ void PlayerShip::update() {
     xvel=velX;  //camera acceleration; this is kind of backwards but oh well
     yvel=velY;
 
-    zrot=-xvel/maxV*36;//90*2/5;
-    yrot=-yvel/maxV*36;
+    zrot=-xvel/maxV*18;//90*2/5;
+    yrot=-xvel/maxV*36;
     xrot=-yvel/maxV*36;
 
     /*

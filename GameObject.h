@@ -18,6 +18,8 @@ public:
 
 	virtual void init();
 	virtual void update();
+	virtual void uniqueRenderAfterPop();
+	virtual void uniqueRender();
 	virtual void fireWeapon();
 protected:
 	int modelSize;

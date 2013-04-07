@@ -1,12 +1,6 @@
 #include "laser.h"
 
-#include <cmath>
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-
-#include <iostream>
-#include <stdlib.h>
-
+#include "imports.h"
 #include "constants.h"
 #include "math.h"
 using namespace std;
@@ -25,19 +19,16 @@ void Laser::init(double x, double y, double z, double xr, double yr, double zr){
     yrot=yr;
     zrot=zr;
 
-    /*//xvel=-sin(xr)*cos(yr)*.3;
-    yvel=-sin(xr)*.1;
-    //cout<<yvel<<endl;
+	double vect[3];
+	getVector(xrot,yrot,vect);
 
-    zvel=-sin(xr+pi/2)*.1;
-    if(zvel<0) {
-        cout<<zvel<<" "<<xr<<endl;
-    }*/
-    
-    xvel=0.3*sin(radians(zrot))*cos(radians(xrot));
-    yvel=0.3*sin(radians(zrot))*sin(radians(xrot));
-    zvel=-0.3*cos(radians(zrot));
+    xvel=0.3*vect[0];
+    yvel=0.3*vect[1];
+	zvel=0.3*vect[2];
 
+	xpos+=xvel*7;
+	ypos+=yvel*7;
+	zpos+=zvel*7;
 }
 
 void Laser::render() {
@@ -46,6 +37,7 @@ void Laser::render() {
 
     glScalef(0.3f,0.3f,0.3f);
 	glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
 	glRotatef(zrot, 0.0f, 0.0f, 1.0f);
 
     glDisable(GL_LIGHT0);

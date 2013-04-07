@@ -1,8 +1,6 @@
 #include "IO.h"
 #include <SDL/SDL.h>
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-
+#include "imports.h"
 #include "globals.h"
 #include "gameController.h"
 #include "gameObject.h"

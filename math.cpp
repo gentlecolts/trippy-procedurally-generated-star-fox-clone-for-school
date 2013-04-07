@@ -1,5 +1,3 @@
-//#import "math.h"
-//#include <cmath>
 #include "math.h"///WHY THE FLYING FUCK DO WE HAVE math.h?!?!?! see above line for my confusion
 
 #include "constants.h"
@@ -25,4 +23,12 @@ float invsqrt (float x){
 
 double radians(double degrees) {
     return degrees*pi/180;
+}
+
+
+//Gets the unit vector in the direction of (0,0,-1) rotated by xrot (pitch) and yrot (yaw)
+void getVector(double xrot,double yrot,double vect[3]) {
+	vect[0]=-sin(radians(yrot));
+    vect[1]=sin(radians(xrot))*cos(radians(yrot));
+	vect[2]=-cos(radians(xrot))*cos(radians(yrot));
 }

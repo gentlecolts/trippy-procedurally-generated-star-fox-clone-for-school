@@ -1,9 +1,7 @@
 #ifndef GLHELPER_H_INCLUDED
 #define GLHELPER_H_INCLUDED
 
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-
+#include "imports.h"
 #include "structs.h"
 
 void glPreInit();

@@ -1,8 +1,7 @@
 #ifndef STRUCTS_H_INCLUDED
 #define STRUCTS_H_INCLUDED
 
-#include <iostream>
-#include <stdint.h>
+#include "imports.h"
 
 using namespace std;
 

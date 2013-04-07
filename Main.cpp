@@ -1,6 +1,4 @@
-#include <SDL/SDL.h>
-#include <iostream>
-
+#include "imports.h"
 using namespace std;
 
 #include "constants.h"

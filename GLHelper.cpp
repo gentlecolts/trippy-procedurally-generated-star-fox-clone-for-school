@@ -56,9 +56,10 @@ void glInit(){
 	//glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.5);
 	glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.125);
 
-	glEnable(GL_LIGHTING);
+	glDisable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_DEPTH_TEST);
+    glColorMaterial ( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE );
 	glEnable(GL_COLOR_MATERIAL);
 	/*
 	glCullFace(GL_BACK);

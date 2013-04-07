@@ -9,6 +9,7 @@ public:
 	void update();
 	PlayerShip();
 	void init();
+	void uniqueRenderAfterPop();
 protected:
 private:
 };

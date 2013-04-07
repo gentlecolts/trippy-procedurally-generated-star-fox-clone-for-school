@@ -1,9 +1,6 @@
 #include "camera.h"
 
-#include <cmath>
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-
+#include "imports.h"
 #include "globals.h"
 #include "gameController.h"
 

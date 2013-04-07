@@ -1,8 +1,6 @@
 #include "gameController.h"
 
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-
+#include "imports.h"
 #include "globals.h"
 #include "playerShip.h"
 #include "enemyShip.h"

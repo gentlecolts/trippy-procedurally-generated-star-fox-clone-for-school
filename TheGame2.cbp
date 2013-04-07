@@ -58,7 +58,6 @@
 		<Unit filename="GLHelper.h" />
 		<Unit filename="IO.cpp" />
 		<Unit filename="IO.h" />
-		<Unit filename="Laser.h" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="camera.cpp" />
 		<Unit filename="camera.h" />
@@ -73,7 +72,11 @@
 		<Unit filename="globals.cpp" />
 		<Unit filename="globals.h" />
 		<Unit filename="glrender.h" />
+		<Unit filename="imports.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="laser.cpp" />
+		<Unit filename="laser.h" />
 		<Unit filename="math.cpp" />
 		<Unit filename="math.h">
 			<Option target="&lt;{~None~}&gt;" />
@@ -96,6 +99,15 @@
 			<envvars />
 			<debugger />
 			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

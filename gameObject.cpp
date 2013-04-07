@@ -1,7 +1,6 @@
 #include "gameObject.h"
 
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
+#include "imports.h"
 
 #include "camera.h"
 #include "GLHelper.h"
@@ -26,37 +25,42 @@ GameObject::GameObject() {
 }
 
 void GameObject::render() {
-		glPushMatrix();
-		glTranslatef(xpos, ypos, zpos);
+	glPushMatrix();
+	glTranslatef(xpos, ypos, zpos);
 
-		glScalef(0.3f,0.3f,0.3f);
-		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
-		glRotatef(zrot, 0.0f, 0.0f, 1.0f);
-		//glRotatef(-90, 1.0f, 0.0f, 0.0f);
-		/*
-		cout<<"model:"<<endl;
-		cout<<model<<endl;
-		cout<<"model size:"<<endl;
-		cout<<modelSize<<endl;
-		cout<<"this:"<<endl;
-		cout<<this<<endl;
-		//*/
+	glScalef(0.3f,0.3f,0.3f);
+	glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+	glRotatef(zrot, 0.0f, 0.0f, 1.0f);
+	//glRotatef(-90, 1.0f, 0.0f, 0.0f);
+	/*
+	cout<<"model:"<<endl;
+	cout<<model<<endl;
+	cout<<"model size:"<<endl;
+	cout<<modelSize<<endl;
+	cout<<"this:"<<endl;
+	cout<<this<<endl;
+	//*/
 
-		glDisable(GL_LIGHT0);
-		//glEnable(GL_LIGHT1);
-		glBegin(GL_TRIANGLES); // of the pyramid
+	glDisable(GL_LIGHT0);
+	//glEnable(GL_LIGHT1);
+	glBegin(GL_TRIANGLES); // of the pyramid
 
-		for(int i=0;i<modelSize;i++) {
-			glColor3f(model[i].r,model[i].g,model[i].b);
-			glVertex3f(model[i].x,model[i].y,model[i].z);
-		}
+	for(int i=0;i<modelSize;i++) {
+		glColor3f(model[i].r,model[i].g,model[i].b);
+		glVertex3f(model[i].x,model[i].y,model[i].z);
+	}
 
-		glEnd();
+	glEnd();
 
-		//glDisable(GL_LIGHT1);
-		glEnable(GL_LIGHT0);
+	uniqueRender();
 
-		glPopMatrix();
+	//glDisable(GL_LIGHT1);
+	glEnable(GL_LIGHT0);
+
+	glPopMatrix();
+
+	uniqueRenderAfterPop();
 }
 
 bool GameObject::collidesWithNoise() {
@@ -104,9 +108,11 @@ bool GameObject::collidesWithNoise() {
 
 void GameObject::init(){}
 void GameObject::update(){}
+void GameObject::uniqueRender(){}
+void GameObject::uniqueRenderAfterPop(){}
 
 void GameObject::fireWeapon() {
-    addLaser(Laser(xpos,ypos,zpos-.5,xrot,yrot,zrot));
+    addLaser(Laser(xpos,ypos,zpos,xrot,yrot,zrot));
 }
 
 GameObject::~GameObject() {
