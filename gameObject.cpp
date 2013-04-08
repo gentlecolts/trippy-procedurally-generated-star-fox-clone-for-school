@@ -9,19 +9,7 @@
 #include <iostream>
 
 GameObject::GameObject() {
-		//model=&playerModel;
-		//modelSize=0;
 		init();
-
-		light1[0]=0;
-		light1[1]=0;
-		light1[2]=-1.5;
-		light1[3]=1;
-
-		glLightfv(GL_LIGHT1, GL_POSITION, light1);
-		glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 2.0);
-		glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.5);
-		glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.125);
 }
 
 void GameObject::render() {
@@ -104,7 +92,7 @@ void GameObject::uniqueRender(){}
 void GameObject::uniqueRenderAfterPop(){}
 
 void GameObject::fireWeapon() {
-    addLaser(Laser(xpos,ypos,zpos,xrot,yrot,zrot));
+    addLaser(new Laser(xpos,ypos,zpos,xrot,yrot,zrot));
 }
 
 GameObject::~GameObject() {

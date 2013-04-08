@@ -32,3 +32,15 @@ void getVector(double xrot,double yrot,double vect[3]) {
     vect[1]=sin(radians(xrot))*cos(radians(yrot));
 	vect[2]=-cos(radians(xrot))*cos(radians(yrot));
 }
+
+int signum(double val) {
+    /*if(val<0.01 && val>-0.01)
+        return 0;
+    return val>0 ? 1 : -1;*/
+    return (0<val)-(val<0);
+}
+
+/*long double longDoubleMod(long double a, long double b) {      //this probably is in std somewhere
+    int i=a/b;
+    return a-b*i;
+}*/

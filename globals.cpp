@@ -1,7 +1,9 @@
 //#import "globals.h"
 #include "globals.h"
+#include <ctime>
 
 class GameObject;
+class EnemyWave;
 
 /**************** NOISE ********************/
 perlin3d perlin(theseed);
@@ -14,7 +16,8 @@ double noise[res3];
 
 /**************** CAMERA ********************/
 double camx=0,camy=0;
-double velX=0, velY=0;
+double camvx=0, camvy=0;
+int camPrevSgn=0;
 
 point3d face[4];
 GLfloat light1[4];
@@ -24,8 +27,11 @@ double anm8=0;
 double d=d1;
 
 /**************** GAME  *********************/
-GameObject* gameObjects[numGameObjects];
-std::vector<Laser> lasers;
+std::vector<GameObject*> gameObjects;
+std::vector<Laser*> lasers;
+long curTime=0,startTime=time(0);
+EnemyWave* currentWave=NULL;
+bool readyForNextWave=true;
 
 /**************** IO    *********************/
 bool leftmov,rightmov,upmov,downmov,space;

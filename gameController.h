@@ -6,7 +6,8 @@
 void setupGame();
 void updateObjects();
 void renderObjects();
-void addLaser(Laser las);
+void addLaser(Laser* las);
 void unloadGame();
+void nextWave();
 
 #endif // GAMECONTROLLER_H_INCLUDED

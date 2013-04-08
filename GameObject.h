@@ -24,6 +24,8 @@ public:
 protected:
 	int modelSize;
 private:
+    
+    long t;
 };
 
 #endif // GAMEOBJECT_H_INCLUDED

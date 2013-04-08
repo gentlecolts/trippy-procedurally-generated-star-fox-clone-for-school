@@ -51,14 +51,17 @@ void PlayerShip::uniqueRenderAfterPop() {
     double y=vect[1];
 	double z=vect[2];
 
-    double dist=3;
+    double dist=1;
 
     glTranslatef(x*dist+xpos,y*dist+ypos,z*dist+zpos);
+    
+    glLineWidth(3);
 
     glBegin(GL_LINES);
-    glColor3f(0.0,0.0,1.0);
-
-    double halfLength=0.3;
+    glColor3f(0.0,1.0,0.0);
+    
+    
+    double halfLength=objScale;
 
     glVertex3f(halfLength,halfLength,0);
     glVertex3f(-halfLength,halfLength,0);
@@ -112,8 +115,8 @@ void PlayerShip::update() {
     xpos+=xvel;
     ypos+=yvel;
 
-	xpos=max(min((double)xpos,1/objScale),-1/objScale);
-	ypos=max(min((double)ypos,1/objScale),-1/objScale);
+	xpos=max(min((double)xpos,1.0*noiseScale),-1.0*noiseScale);
+	ypos=max(min((double)ypos,1.0*noiseScale),-1.0*noiseScale);
 
     zrot=-xvel/maxV*18;//90*2/5;
     yrot=-xvel/maxV*36;

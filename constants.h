@@ -2,6 +2,7 @@
 #define CONSTANTS_H_INCLUDED
 
 #include <cmath>
+#include "math.h"
 
 /**************** NOISE ********************/
 #define theseed 0xdeadbeeb
@@ -13,7 +14,7 @@ const double grid2=grid/2;
 const double delta=1.0/divs;
 const double delt2=delta/2;
 
-#define shftstep (1.0/20)
+#define shftstep (1.0/10)
 
 #define precompdivs 8//should be at least divs times 2
 const double precompdelta=1.0/precompdivs;
@@ -38,7 +39,7 @@ const double precompdelta=1.0/precompdivs;
 
 #define doSDL 1
 
-#define tolerance 0.3
+#define tolerance 0.4
 
 
 /**************** MATH  *********************/
@@ -56,10 +57,12 @@ const double rt2=1/sqrt(2);
 #define ymax 480
 
 #define viewangle 60
-#define playerOffset 3
+#define playerOffset 1
+#define cameraOffset 1
+#define noiseScale 3            //maybe there's already something for this?
 #define cameraSideOffset 2.598	//playerOffset*sin(viewangle)
 
-const double d1=2*tan(viewangle/2.0*pi/180)/grid;
+const double d1=2*tan(radians(viewangle/2.0))/grid;
 const double d2=d1/2;//2*tan(viewangle/4.0)/grid;
 const double anm8step=0.1;
 const double raise=-0.1;//0.1;
@@ -69,5 +72,6 @@ const double raise=-0.1;//0.1;
 
 /**************** GAME  *********************/
 #define numGameObjects 4
+#define waveTime 15
 
 #endif // CONSTANTS_H_INCLUDED

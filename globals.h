@@ -10,6 +10,7 @@
 #include "laser.h"
 
 class GameObject;
+class EnemyWave;
 
 /**************** NOISE ********************/
 extern perlin3d perlin;
@@ -21,7 +22,8 @@ extern double noise[res3];
 
 
 /**************** CAMERA ********************/
-extern double camx,camy, velX, velY;
+extern double camx,camy, camvx, camvy;
+extern int camPrevSgn;
 
 extern point3d face[4];
 extern GLfloat light1[4];
@@ -31,9 +33,12 @@ extern double anm8;
 extern double d;
 
 /**************** GAME  *********************/
-extern GameObject* gameObjects[numGameObjects];
-#define thePlayerShip gameObjects[0]		//slightly hacky, oh well
-extern std::vector<Laser> lasers;
+extern vector<GameObject*> gameObjects;
+#define thePlayerShip gameObjects.at(0)		//slightly hacky, oh well
+extern std::vector<Laser*> lasers;
+extern long curTime, startTime;
+extern EnemyWave* currentWave;
+extern bool readyForNextWave;
 
 /**************** IO    *********************/
 extern bool leftmov,rightmov,upmov,downmov,space;

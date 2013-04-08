@@ -7,6 +7,7 @@
 #include "trace.h"
 #include "glRender.h"
 #include "outline.h"
+#include "math.h"
 #include "gameObject.h"
 
 
@@ -42,9 +43,22 @@ int precompindx(double x,double y,double z){
 }
 
 void movecam(){
-	camx=thePlayerShip->xpos*objScale;
-	camy=-thePlayerShip->ypos*objScale;
+	//camx=thePlayerShip->xpos;
+	//camy=-thePlayerShip->ypos;
 
+    if(signum(thePlayerShip->xpos-camx)!=camPrevSgn) {
+        camvx=0;
+        camvy=0;
+    } else {
+        camvx+=0.01;
+        camvy+=0.01;
+    }
+    
+    camx+=min(camvx,abs(thePlayerShip->xpos-camx))*signum(thePlayerShip->xpos-camx);
+    camy+=min(camvy,abs(thePlayerShip->ypos-camy))*signum(thePlayerShip->ypos-camy);
+    
+    camPrevSgn=signum(thePlayerShip->xpos-camx);
+    
 //	camx=max(-)
 
 	if(space){
@@ -53,14 +67,13 @@ void movecam(){
 		anm8=max(anm8-anm8step,0.0);
 	}
 
-	d=(1-anm8)*d1+anm8*d2;
+	//d=(1-anm8)*d1+anm8*d2;
+	d=((1-anm8)*d1+anm8*d2)/2;
 
 	#if doGL
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(viewangle,1,0.5,1/d+1);
-	#else
-
 	#endif
 }
 
@@ -73,11 +86,6 @@ void render(){
 		vals[i].dist=-1;
 	}
 
-	double val,scl,scl2;//,z2;
-
-	uint32_t color;
-	double maxdst=-1;
-
 	#if drawmethod==4
 		trace();
 		doOutline();
@@ -86,13 +94,17 @@ void render(){
 		glLoadIdentity();
 		//glTranslatef(-camx,camy,0);
 
-		//gluLookAt(-camx,camy,0,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);			BEST CAMERA
-		gluLookAt(camx,-camy,0,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);
+		//gluLookAt(0,0,0,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);			BEST CAMERA
+		//gluLookAt(camx/2,-camy/2,cameraOffset,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);
+        gluLookAt(camx,camy+1,cameraOffset,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos*3,0,1,0);
 
+        glPushMatrix();
+        glScalef(noiseScale, noiseScale, noiseScale);
 		glBegin(GL_QUADS);
 		glColor3f(0.5f,0.5f,0.5f);
 		glRender();
 		glEnd();
+        glPopMatrix();
 
 		renderObjects();
 	#elif drawmethod==11///awww yeah turn it up to 11

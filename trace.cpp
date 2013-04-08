@@ -8,7 +8,7 @@
 void trace() {
 	const double dt=0.005;
 	//const double dt=0.005;
-	double x,y,z;
+	//double x,y,z;
 	double tlow=0,//1,
 		tmax;
 	//const point3d from(grid-camx,grid-camy,-grid*d);

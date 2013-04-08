@@ -7,8 +7,12 @@ class EnemyShip : public GameObject
 {
 public:
 	EnemyShip();
-	void init();
-	void update();
+    EnemyShip(double x,double y);
+    virtual void init(double x,double y);
+	virtual void update();
+    virtual bool isDone();
+    
+    void uniqueRender();
 protected:
 private:
     int t;

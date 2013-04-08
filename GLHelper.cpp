@@ -72,7 +72,7 @@ void glInit(){
 	glViewport(0,0,xmax,ymax);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	const float rar=(float)xmax/(float)ymax;
+	//const float rar=(float)xmax/(float)ymax;
 	//gluPerspective(viewangle,rar,1.0,1024.0);
 	//gluPerspective(viewangle,1,1.0,-1);
 	//glOrtho(0,xmax,ymax,0,1,-1);

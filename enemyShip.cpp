@@ -2,9 +2,13 @@
 
 #include "globals.h"
 
-EnemyShip::EnemyShip(){init();}
+EnemyShip::EnemyShip(){init((double)(rand())/RAND_MAX*2-1,(double)(rand())/RAND_MAX*2-1);}
 
-void EnemyShip::init(){
+EnemyShip::EnemyShip(double x,double y) {
+    init(x, y);
+}
+
+void EnemyShip::init(double x,double y){
     modelSize=24;
 
     model=new vertex[modelSize];
@@ -33,8 +37,9 @@ void EnemyShip::init(){
     model[22]=vertex(0.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f);
     model[23]=vertex(0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f);
 
-    xpos=(double)(rand())/RAND_MAX*2-1;
-    ypos=(double)(rand())/RAND_MAX*2-1;
+    xpos=x;
+    ypos=y;
+    //cout<<"x "<<xpos<<" y "<<ypos<<endl;
     zpos=-5;
 
     xvel=.01;
@@ -43,7 +48,7 @@ void EnemyShip::init(){
 
     t=0;
 
-    cout<<"ENEMY SHIELDS ANALYZIED"<<endl;
+    //cout<<"ENEMY SHIELDS ANALYZIED"<<endl;
 }
 
 void EnemyShip::update() {
@@ -55,4 +60,15 @@ void EnemyShip::update() {
 
     xvel+=sin(t)/100;
     zvel+=sin(t)/100;
+    
+}
+
+void EnemyShip::uniqueRender() {
+//    if(!isDone()) {
+//        cout<<"x:"<<xpos<<" y:"<<ypos<<endl;
+//    }
+}
+
+bool EnemyShip::isDone() {      //hack?
+    return abs(xpos)>noiseScale || abs(ypos)>noiseScale;
 }
