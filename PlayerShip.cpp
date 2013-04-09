@@ -122,11 +122,22 @@ void PlayerShip::update() {
     yrot=-xvel/maxV*36;
     xrot=yvel/maxV*36;
 
-    /*
-    if(collidesWithNoise()) {
-        velX=0;
-        velY=0;
-    }//*/
+    
+    if(invinceStart<0) {
+        bool hit=false;
+        
+        for(int i=0;i<gameObjects.size();i++) {
+            if(this!=gameObjects.at(i) && collidesWithObject(gameObjects.at(i))) {
+                hit=true;
+                break;
+            }
+        }
+        if(hit || collidesWithNoise()) {
+            invinceStart=clock();
+            xvel=0;
+            xvel=0;
+        }
+    }
 }
 
 void PlayerShip::handleKeyInput() {

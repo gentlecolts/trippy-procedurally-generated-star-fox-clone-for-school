@@ -26,8 +26,12 @@ void GameObject::render() {
 	//glEnable(GL_LIGHT1);
 	glBegin(GL_TRIANGLES); // of the pyramid
 
+    if(invinceStart>=0)
+        glColor3f(1.0,0,0);
+    
 	for(int i=0;i<modelSize;i++) {
-		glColor3f(model[i].r,model[i].g,model[i].b);
+        if(invinceStart<0)
+            glColor3f(model[i].r,model[i].g,model[i].b);
 		glVertex3f(model[i].x,model[i].y,model[i].z);
 	}
 
@@ -43,53 +47,56 @@ void GameObject::render() {
 	uniqueRenderAfterPop();
 }
 
+void GameObject::doUpdate() {
+    if(!didSetup)
+        setup();
+    
+    if(invinceStart>=0 && clock()-invinceStart>invinceLength) {
+        invinceStart=-1;
+    }
+    
+    update();
+}
+
+void GameObject::setup() {
+    didSetup=true;
+    
+    avgDist=0;
+    for(int i=0;i<modelSize;i++) {
+        avgDist+=abs(model[i].x);
+        avgDist+=abs(model[i].y);
+        avgDist+=abs(model[i].z);
+    }
+    avgDist/=3*modelSize;
+    avgDist*=objScale;
+}
+
 bool GameObject::collidesWithNoise() {
-    bool fuck=false;
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
     for(int i=0;i<modelSize;i++) {
         const double
-            x=(model[i].x+xpos)*0.3 *grid2+grid2,
-            y=(model[i].y+ypos)*0.3 *grid2+grid2,
-            z=-d*grid*((model[i].z+zpos)*0.3+d/2);
-        //cout<<x<<'\t'<<y<<'\t'<<z<<endl;
+            x=(model[i].x*objScale+xpos)/noiseScale *grid2+grid2,
+            y=(model[i].y*objScale+ypos)/noiseScale *grid2+grid2,
+            z=-d*grid*((model[i].z*objScale+zpos)/noiseScale+d/2);
         if(noise[precompindx(x,y,z+zshft)]>tolerance){
-            glBegin(GL_QUADS);
-            glColor3f(1.0f,0,0);
-
-            point3d corners[8];
-            int indx;
-            for(int i=-1;i<=1;i+=2){
-            for(int j=-1;j<=1;j+=2){
-            for(int k=-1;k<=1;k+=2){
-                indx=((k+1)<<1)|(j+1)|((i+1)>>1);//acceptable because these are each either 0 or 2
-                corners[indx].x=(x+i*delt2-grid2)/grid2;
-                corners[indx].y=(y+j*delt2-grid2)/grid2;
-                corners[indx].z=-(z+k*delt2)/(d*grid)-d/2;
-
-                cout<<"some shit "<<corners[indx].x<<'\t'<<corners[indx].y<<'\t'<<corners[indx].z<<endl;
-            }}}
-
-            drawquad(corners[0],corners[1],corners[3],corners[2]);
-            drawquad(corners[0],corners[1],corners[5],corners[4]);
-            drawquad(corners[0],corners[2],corners[6],corners[4]);
-            drawquad(corners[3],corners[2],corners[6],corners[7]);
-            drawquad(corners[3],corners[1],corners[5],corners[7]);
-            drawquad(corners[6],corners[4],corners[5],corners[7]);
-
-            glEnd();
-            //return true;
-            fuck=true;
+            return true;
         }
     }
-    //return false;
-    return fuck;
+    return false;
+}
+
+bool GameObject::collidesWithObject(GameObject* obj) {      //crappy method
+    double xD=xpos-obj->xpos;
+    double yD=ypos-obj->ypos;
+    double zD=zpos-obj->zpos;
+    
+    return sqrt(xD*xD+yD*yD+zD*zD)<avgDist+obj->avgDist;
 }
 
 void GameObject::init(){}
 void GameObject::update(){}
 void GameObject::uniqueRender(){}
 void GameObject::uniqueRenderAfterPop(){}
+bool GameObject::isDone(){return false;}
 
 void GameObject::fireWeapon() {
     addLaser(new Laser(xpos,ypos,zpos,xrot,yrot,zrot));

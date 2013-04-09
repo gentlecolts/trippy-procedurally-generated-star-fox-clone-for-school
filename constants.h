@@ -73,5 +73,6 @@ const double raise=-0.1;//0.1;
 /**************** GAME  *********************/
 #define numGameObjects 4
 #define waveTime 15
+#define invinceLength 0.3*CLOCKS_PER_SEC
 
 #endif // CONSTANTS_H_INCLUDED

@@ -1,6 +1,8 @@
 #ifndef LASER_H_INCLUDED
 #define LASER_H_INCLUDED
 
+class GameObject;
+
 class Laser
 {
 public:
@@ -12,6 +14,8 @@ public:
 	void init(double x, double y, double z, double xr, double yr, double zr);
 	void update();
 	void render();
+    bool collidesWithObject(GameObject* obj);
+    bool collidesWithNoise();
 protected:
 private:
 };

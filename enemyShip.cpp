@@ -45,6 +45,10 @@ void EnemyShip::init(double x,double y){
     xvel=.01;
     yvel=-.01;
     zvel=.01;
+    
+    xrot=0;
+    yrot=0;
+    zrot=0;
 
     t=0;
 
@@ -52,15 +56,23 @@ void EnemyShip::init(double x,double y){
 }
 
 void EnemyShip::update() {
-    t++;
+    t+=.5;
 
     xpos+=xvel;
     ypos-=yvel;
     zpos-=zvel;
 
-    xvel+=sin(t)/100;
-    zvel+=sin(t)/100;
+    xvel+=sin(radians(t))/1000;
+    zvel+=sin(radians(t+270))/1000;
+    //cout<<zvel<<endl;
     
+    for(int i=0;i<lasers.size();i++) {
+        if(lasers.at(i)->collidesWithObject(this)) {
+            invinceStart=clock();
+            
+            break;
+        }
+    }
 }
 
 void EnemyShip::uniqueRender() {
@@ -70,5 +82,5 @@ void EnemyShip::uniqueRender() {
 }
 
 bool EnemyShip::isDone() {      //hack?
-    return abs(xpos)>noiseScale || abs(ypos)>noiseScale;
+    return abs(xpos)>noiseScale || abs(ypos)>noiseScale || zpos>cameraOffset || zpos<-noiseScale*2;
 }

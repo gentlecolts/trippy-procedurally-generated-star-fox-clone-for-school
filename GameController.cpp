@@ -29,16 +29,9 @@ void setupGame() {
 }
 
 void updateObjects() {
-	for(int i=0;i<gameObjects.size();i++) {
-        gameObjects.at(i)->update();
-    }
-
-    for(int i=0;i<lasers.size();i++) {
-        lasers.at(i)->update();
-    }
     
     long prev=curTime;
-    curTime=time(0)-startTime;      //fack why is time an int?
+    curTime=clock()-startTime;      //fack why is time an int?
     
     if(prev!=curTime && curTime%waveTime==0) {
         readyForNextWave=true;
@@ -46,13 +39,48 @@ void updateObjects() {
     if(currentWave==NULL || (readyForNextWave && currentWave->isDone())) {
         nextWave();
         readyForNextWave=false;
+        
+    }
+    
+	for(int i=0;i<gameObjects.size();i++) {
+        if(gameObjects.at(i)->isDone() && (gameObjects.at(i)->parentWave==NULL || gameObjects.at(i)->parentWave->isDone())) {
+            GameObject *obj=gameObjects.at(i);
+            gameObjects.erase(gameObjects.begin()+i);
+            
+            obj->parentWave->remove(obj);
+            obj->parentWave->release();
+            
+            delete obj;
+            i--;
+        }
+        
+        gameObjects.at(i)->doUpdate();
+        
+    }
+
+    for(int i=0;i<lasers.size();i++) {
+        lasers.at(i)->update();
+        
+        //lasers.at(i)->zpos<-noiseScale*2  <- and this is why -> is a stupid operator
+        
+        if(lasers.at(i)->collidesWithNoise() || lasers.at(i)->zpos<-noiseScale*2 ||lasers.at(i)->zpos>cameraOffset) {
+            Laser *obj=lasers.at(i);
+            lasers.erase(lasers.begin()+i);
+            
+            delete obj;
+            i--;
+        }
     }
 }
 
 void nextWave() {
+    if(currentWave!=NULL)
+        currentWave->release();
+    
     currentWave=new TestEnemyWave1;
     
     currentWave->init();
+    currentWave->retain();
 }
 
 void renderObjects() {
