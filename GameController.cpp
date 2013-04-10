@@ -43,12 +43,21 @@ void updateObjects() {
     }
     
 	for(int i=0;i<gameObjects.size();i++) {
+        
+        //cout<<gameObjects.at(i)<<endl;
+        
         if(gameObjects.at(i)->isDone() && (gameObjects.at(i)->parentWave==NULL || gameObjects.at(i)->parentWave->isDone())) {
             GameObject *obj=gameObjects.at(i);
             gameObjects.erase(gameObjects.begin()+i);
             
-            obj->parentWave->remove(obj);
-            obj->parentWave->release();
+            
+//            cout<<obj->parentWave<<endl;
+            
+            if(obj->parentWave!=NULL) {
+                obj->parentWave->remove(obj);
+                obj->parentWave->release();
+            }
+            
             
             delete obj;
             i--;

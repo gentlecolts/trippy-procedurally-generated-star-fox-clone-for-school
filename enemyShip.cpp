@@ -64,6 +64,9 @@ void EnemyShip::update() {
 
     xvel+=sin(radians(t))/1000;
     zvel+=sin(radians(t+270))/1000;
+    
+    yrot+=1;
+    
     //cout<<zvel<<endl;
     
     for(int i=0;i<lasers.size();i++) {
