@@ -6,11 +6,14 @@
 //  Copyright (c) 2013 Student. All rights reserved.
 //
 
+//again with this shit? why? what? fuck? shit...? no.
+
 #include "enemyWave.h"
 #include "imports.h"
 using namespace std;
 
-class GameObject;
+//class GameObject;//fuck u just include it
+#include "gameobject.h"
 
 void EnemyWave::init(){}
 void EnemyWave::tick(){}
@@ -26,7 +29,7 @@ void EnemyWave::retain() {
 
 void EnemyWave::release() {
     references--;
-    
+
     if(references<=0) {
         delete this;
     }

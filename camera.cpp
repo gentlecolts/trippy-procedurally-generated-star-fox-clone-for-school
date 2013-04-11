@@ -53,12 +53,12 @@ void movecam(){
         camvx+=0.01;
         camvy+=0.01;
     }
-    
+
     camx+=min(camvx,abs(thePlayerShip->xpos-camx))*signum(thePlayerShip->xpos-camx);
     camy+=min(camvy,abs(thePlayerShip->ypos-camy))*signum(thePlayerShip->ypos-camy);
-    
+
     camPrevSgn=signum(thePlayerShip->xpos-camx);
-    
+
 //	camx=max(-)
 
 	if(space){
@@ -104,6 +104,17 @@ void render(){
 		glColor3f(0.5f,0.5f,0.5f);
 		glRender();
 		glEnd();
+
+		/*
+		glBegin(GL_QUAD_STRIP);
+		for(int i=0;i<rand();i++){
+			gluLookAt(rand()/(float)0xffffff,rand()/(float)0xffffff,rand()/(float)0xffffff,
+						rand()/(float)0xffffff,rand()/(float)0xffffff,rand()/(float)0xffffff,
+						rand()/(float)0xffffff,rand()/(float)0xffffff,rand()/(float)0xffffff);
+			glColor3b(rand()&0xff,rand()&0xff,rand()&0xff);
+			glVertex3d((4.0*(rand()&0xffff))/0xffff-1,(4.0*(rand()&0xffff))/0xffff-1,(-(1/d+1.0)*(rand()&0xffff))/0xffff);
+		}glEnd();
+		//*/
         glPopMatrix();
 
 		renderObjects();

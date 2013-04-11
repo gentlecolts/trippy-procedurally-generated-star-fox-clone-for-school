@@ -8,9 +8,11 @@
 
 #include <iostream>
 
+/*
 GameObject::GameObject() {
 		init();
 }
+//*/
 
 void GameObject::render() {
 	glPushMatrix();
@@ -28,7 +30,7 @@ void GameObject::render() {
 
     if(invinceStart>=0)
         glColor3f(1.0,0,0);
-    
+
 	for(int i=0;i<modelSize;i++) {
         if(invinceStart<0)
             glColor3f(model[i].r,model[i].g,model[i].b);
@@ -50,17 +52,17 @@ void GameObject::render() {
 void GameObject::doUpdate() {
     if(!didSetup)
         setup();
-    
+
     if(invinceStart>=0 && clock()-invinceStart>invinceLength) {
         invinceStart=-1;
     }
-    
+
     update();
 }
 
 void GameObject::setup() {
     didSetup=true;
-    
+
     avgDist=0;
     for(int i=0;i<modelSize;i++) {
         avgDist+=abs(model[i].x);
@@ -88,7 +90,7 @@ bool GameObject::collidesWithObject(GameObject* obj) {      //crappy method
     double xD=xpos-obj->xpos;
     double yD=ypos-obj->ypos;
     double zD=zpos-obj->zpos;
-    
+
     return sqrt(xD*xD+yD*yD+zD*zD)<avgDist+obj->avgDist;
 }
 

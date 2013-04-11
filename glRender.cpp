@@ -74,7 +74,6 @@ void glRender() {
 
 						//glBegin(GL_QUADS);glColor3f(0.5f,0.5f,0.5f);
 						///zyx
-						#if 1
 						//000,001,011,010
 						drawquad(corners[0],corners[1],corners[3],corners[2]);
 
@@ -95,44 +94,6 @@ void glRender() {
 						//glEnd();
 						//cout<<"a"<<endl;///if this shows up then make sure glbegin and glend are being called
 						///ok so a was written...
-						#else
-						face[0]=corners[0];//000
-						face[1]=corners[1];//001
-						face[2]=corners[3];//011
-						face[3]=corners[2];//010
-						drawquad();
-
-						//face[0]=corners[0];//000
-						//face[1]=corners[1];//001
-						face[2]=corners[5];//101
-						face[3]=corners[4];//100
-						drawquad();
-
-						//face[0]=corners[0];//000
-						face[1]=corners[2];//010
-						face[2]=corners[6];//110
-						//face[3]=corners[4];//100
-						drawquad();
-
-						face[0]=corners[3];//011
-						//face[1]=corners[2];//010
-						//face[2]=corners[6];//110
-						face[3]=corners[7];//111
-						drawquad();
-
-						//face[0]=corners[3];//011
-						face[1]=corners[1];//001
-						face[2]=corners[5];//101
-						//face[3]=corners[7];//111
-						drawquad();
-
-						face[0]=corners[6];//110
-						face[1]=corners[4];//100
-						//face[2]=corners[5];//101
-						//face[3]=corners[7];//111
-						drawquad();
-						//glEnd();
-						#endif
 					}
 				}
 			}

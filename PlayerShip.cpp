@@ -54,13 +54,13 @@ void PlayerShip::uniqueRenderAfterPop() {
     double dist=1;
 
     glTranslatef(x*dist+xpos,y*dist+ypos,z*dist+zpos);
-    
+
     glLineWidth(3);
 
     glBegin(GL_LINES);
     glColor3f(0.0,1.0,0.0);
-    
-    
+
+
     double halfLength=objScale;
 
     glVertex3f(halfLength,halfLength,0);
@@ -122,10 +122,10 @@ void PlayerShip::update() {
     yrot=-xvel/maxV*36;
     xrot=yvel/maxV*36;
 
-    
+
     if(invinceStart<0) {
         bool hit=false;
-        
+
         for(int i=0;i<gameObjects.size();i++) {
             if(this!=gameObjects.at(i) && collidesWithObject(gameObjects.at(i))) {
                 hit=true;

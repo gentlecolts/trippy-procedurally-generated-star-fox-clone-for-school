@@ -1,5 +1,4 @@
 #include "enemyShip.h"
-
 #include "globals.h"
 
 EnemyShip::EnemyShip(){init((double)(rand())/RAND_MAX*2-1,(double)(rand())/RAND_MAX*2-1);}
@@ -45,7 +44,7 @@ void EnemyShip::init(double x,double y){
     xvel=.01;
     yvel=-.01;
     zvel=.01;
-    
+
     xrot=0;
     yrot=0;
     zrot=0;
@@ -64,15 +63,15 @@ void EnemyShip::update() {
 
     xvel+=sin(radians(t))/1000;
     zvel+=sin(radians(t+270))/1000;
-    
+
     yrot+=1;
-    
+
     //cout<<zvel<<endl;
-    
+
     for(int i=0;i<lasers.size();i++) {
         if(lasers.at(i)->collidesWithObject(this)) {
             invinceStart=clock();
-            
+
             break;
         }
     }

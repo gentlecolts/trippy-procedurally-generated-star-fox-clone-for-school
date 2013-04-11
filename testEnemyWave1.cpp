@@ -7,32 +7,34 @@
 //  Copyright (c) 2013 Student. All rights reserved.
 //
 
+//jesus dick
+
 #include "EnemyShip.h"
 #include "testEnemyWave1.h"
 
 void TestEnemyWave1::init(){
     double x=rand()%(2*noiseScale)-noiseScale;
     double y=rand()%(2*noiseScale)-noiseScale;
-    
+
     ship1=new EnemyShip(-x+.5,-y+.5);
     ship2=new EnemyShip(-x+.5,-y);
     ship3=new EnemyShip(-x,-y+.5);
-    
+
     ship1->parentWave=this;
     ship2->parentWave=this;
     ship3->parentWave=this;
-    
+
     gameObjects.push_back(ship1);
     gameObjects.push_back(ship2);
     gameObjects.push_back(ship3);
-    
+
     retain();
     retain();
     retain();
 }
 
 void TestEnemyWave1::tick(){
-    
+
 }
 
 void TestEnemyWave1::remove(GameObject *obj) {
@@ -45,7 +47,7 @@ void TestEnemyWave1::remove(GameObject *obj) {
     if(ship3==obj) {
         ship3=NULL;
     }
-    
+
 }
 
 bool TestEnemyWave1::isDone(){

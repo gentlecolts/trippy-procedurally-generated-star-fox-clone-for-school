@@ -6,6 +6,12 @@
 //  Copyright (c) 2013 Student. All rights reserved.
 //
 
+// ^
+// |
+// da fuck is this? more xcode bs?
+// |
+// V
+
 #ifndef __HelloSDL__enemyWave__
 #define __HelloSDL__enemyWave__
 
@@ -20,14 +26,16 @@ public:
     virtual bool isDone();
     virtual bool childrenDone();
     virtual void remove(GameObject* obj);
-    
+
+    EnemyWave():references(0){};
     virtual ~EnemyWave();
-    
+
     void retain();
     void release();
 private:
 protected:
-    int references=0;     //FIIINE
+    //int references=0;     //FIIINE
+    int references;     //FIIINE
 };
 
 #endif /* defined(__HelloSDL__enemyWave__) */

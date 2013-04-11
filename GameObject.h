@@ -3,38 +3,44 @@
 
 #include "globals.h"
 
+#include <ctime>//i dont give a fuck if xcode does shit for you, lrn 2 include...
+//this was needed in 3 other files too...i was just going to paste the above line in all of them and not tell you,
+//but i decided that was a bit more cruel than i felt like being
+//you're welcome
+//p.s. its your fault if this fucks something up
+
 class EnemyWave;
 
 class GameObject
 {
 public:
-    vertex *model;
-    float xpos,ypos,zpos,xvel,yvel,zvel;
-    float xrot,yrot,zrot;
-    double avgDist;
-    EnemyWave *parentWave=NULL;
+	vertex *model;
+	float xpos,ypos,zpos,xvel,yvel,zvel;
+	float xrot,yrot,zrot;
+	double avgDist;
+	EnemyWave* parentWave;
 
-	GameObject();
+	virtual void init();
+
+	GameObject():parentWave(NULL),invinceStart(-1),didSetup(false){init();}
 	virtual ~GameObject();
 
 	bool collidesWithNoise();
-    bool collidesWithObject(GameObject *obj);
+	bool collidesWithObject(GameObject *obj);
 	void render();
-    void doUpdate();
-    void setup();
+	void doUpdate();
+	void setup();
 
-	virtual void init();
 	virtual void update();
 	virtual void uniqueRenderAfterPop();
 	virtual void uniqueRender();
 	virtual void fireWeapon();
-    virtual bool isDone();
+	virtual bool isDone();
 protected:
 	int modelSize;
-    long invinceStart=-1;
+	long invinceStart;
 private:
-    long t;
-    bool didSetup=false;
+	long t;
+	bool didSetup;
 };
-
 #endif // GAMEOBJECT_H_INCLUDED
