@@ -2,11 +2,18 @@
 
 #include "math.h"
 #include "imports.h"
+#include "Model.h"
+#include "vec3f.h"
+
+
+PlayerShip::PlayerShip(int n) : GameObject(n) {
+	init();
+}
 
 void PlayerShip::init(){
     modelSize=18;
 
-    model=new vertex[modelSize];
+    /*model=new vertex[modelSize];
     model[0]=vertex(0.0f, 0.0f, -2.0f, 1.0f, 0.f, 0.0f);
     model[1]=vertex(0.0f, 0.5f, -0.0f, 0.0f, 1.0f, 0.0f);
     model[2]=vertex(1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
@@ -24,18 +31,51 @@ void PlayerShip::init(){
     model[14]=vertex(-1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
     model[15]=vertex(0.0f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f);
     model[16]=vertex(0.0f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f);
-    model[17]=vertex(1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
-
+    model[17]=vertex(1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);*/
+	
+	model=new Model(modelSize);
+	
+	model->addVertex(Vec3f(0.0f, 0.0f, -2.0f));
+	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
+	model->addVertex(Vec3f(0.0f, 0.5f, 0.0f));
+	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
+	model->addVertex(Vec3f(1.0f, 0.0f, 1.0f));
+	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
+	model->addVertex(Vec3f(0.0f, 0.0f, -2.0f));
+	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
+	model->addVertex(Vec3f(0.0f, -0.5f, -0.0f));
+	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
+	model->addVertex(Vec3f(1.0f, 0.0f, 1.0f));
+	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
+	model->addVertex(Vec3f(0.0f, 0.0f, -2.0f));
+	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
+	model->addVertex(Vec3f(0.0f, 0.5f, -0.0f));
+	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
+	model->addVertex(Vec3f(-1.0f, 0.0f, 1.0f));
+	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
+	model->addVertex(Vec3f(0.0f, 0.0f, -2.0f));
+	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
+	model->addVertex(Vec3f(0.0f, -0.5f, -0.0f));
+	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
+	model->addVertex(Vec3f(-1.0f, 0.0f, 1.0f));
+	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
+	model->addVertex(Vec3f(0.0f, 0.5f, -0.0f));
+	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
+	model->addVertex(Vec3f(0.0f, -0.5f, -0.0f));
+	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
+	model->addVertex(Vec3f(-1.0f, 0.0f, 1.0f));
+	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
+	model->addVertex(Vec3f(0.0f, 0.5f, 0.0f));
+	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
+	model->addVertex(Vec3f(0.0f, -0.5f, 0.0f));
+	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
+	model->addVertex(Vec3f(1.0f, 0.0f, 1.0f));
+	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
+	
+	model->computeNormals();
 
     zpos=-playerOffset;
-    /*
-    cout<<"init()"<<endl;
-    cout<<"this in init:"<<endl;
-    cout<<this<<endl;
-    //*/
 }
-
-PlayerShip::PlayerShip(){init();}
 
 void PlayerShip::uniqueRenderAfterPop() {
     glPushMatrix();
@@ -134,8 +174,8 @@ void PlayerShip::update() {
         }
         if(hit || collidesWithNoise()) {
             invinceStart=clock();
-            xvel=0;
-            xvel=0;
+            //xvel=0;
+            //xvel=0;
         }
     }
 }

@@ -40,6 +40,13 @@ int signum(double val) {
     return (0<val)-(val<0);
 }
 
+double distSq(double x1,double y1,double x2,double y2) {
+	double dx=x1-x2;
+	double dy=y1-y2;
+	
+	return dx*dx+dy*dy;
+}
+
 /*long double longDoubleMod(long double a, long double b) {      //this probably is in std somewhere
     int i=a/b;
     return a-b*i;

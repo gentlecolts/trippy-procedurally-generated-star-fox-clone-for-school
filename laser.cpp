@@ -43,7 +43,7 @@ void Laser::render() {
 	glRotatef(zrot, 0.0f, 0.0f, 1.0f);
 
     glDisable(GL_LIGHT0);
-    glEnable(GL_LIGHT1);
+    //glEnable(GL_LIGHT1);
     glBegin(GL_QUADS); // of the pyramid
 
     glColor3f(1,0,0);
@@ -54,7 +54,7 @@ void Laser::render() {
 
     glEnd();
 
-    glDisable(GL_LIGHT1);
+    //glDisable(GL_LIGHT1);
     glEnable(GL_LIGHT0);
 
     glPopMatrix();

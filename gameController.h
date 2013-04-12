@@ -9,5 +9,6 @@ void renderObjects();
 void addLaser(Laser* las);
 void unloadGame();
 void nextWave();
+void destroy(GameObject* obj);
 
 #endif // GAMECONTROLLER_H_INCLUDED

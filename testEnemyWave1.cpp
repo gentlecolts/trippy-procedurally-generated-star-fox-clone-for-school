@@ -16,9 +16,11 @@ void TestEnemyWave1::init(){
     double x=rand()%(2*noiseScale)-noiseScale;
     double y=rand()%(2*noiseScale)-noiseScale;
 
-    ship1=new EnemyShip(-x+.5,-y+.5);
-    ship2=new EnemyShip(-x+.5,-y);
-    ship3=new EnemyShip(-x,-y+.5);
+	int s=gameObjects.size();
+	
+    ship1=new EnemyShip(-x+.5,-y+.5,s);
+    ship2=new EnemyShip(-x+.5,-y,s+1);
+    ship3=new EnemyShip(-x,-y+.5,s+2);
 
     ship1->parentWave=this;
     ship2->parentWave=this;

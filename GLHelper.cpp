@@ -42,6 +42,7 @@ void glInit(){
 	GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
 	GLfloat mat_shininess[] = { 50.0 };
 	//GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
+	GLfloat mat_diffuse[] = { 100.0, 100.0, 100.0, 1.0 };
 	GLfloat light_position[] = {0,0,0,1};
 	glShadeModel(GL_SMOOTH);
 	//glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER,1);
@@ -49,6 +50,7 @@ void glInit(){
 
 	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 	glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, mat_diffuse);
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 2.0);
 	//glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 1.0);

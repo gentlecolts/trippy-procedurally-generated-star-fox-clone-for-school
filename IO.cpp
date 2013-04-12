@@ -57,10 +57,16 @@ void chkCloseEvent(){
 			}
 
 			if(key==SDLK_DOWN || key==SDLK_s){//DOWN
-				downmov=true;
+				if(invertControls)
+					downmov=true;
+				else
+					upmov=true;
 			}
 			if(key==SDLK_UP || key==SDLK_w){//UP
-				upmov=true;
+					if(invertControls)
+						upmov=true;
+					else
+						downmov=true;
 			}
 			if(key==SDLK_RIGHT || key==SDLK_d){//RIGHT
 				rightmov=true;
@@ -79,10 +85,16 @@ void chkCloseEvent(){
 			{
 			int key=e.key.keysym.sym;
 			if(key==SDLK_DOWN || key==SDLK_s){//DOWN
-				downmov=false;
+				if(invertControls)
+					downmov=false;
+				else
+					upmov=false;
 			}
 			if(key==SDLK_UP || key==SDLK_w){//UP
-				upmov=false;
+				if(invertControls)
+					upmov=false;
+				else
+					downmov=false;
 			}
 			if(key==SDLK_RIGHT || key==SDLK_d){//RIGHT
 				rightmov=false;

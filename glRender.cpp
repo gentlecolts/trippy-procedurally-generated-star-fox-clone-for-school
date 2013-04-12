@@ -8,6 +8,7 @@
 
 void glRender() {
 	point3d corners[8];
+	point3d normals[8];
 	int indx;
 	//glMatrixMode(GL_MODELVIEW);
 	//glLoadIdentity();
@@ -69,16 +70,27 @@ void glRender() {
 						//corners[indx].z=(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/grid-1.5;
 						//corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)-1;
 						//corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-1;
-						corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-d/2;
+						corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-d/2+(zshft-(int)zshft)/noiseScale;
+							
+							
+							normals[indx].x=i;
+							normals[indx].y=j;
+							normals[indx].z=k; //butts
 						}}}
 
 						//glBegin(GL_QUADS);glColor3f(0.5f,0.5f,0.5f);
 						///zyx
 						//000,001,011,010
-						drawquad(corners[0],corners[1],corners[3],corners[2]);
+						//drawquad(corners[0],corners[1],corners[3],corners[2]);
+						drawquadnorm(corners[0],normals[0],corners[1],normals[1],corners[3],normals[3],corners[2],normals[2]);
+						drawquadnorm(corners[0],normals[0],corners[1],normals[1],corners[5],normals[5],corners[4],normals[4]);
+						drawquadnorm(corners[0],normals[0],corners[2],normals[2],corners[6],normals[6],corners[4],normals[4]);
+						drawquadnorm(corners[3],normals[3],corners[2],normals[2],corners[6],normals[6],corners[7],normals[7]);
+						drawquadnorm(corners[3],normals[3],corners[1],normals[1],corners[5],normals[5],corners[7],normals[7]);
+						drawquadnorm(corners[6],normals[6],corners[4],normals[4],corners[5],normals[5],corners[7],normals[7]);
 
 						//000,001,101,100
-						drawquad(corners[0],corners[1],corners[5],corners[4]);
+						/*drawquad(corners[0],corners[1],corners[5],corners[4]);
 
 						//000,010,110,100
 						drawquad(corners[0],corners[2],corners[6],corners[4]);
@@ -90,7 +102,7 @@ void glRender() {
 						drawquad(corners[3],corners[1],corners[5],corners[7]);
 
 						//110,100,101,111
-						drawquad(corners[6],corners[4],corners[5],corners[7]);
+						drawquad(corners[6],corners[4],corners[5],corners[7]);*/
 						//glEnd();
 						//cout<<"a"<<endl;///if this shows up then make sure glbegin and glend are being called
 						///ok so a was written...

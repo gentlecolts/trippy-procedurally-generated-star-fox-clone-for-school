@@ -9,23 +9,28 @@
 #include <ctime>
 
 void setupGame() {
-    gameObjects.push_back(new PlayerShip());
+    gameObjects.push_back(new PlayerShip(0));
 
     /*for(int i=1;i<numGameObjects;i++) {
         gameObjects.push_back(new EnemyShip());
     }*/
 
 
-
     light1[0]=0;
     light1[1]=0;
     light1[2]=-1.5;
     light1[3]=1;
+	
+	GLfloat diffuse[]={3.0,0.0,0.0,1.0};
 
     glLightfv(GL_LIGHT1, GL_POSITION, light1);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuse);
     glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 2.0);
     glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.5);
     glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.125);
+	
+	
+	glEnable(GL_LIGHT1);
 }
 
 void updateObjects() {
@@ -36,7 +41,7 @@ void updateObjects() {
     if(prev!=curTime && curTime%waveTime==0) {
         readyForNextWave=true;
     }
-    if(currentWave==NULL || (readyForNextWave && currentWave->isDone())) {
+    if(currentWave==NULL || (readyForNextWave /*&& currentWave->isDone()*/)) {
         nextWave();
         readyForNextWave=false;
 
@@ -90,6 +95,18 @@ void nextWave() {
 
     currentWave->init();
     currentWave->retain();
+}
+
+void destroy(GameObject* obj) {
+	gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), obj));
+	
+	if(obj->parentWave!=NULL) {
+		obj->parentWave->remove(obj);
+		obj->parentWave->release();
+	}
+	
+	
+	delete obj;
 }
 
 void renderObjects() {

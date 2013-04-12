@@ -6,8 +6,8 @@
 class EnemyShip : public GameObject
 {
 public:
-	EnemyShip();
-    EnemyShip(double x,double y);
+	EnemyShip(int n);
+    EnemyShip(double x,double y,int n);
     virtual void init(double x,double y);
 	virtual void update();
     virtual bool isDone();

@@ -53,13 +53,13 @@ const double rt2=1/sqrt(2);
 #define maxV 0.2
 #define accel 0.01
 
-#define xmax 640
-#define ymax 480
+#define xmax 1024
+#define ymax 768
 
 #define viewangle 60
 #define playerOffset 1
 #define cameraOffset 1
-#define noiseScale 3            //maybe there's already something for this?
+#define noiseScale 10            //maybe there's already something for this?
 #define cameraSideOffset 2.598	//playerOffset*sin(viewangle)
 
 const double d1=2*tan(radians(viewangle/2.0))/grid;
@@ -74,5 +74,7 @@ const double raise=-0.1;//0.1;
 #define numGameObjects 4
 #define waveTime 15
 #define invinceLength 0.3*CLOCKS_PER_SEC
+
+#define invertControls 1
 
 #endif // CONSTANTS_H_INCLUDED

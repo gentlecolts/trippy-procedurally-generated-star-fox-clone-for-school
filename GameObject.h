@@ -10,19 +10,24 @@
 //p.s. its your fault if this fucks something up
 
 class EnemyWave;
+class Model;
+class Animation;
 
 class GameObject
 {
 public:
-	vertex *model;
+//	vertex *model;
+	Model *model;
 	float xpos,ypos,zpos,xvel,yvel,zvel;
 	float xrot,yrot,zrot;
 	double avgDist;
 	EnemyWave* parentWave;
+	Animation* theAnimation;
+	int index;
 
 	virtual void init();
 
-	GameObject():parentWave(NULL),invinceStart(-1),didSetup(false){init();}
+	GameObject(int n);
 	virtual ~GameObject();
 
 	bool collidesWithNoise();

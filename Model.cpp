@@ -29,6 +29,7 @@ void Model::addColor(Vec3f c) {
     }
     
     colors[lastAddedC]=c;
+	lastAddedC++;
 }
 
 void Model::addVertex(Vec3f v) {
@@ -38,6 +39,7 @@ void Model::addVertex(Vec3f v) {
     }
     
     vertices[lastAddedV]=v;
+	lastAddedV++;
 }
 
 void Model::addNormal(Vec3f n) {
@@ -47,6 +49,7 @@ void Model::addNormal(Vec3f n) {
     }
     
     normals[lastAddedN]=n;
+	lastAddedN++;
 }
 
 void Model::computeNormals() {
@@ -55,36 +58,33 @@ void Model::computeNormals() {
         hasNormals=true;
     }
     
-    for(int i=lastAddedN;i<length;i+=3) {
+    for(int i=lastAddedN*3;i<length;i+=3) {
         Vec3f v1=vertices[i]-vertices[i+1];
         Vec3f v2=vertices[i]-vertices[i+2];
         
-        normals[i/3]=v1.cross(v2).normalize();
-    }
+		Vec3f norm=v1.cross(v2).normalize();
+		
+		if((vertices[i][0]+vertices[i+1][0]+vertices[i+2][0])/3*norm[0]<=0 &&
+		   (vertices[i][1]+vertices[i+1][1]+vertices[i+2][1])/3*norm[1]<=0 &&
+		   (vertices[i][2]+vertices[i+1][2]+vertices[i+2][2])/3*norm[2]<=0) {
+			norm*=-1;
+		}
+		
+        normals[i/3]=norm;
+    }	
+	lastAddedN=length/3;
 }
 
 Model::~Model() {
     if(hasColors) {
-       /* for(int i=0;i<length;i++) {
-            delete colors[i];
-        }*/
-        
-        delete colors;
+        delete[] colors;
     }
     
     if(hasVertices) {
-        /* for(int i=0;i<length;i++) {
-         delete colors[i];
-         }*/
-        
-        delete vertices;
+        delete[] vertices;
     }
     
     if(hasNormals) {
-        /* for(int i=0;i<length;i++) {
-         delete colors[i];
-         }*/
-        
-        delete normals;
+        delete[] normals;
     }
 }
