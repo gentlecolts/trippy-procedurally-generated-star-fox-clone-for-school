@@ -82,6 +82,7 @@ void trace() {
 				goto free;
 			}
 			#else
+			#error instance of shadenorm, make sure this is correct before removing
 			#if shadenorm
 			const int preindx=precompindx(D.x*t+xshft,D.y*t+yshft,D.z*t+from.z+zshft);
 			if(noise[preindx]>tolerance){

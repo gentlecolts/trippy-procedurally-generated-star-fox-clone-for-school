@@ -53,30 +53,30 @@ void movecam(){
         camvx+=0.001;
         camvy+=0.001;
     }*/
-	
+
 	camvx=-(camx-thePlayerShip->xpos)/10;
 	camvy=-(camy-thePlayerShip->ypos)/10;
-	
+
 	double x=camx/noiseScale*grid2+grid2;
 	double y=camy/noiseScale*grid2+grid2;
 	double dx=camvx/noiseScale*grid2;
 	double dy=camvy/noiseScale*grid2;
 	double z=-d*cameraOffset*grid/noiseScale+d/2;
-	
+
 	if(noise[precompindx(x+dx, y+dy, z)]>tolerance) {
 		camvx=0;
 		camvy=0;
 		cout<<"I'M A ROCK"<<endl;
 	}else if(noise[precompindx(x, y, z)]>tolerance-.2) {
-	
+
 		camvx-=noise[precompindx(x+dx, y, z)]*signum(camvx)/30;
 		camvy-=noise[precompindx(x, y+dy, z)]*signum(camvy)/30;
-	
+
 		camvx+=noise[precompindx(x, y, z)]*signum(camvx)/30;
 		camvy+=noise[precompindx(x, y, z)]*signum(camvy)/30;
-		
+
 	}
-	
+
 	camx+=camvx;
 	camy+=camvy;
 
@@ -100,8 +100,8 @@ void movecam(){
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	//gluPerspective(viewangle,1,0.5,1/d+1);
-	
-	gluPerspective(viewangle,1,0.5,10/d+10);
+
+	gluPerspective(viewangle,(double)xmax/(double)ymax,0.5,10/d+10);
 	#endif
 }
 

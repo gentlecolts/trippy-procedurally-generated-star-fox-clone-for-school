@@ -12,15 +12,17 @@
 #include "vec3f.h"
 #include "gameController.h"
 
+#include <ctime>
+
 void ExplodeAnimation::doTriangleTransform(int index) {
-	
+
 	double mult=((double)16*t)/(CLOCKS_PER_SEC);
 	//cout<<mult<<endl;
-	
+
 	//cout<<"x "<<model->normals[index/3][0]*mult;
-	
+
 	glTranslatef(model->normals[index/3][0]*mult, model->normals[index/3][1]*mult, model->normals[index/3][2]*mult);
-	
+
 	//rotate shit
 }
 
@@ -31,5 +33,5 @@ void ExplodeAnimation::update() {
 }
 
 ExplodeAnimation::ExplodeAnimation(Model *m, GameObject *o) : Animation(m, o) {
-	
+
 }

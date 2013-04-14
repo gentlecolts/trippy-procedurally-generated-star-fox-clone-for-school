@@ -4,6 +4,13 @@
 #include "globals.h"
 
 void doOutline() {      //FIXME: do we even need this? And what is color? CodeBlocks can't find its definition in the other project
+	/*
+	color is the new color in for the current pixel, if it isnt declared here, it was probably declared in render.cpp
+	it should be a uint32_t
+	also we need this if we want to draw outlines on the objects,
+	this used to be the function that drew everything for non opengl rendering
+	also, note that if we ever use this again, we may need to fix parts within any #if shadenorm
+	*/
 /*
     uint32_t* pixels=(uint32_t *)screen->pixels;
     double tmp,avg,dst,t;
@@ -23,6 +30,7 @@ void doOutline() {      //FIXME: do we even need this? And what is color? CodeBl
             #if !test2d
             #define colcap (255/4.0)
 
+            #error instance of shadenorm, make sure this is correct before removing (that is if this ever gets reimplemented)
             #if shadenorm
             #define falloffcolor colcap*( ((grid-2)/(0.125*vals[i+xmax*j].dist+2))*((2+normals[i+xmax*j])/4) )
             //#define falloffcolor colcap*( ((grid-2)/(0.125*vals[i+xmax*j].dist+2))*(normals[i+xmax*j]*normals[i+xmax*j]) )

@@ -15,12 +15,11 @@ void setupGame() {
         gameObjects.push_back(new EnemyShip());
     }*/
 
-
     light1[0]=0;
     light1[1]=0;
     light1[2]=-1.5;
     light1[3]=1;
-	
+
 	GLfloat diffuse[]={3.0,0.0,0.0,1.0};
 
     glLightfv(GL_LIGHT1, GL_POSITION, light1);
@@ -28,13 +27,11 @@ void setupGame() {
     glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 2.0);
     glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.5);
     glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.125);
-	
-	
+
 	glEnable(GL_LIGHT1);
 }
 
 void updateObjects() {
-
     long prev=curTime;
     curTime=clock()-startTime;      //fack why is time an int?
 
@@ -54,7 +51,6 @@ void updateObjects() {
         if(gameObjects.at(i)->isDone() && (gameObjects.at(i)->parentWave==NULL || gameObjects.at(i)->parentWave->isDone())) {
             GameObject *obj=gameObjects.at(i);
             gameObjects.erase(gameObjects.begin()+i);
-
 
 //            cout<<obj->parentWave<<endl;
 
@@ -98,14 +94,17 @@ void nextWave() {
 }
 
 void destroy(GameObject* obj) {
-	gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), obj));
-	
+	gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), obj));//this threw an error because u did std::
+	//gameObjects.erase(remove(gameObjects.begin(), gameObjects.end(), obj));//and this threw an error b/c converting to iterator
+	//commenting these out will likely cause memory leaks (?)
+	#error we need to work out the issue with std::remove, memory leaks are bad
+
 	if(obj->parentWave!=NULL) {
 		obj->parentWave->remove(obj);
 		obj->parentWave->release();
 	}
-	
-	
+
+
 	delete obj;
 }
 

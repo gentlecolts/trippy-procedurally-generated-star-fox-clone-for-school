@@ -54,12 +54,17 @@
 			<Add option="-lmingw32 -lSDLmain -lSDL" />
 			<Add option="-lopengl32 -lglu32" />
 		</Linker>
+		<Unit filename="Animation.cpp" />
+		<Unit filename="Animation.h" />
+		<Unit filename="ExplodeAnimation.cpp" />
+		<Unit filename="ExplodeAnimation.h" />
 		<Unit filename="GLHelper.cpp" />
 		<Unit filename="GLHelper.h" />
 		<Unit filename="IO.cpp" />
 		<Unit filename="IO.h" />
 		<Unit filename="Laser.h" />
 		<Unit filename="Main.cpp" />
+		<Unit filename="Model.cpp" />
 		<Unit filename="camera.cpp" />
 		<Unit filename="camera.h" />
 		<Unit filename="constants.h" />
@@ -98,6 +103,7 @@
 		<Unit filename="testEnemyWave1.h" />
 		<Unit filename="trace.cpp" />
 		<Unit filename="trace.h" />
+		<Unit filename="vec3f.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

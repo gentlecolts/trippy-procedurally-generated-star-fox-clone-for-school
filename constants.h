@@ -33,7 +33,7 @@ const double precompdelta=1.0/precompdivs;
 #define doGL 0
 #endif
 
-#define shadenorm 0
+#define shadenorm 1
 
 #define outline 1
 
@@ -53,8 +53,8 @@ const double rt2=1/sqrt(2);
 #define maxV 0.2
 #define accel 0.01
 
-#define xmax 1024
-#define ymax 768
+#define xmax 1280
+#define ymax 720
 
 #define viewangle 60
 #define playerOffset 1
