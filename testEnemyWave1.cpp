@@ -9,18 +9,21 @@
 
 //jesus dick
 
-#include "EnemyShip.h"
+#include "RamShip.h"
 #include "testEnemyWave1.h"
 
 void TestEnemyWave1::init(){
-    double x=rand()%(2*noiseScale)-noiseScale;
-    double y=rand()%(2*noiseScale)-noiseScale;
+    //double x=rand()%(2*noiseScale)-noiseScale;
+    //double y=rand()%(2*noiseScale)-noiseScale;
+	
+	double x=thePlayerShip->xpos;
+	double y=thePlayerShip->ypos;
 
 	int s=gameObjects.size();
 	
-    ship1=new EnemyShip(-x+.5,-y+.5,s);
-    ship2=new EnemyShip(-x+.5,-y,s+1);
-    ship3=new EnemyShip(-x,-y+.5,s+2);
+    ship1=new RamShip(-x+.5,-y+.5,s);
+    ship2=new RamShip(-x+.5,-y,s+1);
+    ship3=new RamShip(-x,-y+.5,s+2);
 
     ship1->parentWave=this;
     ship2->parentWave=this;
@@ -62,13 +65,6 @@ bool TestEnemyWave1::isDone(){
 }
 
 bool TestEnemyWave1::childrenDone(){
-    if(ship1==NULL || ship2==NULL || ship3==NULL) {
-        cout<<"HALP"<<endl;
-    } else if(ship1->isDone()) {
-         if(ship2->isDone()) {
-             if(ship3->isDone()){}
-        }
-    }
     return (ship1==NULL || ship1->isDone()) && (ship2==NULL || ship2->isDone()) && (ship3==NULL || ship3->isDone());
 }
 

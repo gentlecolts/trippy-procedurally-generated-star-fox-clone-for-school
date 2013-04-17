@@ -3,7 +3,6 @@ using namespace std;
 
 #include "constants.h"
 #include "IO.h"
-#include "terrain.h"
 #include "gameController.h"
 #include "camera.h"
 
@@ -17,7 +16,6 @@ int main(int argc,char** argv){
 	while(true){
 		chkCloseEvent();
 		movecam();
-		updateTerrain();
 
 		render();
 		updateObjects();

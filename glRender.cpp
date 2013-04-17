@@ -16,7 +16,7 @@ void glRender() {
 	//glBegin(GL_QUADS);
 	//cout<<"penis"<<endl;
 	bool inCube,beenDrawn;
-	double lastz;
+	double lastx;
 	///TRY THIS http://www710.univ-lyon1.fr/~jciehl/Public/OpenGL_PG/ch08.html#id5502750
 	/*
 	for(double x=0;x<grid;x+=delta/2){
@@ -28,25 +28,27 @@ void glRender() {
 	///NOTE: need to resolve the issue of the last rect not being drawn
 	for(int a=0;a<grid/step;a++){
 		//x=grid*a/(grid/(delta/2));
-		x=a*step;
+		z=a*step;
 		for(int b=0;b<grid/step;b++){
 		y=b*step;
 	//*/
 			//glBegin(GL_QUADS);glColor3f(0.5f,0.5f,0.5f);
 			inCube=false;
 			beenDrawn=true;
-			lastz=0;
+			lastx=0;
 			/*
 			for(double z=0;z<grid;z+=delta){
 			/*/
 			for(int c=0;c<grid/delta;c++){
-			z=c*step;
+			x=c*step;
+				
+				glRotatef(0.01, 0.0, 1.0, 0.0);
 			//*/
 				if(noise[precompindx(x,y,z+zshft)]>tolerance){
 					if(!inCube){
 						inCube=true;
 						beenDrawn=false;
-						lastz=z;
+						lastx=z;
 					}
 				}else{
 					if(!beenDrawn){
@@ -57,21 +59,13 @@ void glRender() {
 						for(int j=-1;j<=1;j+=2){
 						for(int k=-1;k<=1;k+=2){
 						//indx=(((k+1)/2)<<2)|(((j+1)/2)<<1)|((i+1)/2);
-						indx=((k+1)<<1)|(j+1)|((i+1)>>1);//acceptable because these are each either 0 or 2
+							indx=((k+1)<<1)|(j+1)|((i+1)>>1);//acceptable because these are each either 0 or 2
 						//*
-						corners[indx].x=(x-grid2+i*delt2)/grid2;
-						corners[indx].y=(y-grid2+j*delt2)/grid2;
-						/*/
-						corners[indx].x=x+i*delt2;
-						corners[indx].y=y+j*delt2;
-						//*/
-						//corners[indx].z=-(z+k*delt2)/grid-0.5;
-						//corners[indx].z=-2*(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/grid-1.5;
-						//corners[indx].z=(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/grid-1.5;
-						//corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)-1;
-						//corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-1;
-						corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-d/2+(zshft-(int)zshft)/noiseScale;
-							
+							//corners[indx].x=(x-grid2+i*delt2)/grid2;
+							corners[indx].x=(lastx+(x-delta-lastx)*(i+1)/2+i*delt2)/grid2;
+							corners[indx].y=(y-grid2+j*delt2)/grid2;
+							corners[indx].z=-(z-grid2+k*delt2)/(d*grid)-d/2+(zshft-(int)zshft)/noiseScale;
+							//corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-d/2+(zshft-(int)zshft)/noiseScale;
 							
 							normals[indx].x=i;
 							normals[indx].y=j;

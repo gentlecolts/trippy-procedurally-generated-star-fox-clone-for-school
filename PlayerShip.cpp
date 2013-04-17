@@ -91,7 +91,7 @@ void PlayerShip::uniqueRenderAfterPop() {
     double y=vect[1];
 	double z=vect[2];
 
-    double dist=1;
+    double dist=2;
 
     glTranslatef(x*dist+xpos,y*dist+ypos,z*dist+zpos);
 
@@ -129,38 +129,28 @@ void PlayerShip::uniqueRenderAfterPop() {
 
     glEnd();
     glPopMatrix();
-
-    /*glTranslatef(xpos,ypos,zpos);
-    glPushMatrix();
-    glBegin(GL_LINES);
-
-    glColor3f(1.0,0.0,0.0);
-    glVertex3f(0.0,0.0,0.0);
-    glVertex3f(1.0,0.0,0.0);
-    glColor3f(0.0,1.0,0.0);
-    glVertex3f(0.0,0.0,0.0);
-    glVertex3f(0.0,1.0,0.0);
-    glColor3f(0.0,0.0,1.0);
-    glVertex3f(0.0,0.0,0.0);
-    glVertex3f(0.0,0.0,1.0);
-
-    glEnd();
-
-    glPopMatrix();*/
 }
 
-void PlayerShip::update() {
-	handleKeyInput();
-
-    xpos+=xvel;
-    ypos+=yvel;
-
+void PlayerShip::update(double dt) {
+	handleKeyInput(dt);
+	
+	double vec[3];
+	
+	getVector(xrot, yrot, vec);
+	
+	xvel=vec[0]*maxV;
+	yvel=vec[1]*maxV;
+	zvel=vec[2]*maxV;
+	
+	xpos+=xvel*dt;
+    ypos+=yvel*dt;
+	
 	xpos=max(min((double)xpos,1.0*noiseScale),-1.0*noiseScale);
 	ypos=max(min((double)ypos,1.0*noiseScale),-1.0*noiseScale);
 
-    zrot=-xvel/maxV*18;//90*2/5;
+    /*zrot=-xvel/maxV*18;//90*2/5;
     yrot=-xvel/maxV*36;
-    xrot=yvel/maxV*36;
+    xrot=yvel/maxV*36;*/
 
 
     if(invinceStart<0) {
@@ -180,38 +170,68 @@ void PlayerShip::update() {
     }
 }
 
-void PlayerShip::handleKeyInput() {
+void PlayerShip::handleKeyInput(double dt) {
 	if(leftmov){
-		if(upmov!=downmov){//aka xor operator, deal w/ it
-			xvel-=accel*rt2;
-		}else{
-			xvel-=accel;
-		}
+		yrot+=accel*dt;
 	} else if(rightmov){
-		if(upmov!=downmov){
-			xvel+=accel*rt2;
-		}else{
-			xvel+=accel;
-		}
+		yrot-=accel*dt;
 	} else {
-		xvel*=0.8;
+		if(abs(yrot)-accel*dt>0)
+			yrot-=accel*dt*signum(yrot);
+		else
+			yrot=0;
 	}
 	if(upmov){
-		if(leftmov!=rightmov){
-			yvel+=accel*rt2;
-		}else{
-			yvel+=accel;
-		}
+		xrot+=accel*dt;
 	} else if(downmov){
-		if(leftmov!=rightmov){
-			yvel-=accel*rt2;
-		}else{
-			yvel-=accel;
-		}
+		xrot-=accel*dt;
 	} else {
-		yvel*=.7;
+		if(abs(xrot)-accel*dt>0)
+			xrot-=accel*dt*signum(xrot);
+		else
+			xrot=0;
 	}
 
-	xvel=max(min((double)xvel, maxV),-maxV);
-	yvel=max(min((double)yvel, maxV),-maxV);
+	yrot=max(min((double)yrot, angleCap),-angleCap);
+	xrot=max(min((double)xrot, angleCap),-angleCap);
 }
+
+
+/*if(leftmov){
+ if(upmov!=downmov){//aka xor operator, deal w/ it
+ xvel-=accel*rt2*dt;
+ }else{
+ xvel-=accel*dt;
+ }
+ } else if(rightmov){
+ if(upmov!=downmov){
+ xvel+=accel*rt2*dt;
+ }else{
+ xvel+=accel*dt;
+ }
+ } else {
+ if(abs(xvel)-accel*dt>0)
+ xvel-=accel*dt*signum(xvel);
+ else
+ xvel=0;
+ }
+ if(upmov){
+ if(leftmov!=rightmov){
+ yvel+=accel*rt2*dt;
+ }else{
+ yvel+=accel*dt;
+ }
+ } else if(downmov){
+ if(leftmov!=rightmov){
+ yvel-=accel*rt2*dt;
+ }else{
+ yvel-=accel*dt;
+ }
+ } else {
+ if(abs(yvel)-accel*dt>0)
+ yvel-=accel*dt*signum(yvel);
+ else
+ yvel=0;
+ }
+
+ /*/

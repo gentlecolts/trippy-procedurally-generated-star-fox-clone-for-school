@@ -174,6 +174,7 @@ void perlin3d::init(uint32_t seed){
 		for(double y=0;y<grid;y+=precompdelta){
 			for(double z=0;z<grid;z+=precompdelta){
 	/*/
+	
 	double x,y,z;
 	for(int i=0;i<grid/precompdelta;i++){
 		x=i*precompdelta;
@@ -184,8 +185,8 @@ void perlin3d::init(uint32_t seed){
 	//*/
 				//cout<<"value at ("<<x<<", "<<y<<", "<<z<<") is "<<get(x,y,z)<<endl;
 				//noise[precompindx(x,y,z)].dist=get(x,y,z);
-				#warning instance of shadenorm
-				#error i cant use warning (its not cross platform) so i am using error, see the above line
+				//#warning instance of shadenorm
+				//#error i cant use warning (its not cross platform) so i am using error, see the above line
 				#if shadenorm
 				int indx=precompindx(x,y,z);
 				//noise[indx]=get(x,y,z);

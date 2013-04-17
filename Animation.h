@@ -18,14 +18,13 @@ class GameObject;
 class Animation {
 private:
 protected:
-	long t;
-	long st;
+	double t;
 public:
 	virtual void doTriangleTransform(int index);
 	virtual void doModelTransform();
-	virtual void update();
+	virtual void update(double dt);
 	
-	void tick();
+	void tick(double dt);
 	
 	Animation(Model *m, GameObject *o);
 	virtual ~Animation();

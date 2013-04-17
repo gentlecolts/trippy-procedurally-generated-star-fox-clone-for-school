@@ -12,7 +12,7 @@ public:
 	~Laser();
 
 	void init(double x, double y, double z, double xr, double yr, double zr);
-	void update();
+	void update(double dt);
 	void render();
     bool collidesWithObject(GameObject* obj);
     bool collidesWithNoise();

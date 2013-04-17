@@ -72,18 +72,18 @@ void GameObject::render() {
 	uniqueRenderAfterPop();
 }
 
-void GameObject::doUpdate() {
+void GameObject::doUpdate(double dt) {
     if(!didSetup)
         setup();
 	
 	if(theAnimation!=NULL)
-		theAnimation->tick();
+		theAnimation->tick(dt);
 
     if(invinceStart>=0 && clock()-invinceStart>invinceLength) {
         invinceStart=-1;
     }
 
-    update();
+    update(dt);
 }
 
 void GameObject::setup() {
@@ -112,6 +112,14 @@ bool GameObject::collidesWithNoise() {
     return false;
 }
 
+void GameObject::setAnimation(Animation *anim) {
+	if(theAnimation!=NULL) {
+		delete theAnimation;
+	}
+	
+	theAnimation=anim;
+}
+
 bool GameObject::collidesWithObject(GameObject* obj) {      //crappy method
     double xD=xpos-obj->xpos;
     double yD=ypos-obj->ypos;
@@ -126,7 +134,7 @@ bool GameObject::collidesWithObject(GameObject* obj) {      //crappy method
 void GameObject::init(){
 	theAnimation=NULL;
 }
-void GameObject::update(){}
+void GameObject::update(double dt){}
 void GameObject::uniqueRender(){}
 void GameObject::uniqueRenderAfterPop(){}
 bool GameObject::isDone(){return false;}
@@ -137,5 +145,4 @@ void GameObject::fireWeapon() {
 
 GameObject::~GameObject() {
 	delete theAnimation;
-    delete model;
 }

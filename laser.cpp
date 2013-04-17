@@ -7,6 +7,8 @@
 #include "camera.h"
 using namespace std;
 
+#define laserSpeed 15
+
 Laser::Laser(double x, double y, double z, double xr, double yr, double zr){
     init(x,y,z,xr,yr,zr);
 }
@@ -24,13 +26,13 @@ void Laser::init(double x, double y, double z, double xr, double yr, double zr){
 	double vect[3];
 	getVector(xrot,yrot,vect);
 
-    xvel=0.3*vect[0];
-    yvel=0.3*vect[1];
-	zvel=0.3*vect[2];
+    xvel=laserSpeed*vect[0];
+    yvel=laserSpeed*vect[1];
+	zvel=laserSpeed*vect[2];
 
-	xpos+=xvel*7;
-	ypos+=yvel*7;
-	zpos+=zvel*7;
+	xpos+=xvel*7*0.02;
+	ypos+=yvel*7*0.02;
+	zpos+=zvel*7*0.02;
 }
 
 void Laser::render() {
@@ -60,11 +62,11 @@ void Laser::render() {
     glPopMatrix();
 }
 
-void Laser::update() {
-    xpos+=xvel;
-    ypos+=yvel;
+void Laser::update(double dt) {
+    xpos+=xvel*dt;
+    ypos+=yvel*dt;
 
-    zpos+=zvel;
+    zpos+=zvel*dt;
 }
 
 bool Laser::collidesWithObject(GameObject* obj) {

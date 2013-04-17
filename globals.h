@@ -36,7 +36,7 @@ extern double d;
 extern vector<GameObject*> gameObjects;
 #define thePlayerShip gameObjects.at(0)		//slightly hacky, oh well
 extern std::vector<Laser*> lasers;
-extern long curTime, startTime;
+extern long curTime, startTime, prevTime, lastWaveTime;
 extern EnemyWave* currentWave;
 extern bool readyForNextWave;
 

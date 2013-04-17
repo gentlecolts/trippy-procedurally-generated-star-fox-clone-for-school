@@ -29,7 +29,7 @@ double d=d1;
 /**************** GAME  *********************/
 std::vector<GameObject*> gameObjects;
 std::vector<Laser*> lasers;
-long curTime=0,startTime=clock();
+long curTime=0,startTime=clock(), prevTime=0,lastWaveTime=clock();
 EnemyWave* currentWave=NULL;
 bool readyForNextWave=true;
 

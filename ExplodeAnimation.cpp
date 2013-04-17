@@ -16,7 +16,7 @@
 
 void ExplodeAnimation::doTriangleTransform(int index) {
 
-	double mult=((double)16*t)/(CLOCKS_PER_SEC);
+	double mult=16*t;
 	//cout<<mult<<endl;
 
 	//cout<<"x "<<model->normals[index/3][0]*mult;
@@ -26,9 +26,11 @@ void ExplodeAnimation::doTriangleTransform(int index) {
 	//rotate shit
 }
 
-void ExplodeAnimation::update() {
-	if(((double)16*t)/(CLOCKS_PER_SEC)) {
-		destroy(object);
+void ExplodeAnimation::update(double dt) {
+	if(t>16) {
+		//if(object!=NULL) {
+			destroy(object);
+		//}
 	}
 }
 

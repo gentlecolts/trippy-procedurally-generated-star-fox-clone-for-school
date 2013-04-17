@@ -33,7 +33,7 @@ const double precompdelta=1.0/precompdivs;
 #define doGL 0
 #endif
 
-#define shadenorm 1
+#define shadenorm 0
 
 #define outline 1
 
@@ -49,9 +49,6 @@ const double rt2=1/sqrt(2);
 
 /**************** CAMERA ********************/
 #define objScale 0.3
-
-#define maxV 0.2
-#define accel 0.01
 
 #define xmax 1280
 #define ymax 720
@@ -71,8 +68,13 @@ const double raise=-0.1;//0.1;
 #define res3 (res*res*res)
 
 /**************** GAME  *********************/
+
+#define maxV 20
+#define accel 90
+#define angleCap 70.0
+
 #define numGameObjects 4
-#define waveTime 15
+#define waveTime (long)(0.5*CLOCKS_PER_SEC)
 #define invinceLength 0.3*CLOCKS_PER_SEC
 
 #define invertControls 1

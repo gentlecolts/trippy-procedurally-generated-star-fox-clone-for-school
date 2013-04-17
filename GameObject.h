@@ -33,10 +33,11 @@ public:
 	bool collidesWithNoise();
 	bool collidesWithObject(GameObject *obj);
 	void render();
-	void doUpdate();
+	void doUpdate(double dt);
 	void setup();
+	void setAnimation(Animation *anim);
 
-	virtual void update();
+	virtual void update(double dt);
 	virtual void uniqueRenderAfterPop();
 	virtual void uniqueRender();
 	virtual void fireWeapon();

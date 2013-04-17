@@ -11,17 +11,20 @@
 
 void Animation::doModelTransform() {}
 void Animation::doTriangleTransform(int index) {}
-void Animation::update(){}
+void Animation::update(double dt){}
 
 Animation::Animation(Model *m, GameObject *o) {
-	st=clock();
+	t=clock()/CLOCKS_PER_SEC;
 	model=m;
+	object=o;
 }
 
 Animation::~Animation() {
 	
 }
 
-void Animation::tick() {
-	t=clock()-st;
+void Animation::tick(double dt) {
+	t+=dt;
+	
+	update(dt);
 }

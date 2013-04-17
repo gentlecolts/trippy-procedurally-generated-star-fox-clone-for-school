@@ -15,7 +15,7 @@
 class ExplodeAnimation : public Animation {
 public:
 	void doTriangleTransform(int index);
-	void update();
+	void update(double dt);
 	
 	ExplodeAnimation(Model *m, GameObject *o);
 };

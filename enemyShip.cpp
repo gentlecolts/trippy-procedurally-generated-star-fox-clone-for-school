@@ -10,118 +10,35 @@ EnemyShip::EnemyShip(int n) : GameObject(n)
 }
 
 EnemyShip::EnemyShip(double x,double y, int n) : GameObject(n) {
+    t=0;
+	dead=false;
     init(x, y);
 }
 
 void EnemyShip::init(double x,double y){
-    modelSize=24;
-	
-	model=new Model(modelSize);
-
-	model->addVertex(Vec3f(1.0f, 0.0f, 0.0f));
-	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
-	model->addVertex(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addVertex(Vec3f(1.0f, 0.0f, 0.0f));
-	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
-	model->addVertex(Vec3f(0.0f, -1.0f, 0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addVertex(Vec3f(1.0f, 0.0f, 0.0f));
-	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
-	model->addVertex(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(0.0f, 0.0f, -1.0f));
-	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addVertex(Vec3f(1.0f, 0.0f, 0.0f));
-	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
-	model->addVertex(Vec3f(0.0f, -1.0f, 0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(0.0f, 0.0f, -1.0f));
-	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addVertex(Vec3f(-1.0f, 0.0f, 0.0f));
-	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
-	model->addVertex(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addVertex(Vec3f(-1.0f, 0.0f, 0.0f));
-	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
-	model->addVertex(Vec3f(0.0f, -1.0f, 0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addVertex(Vec3f(-1.0f, 0.0f, 0.0f));
-	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
-	model->addVertex(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(0.0f, 0.0f, -1.0f));
-	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addVertex(Vec3f(-1.0f, 0.0f, 0.0f));
-	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
-	model->addVertex(Vec3f(0.0f, -1.0f, 0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(0.0f, 0.0f, -1.0f));
-	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
-	
-	model->computeNormals();
-	
-    xpos=x;
-    ypos=y;
-    //cout<<"x "<<xpos<<" y "<<ypos<<endl;
-    zpos=-5;
-
-    xvel=.01;
-    yvel=-.01;
-    zvel=.01;
-
-    xrot=0;
-    yrot=0;
-    zrot=0;
-
-    t=0;
-
-    //cout<<"ENEMY SHIELDS ANALYZIED"<<endl;
 }
 
-void EnemyShip::update() {
-    t+=.5;
+void EnemyShip::update(double dt) {
+    t+=dt;
 
-	if(invinceStart<0) {
-		xpos+=xvel;
-		ypos-=yvel;
-		zpos-=zvel;
-
-		xvel+=sin(radians(t))/1000;
-		zvel+=sin(radians(t+270))/1000;
-
-		yrot+=1;
-	}
-
-    //cout<<zvel<<endl;
-
-	if(invinceStart<0) {
-	
+	if(!dead) {
+		xpos+=xvel*dt;
+		ypos-=yvel*dt;
+		zpos-=zvel*dt;
+		
 		for(int i=0;i<lasers.size();i++) {
 			if(lasers.at(i)->collidesWithObject(this)) {
 				invinceStart=clock();
-				theAnimation=new ExplodeAnimation(model,this);
+				setAnimation(new ExplodeAnimation(model,this));
 				xvel=0;
 				yvel=0;
+				
+				dead=true;
 
 				break;
 			}
 		}
 	}
-}
-
-void EnemyShip::uniqueRender() {
-//    if(!isDone()) {
-//        cout<<"x:"<<xpos<<" y:"<<ypos<<endl;
-//    }
 }
 
 bool EnemyShip::isDone() {      //hack?

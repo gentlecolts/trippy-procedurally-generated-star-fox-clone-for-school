@@ -9,13 +9,12 @@ public:
 	EnemyShip(int n);
     EnemyShip(double x,double y,int n);
     virtual void init(double x,double y);
-	virtual void update();
+	virtual void update(double dt);
     virtual bool isDone();
-    
-    void uniqueRender();
 protected:
+	bool dead;
+    double t;
 private:
-    int t;
 };
 
 #endif // ENEMYSHIP_H_INCLUDED

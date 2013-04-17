@@ -27,7 +27,7 @@ double radians(double degrees) {
 
 
 //Gets the unit vector in the direction of (0,0,-1) rotated by xrot (pitch) and yrot (yaw)
-void getVector(double xrot,double yrot,double vect[3]) {
+void getVector(double xrot,double yrot,double vect[3]) {//TODO: consider only calulating once per frame
 	vect[0]=-sin(radians(yrot));
     vect[1]=sin(radians(xrot))*cos(radians(yrot));
 	vect[2]=-cos(radians(xrot))*cos(radians(yrot));

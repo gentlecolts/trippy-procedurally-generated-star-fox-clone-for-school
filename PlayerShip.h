@@ -6,11 +6,11 @@
 class PlayerShip : public GameObject
 {
 public:
-	void update();
+	void update(double dt);
 	PlayerShip(int n);
 	void init();
 	void uniqueRenderAfterPop();
-	void handleKeyInput();
+	void handleKeyInput(double dt);
 protected:
 private:
 };

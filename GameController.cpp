@@ -6,9 +6,13 @@
 #include "enemyShip.h"
 #include "enemyWave.h"
 #include "testEnemyWave1.h"
+#include "ModelConstants.h"
+#include "terrain.h"
 #include <ctime>
 
 void setupGame() {
+	initModels();
+	
     gameObjects.push_back(new PlayerShip(0));
 
     /*for(int i=1;i<numGameObjects;i++) {
@@ -33,16 +37,21 @@ void setupGame() {
 
 void updateObjects() {
     long prev=curTime;
-    curTime=clock()-startTime;      //fack why is time an int?
+    curTime=clock();
 
-    if(prev!=curTime && curTime%waveTime==0) {
+    if(prev!=curTime && curTime-lastWaveTime>waveTime) {
+		lastWaveTime=curTime;
         readyForNextWave=true;
+		//cout<<gameObjects.size()<<endl;
     }
     if(currentWave==NULL || (readyForNextWave /*&& currentWave->isDone()*/)) {
         nextWave();
         readyForNextWave=false;
-
     }
+	
+	double dt=(double)(curTime-prev)/CLOCKS_PER_SEC;
+	
+	updateTerrain(dt);
 
 	for(int i=0;i<gameObjects.size();i++) {
 
@@ -64,12 +73,12 @@ void updateObjects() {
             i--;
         }
 
-        gameObjects.at(i)->doUpdate();
+        gameObjects.at(i)->doUpdate(dt);
 
     }
 
     for(int i=0;i<lasers.size();i++) {
-        lasers.at(i)->update();
+        lasers.at(i)->update(dt);
 
         //lasers.at(i)->zpos<-noiseScale*2  <- and this is why -> is a stupid operator
 
@@ -81,6 +90,7 @@ void updateObjects() {
             i--;
         }
     }
+
 }
 
 void nextWave() {
@@ -94,10 +104,10 @@ void nextWave() {
 }
 
 void destroy(GameObject* obj) {
-	gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), obj));//this threw an error because u did std::
+	gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), obj),gameObjects.end());//this threw an error because u did std::
 	//gameObjects.erase(remove(gameObjects.begin(), gameObjects.end(), obj));//and this threw an error b/c converting to iterator
 	//commenting these out will likely cause memory leaks (?)
-	#error we need to work out the issue with std::remove, memory leaks are bad
+	//#error we need to work out the issue with std::remove, memory leaks are bad
 
 	if(obj->parentWave!=NULL) {
 		obj->parentWave->remove(obj);
