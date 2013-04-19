@@ -9,12 +9,16 @@
 #include "Animation.h"
 #include "GameObject.h"
 
-void Animation::doModelTransform() {}
-void Animation::doTriangleTransform(int index) {}
-void Animation::update(double dt){}
+void Animation::doModelTransform() {}				//Do transforms that apply to the whole model
+void Animation::doTriangleTransform(int index) {}	//Do transforms for each individual triangle
+void Animation::update(double dt){}					//Do any updating of the animation's state
 
+/**
+ Animation::Animation(Model *m, GameObject *o)
+ Set t to 0, model, and object
+ */
 Animation::Animation(Model *m, GameObject *o) {
-	t=clock()/CLOCKS_PER_SEC;
+	t=0;
 	model=m;
 	object=o;
 }
@@ -23,6 +27,10 @@ Animation::~Animation() {
 	
 }
 
+/**
+ void Animation::tick(double dt)
+ Increment t by dt, call update
+ */
 void Animation::tick(double dt) {
 	t+=dt;
 	

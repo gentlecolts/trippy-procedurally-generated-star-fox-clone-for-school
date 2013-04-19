@@ -1,82 +1,34 @@
 #include "playerShip.h"
 
+#include "ModelConstants.h"
 #include "math.h"
 #include "imports.h"
 #include "Model.h"
 #include "vec3f.h"
 
-
+/**
+ PlayerShip::PlayerShip(int n)
+ Constructor just calls init after super
+ */
 PlayerShip::PlayerShip(int n) : GameObject(n) {
 	init();
 }
 
+/**
+ void PlayerShip::init()
+ Sets the model to the constant playerShipModel, sets the z position to -playerOffset
+ */
 void PlayerShip::init(){
-    modelSize=18;
-
-    /*model=new vertex[modelSize];
-    model[0]=vertex(0.0f, 0.0f, -2.0f, 1.0f, 0.f, 0.0f);
-    model[1]=vertex(0.0f, 0.5f, -0.0f, 0.0f, 1.0f, 0.0f);
-    model[2]=vertex(1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
-    model[3]=vertex(0.0f, 0.0f, -2.0f, 1.0f, 0.f, 0.0f);
-    model[4]=vertex(0.0f, -0.5f, -0.0f, 0.0f, 1.0f, 0.0f);
-    model[5]=vertex(1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
-    model[6]=vertex(0.0f, 0.0f, -2.0f, 1.0f, 0.f, 0.0f);
-    model[7]=vertex(0.0f, 0.5f, -0.0f, 0.0f, 1.0f, 0.0f);
-    model[8]=vertex(-1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
-    model[9]=vertex(0.0f, 0.0f, -2.0f, 1.0f, 0.f, 0.0f);
-    model[10]=vertex(0.0f, -0.5f, -0.0f, 0.0f, 1.0f, 0.0f);
-    model[11]=vertex(-1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
-    model[12]=vertex(0.0f, 0.5f, -0.0f, 0.0f, 1.0f, 0.0f);//lost track here
-    model[13]=vertex(0.0f, -0.5f, -0.0f, 0.0f, 1.0f, 0.0f);
-    model[14]=vertex(-1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
-    model[15]=vertex(0.0f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f);
-    model[16]=vertex(0.0f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f);
-    model[17]=vertex(1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);*/
-	
-	model=new Model(modelSize);
-	
-	model->addVertex(Vec3f(0.0f, 0.0f, -2.0f));
-	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
-	model->addVertex(Vec3f(0.0f, 0.5f, 0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(1.0f, 0.0f, 1.0f));
-	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addVertex(Vec3f(0.0f, 0.0f, -2.0f));
-	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
-	model->addVertex(Vec3f(0.0f, -0.5f, -0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(1.0f, 0.0f, 1.0f));
-	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addVertex(Vec3f(0.0f, 0.0f, -2.0f));
-	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
-	model->addVertex(Vec3f(0.0f, 0.5f, -0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(-1.0f, 0.0f, 1.0f));
-	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addVertex(Vec3f(0.0f, 0.0f, -2.0f));
-	model->addColor(Vec3f(1.0f, 0.f, 0.0f));
-	model->addVertex(Vec3f(0.0f, -0.5f, -0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(-1.0f, 0.0f, 1.0f));
-	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addVertex(Vec3f(0.0f, 0.5f, -0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(0.0f, -0.5f, -0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(-1.0f, 0.0f, 1.0f));
-	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
-	model->addVertex(Vec3f(0.0f, 0.5f, 0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(0.0f, -0.5f, 0.0f));
-	model->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	model->addVertex(Vec3f(1.0f, 0.0f, 1.0f));
-	model->addColor(Vec3f(0.0f, 0.0f, 1.0f));
-	
-	model->computeNormals();
+	model=playerShipModel;
+    modelSize=playerShipModel->length;
 
     zpos=-playerOffset;
 }
 
+/**
+ void PlayerShip::uniqueRenderAfterPop()
+ Draws the targeting reticule
+ */
 void PlayerShip::uniqueRenderAfterPop() {
     glPushMatrix();
 
@@ -131,6 +83,10 @@ void PlayerShip::uniqueRenderAfterPop() {
     glPopMatrix();
 }
 
+/**
+ void PlayerShip::update(double dt)
+ Calls handleKeyInput(), then sets the velocities to maxV in the direction it's pointing. Uses xvel and yvel to change xpos and ypos. Checks collision detection with enemies and terrain (and eventually projectiles).
+ */
 void PlayerShip::update(double dt) {
 	handleKeyInput(dt);
 	
@@ -170,6 +126,11 @@ void PlayerShip::update(double dt) {
     }
 }
 
+
+/**
+ void PlayerShip::handleKeyInput(double dt)
+ Rotates in y and x based on the keyboard input
+ */
 void PlayerShip::handleKeyInput(double dt) {
 	if(leftmov){
 		yrot+=accel*dt;
@@ -195,43 +156,3 @@ void PlayerShip::handleKeyInput(double dt) {
 	yrot=max(min((double)yrot, angleCap),-angleCap);
 	xrot=max(min((double)xrot, angleCap),-angleCap);
 }
-
-
-/*if(leftmov){
- if(upmov!=downmov){//aka xor operator, deal w/ it
- xvel-=accel*rt2*dt;
- }else{
- xvel-=accel*dt;
- }
- } else if(rightmov){
- if(upmov!=downmov){
- xvel+=accel*rt2*dt;
- }else{
- xvel+=accel*dt;
- }
- } else {
- if(abs(xvel)-accel*dt>0)
- xvel-=accel*dt*signum(xvel);
- else
- xvel=0;
- }
- if(upmov){
- if(leftmov!=rightmov){
- yvel+=accel*rt2*dt;
- }else{
- yvel+=accel*dt;
- }
- } else if(downmov){
- if(leftmov!=rightmov){
- yvel-=accel*rt2*dt;
- }else{
- yvel-=accel*dt;
- }
- } else {
- if(abs(yvel)-accel*dt>0)
- yvel-=accel*dt*signum(yvel);
- else
- yvel=0;
- }
-
- /*/

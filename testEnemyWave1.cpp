@@ -12,6 +12,11 @@
 #include "RamShip.h"
 #include "testEnemyWave1.h"
 
+
+/**
+ void TestEnemyWave1::init()
+ Creates 3 RamShips and puts them in play
+ */
 void TestEnemyWave1::init(){
     //double x=rand()%(2*noiseScale)-noiseScale;
     //double y=rand()%(2*noiseScale)-noiseScale;
@@ -38,10 +43,18 @@ void TestEnemyWave1::init(){
     retain();
 }
 
+/**
+ void TestEnemyWave1::tick()
+ This wave does nothing after being created, just spawns some enemies at the beginnings
+ */
 void TestEnemyWave1::tick(){
 
 }
 
+/**
+ void TestEnemyWave1::remove(GameObject *obj)
+ Remove a destroyed ship
+ */
 void TestEnemyWave1::remove(GameObject *obj) {
     if(ship1==obj) {
         ship1=NULL;
@@ -55,6 +68,10 @@ void TestEnemyWave1::remove(GameObject *obj) {
 
 }
 
+/**
+ bool TestEnemyWave1::isDone()
+ Return true if all of its children are done
+ */
 bool TestEnemyWave1::isDone(){
     if(done)
         return true;
@@ -64,10 +81,18 @@ bool TestEnemyWave1::isDone(){
     }
 }
 
+/**
+ bool TestEnemyWave1::childrenDone()
+ Return true if all of its children are done or NULL
+ */
 bool TestEnemyWave1::childrenDone(){
     return (ship1==NULL || ship1->isDone()) && (ship2==NULL || ship2->isDone()) && (ship3==NULL || ship3->isDone());
 }
 
+/**
+ TestEnemyWave1::~TestEnemyWave1()
+ Set the parent wave of all children to NULL
+ */
 TestEnemyWave1::~TestEnemyWave1() {
     if(ship1!=NULL)
         ship1->parentWave=NULL;

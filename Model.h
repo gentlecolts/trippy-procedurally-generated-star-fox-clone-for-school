@@ -19,6 +19,7 @@ public:
     Vec3f* vertices;
     Vec3f* colors;
     Vec3f* normals;
+    int length;
     
     Model(int l);
     void addVertex(Vec3f v);
@@ -30,7 +31,6 @@ public:
     ~Model();
 protected:
 private:
-    int length;
     int lastAddedC, lastAddedV, lastAddedN;
     bool hasNormals, hasVertices, hasColors;
 };

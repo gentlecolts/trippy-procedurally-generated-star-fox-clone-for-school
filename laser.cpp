@@ -9,10 +9,18 @@ using namespace std;
 
 #define laserSpeed 15
 
+/**
+ Laser::Laser(double x, double y, double z, double xr, double yr, double zr)
+ Calls init
+ */
 Laser::Laser(double x, double y, double z, double xr, double yr, double zr){
     init(x,y,z,xr,yr,zr);
 }
 
+/**
+ void Laser::init(double x, double y, double z, double xr, double yr, double zr)
+ Sets the position to the given position, the rotation to the given rotation, and calculates the velocity based on the rotation, then moves forward slightly so it doesn't clip out of the back of objects firing it
+ */
 void Laser::init(double x, double y, double z, double xr, double yr, double zr){
 
     xpos=x;
@@ -35,6 +43,10 @@ void Laser::init(double x, double y, double z, double xr, double yr, double zr){
 	zpos+=zvel*7*0.02;
 }
 
+/**
+ void Laser::render()
+ Draws a red quad at its position; will be improved later.
+ */
 void Laser::render() {
     glPushMatrix();
     glTranslatef(xpos, ypos, zpos);
@@ -62,6 +74,10 @@ void Laser::render() {
     glPopMatrix();
 }
 
+/**
+ void Laser::update(double dt)
+ Move by xvel, yvel, and zvel
+ */
 void Laser::update(double dt) {
     xpos+=xvel*dt;
     ypos+=yvel*dt;
@@ -69,6 +85,10 @@ void Laser::update(double dt) {
     zpos+=zvel*dt;
 }
 
+/**
+ bool Laser::collidesWithObject(GameObject* obj)
+ Performs collision detection by checking against a sphere with radius equal to the average distance of each vertex of the object's model from the front and back of the laser
+ */
 bool Laser::collidesWithObject(GameObject* obj) {
     double xD=xpos-obj->xpos;
     double yD=ypos-obj->ypos;
@@ -83,6 +103,10 @@ bool Laser::collidesWithObject(GameObject* obj) {
     return sqrt(xD*xD+yD*yD+zD*zD)<obj->avgDist*3;
 }
 
+/**
+ bool Laser::collidesWithNoise()
+ Does collision detection with the noise by checking at the front and back of the laser
+ */
 bool Laser::collidesWithNoise() {
     const double
         x=xpos/noiseScale *grid2+grid2,

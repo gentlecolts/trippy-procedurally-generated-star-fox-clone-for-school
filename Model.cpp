@@ -10,6 +10,10 @@
 
 #include "Vec3f.h"
 
+/**
+ Model::Model(int l)
+ Set length, initialize variables
+ */
 Model::Model(int l) {
     length=l;
     
@@ -22,6 +26,10 @@ Model::Model(int l) {
     hasVertices=false;
 }
 
+/**
+ void Model::addColor(Vec3f c)
+ Add a color to the color vector (create it if needed), increment the last added color
+ */
 void Model::addColor(Vec3f c) {
     if(!hasColors) {
         colors=new Vec3f[length];
@@ -32,6 +40,10 @@ void Model::addColor(Vec3f c) {
 	lastAddedC++;
 }
 
+/**
+ void Model::addVertex(Vec3f v)
+ Add a vertex to the vertex vector (create it if needed), increment the last added vertex
+ */
 void Model::addVertex(Vec3f v) {
     if(!hasVertices) {
         vertices=new Vec3f[length];
@@ -42,6 +54,11 @@ void Model::addVertex(Vec3f v) {
 	lastAddedV++;
 }
 
+/**
+ void Model::addNormal(Vec3f n)
+ Add a normal to the normal vector (pun unintended) (create it if needed), increment the last added normal
+ (useful for messing up lighting intentionally...)
+ */
 void Model::addNormal(Vec3f n) {
     if(!hasNormals) {
         normals=new Vec3f[length/3];
@@ -52,13 +69,17 @@ void Model::addNormal(Vec3f n) {
 	lastAddedN++;
 }
 
+/**
+ void Model::computeNormals()
+ Create the normal array if it doesn't exist, calculate all remaining normals
+ */
 void Model::computeNormals() {
     if(!hasNormals) {
         normals=new Vec3f[length/3];
         hasNormals=true;
     }
     
-    for(int i=lastAddedN*3;i<length;i+=3) {
+    for(int i=lastAddedN*3;i<lastAddedV;i+=3) {
         Vec3f v1=vertices[i]-vertices[i+1];
         Vec3f v2=vertices[i]-vertices[i+2];
         
@@ -75,6 +96,10 @@ void Model::computeNormals() {
 	lastAddedN=length/3;
 }
 
+/**
+ Model::~Model()
+ Delete colors, vertices, normals
+ */
 Model::~Model() {
     if(hasColors) {
         delete[] colors;

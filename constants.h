@@ -48,16 +48,15 @@ const double rt2=1/sqrt(2);
 #define pi 3.141592653589793238462643383279502884197169l
 
 /**************** CAMERA ********************/
-#define objScale 0.3
+#define objScale 0.3			//the scale factor applied to models for in-game objects
 
-#define xmax 1280
+#define xmax 1280				//the resolution of the game window
 #define ymax 720
 
 #define viewangle 60
-#define playerOffset 1
-#define cameraOffset 1
-#define noiseScale 10            //maybe there's already something for this?
-#define cameraSideOffset 2.598	//playerOffset*sin(viewangle)
+#define playerOffset 1			//the z position of the plane the player moves in (actually the negative of that because -z is forward)
+#define cameraOffset 1			//the z position of the camera
+#define noiseScale 10           //the scale factor of the terrain, or the half size of the game area in x and y
 
 const double d1=2*tan(radians(viewangle/2.0))/grid;
 const double d2=d1/2;//2*tan(viewangle/4.0)/grid;
@@ -69,14 +68,13 @@ const double raise=-0.1;//0.1;
 
 /**************** GAME  *********************/
 
-#define maxV 20
-#define accel 90
-#define angleCap 70.0
+#define maxV 20					//the player's velocity
+#define accel 90				//the player's angular acceleration per second
+#define angleCap 70.0			//the maximum angle in each axis the player can rotate to
 
-#define numGameObjects 4
-#define waveTime (long)(0.5*CLOCKS_PER_SEC)
-#define invinceLength 0.3*CLOCKS_PER_SEC
+#define waveTime (long)(0.5*CLOCKS_PER_SEC)	//the time between waves of enemies; will later be replaced with better enemy spawning
+#define invinceLength 0.3*CLOCKS_PER_SEC	//the amount of time the player is invisible after being hit
 
-#define invertControls 1
+#define invertControls 1		//to easily toggle which key is up and which down
 
 #endif // CONSTANTS_H_INCLUDED

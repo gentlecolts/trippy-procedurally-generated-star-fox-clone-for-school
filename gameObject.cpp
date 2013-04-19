@@ -11,17 +11,33 @@
 
 #include <iostream>
 
-
+/**
+ GameObject::GameObject(int n)
+ Initialize
+ */
 GameObject::GameObject(int n) {
 	parentWave=NULL;
 	invinceStart=-1;
 	didSetup=false;
-	init();
 	index=n;
 	avgDist=-100;
+	theAnimation=NULL;
+	
+	xpos=0;
+	ypos=0;
+	zpos=0;
+	xrot=0;
+	yrot=0;
+	zrot=0;
+	xvel=0;
+	yvel=0;
+	zvel=0;
 }
 
-
+/**
+ void GameObject::render()
+ Draw the model, calling theAnimation's transform methods, and uniqueRender() and uniqueRenderAfterPop()
+ */
 void GameObject::render() {
 	glPushMatrix();
 	glTranslatef(xpos, ypos, zpos);
@@ -36,6 +52,8 @@ void GameObject::render() {
 	//glEnable(GL_LIGHT1);
 	if(theAnimation==NULL)
 		glBegin(GL_TRIANGLES); // of the pyramid
+	else
+		theAnimation->doModelTransform();
 
     if(invinceStart>=0)
         glColor3f(1.0,0,0);
@@ -72,6 +90,10 @@ void GameObject::render() {
 	uniqueRenderAfterPop();
 }
 
+/**
+ void GameObject::doUpdate(double dt)
+ Calls setup if necessary, tick the animation, end the invincibility timer if it ran out, call update
+ */
 void GameObject::doUpdate(double dt) {
     if(!didSetup)
         setup();
@@ -86,6 +108,10 @@ void GameObject::doUpdate(double dt) {
     update(dt);
 }
 
+/**
+ void GameObject::setup()
+ Do setup that needs to be done after initialization: calculating the average vertex distance
+ */
 void GameObject::setup() {
     didSetup=true;
 	
@@ -99,6 +125,10 @@ void GameObject::setup() {
     avgDist*=objScale;
 }
 
+/**
+ bool GameObject::collidesWithNoise()
+ Does hacky collision detection with the noise by checking at each vertex of the model
+ */
 bool GameObject::collidesWithNoise() {
     for(int i=0;i<modelSize;i++) {
         const double
@@ -112,6 +142,10 @@ bool GameObject::collidesWithNoise() {
     return false;
 }
 
+/**
+ void GameObject::setAnimation(Animation *anim)
+ Sets the current animation, deletes the old one if necessary
+ */
 void GameObject::setAnimation(Animation *anim) {
 	if(theAnimation!=NULL) {
 		delete theAnimation;
@@ -120,29 +154,36 @@ void GameObject::setAnimation(Animation *anim) {
 	theAnimation=anim;
 }
 
+/**
+ bool GameObject::collidesWithObject(GameObject* obj)
+ Does collision detection with another object using two spheres with radius of avgDist
+ */
 bool GameObject::collidesWithObject(GameObject* obj) {      //crappy method
     double xD=xpos-obj->xpos;
     double yD=ypos-obj->ypos;
     double zD=zpos-obj->zpos;
-	
-	if(sqrt(xD*xD+yD*yD+zD*zD)<avgDist+obj->avgDist)
-		cout<<"dists: "<<sqrt(xD*xD+yD*yD+zD*zD)<<","<<avgDist<<","<<obj->avgDist<<endl;
 
     return sqrt(xD*xD+yD*yD+zD*zD)<avgDist+obj->avgDist;
 }
 
-void GameObject::init(){
-	theAnimation=NULL;
-}
-void GameObject::update(double dt){}
-void GameObject::uniqueRender(){}
-void GameObject::uniqueRenderAfterPop(){}
-bool GameObject::isDone(){return false;}
+void GameObject::init(){}					//Do setup for subclasses
+void GameObject::update(double dt){}		//Update for subclasses
+void GameObject::uniqueRender(){}			//If a subclass wants to do its own drawing after rendering the model
+void GameObject::uniqueRenderAfterPop(){}	//If a subclass wants to do its own drawing with no transforms applied
+bool GameObject::isDone(){return false;}	//For checking when enemies are done
 
+/**
+ void GameObject::fireWeapon()
+ Creates a laser at the position, direction
+ */
 void GameObject::fireWeapon() {
     addLaser(new Laser(xpos,ypos,zpos,xrot,yrot,zrot));
 }
 
+/**
+ GameObject::~GameObject()
+ Deletes theAnimation
+ */
 GameObject::~GameObject() {
 	delete theAnimation;
 }

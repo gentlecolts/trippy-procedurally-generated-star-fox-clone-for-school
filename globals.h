@@ -13,8 +13,8 @@ class GameObject;
 class EnemyWave;
 
 /**************** NOISE ********************/
-extern perlin3d perlin;
-extern pixel vals[xmax*ymax];
+extern perlin3d perlin;				//not actually used either I think...?
+extern pixel vals[xmax*ymax];		//not used?
 extern double noise[res3];
 
 
@@ -23,22 +23,22 @@ extern double noise[res3];
 
 /**************** CAMERA ********************/
 extern double camx,camy, camvx, camvy;
-extern int camPrevSgn;
-
+extern int camPrevSgn;				//currently not used
+	
 extern point3d face[4];
 extern GLfloat light1[4];
 
 extern double zshft;
-extern double anm8;
-extern double d;
+extern double anm8;					//needs a more descriptive name
+extern double d;					//^
 
 /**************** GAME  *********************/
-extern vector<GameObject*> gameObjects;
-#define thePlayerShip gameObjects.at(0)		//slightly hacky, oh well
-extern std::vector<Laser*> lasers;
-extern long curTime, startTime, prevTime, lastWaveTime;
-extern EnemyWave* currentWave;
-extern bool readyForNextWave;
+extern vector<GameObject*> gameObjects;		//the ships in the game at the moment
+#define thePlayerShip gameObjects.at(0)		//the player's ship
+extern std::vector<Laser*> lasers;			//the projectiles in play
+extern long curTime, startTime, lastWaveTime;	//for keeping track of the time between frames, total time running, and last time enemies spawned
+extern EnemyWave* currentWave;				//the current wave of enemies
+extern bool readyForNextWave;				//whether more enemies can spawn
 
 /**************** IO    *********************/
 extern bool leftmov,rightmov,upmov,downmov,space;

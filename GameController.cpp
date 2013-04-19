@@ -10,6 +10,10 @@
 #include "terrain.h"
 #include <ctime>
 
+/**
+ void setupGame()
+ Calls initModels() from ModelConstants, creates the player ship, and creates the light applied to objects only
+ */
 void setupGame() {
 	initModels();
 	
@@ -35,6 +39,10 @@ void setupGame() {
 	glEnable(GL_LIGHT1);
 }
 
+/**
+ void updateObjects()
+ Ticks each object and laser, creates a new EnemyWave if necessary, deletes the old if necessary
+ */
 void updateObjects() {
     long prev=curTime;
     curTime=clock();
@@ -93,6 +101,10 @@ void updateObjects() {
 
 }
 
+/**
+ void nextWave()
+ Releases the old wave if necessary, creates the next one
+ */
 void nextWave() {
     if(currentWave!=NULL)
         currentWave->release();
@@ -103,6 +115,10 @@ void nextWave() {
     currentWave->retain();
 }
 
+/**
+ void destroy(GameObject* obj)
+ Deletes a given GameObject
+ */
 void destroy(GameObject* obj) {
 	gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), obj),gameObjects.end());//this threw an error because u did std::
 	//gameObjects.erase(remove(gameObjects.begin(), gameObjects.end(), obj));//and this threw an error b/c converting to iterator
@@ -118,6 +134,10 @@ void destroy(GameObject* obj) {
 	delete obj;
 }
 
+/**
+ void renderObjects()
+ Draws each object, laser
+ */
 void renderObjects() {
     //glScalef(0.3f,0.3f,0.3f);
 
@@ -130,11 +150,19 @@ void renderObjects() {
     }
 }
 
-void addLaser(Laser* las) {      //THIS NEEDS TO BE ELSEWHERE BUT FKING includeS
+/**
+ void addLaser(Laser* las)
+ Adds a laser; probably not necessary
+ */
+void addLaser(Laser* las) {
 
 	lasers.push_back(las);
 }
 
+/**
+ void unloadGame()
+ Deletes everything
+ */
 void unloadGame() {
     delete currentWave;
 

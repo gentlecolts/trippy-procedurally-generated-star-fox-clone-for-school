@@ -2,6 +2,12 @@
 
 #include "constants.h"
 
+
+/**
+ double invsqrt(double x)
+ Fast inverse square root function is quicker than the standard way of doing it, although slightly less precise
+
+ */
 double invsqrt(double x) {
     double xhalf = x/2;
     long long i =*(long long*)&x;
@@ -21,18 +27,29 @@ float invsqrt (float x){
 }
 //*/
 
+/**
+ double radians(double degrees)
+ Convenience method for converting from degrees to radians
+ */
 double radians(double degrees) {
     return degrees*pi/180;
 }
 
 
-//Gets the unit vector in the direction of (0,0,-1) rotated by xrot (pitch) and yrot (yaw)
+/**
+ double getVector(double xrot, double yrot, double vect[3])
+ Gets the unit vector in the direction of (0,0,-1) (forward in OpenGL) rotated by xrot (pitch) and yrot (yaw), and stores it in vect
+ */
 void getVector(double xrot,double yrot,double vect[3]) {//TODO: consider only calulating once per frame
 	vect[0]=-sin(radians(yrot));
     vect[1]=sin(radians(xrot))*cos(radians(yrot));
 	vect[2]=-cos(radians(xrot))*cos(radians(yrot));
 }
 
+/**
+ int signum(double val)
+ Equivalent to Java Math.signum() because std doesn't have that apparently
+ */
 int signum(double val) {
     /*if(val<0.01 && val>-0.01)
         return 0;
@@ -40,6 +57,10 @@ int signum(double val) {
     return (0<val)-(val<0);
 }
 
+/**
+ double distSq(double x1,double y1,double x2,double y2)
+ Quick method for getting the distance squared, for readability/less typing
+ */
 double distSq(double x1,double y1,double x2,double y2) {
 	double dx=x1-x2;
 	double dy=y1-y2;
