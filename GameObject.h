@@ -3,11 +3,7 @@
 
 #include "globals.h"
 
-#include <ctime>//i dont give a fuck if xcode does shit for you, lrn 2 include...
-//this was needed in 3 other files too...i was just going to paste the above line in all of them and not tell you,
-//but i decided that was a bit more cruel than i felt like being
-//you're welcome
-//p.s. its your fault if this fucks something up
+#include <ctime>
 
 class EnemyWave;
 class Model;

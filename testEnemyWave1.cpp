@@ -7,8 +7,6 @@
 //  Copyright (c) 2013 Student. All rights reserved.
 //
 
-//jesus dick
-
 #include "RamShip.h"
 #include "testEnemyWave1.h"
 

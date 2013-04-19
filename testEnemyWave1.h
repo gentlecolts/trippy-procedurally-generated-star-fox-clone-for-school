@@ -6,14 +6,8 @@
 //  Copyright (c) 2013 Student. All rights reserved.
 //
 
-//applebloom
-
 #ifndef __HelloSDL__testEnemyWave1__
 #define __HelloSDL__testEnemyWave1__
-
-//also, that underscoring seems excissive...see the ones on .h files made in codeblocs
-//huh...that makes sense now...apple just has a fetish for way more characters than necessary
-//oh yeah baby, gimmy ur chars
 
 #include "enemyWave.h"
 #include <iostream>

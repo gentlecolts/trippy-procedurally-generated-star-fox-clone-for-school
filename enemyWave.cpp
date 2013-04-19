@@ -6,14 +6,12 @@
 //  Copyright (c) 2013 Student. All rights reserved.
 //
 
-//again with this shit? why? what? fuck? shit...? no.
-
 #include "enemyWave.h"
 #include "imports.h"
 using namespace std;
 
-//class GameObject;//fuck u just include it
-#include "gameobject.h"
+class GameObject;
+//#include "gameobject.h"
 
 void EnemyWave::init(){}						//Initialize the wave
 void EnemyWave::tick(){}						//Do any tasks that need to be done each frame

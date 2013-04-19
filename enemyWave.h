@@ -6,12 +6,6 @@
 //  Copyright (c) 2013 Student. All rights reserved.
 //
 
-// ^
-// |
-// da fuck is this? more xcode bs?
-// |
-// V
-
 #ifndef __HelloSDL__enemyWave__
 #define __HelloSDL__enemyWave__
 
