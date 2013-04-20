@@ -63,6 +63,8 @@ void glInit(){
 	glEnable(GL_DEPTH_TEST);
 	glColorMaterial ( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE );
 	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	//glFrontFace(GL_CCW);
 	//glCullFace(GL_BACK);
 	//glEnable(GL_CULL_FACE);

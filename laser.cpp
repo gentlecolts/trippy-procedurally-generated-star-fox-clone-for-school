@@ -48,7 +48,9 @@ void Laser::init(double x, double y, double z, double xr, double yr, double zr){
  Draws a red quad at its position; will be improved later.
  */
 void Laser::render() {
-    glPushMatrix();
+	
+	
+	glPushMatrix();
     glTranslatef(xpos, ypos, zpos);
 
     glScalef(objScale,objScale,objScale);
@@ -60,10 +62,14 @@ void Laser::render() {
     //glEnable(GL_LIGHT1);
     glBegin(GL_QUADS); // of the pyramid
 
-    glColor3f(1,0,0);
+    //glColor4f(1,.7,.7,0.7);
+	glTexCoord2f(28, 4);
     glVertex3f(-.2,0,0);
+	glTexCoord2f(36, 4);
     glVertex3f(.2,0,0);
+	glTexCoord2f(28, 58);
     glVertex3f(.2,0,5);
+	glTexCoord2f(36, 58);
     glVertex3f(-.2,0,5);
 
     glEnd();

@@ -24,9 +24,9 @@ void TestEnemyWave1::init(){
 
 	int s=gameObjects.size();
 	
-    ship1=new RamShip(-x+.5,-y+.5,s);
-    ship2=new RamShip(-x+.5,-y,s+1);
-    ship3=new RamShip(-x,-y+.5,s+2);
+    ship1=new RamShip(x,y,s);
+    ship2=new RamShip(x+.5,y,s+1);
+    ship3=new RamShip(x,y+.5,s+2);
 
     ship1->parentWave=this;
     ship2->parentWave=this;
