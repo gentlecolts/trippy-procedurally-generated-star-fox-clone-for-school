@@ -45,9 +45,9 @@ void setupGame() {
  */
 void updateObjects() {
     long prev=curTime;
-    curTime=clock();
+    curTime=SDL_GetTicks();
 
-    if(prev!=curTime && curTime-lastWaveTime>waveTime) {
+    if(curTime-lastWaveTime>waveTime) {
 		lastWaveTime=curTime;
         readyForNextWave=true;
 		//cout<<gameObjects.size()<<endl;
@@ -57,7 +57,7 @@ void updateObjects() {
         readyForNextWave=false;
     }
 	
-	double dt=(double)(curTime-prev)/CLOCKS_PER_SEC;
+	double dt=(double)(curTime-prev)/1000;		//millis to seconds
 	
 	updateTerrain(dt);
 

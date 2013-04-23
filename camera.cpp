@@ -110,10 +110,6 @@ void render(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	#endif
 
-	for(int i=0;i<xmax*ymax;i++){
-		vals[i].dist=-1;
-	}
-
 	#if drawmethod==4
 		trace();
 		doOutline();

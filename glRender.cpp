@@ -23,12 +23,18 @@ void glRender() {
 		for(double y=0;y<grid;y+=delta/2){
 	/*/
 	double x,y,z;
-	const double step=delta/2;
+	const double step=delt2;
 
 	///NOTE: need to resolve the issue of the last rect not being drawn
 	for(int a=0;a<grid/step;a++){
 		//x=grid*a/(grid/(delta/2));
 		z=a*step;
+		
+		glEnd();
+//		glRotatef(sin((double)clock()/100000), 0.0, 1.0, 0.7);
+		glRotatef(0.3, 0.0, 1.0, 0.7);
+		glBegin(GL_QUADS);
+		
 		for(int b=0;b<grid/step;b++){
 		y=b*step;
 	//*/
@@ -39,16 +45,15 @@ void glRender() {
 			/*
 			for(double z=0;z<grid;z+=delta){
 			/*/
-			for(int c=0;c<grid/delta;c++){
+			for(int c=0;c<grid/step;c++){
 			x=c*step;
 				
-				glRotatef(0.01, 0.0, 1.0, 0.0);
 			//*/
 				if(noise[precompindx(x,y,z+zshft)]>tolerance){
 					if(!inCube){
 						inCube=true;
 						beenDrawn=false;
-						lastx=z;
+						lastx=x;
 					}
 				}else{
 					if(!beenDrawn){
@@ -62,7 +67,8 @@ void glRender() {
 							indx=((k+1)<<1)|(j+1)|((i+1)>>1);//acceptable because these are each either 0 or 2
 						//*
 							//corners[indx].x=(x-grid2+i*delt2)/grid2;
-							corners[indx].x=(lastx+(x-delta-lastx)*(i+1)/2+i*delt2)/grid2;
+							corners[indx].x=( lastx+(x-lastx)*(i+1)/2 -grid2+i*delt2)/grid2;
+
 							corners[indx].y=(y-grid2+j*delt2)/grid2;
 							corners[indx].z=-(z-grid2+k*delt2)/(d*grid)-d/2+(zshft-(int)zshft)/noiseScale;
 							//corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-d/2+(zshft-(int)zshft)/noiseScale;
@@ -103,7 +109,9 @@ void glRender() {
 					}
 				}
 			}
-			//glEnd();
 		}
 	}
+	
+	
+	glEnd();
 }

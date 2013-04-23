@@ -38,6 +38,7 @@ void EnemyShip::init(double x,double y){
  */
 void EnemyShip::update(double dt) {
     t+=dt;
+	zpos-=thePlayerShip->zvel*dt;
 
 	if(!dead) {
 		xpos+=xvel*dt;

@@ -34,30 +34,6 @@ void RamShip::init(double x, double y) {
 		y=0.001;
 	}
 	
-	//x=-3;
-	//y=-6;
-	
-	/*double a=atan2(y, x);
-	cout<<"a "<<a<<endl;
-	
-	if(a>-pi/4 && a<=pi/4) {
-		cout<<"1"<<endl;
-		xpos=noiseScale;
-		ypos=y/x*noiseScale;
-	} else if(a>pi/4 && a<=3*pi/4) {
-		cout<<"2"<<endl;
-		ypos=noiseScale;
-		xpos=x/y*noiseScale;
-	} else if(a>3*pi/4 || a<=-3*pi/4) {
-		cout<<"3"<<endl;
-		xpos=-noiseScale;
-		ypos=y/x*noiseScale;
-	} else if(a>-3*pi/4 && a<=-pi/4) {
-		cout<<"4"<<endl;
-		ypos=-noiseScale;
-		xpos=x/y*noiseScale;
-	}*/
-	
 	if(abs(x)>abs(y)) {
 		xpos=noiseScale;
 		ypos=abs(y/x*noiseScale);
@@ -69,14 +45,13 @@ void RamShip::init(double x, double y) {
 	xpos*=signum(x);
 	ypos*=signum(y);
 	
-	cout<<"x "<<x<<" y"<<y<<endl;
-	cout<<"xpos "<<xpos<<" ypos"<<ypos<<endl;
+	cout<<"AH'M AT "<<xpos<<", "<<ypos<<endl;
 	
     zpos=-5-playerOffset;
 	
     xvel=-(xpos-x)/3;
     yvel=(ypos-y)/3;
-    zvel=(zpos+playerOffset)/3;
+    zvel=(zpos+playerOffset-thePlayerShip->zvel*3)/3;
 	
     xrot=0;
     yrot=0;
