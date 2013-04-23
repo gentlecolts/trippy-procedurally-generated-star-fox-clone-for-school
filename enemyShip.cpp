@@ -39,6 +39,8 @@ void EnemyShip::init(double x,double y){
 void EnemyShip::update(double dt) {
     t+=dt;
 	zpos-=thePlayerShip->zvel*dt;
+	//cout<<"subtracting "<<(thePlayerShip->zvel)<<endl;
+	//cout<<"dt "<<dt<<endl;
 
 	if(!dead) {
 		xpos+=xvel*dt;

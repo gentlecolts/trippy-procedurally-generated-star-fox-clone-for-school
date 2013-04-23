@@ -30,9 +30,8 @@ void glRender() {
 		//x=grid*a/(grid/(delta/2));
 		z=a*step;
 		
-		glEnd();
-//		glRotatef(sin((double)clock()/100000), 0.0, 1.0, 0.7);
-		glRotatef(0.3, 0.0, 1.0, 0.7);
+		if(z>((double)playerOffset)/noiseScale)
+			glRotatef(sin(a/(grid/step)), 0.0, 1.0, 0.7);
 		glBegin(GL_QUADS);
 		
 		for(int b=0;b<grid/step;b++){
@@ -70,7 +69,7 @@ void glRender() {
 							corners[indx].x=( lastx+(x-lastx)*(i+1)/2 -grid2+i*delt2)/grid2;
 
 							corners[indx].y=(y-grid2+j*delt2)/grid2;
-							corners[indx].z=-(z-grid2+k*delt2)/(d*grid)-d/2+(zshft-(int)zshft)/noiseScale;
+							corners[indx].z=-(z-grid2+k*delt2)/(d*grid)-d/2;//+(fmod(zshft,grid2));
 							//corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-d/2+(zshft-(int)zshft)/noiseScale;
 							
 							normals[indx].x=i;
@@ -110,8 +109,6 @@ void glRender() {
 				}
 			}
 		}
+		glEnd();
 	}
-	
-	
-	glEnd();
 }

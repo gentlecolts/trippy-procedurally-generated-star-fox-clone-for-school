@@ -46,12 +46,15 @@ void RamShip::init(double x, double y) {
 	ypos*=signum(y);
 	
 	cout<<"AH'M AT "<<xpos<<", "<<ypos<<endl;
+	int pos=-50,time=8;
 	
-    zpos=-5-playerOffset;
+    zpos=pos-playerOffset;
 	
-    xvel=-(xpos-x)/3;
-    yvel=(ypos-y)/3;
-    zvel=(zpos+playerOffset-thePlayerShip->zvel*3)/3;
+    xvel=-(xpos-x)/time;
+    yvel=(ypos-y)/time;
+    zvel=(zpos+playerOffset-thePlayerShip->zvel*time)/time;
+	//cout<<"zvel "<<zvel<<endl;
+	//cout<<zpos<<endl;
 	
     xrot=0;
     yrot=0;
@@ -73,9 +76,6 @@ bool RamShip::isDone() {
  */
 void RamShip::update(double dt) {
 	EnemyShip::update(dt);
-
-	//zvel-=1.0/5*t*dt;
-	//cout<<zvel<<endl;
 	
-	yrot+=dt;
+	yrot+=45*dt;
 }

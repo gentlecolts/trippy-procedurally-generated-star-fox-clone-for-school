@@ -124,10 +124,8 @@ void render(){
 
         glPushMatrix();
         glScalef(noiseScale, noiseScale, noiseScale);
-		glBegin(GL_QUADS);
-		glColor3f(0.5f,0.5f,0.5f);
+		glColor4f(1.0f,1.0f,1.0f,0.5f);
 		glRender();
-		glEnd();
 
 		/*
 		glBegin(GL_QUAD_STRIP);

@@ -48,12 +48,13 @@ void updateObjects() {
     curTime=SDL_GetTicks();
 
     if(curTime-lastWaveTime>waveTime) {
-		lastWaveTime=curTime;
         readyForNextWave=true;
+		cout<<"READY"<<endl;
 		//cout<<gameObjects.size()<<endl;
     }
     if(currentWave==NULL || (readyForNextWave /*&& currentWave->isDone()*/)) {
         nextWave();
+		lastWaveTime=curTime;
         readyForNextWave=false;
     }
 	

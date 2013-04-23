@@ -78,7 +78,7 @@ const double raise=-0.1;//0.1;
 #define accel 90				//the player's angular acceleration per second
 #define angleCap 70.0			//the maximum angle in each axis the player can rotate to
 
-#define waveTime (long)(3*CLOCKS_PER_SEC)	//the time between waves of enemies; will later be replaced with better enemy spawning
+#define waveTime 3000	//the time between waves of enemies; will later be replaced with better enemy spawning
 #define invinceLength 0.3*CLOCKS_PER_SEC	//the amount of time the player is invisible after being hit
 
 #define invertControls 1		//to easily toggle which key is up and which down
