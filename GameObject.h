@@ -20,6 +20,7 @@ public:
 	EnemyWave* parentWave;
 	Animation* theAnimation;
 	int index;
+	GameObject *previous;
 
 	virtual void init();
 
@@ -32,6 +33,11 @@ public:
 	void doUpdate(double dt);
 	void setup();
 	void setAnimation(Animation *anim);
+	GameObject* destroyAndGetNext();
+	GameObject* getNext();
+	void setNext(GameObject *n);
+	void deleteAndDeleteChildren();
+	void appendObject(GameObject *obj);
 
 	virtual void update(double dt);
 	virtual void uniqueRenderAfterPop();
@@ -44,5 +50,7 @@ protected:
 private:
 	long t;
 	bool didSetup;
+	
+	GameObject *next;
 };
 #endif // GAMEOBJECT_H_INCLUDED

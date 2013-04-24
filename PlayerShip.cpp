@@ -111,13 +111,17 @@ void PlayerShip::update(double dt) {
 
     if(invinceStart<0) {
         bool hit=false;
-
-        for(int i=0;i<gameObjects.size();i++) {
-            if(this!=gameObjects.at(i) && collidesWithObject(gameObjects.at(i))) {
+		
+		GameObject *obj=getNext();
+		while(obj!=NULL) {
+			if(collidesWithObject(obj)) {
                 hit=true;
                 break;
             }
-        }
+			
+			obj=obj->getNext();
+		}
+		
         if(hit || collidesWithNoise()) {
             invinceStart=clock();
             //xvel=0;

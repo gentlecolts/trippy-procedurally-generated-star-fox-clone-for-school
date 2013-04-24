@@ -22,7 +22,7 @@ void TestEnemyWave1::init(){
 	double x=thePlayerShip->xpos;
 	double y=thePlayerShip->ypos;
 
-	int s=gameObjects.size();
+	int s=numObjects;
 	
     ship1=new RamShip(x,y,s);
     ship2=new RamShip(x+.5,y,s+1);
@@ -32,9 +32,9 @@ void TestEnemyWave1::init(){
     ship2->parentWave=this;
     ship3->parentWave=this;
 
-    gameObjects.push_back(ship1);
-    gameObjects.push_back(ship2);
-    gameObjects.push_back(ship3);
+	thePlayerShip->appendObject(ship1);
+	thePlayerShip->appendObject(ship2);
+	thePlayerShip->appendObject(ship3);
 
     retain();
     retain();

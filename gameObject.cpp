@@ -8,6 +8,7 @@
 #include "Model.h"
 #include "vec3f.h"
 #include "Animation.h"
+#include "enemyWave.h"
 
 #include <iostream>
 
@@ -22,6 +23,9 @@ GameObject::GameObject(int n) {
 	index=n;
 	avgDist=-100;
 	theAnimation=NULL;
+	next=NULL;
+
+	cout<<"initializing "<<this<<endl;
 	
 	xpos=0;
 	ypos=0;
@@ -181,9 +185,73 @@ void GameObject::fireWeapon() {
 }
 
 /**
+ GameObject* GameObject::getNext()
+ Returns next
+ */
+GameObject* GameObject::getNext() {
+	return next;
+}
+
+/**
+ GameObject* GameObject::setNext()
+ Sets next, sets that next's previous to this
+ */
+void GameObject::setNext(GameObject *n) {
+	next=n;
+	if(n!=NULL)
+		n->previous=this;
+}
+
+/**
+ void GameObject::appendObject(GameObject *obj)
+ Adds an object to end of the linked list
+ */
+void GameObject::appendObject(GameObject *obj) {
+	if(next!=NULL) {
+		next->appendObject(obj);
+	} else {
+		next=obj;
+		obj->previous=this;
+	}
+}
+
+/**
+ void GameObject::deleteAndDeleteChildren()
+ Deletes it and all of its children
+ */
+void GameObject::deleteAndDeleteChildren() {
+	if(next!=NULL)
+		next->deleteAndDeleteChildren();
+	
+	delete this;
+}
+
+/**
+ GameObject* GameObject::destroyAndGetNext()
+ Sets its previous's next to next and returns that, then deletes this
+ */
+GameObject* GameObject::destroyAndGetNext() {
+	if(previous!=NULL)
+		previous->setNext(next);
+	else {
+		thePlayerShip=next;
+		next->previous=NULL;
+	}
+	
+	delete this;
+	
+	return next;
+}
+
+/**
  GameObject::~GameObject()
  Deletes theAnimation
  */
 GameObject::~GameObject() {
+	if(parentWave!=NULL) {
+		parentWave->remove(this);
+		parentWave->release();
+	}
+	
 	delete theAnimation;
 }

@@ -27,7 +27,8 @@ double anm8=0;
 double d=d1;
 
 /**************** GAME  *********************/
-std::vector<GameObject*> gameObjects;
+GameObject* thePlayerShip;
+int numObjects=0;
 std::vector<Laser*> lasers;
 long curTime=0,startTime=clock(),lastWaveTime=clock();
 EnemyWave* currentWave=NULL;

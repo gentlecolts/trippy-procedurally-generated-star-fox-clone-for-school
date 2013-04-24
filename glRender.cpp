@@ -76,7 +76,7 @@ void glRender() {
 							corners[indx].x=( lastx+(x-lastx)*(i+1)/2 -grid2+i*delt2)/grid2;
 
 							corners[indx].y=(y-grid2+j*delt2)/grid2;
-							corners[indx].z=-(z-grid2+k*delt2)/(d*grid)-d/2;//+(fmod(zshft,grid2));
+							corners[indx].z=-(z-grid2+k*delt2)/(d*grid)-d/2+(fmod(zshft,step));
 							//corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-d/2+(zshft-(int)zshft)/noiseScale;
 							
 							//*

@@ -11,6 +11,7 @@
 #include "Model.h"
 #include "vec3f.h"
 #include "gameController.h"
+#include "GameObject.h"
 
 #include <ctime>
 
@@ -34,7 +35,7 @@ void ExplodeAnimation::doTriangleTransform(int index) {
 void ExplodeAnimation::update(double dt) {
 	if(t>.5) {
 		//if(object!=NULL) {
-			destroy(object);
+			object->destroyAndGetNext();
 		//}
 	}
 }

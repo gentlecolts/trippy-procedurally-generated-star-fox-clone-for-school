@@ -33,8 +33,8 @@ extern double anm8;					//needs a more descriptive name
 extern double d;					//^
 
 /**************** GAME  *********************/
-extern vector<GameObject*> gameObjects;		//the ships in the game at the moment
-#define thePlayerShip gameObjects.at(0)		//the player's ship
+extern GameObject* thePlayerShip;		//the player's ship
+extern int numObjects;
 extern std::vector<Laser*> lasers;			//the projectiles in play
 extern long curTime, startTime, lastWaveTime;	//for keeping track of the time between frames, total time running, and last time enemies spawned
 extern EnemyWave* currentWave;				//the current wave of enemies

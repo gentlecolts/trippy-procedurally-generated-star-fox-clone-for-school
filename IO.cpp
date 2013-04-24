@@ -107,7 +107,7 @@ void chkCloseEvent(){
 				space=false;
 			}
 			if(key==SDLK_RETURN){
-                gameObjects[0]->fireWeapon();       //HACKY FIX LATER
+                thePlayerShip->fireWeapon();       //HACKY FIX LATER
 			}
 			//cout<<key<<endl;
 			break;

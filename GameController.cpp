@@ -17,7 +17,9 @@
 void setupGame() {
 	initModels();
 	
-    gameObjects.push_back(new PlayerShip(0));
+    //gameObjects.push_back(new PlayerShip(0));
+	thePlayerShip=new PlayerShip(0);
+	numObjects=1;
 
     /*for(int i=1;i<numGameObjects;i++) {
         gameObjects.push_back(new EnemyShip());
@@ -61,30 +63,17 @@ void updateObjects() {
 	double dt=(double)(curTime-prev)/1000;		//millis to seconds
 	
 	updateTerrain(dt);
+	
+	GameObject* obj=thePlayerShip;
+	while(obj!=NULL) {
+		obj->doUpdate(dt);
 
-	for(int i=0;i<gameObjects.size();i++) {
-
-        //cout<<gameObjects.at(i)<<endl;
-
-        if(gameObjects.at(i)->isDone() && (gameObjects.at(i)->parentWave==NULL || gameObjects.at(i)->parentWave->isDone())) {
-            GameObject *obj=gameObjects.at(i);
-            gameObjects.erase(gameObjects.begin()+i);
-
-//            cout<<obj->parentWave<<endl;
-
-            if(obj->parentWave!=NULL) {
-                obj->parentWave->remove(obj);
-                obj->parentWave->release();
-            }
-
-
-            delete obj;
-            i--;
-        }
-
-        gameObjects.at(i)->doUpdate(dt);
-
-    }
+		if(obj->isDone() && (obj->parentWave==NULL || obj->parentWave->isDone())) {
+			obj=obj->destroyAndGetNext();
+		} else {
+			obj=obj->getNext();
+		}
+	}
 
     for(int i=0;i<lasers.size();i++) {
         lasers.at(i)->update(dt);
@@ -117,34 +106,22 @@ void nextWave() {
 }
 
 /**
- void destroy(GameObject* obj)
- Deletes a given GameObject
- */
-void destroy(GameObject* obj) {
-	gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), obj),gameObjects.end());//this threw an error because u did std::
-	//gameObjects.erase(remove(gameObjects.begin(), gameObjects.end(), obj));//and this threw an error b/c converting to iterator
-	//commenting these out will likely cause memory leaks (?)
-	//#error we need to work out the issue with std::remove, memory leaks are bad
-
-	if(obj->parentWave!=NULL) {
-		obj->parentWave->remove(obj);
-		obj->parentWave->release();
-	}
-
-
-	delete obj;
-}
-
-/**
  void renderObjects()
  Draws each object, laser
  */
 void renderObjects() {
     //glScalef(0.3f,0.3f,0.3f);
 
-    for(int i=0;i<gameObjects.size();i++) {
+    /*for(int i=0;i<gameObjects.size();i++) {
         gameObjects.at(i)->render();
-    }
+    }*/
+	
+	GameObject *obj=thePlayerShip;
+	while(obj!=NULL) {
+		obj->render();
+		
+		obj=obj->getNext();
+	}
 
     for(int i=0;i<lasers.size();i++) {
         lasers.at(i)->render();
@@ -167,9 +144,7 @@ void addLaser(Laser* las) {
 void unloadGame() {
     delete currentWave;
 
-    for(int i=0;i<gameObjects.size();i++){
-        delete gameObjects.at(i);
-    }
+	thePlayerShip->deleteAndDeleteChildren();
 
     for(int i=0;i<lasers.size();i++){
         delete lasers.at(i);
