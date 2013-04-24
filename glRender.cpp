@@ -26,12 +26,19 @@ void glRender() {
 	const double step=delt2;
 
 	///NOTE: need to resolve the issue of the last rect not being drawn
+	double counter=0;
+	for(int a=0;a<grid/step;a++){
+		if(z>((double)playerOffset)/noiseScale)
+			counter+=sin(a/(grid/step));
+	}
+	glRotatef(counter, 0.0, 1.0, 0.7);
+	
 	for(int a=0;a<grid/step;a++){
 		//x=grid*a/(grid/(delta/2));
-		z=a*step;
+		z=grid-a*step;
 		
 		if(z>((double)playerOffset)/noiseScale)
-			glRotatef(sin(a/(grid/step)), 0.0, 1.0, 0.7);
+			glRotatef(-sin(a/(grid/step)), 0.0, 1.0, 0.7);
 		glBegin(GL_QUADS);
 		
 		for(int b=0;b<grid/step;b++){
@@ -72,9 +79,37 @@ void glRender() {
 							corners[indx].z=-(z-grid2+k*delt2)/(d*grid)-d/2;//+(fmod(zshft,grid2));
 							//corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-d/2+(zshft-(int)zshft)/noiseScale;
 							
+							//*
+#if 0
 							normals[indx].x=i;
 							normals[indx].y=j;
 							normals[indx].z=k; //butts
+#else
+#define h 0.001							
+							double tmp=perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2, y+j*delt2, (z+k*delt2)/(d*grid)-d/2);
+							normals[indx].x=(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2+h, y+j*delt2, (z+k*delt2)/(d*grid)-d/2)-tmp)/h;
+							normals[indx].y=(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2, y+j*delt2+h, (z+k*delt2)/(d*grid)-d/2)-tmp)/h;
+							normals[indx].z=(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2+h, y+j*delt2, (z+k*delt2)/(d*grid)-d/2)-tmp+h)/h;
+#undef h
+#endif
+							/*/
+							normals[indx].x=rand();
+							normals[indx].y=rand();
+							normals[indx].z=rand();
+							
+							#define a normals[indx].x
+							#define b normals[indx].y
+							#define c normals[indx].z
+							
+							float bluh=sqrt(a*a+b*b+c*c);
+							a/=bluh;
+							b/=bluh;
+							c/=bluh;
+							
+							#undef a
+							#undef b
+							#undef c
+							//*/
 						}}}
 
 						//glBegin(GL_QUADS);glColor3f(0.5f,0.5f,0.5f);

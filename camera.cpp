@@ -64,8 +64,8 @@ void movecam(){
 	double z=-d*cameraOffset*grid/noiseScale+d/2;
 
 	if(noise[precompindx(x+dx, y+dy, z)]>tolerance) {
-		camvx=0;
-		camvy=0;
+		camvx*=1.1;
+		camvy*=1.1;
 		cout<<"I'M A ROCK"<<endl;
 	}else if(noise[precompindx(x, y, z)]>tolerance-.2) {
 

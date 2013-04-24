@@ -134,7 +134,7 @@ bool GameObject::collidesWithNoise() {
         const double
             x=(model->vertices[i][0]*objScale+xpos)/noiseScale *grid2+grid2,
             y=(model->vertices[i][1]*objScale+ypos)/noiseScale *grid2+grid2,
-            z=-d*grid*((model->vertices[i][2]*objScale+zpos)/noiseScale+d/2);
+            z=grid2-d*grid*((model->vertices[i][2]*objScale+zpos)/noiseScale+d/2);
         if(noise[precompindx(x,y,z+zshft)]>tolerance){
             return true;
         }
