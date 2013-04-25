@@ -34,9 +34,7 @@ void ExplodeAnimation::doTriangleTransform(int index) {
  */
 void ExplodeAnimation::update(double dt) {
 	if(t>.5) {
-		//if(object!=NULL) {
-			object->destroyAndGetNext();
-		//}
+		object->destroy();
 	}
 }
 

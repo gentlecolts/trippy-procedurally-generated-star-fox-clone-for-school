@@ -51,7 +51,6 @@ void updateObjects() {
 
     if(curTime-lastWaveTime>waveTime) {
         readyForNextWave=true;
-		cout<<"READY"<<endl;
 		//cout<<gameObjects.size()<<endl;
     }
     if(currentWave==NULL || (readyForNextWave /*&& currentWave->isDone()*/)) {
@@ -64,16 +63,22 @@ void updateObjects() {
 	
 	updateTerrain(dt);
 	
-	GameObject* obj=thePlayerShip;
+	GameShip* obj=thePlayerShip;
 	while(obj!=NULL) {
+		//cout<<obj<<", ";
 		obj->doUpdate(dt);
 
-		if(obj->isDone() && (obj->parentWave==NULL || obj->parentWave->isDone())) {
+		if(obj->scheduledToDelete || (obj->isDone() && (obj->parentWave==NULL || obj->parentWave->isDone()))) {
+			if(obj->scheduledToDelete)
+				cout<<" because of laser"<<endl;
+			
 			obj=obj->destroyAndGetNext();
+			//cout<<" and now at "<<obj;
 		} else {
 			obj=obj->getNext();
 		}
 	}
+	//cout<<endl;
 
     for(int i=0;i<lasers.size();i++) {
         lasers.at(i)->update(dt);
@@ -116,7 +121,7 @@ void renderObjects() {
         gameObjects.at(i)->render();
     }*/
 	
-	GameObject *obj=thePlayerShip;
+	GameShip *obj=thePlayerShip;
 	while(obj!=NULL) {
 		obj->render();
 		

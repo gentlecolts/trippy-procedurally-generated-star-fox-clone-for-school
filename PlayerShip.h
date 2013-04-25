@@ -2,8 +2,9 @@
 #define PLAYERSHIP_H_INCLUDED
 
 #include "gameObject.h"
+#include "gameShip.h"
 
-class PlayerShip : public GameObject
+class PlayerShip : public GameShip
 {
 public:
 	void update(double dt);
@@ -11,6 +12,7 @@ public:
 	void init();
 	void uniqueRenderAfterPop();
 	void handleKeyInput(double dt);
+	void afterSetup();
 protected:
 private:
 };

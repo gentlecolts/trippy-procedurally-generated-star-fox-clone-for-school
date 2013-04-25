@@ -2,7 +2,7 @@
 #include "globals.h"
 #include <ctime>
 
-class GameObject;
+class GameShip;
 class EnemyWave;
 
 /**************** NOISE ********************/
@@ -27,7 +27,7 @@ double anm8=0;
 double d=d1;
 
 /**************** GAME  *********************/
-GameObject* thePlayerShip;
+GameShip* thePlayerShip;
 int numObjects=0;
 std::vector<Laser*> lasers;
 long curTime=0,startTime=clock(),lastWaveTime=clock();

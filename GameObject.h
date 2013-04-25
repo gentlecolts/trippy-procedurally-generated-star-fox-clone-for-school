@@ -17,14 +17,15 @@ public:
 	float xpos,ypos,zpos,xvel,yvel,zvel;
 	float xrot,yrot,zrot;
 	double avgDist;
-	EnemyWave* parentWave;
 	Animation* theAnimation;
-	int index;
-	GameObject *previous;
+	int numChildren;
+	
+	GameObject *parent;
+	GameObject** children;
 
 	virtual void init();
 
-	GameObject(int n);
+	GameObject();
 	virtual ~GameObject();
 
 	bool collidesWithNoise();
@@ -33,24 +34,23 @@ public:
 	void doUpdate(double dt);
 	void setup();
 	void setAnimation(Animation *anim);
-	GameObject* destroyAndGetNext();
-	GameObject* getNext();
-	void setNext(GameObject *n);
-	void deleteAndDeleteChildren();
-	void appendObject(GameObject *obj);
-
+//	Vec3f absolutePosition();
+	
+	virtual void destroy();
 	virtual void update(double dt);
 	virtual void uniqueRenderAfterPop();
 	virtual void uniqueRender();
+	virtual void uniqueRenderFirst();
+	virtual void uniqueRenderLast();
 	virtual void fireWeapon();
 	virtual bool isDone();
+	virtual void addChild(GameObject *child);
+	virtual void afterSetup();
 protected:
 	int modelSize;
 	long invinceStart;
 private:
 	long t;
 	bool didSetup;
-	
-	GameObject *next;
 };
 #endif // GAMEOBJECT_H_INCLUDED

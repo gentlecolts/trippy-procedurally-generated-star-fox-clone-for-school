@@ -8,7 +8,7 @@
 #include "glRender.h"
 #include "outline.h"
 #include "math.h"
-#include "gameObject.h"
+#include "gameShip.h"
 
 
 int precompindx(double x,double y,double z){
@@ -121,7 +121,10 @@ void render(){
 		//gluLookAt(0,0,0,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);			BEST CAMERA
 		//gluLookAt(camx/2,-camy/2,cameraOffset,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);
         gluLookAt(camx,camy+1,cameraOffset,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos*3,0,1,0);
-
+	
+	
+		renderObjects();
+	
         glPushMatrix();
         glScalef(noiseScale, noiseScale, noiseScale);
 		glColor4f(1.0f,1.0f,1.0f,0.5f);
@@ -138,8 +141,6 @@ void render(){
 		}glEnd();
 		//*/
         glPopMatrix();
-
-		renderObjects();
 	#elif drawmethod==11///awww yeah turn it up to 11
 		#include "cltrace.h"
 		renderObjects();

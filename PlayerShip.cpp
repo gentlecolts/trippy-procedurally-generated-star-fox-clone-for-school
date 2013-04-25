@@ -5,12 +5,13 @@
 #include "imports.h"
 #include "Model.h"
 #include "vec3f.h"
+#include "BasicGun.h"
 
 /**
  PlayerShip::PlayerShip(int n)
  Constructor just calls init after super
  */
-PlayerShip::PlayerShip(int n) : GameObject(n) {
+PlayerShip::PlayerShip(int n) : GameShip(n) {
 	init();
 }
 
@@ -83,6 +84,10 @@ void PlayerShip::uniqueRenderAfterPop() {
     glPopMatrix();
 }
 
+void PlayerShip::afterSetup() {
+	
+}
+
 /**
  void PlayerShip::update(double dt)
  Calls handleKeyInput(), then sets the velocities to maxV in the direction it's pointing. Uses xvel and yvel to change xpos and ypos. Checks collision detection with enemies and terrain (and eventually projectiles).
@@ -112,7 +117,7 @@ void PlayerShip::update(double dt) {
     if(invinceStart<0) {
         bool hit=false;
 		
-		GameObject *obj=getNext();
+		GameShip *obj=getNext();
 		while(obj!=NULL) {
 			if(collidesWithObject(obj)) {
                 hit=true;

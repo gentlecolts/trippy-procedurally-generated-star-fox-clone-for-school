@@ -13,6 +13,7 @@
 
 class Vec3f;
 #include "structs.h"
+#include "imports.h"
 
 class Model {
 public:
@@ -20,19 +21,28 @@ public:
     Vec3f* colors;
     Vec3f* normals;
     int length;
-    
+	GLenum type;
+	
+	Vec3f *attachPoints;
+	Vec3f *attachPointAngles;
+	int numAttachPoints;
+	
     Model(int l);
     void addVertex(Vec3f v);
     void addColor(Vec3f c);
     void addNormal(Vec3f n);
-    
+	void addAttachPoint(Vec3f ap);
+	void addAttachPointAngle(Vec3f apn);
+    int faces();
+	int verticesPerFace();
+	
     void computeNormals();
     
     ~Model();
 protected:
 private:
-    int lastAddedC, lastAddedV, lastAddedN;
-    bool hasNormals, hasVertices, hasColors;
+    int lastAddedC, lastAddedV, lastAddedN, lastAddedAP, lastAddedAPN;
+    bool hasNormals, hasVertices, hasColors, hasAP, hasAPN;
 };
 
 #endif /* defined(__HelloSDL__Model__) */

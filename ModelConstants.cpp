@@ -10,10 +10,11 @@
 #include "Model.h"
 #include "vec3f.h"
 #include "imageloader.h"
+#include "constants.h"
 
 Model *ramShipModel=new Model(24);
 Model *playerShipModel=new Model(18);
-
+Model *basicGunModel=new Model(20);
 
 GLuint laserTexture;
 
@@ -74,6 +75,18 @@ void initModels() {
 	
 	ramShipModel->computeNormals();
 	
+	ramShipModel->numAttachPoints=8;
+	
+	for(int i=-1;i<=1;i+=2) {
+		for(int j=-1;j<=1;j+=2) {
+			for(int k=-1;k<=1;k+=2) {
+				ramShipModel->addAttachPoint(Vec3f(i*1.0/3,j*1.0/3,k*1.0/3));
+				
+				ramShipModel->addAttachPointAngle(Vec3f(-j*k*45,i*(-k+2)*45,0));
+			}
+		}
+	}
+	
 	playerShipModel->addVertex(Vec3f(0.0f, 0.0f, -2.0f));
 	playerShipModel->addColor(Vec3f(1.0f, 0.f, 0.0f));
 	playerShipModel->addVertex(Vec3f(0.0f, 0.5f, 0.0f));
@@ -82,7 +95,7 @@ void initModels() {
 	playerShipModel->addColor(Vec3f(0.0f, 0.0f, 1.0f));
 	playerShipModel->addVertex(Vec3f(0.0f, 0.0f, -2.0f));
 	playerShipModel->addColor(Vec3f(1.0f, 0.f, 0.0f));
-	playerShipModel->addVertex(Vec3f(0.0f, -0.5f, -0.0f));
+	playerShipModel->addVertex(Vec3f(0.0f, -0.3f, -0.0f));
 	playerShipModel->addColor(Vec3f(0.0f, 1.0f, 0.0f));
 	playerShipModel->addVertex(Vec3f(1.0f, 0.0f, 1.0f));
 	playerShipModel->addColor(Vec3f(0.0f, 0.0f, 1.0f));
@@ -94,25 +107,97 @@ void initModels() {
 	playerShipModel->addColor(Vec3f(0.0f, 0.0f, 1.0f));
 	playerShipModel->addVertex(Vec3f(0.0f, 0.0f, -2.0f));
 	playerShipModel->addColor(Vec3f(1.0f, 0.f, 0.0f));
-	playerShipModel->addVertex(Vec3f(0.0f, -0.5f, -0.0f));
+	playerShipModel->addVertex(Vec3f(0.0f, -0.3f, -0.0f));
 	playerShipModel->addColor(Vec3f(0.0f, 1.0f, 0.0f));
 	playerShipModel->addVertex(Vec3f(-1.0f, 0.0f, 1.0f));
 	playerShipModel->addColor(Vec3f(0.0f, 0.0f, 1.0f));
 	playerShipModel->addVertex(Vec3f(0.0f, 0.5f, -0.0f));
 	playerShipModel->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	playerShipModel->addVertex(Vec3f(0.0f, -0.5f, -0.0f));
+	playerShipModel->addVertex(Vec3f(0.0f, -0.3f, -0.0f));
 	playerShipModel->addColor(Vec3f(0.0f, 1.0f, 0.0f));
 	playerShipModel->addVertex(Vec3f(-1.0f, 0.0f, 1.0f));
 	playerShipModel->addColor(Vec3f(0.0f, 0.0f, 1.0f));
 	playerShipModel->addVertex(Vec3f(0.0f, 0.5f, 0.0f));
 	playerShipModel->addColor(Vec3f(0.0f, 1.0f, 0.0f));
-	playerShipModel->addVertex(Vec3f(0.0f, -0.5f, 0.0f));
+	playerShipModel->addVertex(Vec3f(0.0f, -0.3f, 0.0f));
 	playerShipModel->addColor(Vec3f(0.0f, 1.0f, 0.0f));
 	playerShipModel->addVertex(Vec3f(1.0f, 0.0f, 1.0f));
 	playerShipModel->addColor(Vec3f(0.0f, 0.0f, 1.0f));
 	
 	playerShipModel->computeNormals();
 	
+	
+	basicGunModel->type=GL_QUADS;
+	/*basicGunModel->addVertex(Vec3f(-0.1f,0.0f,0.0f));
+	basicGunModel->addVertex(Vec3f(-0.3f,0.0f,0.0f));
+	basicGunModel->addVertex(Vec3f(-0.3f,0.0f,1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.0f,1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.2f,0.0f));
+	basicGunModel->addVertex(Vec3f(-0.3f,0.2f,0.0f));
+	basicGunModel->addVertex(Vec3f(-0.3f,0.2f,1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.2f,1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.0f,0.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.2f,0.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.2f,1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.0f,1.0f));
+	basicGunModel->addVertex(Vec3f(-0.3f,0.0f,0.0f));
+	basicGunModel->addVertex(Vec3f(-0.3f,0.2f,0.0f));
+	basicGunModel->addVertex(Vec3f(-0.3f,0.2f,1.0f));
+	basicGunModel->addVertex(Vec3f(-0.3f,0.0f,1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.0f,0.0f));
+	basicGunModel->addVertex(Vec3f(-0.3f,0.2f,0.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.2f,0.0f));
+	basicGunModel->addVertex(Vec3f(-0.3f,0.0f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.3f,0.0f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.5f,0.0f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.5f,0.0f,1.0f));
+	basicGunModel->addVertex(Vec3f(0.3f,0.0f,1.0f));
+	basicGunModel->addVertex(Vec3f(0.3f,0.2f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.5f,0.2f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.5f,0.2f,1.0f));
+	basicGunModel->addVertex(Vec3f(0.3f,0.2f,1.0f));
+	basicGunModel->addVertex(Vec3f(0.3f,0.0f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.3f,0.2f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.3f,0.2f,1.0f));
+	basicGunModel->addVertex(Vec3f(0.3f,0.0f,1.0f));
+	basicGunModel->addVertex(Vec3f(0.5f,0.0f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.5f,0.2f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.5f,0.2f,1.0f));
+	basicGunModel->addVertex(Vec3f(0.5f,0.0f,1.0f));
+	basicGunModel->addVertex(Vec3f(0.3f,0.0f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.5f,0.2f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.3f,0.2f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.5f,0.0f,0.0f));*/
+	
+	basicGunModel->addVertex(Vec3f(-0.1f,-0.1f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.1f,-0.1f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.1f,-0.1f,1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,-0.1f,1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.1f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.1f,0.1f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.1f,0.1f,1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.1f,1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,-0.1f,0.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.1f,0.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.1f,1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,-0.1f,1.0f));
+	basicGunModel->addVertex(Vec3f(0.1f,-0.1f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.1f,0.1f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.1f,0.1f,1.0f));
+	basicGunModel->addVertex(Vec3f(0.1f,-0.1f,1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,-0.1f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.1f,0.1f,0.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.1f,0.0f));
+	basicGunModel->addVertex(Vec3f(0.1f,-0.1f,0.0f));
+	
+	for(int i=0;i<20;i++) {
+		if(basicGunModel->vertices[i][2]>0)
+			basicGunModel->addColor(Vec3f(0.0,1.0,1.0));
+		else
+			basicGunModel->addColor(Vec3f(0.0,0.0,1.0));
+	}
+	
+	basicGunModel->computeNormals();
 	
 	//Laser texture
 	glGenTextures( 1, &laserTexture);

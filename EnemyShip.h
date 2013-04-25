@@ -1,9 +1,10 @@
 #ifndef ENEMYSHIP_H_INCLUDED
 #define ENEMYSHIP_H_INCLUDED
 
-#include "gameObject.h"
+#include "GameObject.h"
+#include "gameShip.h"
 
-class EnemyShip : public GameObject
+class EnemyShip : public GameShip
 {
 public:
 	EnemyShip(int n);

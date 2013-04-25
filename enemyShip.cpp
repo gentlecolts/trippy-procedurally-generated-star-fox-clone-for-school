@@ -8,7 +8,7 @@
  EnemyShip::EnemyShip(int n)
  Conveniently initializes it at a random location, setting t to 0 and dead to false
  */
-EnemyShip::EnemyShip(int n) : GameObject(n)
+EnemyShip::EnemyShip(int n) : GameShip(n)
 {
     t=0;
 	dead=false;
@@ -19,7 +19,7 @@ EnemyShip::EnemyShip(int n) : GameObject(n)
  EnemyShip::EnemyShip(int n)
  Conveniently initializes it at a specified location, setting t to 0 and dead to false
  */
-EnemyShip::EnemyShip(double x,double y, int n) : GameObject(n) {
+EnemyShip::EnemyShip(double x,double y, int n) : GameShip(n) {
     t=0;
 	dead=false;
     init(x, y);

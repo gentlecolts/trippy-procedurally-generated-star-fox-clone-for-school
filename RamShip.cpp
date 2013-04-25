@@ -10,6 +10,7 @@
 #include "ModelConstants.h"
 #include "Model.h"
 #include "constants.h"
+#include "BasicGun.h"
 
 /**
  RamShip::RamShip(double x, double y, int n)
@@ -45,8 +46,7 @@ void RamShip::init(double x, double y) {
 	xpos*=signum(x);
 	ypos*=signum(y);
 	
-	cout<<"AH'M AT "<<xpos<<", "<<ypos<<endl;
-	int pos=-50,time=8;
+	int pos=-50,time=8;	
 	
     zpos=pos-playerOffset;
 	
@@ -61,6 +61,18 @@ void RamShip::init(double x, double y) {
     zrot=0;
 }
 
+void RamShip::afterSetup() {
+	
+	addChild(new BasicGun(this));
+	/*addChild(new BasicGun(this));
+	addChild(new BasicGun(this));
+	addChild(new BasicGun(this));
+	addChild(new BasicGun(this));
+	addChild(new BasicGun(this));
+	addChild(new BasicGun(this));
+	addChild(new BasicGun(this));*/
+	
+}
 
 /**
  bool RamShip::isDone()
@@ -77,5 +89,5 @@ bool RamShip::isDone() {
 void RamShip::update(double dt) {
 	EnemyShip::update(dt);
 	
-	yrot+=45*dt;
+	//yrot+=45*dt;
 }

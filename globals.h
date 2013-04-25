@@ -9,7 +9,7 @@
 #include "perlin3d.h"
 #include "laser.h"
 
-class GameObject;
+class GameShip;
 class EnemyWave;
 
 /**************** NOISE ********************/
@@ -33,7 +33,7 @@ extern double anm8;					//needs a more descriptive name
 extern double d;					//^
 
 /**************** GAME  *********************/
-extern GameObject* thePlayerShip;		//the player's ship
+extern GameShip* thePlayerShip;		//the player's ship
 extern int numObjects;
 extern std::vector<Laser*> lasers;			//the projectiles in play
 extern long curTime, startTime, lastWaveTime;	//for keeping track of the time between frames, total time running, and last time enemies spawned

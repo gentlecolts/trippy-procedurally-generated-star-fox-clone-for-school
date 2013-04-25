@@ -16,16 +16,13 @@
  GameObject::GameObject(int n)
  Initialize
  */
-GameObject::GameObject(int n) {
-	parentWave=NULL;
+GameObject::GameObject() {
 	invinceStart=-1;
 	didSetup=false;
-	index=n;
 	avgDist=-100;
 	theAnimation=NULL;
-	next=NULL;
-
-	cout<<"initializing "<<this<<endl;
+	children=NULL;
+	numChildren=0;
 	
 	xpos=0;
 	ypos=0;
@@ -50,12 +47,10 @@ void GameObject::render() {
 	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
 	glRotatef(zrot, 0.0f, 0.0f, 1.0f);
 
-	glScalef(objScale,objScale,objScale);
-
-	glDisable(GL_LIGHT0);
-	//glEnable(GL_LIGHT1);
+	uniqueRenderFirst();
+	
 	if(theAnimation==NULL)
-		glBegin(GL_TRIANGLES); // of the pyramid
+		glBegin(model->type); // of the pyramid
 	else
 		theAnimation->doModelTransform();
 
@@ -63,12 +58,12 @@ void GameObject::render() {
         glColor3f(1.0,0,0);
 
 	for(int i=0;i<modelSize;i++) {
-		if(i%3==0 && theAnimation!=NULL) {
+		if(i%model->verticesPerFace()==0 && theAnimation!=NULL) {
 			glPushMatrix();
 			theAnimation->doTriangleTransform(i);
-			glBegin(GL_TRIANGLES);
+			glBegin(model->type);
 		} else if(i%3==0) {
-			glNormal3f(model->normals[i/3][0], model->normals[i/3][1], model->normals[i/3][2]);
+			glNormal3f(model->normals[i/model->verticesPerFace()][0], model->normals[i/model->verticesPerFace()][1], model->normals[i/model->verticesPerFace()][2]);
 		}
 		
         if(invinceStart<0)
@@ -83,11 +78,14 @@ void GameObject::render() {
 	
 	if(theAnimation==NULL)
 		glEnd();
-
+	
 	uniqueRender();
 
-	//glDisable(GL_LIGHT1);
-	glEnable(GL_LIGHT0);
+	uniqueRenderLast();
+	
+	for(int i=0;i<numChildren;i++) {
+		children[i]->render();
+	}
 
 	glPopMatrix();
 
@@ -110,6 +108,10 @@ void GameObject::doUpdate(double dt) {
     }
 
     update(dt);
+	
+	for(int i=0;i<numChildren;i++) {
+		children[i]->doUpdate(dt);
+	}
 }
 
 /**
@@ -125,8 +127,14 @@ void GameObject::setup() {
 			avgDist+=abs(model->vertices[i][j]);
 		}
     }
-    avgDist/=3*modelSize;
+    avgDist/=model->verticesPerFace()*modelSize;
     avgDist*=objScale;
+	
+	if(model->numAttachPoints>0) {
+		children=new GameObject*[model->numAttachPoints];
+	}
+	
+	afterSetup();
 }
 
 /**
@@ -146,6 +154,19 @@ bool GameObject::collidesWithNoise() {
     return false;
 }
 
+void GameObject::addChild(GameObject *child) {	children[numChildren]=child;
+	
+	child->xpos=model->attachPoints[numChildren][0];
+	child->ypos=model->attachPoints[numChildren][1];
+	child->zpos=model->attachPoints[numChildren][2];
+	
+	child->xrot=model->attachPointAngles[numChildren][0];
+	child->yrot=model->attachPointAngles[numChildren][1];
+	child->zrot=model->attachPointAngles[numChildren][2];
+									
+	numChildren++;
+}
+
 /**
  void GameObject::setAnimation(Animation *anim)
  Sets the current animation, deletes the old one if necessary
@@ -156,6 +177,14 @@ void GameObject::setAnimation(Animation *anim) {
 	}
 	
 	theAnimation=anim;
+}
+
+//Vec3f GameObject::absolutePosition() {
+//	return NULL;
+//}
+
+void GameObject::destroy() {
+	delete this;
 }
 
 /**
@@ -175,6 +204,10 @@ void GameObject::update(double dt){}		//Update for subclasses
 void GameObject::uniqueRender(){}			//If a subclass wants to do its own drawing after rendering the model
 void GameObject::uniqueRenderAfterPop(){}	//If a subclass wants to do its own drawing with no transforms applied
 bool GameObject::isDone(){return false;}	//For checking when enemies are done
+void GameObject::uniqueRenderLast(){}
+void GameObject::uniqueRenderFirst(){}
+void GameObject::afterSetup(){}
+
 
 /**
  void GameObject::fireWeapon()
@@ -185,73 +218,11 @@ void GameObject::fireWeapon() {
 }
 
 /**
- GameObject* GameObject::getNext()
- Returns next
- */
-GameObject* GameObject::getNext() {
-	return next;
-}
-
-/**
- GameObject* GameObject::setNext()
- Sets next, sets that next's previous to this
- */
-void GameObject::setNext(GameObject *n) {
-	next=n;
-	if(n!=NULL)
-		n->previous=this;
-}
-
-/**
- void GameObject::appendObject(GameObject *obj)
- Adds an object to end of the linked list
- */
-void GameObject::appendObject(GameObject *obj) {
-	if(next!=NULL) {
-		next->appendObject(obj);
-	} else {
-		next=obj;
-		obj->previous=this;
-	}
-}
-
-/**
- void GameObject::deleteAndDeleteChildren()
- Deletes it and all of its children
- */
-void GameObject::deleteAndDeleteChildren() {
-	if(next!=NULL)
-		next->deleteAndDeleteChildren();
-	
-	delete this;
-}
-
-/**
- GameObject* GameObject::destroyAndGetNext()
- Sets its previous's next to next and returns that, then deletes this
- */
-GameObject* GameObject::destroyAndGetNext() {
-	if(previous!=NULL)
-		previous->setNext(next);
-	else {
-		thePlayerShip=next;
-		next->previous=NULL;
-	}
-	
-	delete this;
-	
-	return next;
-}
-
-/**
  GameObject::~GameObject()
  Deletes theAnimation
  */
 GameObject::~GameObject() {
-	if(parentWave!=NULL) {
-		parentWave->remove(this);
-		parentWave->release();
-	}
-	
+	//cout<<"deleting something!"<<endl;
 	delete theAnimation;
+	delete[] children;
 }

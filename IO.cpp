@@ -1,10 +1,10 @@
+
 #include "IO.h"
 #include <SDL/SDL.h>
 #include "imports.h"
 #include "globals.h"
 #include "gameController.h"
-#include "gameObject.h"
-//#include "glHelfagoot/j"
+#include "gameShip.h"
 #include "glhelper.h"
 
 void initSDL() {

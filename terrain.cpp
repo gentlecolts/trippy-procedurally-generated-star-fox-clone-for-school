@@ -1,7 +1,7 @@
 #include "terrain.h"
 
 #include "globals.h"
-#include "GameObject.h"
+#include "gameShip.h"
 
 void updateTerrain(double dt) {
 

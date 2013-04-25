@@ -21,6 +21,7 @@ public:
 	void init(double x, double y);
 	void update(double dt);
 	bool isDone();
+	void afterSetup();
 };
 
 #endif /* defined(__HelloSDL__RamShip__) */

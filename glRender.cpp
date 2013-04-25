@@ -86,10 +86,28 @@ void glRender() {
 							normals[indx].z=k; //butts
 #else
 #define h 0.001							
+							
 							double tmp=perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2, y+j*delt2, (z+k*delt2)/(d*grid)-d/2);
-							normals[indx].x=(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2+h, y+j*delt2, (z+k*delt2)/(d*grid)-d/2)-tmp)/h;
-							normals[indx].y=(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2, y+j*delt2+h, (z+k*delt2)/(d*grid)-d/2)-tmp)/h;
-							normals[indx].z=(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2+h, y+j*delt2, (z+k*delt2)/(d*grid)-d/2)-tmp+h)/h;
+							normals[indx].x=-(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2+h, y+j*delt2, (z+k*delt2)/(d*grid)-d/2)-tmp)/h;
+							normals[indx].y=-(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2, y+j*delt2+h, (z+k*delt2)/(d*grid)-d/2)-tmp)/h;
+							normals[indx].z=-(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2+h, y+j*delt2, (z+k*delt2)/(d*grid)-d/2)-tmp+h)/h;
+							
+							
+							/* //More correct, but spazzy
+							 
+							 double tmp=perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2, y+j*delt2, (z+k*delt2)/(d*grid)-d/2+zshft);
+							normals[indx].x=-(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2+h, y+j*delt2, (z+k*delt2)/(d*grid)-d/2+zshft)-tmp)/h;
+							normals[indx].y=-(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2, y+j*delt2+h, (z+k*delt2)/(d*grid)-d/2+zshft)-tmp)/h;
+							normals[indx].z=-(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2+h, y+j*delt2, (z+k*delt2)/(d*grid)-d/2+zshft)-tmp+h)/h;*/
+							
+							/*
+							 Even more correct, but stupid-looking
+							 
+							 double mag=sqrt(normals[indx].x*normals[indx].x+normals[indx].y*normals[indx].y+normals[indx].z*normals[indx].z);
+							
+							normals[indx].x/=mag;
+							normals[indx].y/=mag;
+							normals[indx].z/=mag;*/
 #undef h
 #endif
 							/*/
