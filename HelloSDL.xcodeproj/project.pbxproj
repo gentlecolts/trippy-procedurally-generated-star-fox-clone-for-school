@@ -79,8 +79,8 @@
 		64A789C8170C75F700CCAB2F /* EnemyShip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EnemyShip.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/EnemyShip.h"; sourceTree = "<group>"; };
 		64A789C9170C75F700CCAB2F /* GameController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GameController.cpp; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/GameController.cpp"; sourceTree = "<group>"; };
 		64A789CA170C75F700CCAB2F /* gameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = gameController.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/gameController.h"; sourceTree = "<group>"; };
-		64A789CB170C75F700CCAB2F /* gameObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = gameObject.cpp; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/gameObject.cpp"; sourceTree = "<group>"; };
-		64A789CC170C75F700CCAB2F /* GameObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameObject.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/GameObject.h"; sourceTree = "<group>"; };
+		64A789CB170C75F700CCAB2F /* gameObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = gameObject.cpp; path = ../gameObject.cpp; sourceTree = "<group>"; };
+		64A789CC170C75F700CCAB2F /* GameObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameObject.h; path = ../GameObject.h; sourceTree = "<group>"; };
 		64A789CD170C75F700CCAB2F /* GLHelper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GLHelper.cpp; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/GLHelper.cpp"; sourceTree = "<group>"; };
 		64A789CE170C75F700CCAB2F /* GLHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GLHelper.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/GLHelper.h"; sourceTree = "<group>"; };
 		64A789CF170C75F700CCAB2F /* globals.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = globals.cpp; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/globals.cpp"; sourceTree = "<group>"; };
@@ -143,6 +143,8 @@
 		642F9D95171705D0005FEFD3 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				646D9E52171601A3004FD3F5 /* Animation.cpp */,
+				646D9E53171601A3004FD3F5 /* Animation.h */,
 				642F9D91171705AB005FEFD3 /* ExplodeAnimation.cpp */,
 				642F9D92171705AB005FEFD3 /* ExplodeAnimation.h */,
 			);
@@ -152,6 +154,10 @@
 		646D9E481715F953004FD3F5 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				64A789CB170C75F700CCAB2F /* gameObject.cpp */,
+				64A789CC170C75F700CCAB2F /* GameObject.h */,
+				6473C84917296A5C00B2AD55 /* gameShip.cpp */,
+				6473C84A17296A5C00B2AD55 /* gameShip.h */,
 				64A789DE170C75F800CCAB2F /* PlayerShip.cpp */,
 				64A789DF170C75F800CCAB2F /* PlayerShip.h */,
 				64A789C7170C75F700CCAB2F /* enemyShip.cpp */,
@@ -169,6 +175,8 @@
 		646D9E491715F961004FD3F5 /* Waves */ = {
 			isa = PBXGroup;
 			children = (
+				64241AE2171317B80021A48E /* enemyWave.cpp */,
+				64241AE3171317B80021A48E /* enemyWave.h */,
 				64241AE51713187A0021A48E /* testEnemyWave1.cpp */,
 				64241AE61713187A0021A48E /* testEnemyWave1.h */,
 			);
@@ -194,22 +202,14 @@
 				646D9E491715F961004FD3F5 /* Waves */,
 				646D9E481715F953004FD3F5 /* Objects */,
 				642F9D95171705D0005FEFD3 /* Animations */,
-				64241AE2171317B80021A48E /* enemyWave.cpp */,
-				64241AE3171317B80021A48E /* enemyWave.h */,
 				64A789D5170C75F800CCAB2F /* laser.cpp */,
 				64A789D6170C75F800CCAB2F /* Laser.h */,
-				646D9E52171601A3004FD3F5 /* Animation.cpp */,
-				646D9E53171601A3004FD3F5 /* Animation.h */,
 				646D9E441715F92C004FD3F5 /* Model.cpp */,
 				646D9E451715F92C004FD3F5 /* Model.h */,
 				64A03E14172189A600AA0436 /* TextureGenerator.cpp */,
 				64A03E15172189A700AA0436 /* TextureGenerator.h */,
 				64AD0868171C3E1D001AEFCB /* ModelConstants.cpp */,
 				64AD0869171C3E1D001AEFCB /* ModelConstants.h */,
-				64A789CB170C75F700CCAB2F /* gameObject.cpp */,
-				64A789CC170C75F700CCAB2F /* GameObject.h */,
-				6473C84917296A5C00B2AD55 /* gameShip.cpp */,
-				6473C84A17296A5C00B2AD55 /* gameShip.h */,
 			);
 			name = Objects;
 			sourceTree = "<group>";

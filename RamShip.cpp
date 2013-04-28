@@ -26,6 +26,8 @@ RamShip::RamShip(double x, double y, int n) : EnemyShip(x, y, n) {
  Sets the model to the constant ramShipModel, then calculates pos[0] and pos[1] as the points around the edge of the game in line with the target position and sets vel[0], vel[1], and vel[2] so that it will intersect the plane at -playerOffset at (x,y)
  */
 void RamShip::init(double x, double y) {
+	cout<<"ENEMY"<<endl;
+	
 	model=ramShipModel;
     modelSize=model->length;
 	

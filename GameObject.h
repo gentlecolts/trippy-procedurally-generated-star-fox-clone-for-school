@@ -16,6 +16,7 @@ public:
 	Model *model;
 	//float xpos,ypos,zpos,xvel,yvel,zvel;
 	Vec3f pos,vel,rot;
+	bool *attachPointsFilled;
 	//float xrot,yrot,zrot;
 	double avgDist;
 	Animation* theAnimation;

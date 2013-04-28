@@ -24,6 +24,7 @@ GameObject::GameObject() {
 	children=NULL;
 	numChildren=0;
 	parent=NULL;
+	attachPointsFilled=NULL;
 	
 	pos=Vec3f(0,0,0);
 	vel=Vec3f(0,0,0);

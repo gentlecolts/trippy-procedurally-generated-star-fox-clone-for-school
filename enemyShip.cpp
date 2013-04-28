@@ -43,7 +43,10 @@ void EnemyShip::update(double dt) {
 	//cout<<"dt "<<dt<<endl;
 
 	if(!dead) {
-		pos+=vel*dt;
+		//pos+=vel*dt;
+		pos[0]+=vel[0]*dt;
+		pos[1]-=vel[1]*dt;
+		pos[2]-=vel[2]*dt;
 		
 		for(int i=0;i<lasers.size();i++) {
 			if(lasers.at(i)->collidesWithObject(this)) {

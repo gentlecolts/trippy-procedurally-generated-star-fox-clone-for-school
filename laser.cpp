@@ -61,7 +61,7 @@ void Laser::render() {
     //glEnable(GL_LIGHT1);
     glBegin(GL_QUADS); // of the pyramid
 
-    //glColor4f(1,.7,.7,0.7);
+    glColor4f(1,.7,.7,0.7);
 	glTexCoord2f(28, 4);
     glVertex3f(-.2,0,0);
 	glTexCoord2f(36, 4);
