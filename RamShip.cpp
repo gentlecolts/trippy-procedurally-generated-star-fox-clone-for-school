@@ -26,8 +26,6 @@ RamShip::RamShip(double x, double y, int n) : EnemyShip(x, y, n) {
  Sets the model to the constant ramShipModel, then calculates pos[0] and pos[1] as the points around the edge of the game in line with the target position and sets vel[0], vel[1], and vel[2] so that it will intersect the plane at -playerOffset at (x,y)
  */
 void RamShip::init(double x, double y) {
-	cout<<"ENEMY"<<endl;
-	
 	model=ramShipModel;
     modelSize=model->length;
 	
@@ -60,13 +58,13 @@ void RamShip::init(double x, double y) {
 void RamShip::afterSetup() {
 	
 	addChild(new BasicGun(this));
-	/*addChild(new BasicGun(this));
 	addChild(new BasicGun(this));
 	addChild(new BasicGun(this));
 	addChild(new BasicGun(this));
 	addChild(new BasicGun(this));
 	addChild(new BasicGun(this));
-	addChild(new BasicGun(this));*/
+	addChild(new BasicGun(this));
+	addChild(new BasicGun(this));
 	
 }
 
@@ -83,7 +81,14 @@ bool RamShip::isDone() {
  Calls the superclass version, sets vel[2] so that it curves parabolically into its target point at (x, y, -playerOffset), then rotates slightly
  */
 void RamShip::update(double dt) {
+	double oldT=t;
 	EnemyShip::update(dt);
 	
-	//yrot+=45*dt;
+	rot[1]+=45*dt;
+	
+	double fireRate=0.01;
+	
+	if(fmod(t,fireRate)<=fireRate/2 && fmod(oldT,fireRate)>=fireRate/2) {
+		fireWeapon();
+	}
 }

@@ -91,6 +91,20 @@ void updateObjects() {
             i--;
         }
     }
+	
+	for(int i=0;i<enemyLasers.size();i++) {
+        enemyLasers.at(i)->update(dt);
+		
+        //enemyLasers.at(i)->zpos<-noiseScale*2  <- and this is why -> is a stupid operator
+		
+        if(enemyLasers.at(i)->collidesWithNoise() || enemyLasers.at(i)->zpos<-noiseScale*2 ||enemyLasers.at(i)->zpos>cameraOffset) {
+            Laser *obj=enemyLasers.at(i);
+            enemyLasers.erase(enemyLasers.begin()+i);
+			
+            delete obj;
+            i--;
+        }
+    }
 
 }
 
@@ -129,15 +143,21 @@ void renderObjects() {
     for(int i=0;i<lasers.size();i++) {
         lasers.at(i)->render();
     }
+    
+	for(int i=0;i<enemyLasers.size();i++) {
+        enemyLasers.at(i)->render();
+    }
 }
 
 /**
  void addLaser(Laser* las)
  Adds a laser; probably not necessary
  */
-void addLaser(Laser* las) {
-
-	lasers.push_back(las);
+void addLaser(Laser* las, bool player) {
+	if(player)
+		lasers.push_back(las);
+	else
+		enemyLasers.push_back(las);
 }
 
 /**
@@ -151,5 +171,9 @@ void unloadGame() {
 
     for(int i=0;i<lasers.size();i++){
         delete lasers.at(i);
+    }
+	
+	for(int i=0;i<enemyLasers.size();i++){
+        delete enemyLasers.at(i);
     }
 }

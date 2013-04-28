@@ -35,7 +35,7 @@ extern double d;					//^
 /**************** GAME  *********************/
 extern GameShip* thePlayerShip;		//the player's ship
 extern int numObjects;
-extern std::vector<Laser*> lasers;			//the projectiles in play
+extern std::vector<Laser*> lasers, enemyLasers;			//the projectiles in play
 extern long curTime, startTime, lastWaveTime;	//for keeping track of the time between frames, total time running, and last time enemies spawned
 extern EnemyWave* currentWave;				//the current wave of enemies
 extern bool readyForNextWave;				//whether more enemies can spawn

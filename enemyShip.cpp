@@ -52,6 +52,11 @@ void EnemyShip::update(double dt) {
 			if(lasers.at(i)->collidesWithObject(this)) {
 				invinceStart=clock();
 				setAnimation(new ExplodeAnimation(model,this));
+				
+				for(int i=0;i<numChildren;i++) {
+					children[i]->setAnimation(new ExplodeAnimation(children[i]->model,NULL));
+				}
+				
 				vel[0]=0;
 				vel[1]=0;
 				

@@ -22,6 +22,7 @@ PlayerShip::PlayerShip(int n) : GameShip(n) {
 void PlayerShip::init(){
 	model=playerShipModel;
     modelSize=model->length;
+	player=true;
 
     pos[2]=-playerOffset;
 }
@@ -117,6 +118,14 @@ void PlayerShip::update(double dt) {
             }
 			
 			obj=obj->getNext();
+		}
+		
+		for(int i=0;i<enemyLasers.size();i++) {
+			if(enemyLasers.at(i)->collidesWithObject(this)) {
+				hit=true;
+				
+				break;
+			}
 		}
 		
         if(hit || collidesWithNoise()) {

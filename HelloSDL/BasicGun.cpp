@@ -26,7 +26,7 @@ BasicGun::BasicGun(GameObject *p) : GameObject() {
 void BasicGun::fireWeapon() {
 	Vec3f pos=absolutePosition();
 	Vec3f ang=absoluteAngle();
-	addLaser(new Laser(pos[0], pos[1], pos[2], ang[0], ang[1], ang[2]));
+	addLaser(new Laser(pos[0], pos[1], pos[2], ang[0], ang[1], ang[2]), player);
 }
 
 void BasicGun::update(double dt) {

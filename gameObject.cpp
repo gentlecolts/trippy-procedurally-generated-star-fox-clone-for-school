@@ -25,6 +25,7 @@ GameObject::GameObject() {
 	numChildren=0;
 	parent=NULL;
 	attachPointsFilled=NULL;
+	player=false;
 	
 	pos=Vec3f(0,0,0);
 	vel=Vec3f(0,0,0);
@@ -154,14 +155,10 @@ void GameObject::addChild(GameObject *child) {
 	children[numChildren]=child;
 	
 	child->pos=model->attachPoints[numChildren];
-	/*child->xpos=model->attachPoints[numChildren][0];
-	child->ypos=model->attachPoints[numChildren][1];
-	child->zpos=model->attachPoints[numChildren][2];*/
 	
 	child->rot=model->attachPointAngles[numChildren];
-	/*child->xrot=model->attachPointAngles[numChildren][0];
-	child->yrot=model->attachPointAngles[numChildren][1];
-	child->zrot=model->attachPointAngles[numChildren][2];*/
+	
+	child->player=player;
 									
 	numChildren++;
 }
@@ -233,7 +230,7 @@ void GameObject::afterSetup(){}
  Creates a laser at the position, direction
  */
 void GameObject::fireWeapon() {
-    addLaser(new Laser(pos[0],pos[1],pos[2],rot[0],rot[1],rot[2]));
+    addLaser(new Laser(pos[0],pos[1],pos[2],rot[0],rot[1],rot[2]),player);
 	
 	for(int i=0;i<numChildren;i++) {
 		children[i]->fireWeapon();

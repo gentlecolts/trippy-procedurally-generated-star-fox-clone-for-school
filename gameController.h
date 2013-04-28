@@ -6,7 +6,7 @@
 void setupGame();
 void updateObjects();
 void renderObjects();
-void addLaser(Laser* las);
+void addLaser(Laser* las, bool player);
 void unloadGame();
 void nextWave();
 

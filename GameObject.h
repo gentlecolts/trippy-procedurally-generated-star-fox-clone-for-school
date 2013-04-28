@@ -21,6 +21,7 @@ public:
 	double avgDist;
 	Animation* theAnimation;
 	int numChildren;
+	bool player;
 	
 	GameObject *parent;
 	GameObject** children;
