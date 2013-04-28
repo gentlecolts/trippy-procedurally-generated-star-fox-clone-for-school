@@ -140,7 +140,6 @@ void Model::computeNormals() {
 		Vec3f checkFlip=vertices[i];
 		for (int j=1; j<verticesPerFace(); j++) {
 			checkFlip+=vertices[i+j];
-			cout<<"i+j: "<<(i+j)<<endl;
 		}
 		checkFlip/=verticesPerFace();
 		

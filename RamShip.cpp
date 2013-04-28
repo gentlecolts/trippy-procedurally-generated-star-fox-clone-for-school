@@ -23,7 +23,7 @@ RamShip::RamShip(double x, double y, int n) : EnemyShip(x, y, n) {
 
 /**
  void RamShip::init(double x, double y)
- Sets the model to the constant ramShipModel, then calculates xpos and ypos as the points around the edge of the game in line with the target position and sets xvel, yvel, and zvel so that it will intersect the plane at -playerOffset at (x,y)
+ Sets the model to the constant ramShipModel, then calculates pos[0] and pos[1] as the points around the edge of the game in line with the target position and sets vel[0], vel[1], and vel[2] so that it will intersect the plane at -playerOffset at (x,y)
  */
 void RamShip::init(double x, double y) {
 	model=ramShipModel;
@@ -36,29 +36,23 @@ void RamShip::init(double x, double y) {
 	}
 	
 	if(abs(x)>abs(y)) {
-		xpos=noiseScale;
-		ypos=abs(y/x*noiseScale);
+		pos[0]=noiseScale;
+		pos[1]=abs(y/x*noiseScale);
 	} else {
-		ypos=noiseScale;
-		xpos=abs(x/y*noiseScale);
+		pos[1]=noiseScale;
+		pos[0]=abs(x/y*noiseScale);
 	}
 	
-	xpos*=signum(x);
-	ypos*=signum(y);
+	pos[0]*=signum(x);
+	pos[1]*=signum(y);
 	
-	int pos=-50,time=8;	
+	int startPos=-50,time=8;
 	
-    zpos=pos-playerOffset;
+    pos[2]=startPos-playerOffset;
 	
-    xvel=-(xpos-x)/time;
-    yvel=(ypos-y)/time;
-    zvel=(zpos+playerOffset-thePlayerShip->zvel*time)/time;
-	//cout<<"zvel "<<zvel<<endl;
-	//cout<<zpos<<endl;
-	
-    xrot=0;
-    yrot=0;
-    zrot=0;
+    vel[0]=-(pos[0]-x)/time;
+    vel[1]=(pos[1]-y)/time;
+    vel[2]=(pos[2]+playerOffset-thePlayerShip->vel[2]*time)/time;
 }
 
 void RamShip::afterSetup() {
@@ -79,12 +73,12 @@ void RamShip::afterSetup() {
  Returns whether it's behind the camera; it starts off the screen to the side, and isn't done, so the superclass version doesn't work in this case
  */
 bool RamShip::isDone() {
-	return zpos>=cameraOffset;
+	return pos[2]>=cameraOffset;
 }
 
 /**
  void RamShip::update(double dt)
- Calls the superclass version, sets zvel so that it curves parabolically into its target point at (x, y, -playerOffset), then rotates slightly
+ Calls the superclass version, sets vel[2] so that it curves parabolically into its target point at (x, y, -playerOffset), then rotates slightly
  */
 void RamShip::update(double dt) {
 	EnemyShip::update(dt);

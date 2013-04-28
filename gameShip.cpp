@@ -60,8 +60,6 @@ void GameShip::appendObject(GameShip *obj) {
 
 void GameShip::destroy() {
 	scheduledToDelete=true;
-	
-	cout<<"Destroyed"<<endl;
 }
 
 /**

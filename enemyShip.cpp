@@ -38,21 +38,19 @@ void EnemyShip::init(double x,double y){
  */
 void EnemyShip::update(double dt) {
     t+=dt;
-	zpos-=thePlayerShip->zvel*dt;
+	pos[2]-=thePlayerShip->vel[2]*dt;
 	//cout<<"subtracting "<<(thePlayerShip->zvel)<<endl;
 	//cout<<"dt "<<dt<<endl;
 
 	if(!dead) {
-		xpos+=xvel*dt;
-		ypos-=yvel*dt;
-		zpos-=zvel*dt;
+		pos+=vel*dt;
 		
 		for(int i=0;i<lasers.size();i++) {
 			if(lasers.at(i)->collidesWithObject(this)) {
 				invinceStart=clock();
 				setAnimation(new ExplodeAnimation(model,this));
-				xvel=0;
-				yvel=0;
+				vel[0]=0;
+				vel[1]=0;
 				
 				dead=true;
 
@@ -67,5 +65,5 @@ void EnemyShip::update(double dt) {
  Returns true if it's out of the game area in x, y or z
  */
 bool EnemyShip::isDone() {
-    return abs(xpos)>noiseScale || abs(ypos)>noiseScale || zpos>cameraOffset || zpos<-noiseScale*2;
+    return abs(pos[0])>noiseScale || abs(pos[1])>noiseScale || pos[2]>cameraOffset || pos[2]<-noiseScale*2;
 }

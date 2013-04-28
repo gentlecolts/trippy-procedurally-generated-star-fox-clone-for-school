@@ -31,8 +31,7 @@ void Laser::init(double x, double y, double z, double xr, double yr, double zr){
     yrot=yr;
     zrot=zr;
 
-	double vect[3];
-	getVector(xrot,yrot,vect);
+	Vec3f vect=getVector(xrot,yrot);
 
     xvel=laserSpeed*vect[0];
     yvel=laserSpeed*vect[1];
@@ -96,9 +95,9 @@ void Laser::update(double dt) {
  Performs collision detection by checking against a sphere with radius equal to the average distance of each vertex of the object's model from the front and back of the laser
  */
 bool Laser::collidesWithObject(GameObject* obj) {
-    double xD=xpos-obj->xpos;
-    double yD=ypos-obj->ypos;
-    double zD=zpos-obj->zpos;
+    double xD=xpos-obj->pos[0];
+    double yD=ypos-obj->pos[1];
+    double zD=zpos-obj->pos[2];
     
     if(sqrt(xD*xD+yD*yD+zD*zD)<obj->avgDist*3) {
         return true;

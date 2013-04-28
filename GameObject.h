@@ -4,6 +4,7 @@
 #include "globals.h"
 
 #include <ctime>
+#include "vec3f.h"
 
 class EnemyWave;
 class Model;
@@ -12,10 +13,10 @@ class Animation;
 class GameObject
 {
 public:
-//	vertex *model;
 	Model *model;
-	float xpos,ypos,zpos,xvel,yvel,zvel;
-	float xrot,yrot,zrot;
+	//float xpos,ypos,zpos,xvel,yvel,zvel;
+	Vec3f pos,vel,rot;
+	//float xrot,yrot,zrot;
 	double avgDist;
 	Animation* theAnimation;
 	int numChildren;
@@ -34,7 +35,8 @@ public:
 	void doUpdate(double dt);
 	void setup();
 	void setAnimation(Animation *anim);
-//	Vec3f absolutePosition();
+	Vec3f absolutePosition();
+	Vec3f absoluteAngle();
 	
 	virtual void destroy();
 	virtual void update(double dt);

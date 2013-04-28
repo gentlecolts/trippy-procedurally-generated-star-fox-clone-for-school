@@ -75,14 +75,14 @@ void initModels() {
 	
 	ramShipModel->computeNormals();
 	
-	ramShipModel->numAttachPoints=8;
+	ramShipModel->numAttachPoints=16;
 	
 	for(int i=-1;i<=1;i+=2) {
 		for(int j=-1;j<=1;j+=2) {
 			for(int k=-1;k<=1;k+=2) {
 				ramShipModel->addAttachPoint(Vec3f(i*1.0/3,j*1.0/3,k*1.0/3));
 				
-				ramShipModel->addAttachPointAngle(Vec3f(-j*k*45,i*(-k+2)*45,0));
+				ramShipModel->addAttachPointAngle(Vec3f(-j*k*45,-i*(k+2)*45,0));
 			}
 		}
 	}
@@ -125,6 +125,16 @@ void initModels() {
 	playerShipModel->addColor(Vec3f(0.0f, 0.0f, 1.0f));
 	
 	playerShipModel->computeNormals();
+	
+	playerShipModel->numAttachPoints=2;
+	
+	playerShipModel->addAttachPoint(Vec3f(0.5,0.0,0.0));
+	playerShipModel->addAttachPoint(Vec3f(-0.5,0.0,0.0));
+	
+	//playerShipModel->addAttachPointAngle(Vec3f(0,-15,0.0));
+	//playerShipModel->addAttachPointAngle(Vec3f(0,15,0.0));
+	playerShipModel->addAttachPointAngle(Vec3f(0,0,0.0));
+	playerShipModel->addAttachPointAngle(Vec3f(0,0,0.0));
 	
 	
 	basicGunModel->type=GL_QUADS;
@@ -171,20 +181,20 @@ void initModels() {
 	
 	basicGunModel->addVertex(Vec3f(-0.1f,-0.1f,0.0f));
 	basicGunModel->addVertex(Vec3f(0.1f,-0.1f,0.0f));
-	basicGunModel->addVertex(Vec3f(0.1f,-0.1f,1.0f));
-	basicGunModel->addVertex(Vec3f(-0.1f,-0.1f,1.0f));
+	basicGunModel->addVertex(Vec3f(0.1f,-0.1f,-1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,-0.1f,-1.0f));
 	basicGunModel->addVertex(Vec3f(-0.1f,0.1f,0.0f));
 	basicGunModel->addVertex(Vec3f(0.1f,0.1f,0.0f));
-	basicGunModel->addVertex(Vec3f(0.1f,0.1f,1.0f));
-	basicGunModel->addVertex(Vec3f(-0.1f,0.1f,1.0f));
+	basicGunModel->addVertex(Vec3f(0.1f,0.1f,-1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.1f,-1.0f));
 	basicGunModel->addVertex(Vec3f(-0.1f,-0.1f,0.0f));
 	basicGunModel->addVertex(Vec3f(-0.1f,0.1f,0.0f));
-	basicGunModel->addVertex(Vec3f(-0.1f,0.1f,1.0f));
-	basicGunModel->addVertex(Vec3f(-0.1f,-0.1f,1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,0.1f,-1.0f));
+	basicGunModel->addVertex(Vec3f(-0.1f,-0.1f,-1.0f));
 	basicGunModel->addVertex(Vec3f(0.1f,-0.1f,0.0f));
 	basicGunModel->addVertex(Vec3f(0.1f,0.1f,0.0f));
-	basicGunModel->addVertex(Vec3f(0.1f,0.1f,1.0f));
-	basicGunModel->addVertex(Vec3f(0.1f,-0.1f,1.0f));
+	basicGunModel->addVertex(Vec3f(0.1f,0.1f,-1.0f));
+	basicGunModel->addVertex(Vec3f(0.1f,-0.1f,-1.0f));
 	basicGunModel->addVertex(Vec3f(-0.1f,-0.1f,0.0f));
 	basicGunModel->addVertex(Vec3f(0.1f,0.1f,0.0f));
 	basicGunModel->addVertex(Vec3f(-0.1f,0.1f,0.0f));

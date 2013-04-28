@@ -6,8 +6,8 @@
 #include "GLHelper.h"
 #include "gameController.h"
 #include "Model.h"
-#include "vec3f.h"
 #include "Animation.h"
+#include "math.h"
 #include "enemyWave.h"
 
 #include <iostream>
@@ -23,16 +23,11 @@ GameObject::GameObject() {
 	theAnimation=NULL;
 	children=NULL;
 	numChildren=0;
+	parent=NULL;
 	
-	xpos=0;
-	ypos=0;
-	zpos=0;
-	xrot=0;
-	yrot=0;
-	zrot=0;
-	xvel=0;
-	yvel=0;
-	zvel=0;
+	pos=Vec3f(0,0,0);
+	vel=Vec3f(0,0,0);
+	rot=Vec3f(0,0,0);
 }
 
 /**
@@ -41,11 +36,11 @@ GameObject::GameObject() {
  */
 void GameObject::render() {
 	glPushMatrix();
-	glTranslatef(xpos, ypos, zpos);
+	glTranslatef(pos[0], pos[1], pos[2]);
 
-	glRotatef(xrot, 1.0f, 0.0f, 0.0f);
-	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-	glRotatef(zrot, 0.0f, 0.0f, 1.0f);
+	glRotatef(rot[0], 1.0f, 0.0f, 0.0f);
+	glRotatef(rot[1], 0.0f, 1.0f, 0.0f);
+	glRotatef(rot[2], 0.0f, 0.0f, 1.0f);
 
 	uniqueRenderFirst();
 	
@@ -144,9 +139,9 @@ void GameObject::setup() {
 bool GameObject::collidesWithNoise() {
     for(int i=0;i<modelSize;i++) {
         const double
-            x=(model->vertices[i][0]*objScale+xpos)/noiseScale *grid2+grid2,
-            y=(model->vertices[i][1]*objScale+ypos)/noiseScale *grid2+grid2,
-            z=grid2-d*grid*((model->vertices[i][2]*objScale+zpos)/noiseScale+d/2);
+            x=(model->vertices[i][0]*objScale+pos[0])/noiseScale *grid2+grid2,
+            y=(model->vertices[i][1]*objScale+pos[1])/noiseScale *grid2+grid2,
+            z=grid2-d*grid*((model->vertices[i][2]*objScale+pos[2])/noiseScale+d/2);
         if(noise[precompindx(x,y,z+zshft)]>tolerance){
             return true;
         }
@@ -154,15 +149,18 @@ bool GameObject::collidesWithNoise() {
     return false;
 }
 
-void GameObject::addChild(GameObject *child) {	children[numChildren]=child;
+void GameObject::addChild(GameObject *child) {
+	children[numChildren]=child;
 	
-	child->xpos=model->attachPoints[numChildren][0];
+	child->pos=model->attachPoints[numChildren];
+	/*child->xpos=model->attachPoints[numChildren][0];
 	child->ypos=model->attachPoints[numChildren][1];
-	child->zpos=model->attachPoints[numChildren][2];
+	child->zpos=model->attachPoints[numChildren][2];*/
 	
-	child->xrot=model->attachPointAngles[numChildren][0];
+	child->rot=model->attachPointAngles[numChildren];
+	/*child->xrot=model->attachPointAngles[numChildren][0];
 	child->yrot=model->attachPointAngles[numChildren][1];
-	child->zrot=model->attachPointAngles[numChildren][2];
+	child->zrot=model->attachPointAngles[numChildren][2];*/
 									
 	numChildren++;
 }
@@ -179,9 +177,28 @@ void GameObject::setAnimation(Animation *anim) {
 	theAnimation=anim;
 }
 
-//Vec3f GameObject::absolutePosition() {
-//	return NULL;
-//}
+Vec3f GameObject::absoluteAngle() {
+	if(parent!=NULL) {
+		Vec3f parentAngle=parent->absoluteAngle();
+		return Vec3f(parentAngle+rot);
+	}
+	return rot;
+}
+
+Vec3f GameObject::absolutePosition() {
+	if(parent!=NULL) {
+		Vec3f parentPos=parent->absolutePosition();
+		Vec3f ang=parent->absoluteAngle();
+
+		Vec3f dir=pos;
+		dir=rotate(dir,Vec3f(1,0,0),rot[0]);
+		dir=rotate(dir,Vec3f(1,0,0),rot[0]);
+		dir=rotate(dir,Vec3f(1,0,0),rot[0]);
+		
+		return parentPos+dir*objScale;		//completely wrong
+	}
+	return pos;
+}
 
 void GameObject::destroy() {
 	delete this;
@@ -192,11 +209,12 @@ void GameObject::destroy() {
  Does collision detection with another object using two spheres with radius of avgDist
  */
 bool GameObject::collidesWithObject(GameObject* obj) {      //crappy method
-    double xD=xpos-obj->xpos;
+    /*double xD=xpos-obj->xpos;
     double yD=ypos-obj->ypos;
-    double zD=zpos-obj->zpos;
+    double zD=zpos-obj->zpos;*/
+	Vec3f diff=pos-obj->pos;
 
-    return sqrt(xD*xD+yD*yD+zD*zD)<avgDist+obj->avgDist;
+    return diff.magnitude()<avgDist+obj->avgDist;
 }
 
 void GameObject::init(){}					//Do setup for subclasses
@@ -214,7 +232,11 @@ void GameObject::afterSetup(){}
  Creates a laser at the position, direction
  */
 void GameObject::fireWeapon() {
-    addLaser(new Laser(xpos,ypos,zpos,xrot,yrot,zrot));
+    addLaser(new Laser(pos[0],pos[1],pos[2],rot[0],rot[1],rot[2]));
+	
+	for(int i=0;i<numChildren;i++) {
+		children[i]->fireWeapon();
+	}
 }
 
 /**

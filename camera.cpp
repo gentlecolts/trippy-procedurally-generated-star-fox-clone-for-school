@@ -54,8 +54,8 @@ void movecam(){
         camvy+=0.001;
     }*/
 
-	camvx=-(camx-thePlayerShip->xpos)/10;
-	camvy=-(camy-thePlayerShip->ypos)/10;
+	camvx=-(camx-thePlayerShip->pos[0])/10;
+	camvy=-(camy-thePlayerShip->pos[1])/10;
 
 	double x=camx/noiseScale*grid2+grid2;
 	double y=camy/noiseScale*grid2+grid2;
@@ -83,7 +83,7 @@ void movecam(){
     //camx+=min(camvx,abs(thePlayerShip->xpos-camx))*signum(thePlayerShip->xpos-camx);
     //camy+=min(camvy,abs(thePlayerShip->ypos-camy))*signum(thePlayerShip->ypos-camy);
 
-    camPrevSgn=signum(thePlayerShip->xpos-camx);
+    camPrevSgn=signum(thePlayerShip->pos[0]-camx);
 
 //	camx=max(-)
 
@@ -120,7 +120,7 @@ void render(){
 
 		//gluLookAt(0,0,0,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);			BEST CAMERA
 		//gluLookAt(camx/2,-camy/2,cameraOffset,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);
-        gluLookAt(camx,camy+1,cameraOffset,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos*3,0,1,0);
+        gluLookAt(camx,camy+1,cameraOffset,thePlayerShip->pos[0],thePlayerShip->pos[1],thePlayerShip->pos[2]*3,0,1,0);
 	
 	
 		renderObjects();

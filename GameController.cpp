@@ -69,8 +69,6 @@ void updateObjects() {
 		obj->doUpdate(dt);
 
 		if(obj->scheduledToDelete || (obj->isDone() && (obj->parentWave==NULL || obj->parentWave->isDone()))) {
-			if(obj->scheduledToDelete)
-				cout<<" because of laser"<<endl;
 			
 			obj=obj->destroyAndGetNext();
 			//cout<<" and now at "<<obj;

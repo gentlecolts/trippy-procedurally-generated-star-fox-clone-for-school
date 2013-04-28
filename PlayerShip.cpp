@@ -21,9 +21,9 @@ PlayerShip::PlayerShip(int n) : GameShip(n) {
  */
 void PlayerShip::init(){
 	model=playerShipModel;
-    modelSize=playerShipModel->length;
+    modelSize=model->length;
 
-    zpos=-playerOffset;
+    pos[2]=-playerOffset;
 }
 
 /**
@@ -33,8 +33,7 @@ void PlayerShip::init(){
 void PlayerShip::uniqueRenderAfterPop() {
     glPushMatrix();
 
-	double vect[3];
-	getVector(xrot,yrot,vect);
+	Vec3f vect=getVector(rot[0],rot[1]);
 
     /*double x=-sin(radians(yrot));
     double y=sin(radians(xrot))*cos(radians(yrot));
@@ -46,7 +45,7 @@ void PlayerShip::uniqueRenderAfterPop() {
 
     double dist=2;
 
-    glTranslatef(x*dist+xpos,y*dist+ypos,z*dist+zpos);
+    glTranslatef(x*dist+pos[0],y*dist+pos[1],z*dist+pos[2]);
 
     glLineWidth(3);
 
@@ -85,7 +84,8 @@ void PlayerShip::uniqueRenderAfterPop() {
 }
 
 void PlayerShip::afterSetup() {
-	
+	addChild(new BasicGun(this));
+	addChild(new BasicGun(this));
 }
 
 /**
@@ -95,23 +95,15 @@ void PlayerShip::afterSetup() {
 void PlayerShip::update(double dt) {
 	handleKeyInput(dt);
 	
-	double vec[3];
+	Vec3f vec=getVector(rot[0], rot[1]);
 	
-	getVector(xrot, yrot, vec);
+	vel=vec*maxV;
 	
-	xvel=vec[0]*maxV;
-	yvel=vec[1]*maxV;
-	zvel=vec[2]*maxV;
+	pos[0]+=vel[0]*dt;
+    pos[1]+=vel[1]*dt;
 	
-	xpos+=xvel*dt;
-    ypos+=yvel*dt;
-	
-	xpos=max(min((double)xpos,1.0*noiseScale),-1.0*noiseScale);
-	ypos=max(min((double)ypos,1.0*noiseScale),-1.0*noiseScale);
-
-    /*zrot=-xvel/maxV*18;//90*2/5;
-    yrot=-xvel/maxV*36;
-    xrot=yvel/maxV*36;*/
+	pos[0]=max(min((double)pos[0],1.0*noiseScale),-1.0*noiseScale);
+	pos[1]=max(min((double)pos[1],1.0*noiseScale),-1.0*noiseScale);
 
 
     if(invinceStart<0) {
@@ -142,26 +134,26 @@ void PlayerShip::update(double dt) {
  */
 void PlayerShip::handleKeyInput(double dt) {
 	if(leftmov){
-		yrot+=accel*dt;
+		rot[1]+=accel*dt;
 	} else if(rightmov){
-		yrot-=accel*dt;
+		rot[1]-=accel*dt;
 	} else {
-		if(abs(yrot)-accel*dt>0)
-			yrot-=accel*dt*signum(yrot);
+		if(abs(rot[1])-accel*dt>0)
+			rot[1]-=accel*dt*signum(rot[1]);
 		else
-			yrot=0;
+			rot[1]=0;
 	}
 	if(upmov){
-		xrot+=accel*dt;
+		rot[0]+=accel*dt;
 	} else if(downmov){
-		xrot-=accel*dt;
+		rot[0]-=accel*dt;
 	} else {
-		if(abs(xrot)-accel*dt>0)
-			xrot-=accel*dt*signum(xrot);
+		if(abs(rot[0])-accel*dt>0)
+			rot[0]-=accel*dt*signum(rot[0]);
 		else
-			xrot=0;
+			rot[0]=0;
 	}
 
-	yrot=max(min((double)yrot, angleCap),-angleCap);
-	xrot=max(min((double)xrot, angleCap),-angleCap);
+	rot[1]=max(min((double)rot[1], angleCap),-angleCap);
+	rot[0]=max(min((double)rot[0], angleCap),-angleCap);
 }

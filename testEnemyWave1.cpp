@@ -19,8 +19,8 @@ void TestEnemyWave1::init(){
     //double x=rand()%(2*noiseScale)-noiseScale;
     //double y=rand()%(2*noiseScale)-noiseScale;
 	
-	double x=thePlayerShip->xpos;
-	double y=thePlayerShip->ypos;
+	double x=thePlayerShip->pos[0];
+	double y=thePlayerShip->pos[1];
 
 	int s=numObjects;
 	

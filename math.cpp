@@ -1,7 +1,7 @@
 #include "math.h"///WHY THE FLYING FUCK DO WE HAVE math.h?!?!?! see above line for my confusion
 
 #include "constants.h"
-
+#include "vec3f.h"
 
 /**
  double invsqrt(double x)
@@ -40,10 +40,13 @@ double radians(double degrees) {
  double getVector(double xrot, double yrot, double vect[3])
  Gets the unit vector in the direction of (0,0,-1) (forward in OpenGL) rotated by xrot (pitch) and yrot (yaw), and stores it in vect
  */
-void getVector(double xrot,double yrot,double vect[3]) {//TODO: consider only calulating once per frame
+Vec3f getVector(double xrot,double yrot) {//TODO: consider only calulating once per frame
+	Vec3f vect;
 	vect[0]=-sin(radians(yrot));
     vect[1]=sin(radians(xrot))*cos(radians(yrot));
 	vect[2]=-cos(radians(xrot))*cos(radians(yrot));
+	
+	return vect;
 }
 
 /**
@@ -55,6 +58,14 @@ int signum(double val) {
         return 0;
     return val>0 ? 1 : -1;*/
     return (0<val)-(val<0);
+}
+
+Vec3f rotate(Vec3f v, Vec3f axis, float degrees) {
+    axis = axis.normalize();
+    float radians = degrees * pi / 180;
+    float s = sin(radians);
+    float c = cos(radians);
+    return v * c + axis * axis.dot(v) * (1 - c) + v.cross(axis) * s;
 }
 
 /**
