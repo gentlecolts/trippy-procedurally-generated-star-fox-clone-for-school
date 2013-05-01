@@ -31,15 +31,15 @@ void Laser::init(double x, double y, double z, double xr, double yr, double zr){
     yrot=yr;
     zrot=zr;
 
-	Vec3f vect=getVector(xrot,yrot);
+	Vec3d vect=getVector(xrot,yrot);
 
     xvel=laserSpeed*vect[0];
     yvel=laserSpeed*vect[1];
 	zvel=laserSpeed*vect[2];
 
-	xpos+=xvel*7*0.02;
-	ypos+=yvel*7*0.02;
-	zpos+=zvel*7*0.02;
+	xpos+=xvel*5*0.02;
+	ypos+=yvel*5*0.02;
+	zpos+=zvel*5*0.02;
 }
 
 /**
@@ -48,7 +48,7 @@ void Laser::init(double x, double y, double z, double xr, double yr, double zr){
  */
 void Laser::render() {
 	
-	
+	glDisable(GL_LIGHTING);
 	glPushMatrix();
     glTranslatef(xpos, ypos, zpos);
 
@@ -61,7 +61,7 @@ void Laser::render() {
     //glEnable(GL_LIGHT1);
     glBegin(GL_QUADS); // of the pyramid
 
-    glColor4f(1,.7,.7,0.7);
+    glColor4f(1,.3,.3,0.7);
 	glTexCoord2f(28, 4);
     glVertex3f(-.2,0,0);
 	glTexCoord2f(36, 4);
@@ -77,6 +77,7 @@ void Laser::render() {
     glEnable(GL_LIGHT0);
 
     glPopMatrix();
+	glEnable(GL_LIGHTING);
 }
 
 /**

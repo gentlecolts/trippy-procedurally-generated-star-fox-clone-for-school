@@ -79,18 +79,6 @@ struct quadtree{
 	}
 };
 
-struct vec3d{
-	double dx,dy,dz;
-	vec3d(double deltx=0,double delty=0,double deltz=0){
-		dx=deltx;
-		dy=delty;
-		dz=deltz;
-	}
-	double operator +(vec3d vec){
-		return dx*vec.dx+dy*vec.dy+dz*vec.dz;
-	}
-};
-
 template <class T>
 class cycle{
 	T* dat;

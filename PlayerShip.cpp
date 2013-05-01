@@ -4,8 +4,12 @@
 #include "math.h"
 #include "imports.h"
 #include "Model.h"
-#include "vec3f.h"
+#include "Vec3d.h"
 #include "BasicGun.h"
+#include "gameController.h"
+#include "BasicStrut.h"
+
+#include "FanStrutThing.h"
 
 /**
  PlayerShip::PlayerShip(int n)
@@ -34,7 +38,7 @@ void PlayerShip::init(){
 void PlayerShip::uniqueRenderAfterPop() {
     glPushMatrix();
 
-	Vec3f vect=getVector(rot[0],rot[1]);
+	Vec3d vect=getVector(rot[0],rot[1]);
 
     /*double x=-sin(radians(yrot));
     double y=sin(radians(xrot))*cos(radians(yrot));
@@ -85,8 +89,8 @@ void PlayerShip::uniqueRenderAfterPop() {
 }
 
 void PlayerShip::afterSetup() {
-	addChild(new BasicGun(this));
-	addChild(new BasicGun(this));
+	addChild(new FanStrut(this, 3, basicStrutModel), -1);
+	addChild(new FanStrut(this, 3, basicStrutModel), -1);
 }
 
 /**
@@ -96,7 +100,7 @@ void PlayerShip::afterSetup() {
 void PlayerShip::update(double dt) {
 	handleKeyInput(dt);
 	
-	Vec3f vec=getVector(rot[0], rot[1]);
+	Vec3d vec=getVector(rot[0], rot[1]);
 	
 	vel=vec*maxV;
 	
@@ -134,6 +138,10 @@ void PlayerShip::update(double dt) {
             //xvel=0;
         }
     }
+}
+
+void PlayerShip::doFire() {
+	addLaser(new Laser(pos[0],pos[1],pos[2],rot[0],rot[1],rot[2]),player);
 }
 
 

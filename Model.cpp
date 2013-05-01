@@ -8,7 +8,8 @@
 
 #include "Model.h"
 
-#include "Vec3f.h"
+#include "math.h"
+#include "Vec3d.h"
 
 /**
  Model::Model(int l)
@@ -59,12 +60,12 @@ int Model::verticesPerFace() {
 }
 
 /**
- void Model::addColor(Vec3f c)
+ void Model::addColor(Vec3d c)
  Add a color to the color vector (create it if needed), increment the last added color
  */
-void Model::addColor(Vec3f c) {
+void Model::addColor(Vec3d c) {
     if(!hasColors) {
-        colors=new Vec3f[length];
+        colors=new Vec3d[length];
         hasColors=true;
     }
     
@@ -73,12 +74,12 @@ void Model::addColor(Vec3f c) {
 }
 
 /**
- void Model::addVertex(Vec3f v)
+ void Model::addVertex(Vec3d v)
  Add a vertex to the vertex vector (create it if needed), increment the last added vertex
  */
-void Model::addVertex(Vec3f v) {
+void Model::addVertex(Vec3d v) {
     if(!hasVertices) {
-        vertices=new Vec3f[length];
+        vertices=new Vec3d[length];
         hasVertices=true;
     }
     
@@ -87,13 +88,13 @@ void Model::addVertex(Vec3f v) {
 }
 
 /**
- void Model::addNormal(Vec3f n)
+ void Model::addNormal(Vec3d n)
  Add a normal to the normal vector (pun unintended) (create it if needed), increment the last added normal
  (useful for messing up lighting intentionally...)
  */
-void Model::addNormal(Vec3f n) {
+void Model::addNormal(Vec3d n) {
     if(!hasNormals) {
-        normals=new Vec3f[length/3];
+        normals=new Vec3d[length/3];
         hasNormals=true;
     }
     
@@ -101,9 +102,9 @@ void Model::addNormal(Vec3f n) {
 	lastAddedN++;
 }
 
-void Model::addAttachPoint(Vec3f ap) {
+void Model::addAttachPoint(Vec3d ap) {
     if(!hasAP) {
-        attachPoints=new Vec3f[numAttachPoints];
+        attachPoints=new Vec3d[numAttachPoints];
         hasAP=true;
     }
     
@@ -111,9 +112,9 @@ void Model::addAttachPoint(Vec3f ap) {
 	lastAddedAP++;
 }
 
-void Model::addAttachPointAngle(Vec3f apn) {
+void Model::addAttachPointAngle(Vec3d apn) {
     if(!hasAPN) {
-        attachPointAngles=new Vec3f[numAttachPoints];
+        attachPointAngles=new Vec3d[numAttachPoints];
         hasAPN=true;
     }
     
@@ -127,31 +128,126 @@ void Model::addAttachPointAngle(Vec3f apn) {
  */
 void Model::computeNormals() {
     if(!hasNormals) {
-        normals=new Vec3f[length/verticesPerFace()];
+        normals=new Vec3d[length/verticesPerFace()];
         hasNormals=true;
     }
     
     for(int i=lastAddedN*verticesPerFace();i<lastAddedV;i+=verticesPerFace()) {
-        Vec3f v1=vertices[i]-vertices[i+1];
-        Vec3f v2=vertices[i]-vertices[i+2];
+        Vec3d v1=vertices[i]-vertices[i+1];
+        Vec3d v2=vertices[i]-vertices[i+2];
         
-		Vec3f norm=v1.cross(v2).normalize();
+		Vec3d norm=v1.cross(v2).normalize();
 		
-		Vec3f checkFlip=vertices[i];
+		Vec3d checkFlip=vertices[i];
 		for (int j=1; j<verticesPerFace(); j++) {
 			checkFlip+=vertices[i+j];
 		}
-		checkFlip/=verticesPerFace();
+		//checkFlip/=verticesPerFace();
 		
 		if(checkFlip[0]*norm[0]<=0 &&
 		   checkFlip[1]*norm[1]<=0 &&
-		   checkFlip[2]*norm[2]) {
+		   checkFlip[2]*norm[2]<=0) {
 			norm*=-1;
 		}
 		
         normals[i/verticesPerFace()]=norm;
     }	
 	lastAddedN=length/verticesPerFace();
+}
+
+void Model::addRectPrism(Vec3d start, Vec3d end) {
+	/*for(int pos=0;pos<=1;pos++) {
+		for(int axis=0;axis<3;axis++) {
+			addRect(
+					Vec3d(start[axis]*pos+end[axis]*(1-pos), start[(axis+1)%3]*pos+end[(axis+1)%3]*(1-pos), start[(axis+2)%3]*pos+end[(axis+2)%3]*(1-pos)),
+					Vec3d(start[axis]*(1-pos)+end[axis]*pos, start[(axis+1)%3]*pos+end[(axis+1)%3]*(1-pos), start[(axis+2)%3]*pos+end[(axis+2)%3]*(1-pos)),
+					Vec3d(start[axis]*(1-pos)+end[axis]*pos, start[(axis+1)%3]*(1-pos)+end[(axis+1)%3]*pos, start[(axis+2)%3]*pos+end[(axis+2)%3]*(1-pos))
+					);
+		}
+	}*/
+	
+	addRect(
+			start,
+			Vec3d(end[0],start[1],start[2]),
+			Vec3d(end[0],end[1],start[2])
+			);
+	addRect(
+			end,
+			Vec3d(start[0],end[1],end[2]),
+			Vec3d(start[0],start[1],end[2])
+			);
+	
+	addRect(
+			start,
+			Vec3d(start[0],end[1],start[2]),
+			Vec3d(start[0],end[1],end[2])
+			);
+	addRect(
+			end,
+			Vec3d(end[0],start[1],end[2]),
+			Vec3d(end[0],start[1],start[2])
+			);
+	
+	addRect(
+			start,
+			Vec3d(start[0],start[1],end[2]),
+			Vec3d(end[0],start[1],end[2])
+			);
+	addRect(
+			end,
+			Vec3d(end[0],end[1],start[2]),
+			Vec3d(start[0],end[1],start[2])
+			);
+}
+void Model::addTriangle(Vec3d v1,Vec3d v2,Vec3d v3) {
+	addVertex(v1);
+	addVertex(v2);
+	addVertex(v3);
+	if(type==GL_QUADS) {
+		addVertex(v3);
+	}
+}
+void Model::addRect(Vec3d v1, Vec3d v2, Vec3d v3) {
+	if(type==GL_QUADS) {
+		addVertex(v1);
+		addVertex(v2);
+		addVertex(v3);
+		Vec3d centerPos=(v3-v1)/2+v1;
+		Vec3d toCenterVector=v2-centerPos;
+		addVertex(centerPos-toCenterVector);
+	} else {
+		addVertex(v1);
+		addVertex(v2);
+		addVertex(v3);
+		
+		
+		addVertex(v1);
+		Vec3d centerPos=(v3-v1)/2+v1;
+		Vec3d toCenterVector=v2-centerPos;
+		addVertex(centerPos-toCenterVector);
+		addVertex(v3);
+	}
+}
+void Model::addRect(Vec3d v1, Vec3d v2) {
+	addRect(v1, v2, Vec3d(v1[0],v1[1],v2[2]));
+}
+void Model::addPolygon(Vec3d center, double sideLength, int v, Vec3d norm) {
+	double degrees=360/v;
+	
+	Vec3d sideVec=Vec3d(sideLength,0,0);
+	Vec3d *vertices=new Vec3d[v];
+	
+	for(int i=0;i<v;i++) {
+		vertices[i]=center+rotate(sideVec,norm,i*degrees);
+	}
+	
+	for(int i=0;i<v;i++) {
+		addVertex(vertices[i]);
+		addVertex(center);
+		if(type==GL_QUADS)
+			addVertex(center);
+		addVertex(vertices[(i+1)%v]);
+	}
 }
 
 /**

@@ -24,104 +24,104 @@
 
 #include <math.h>
 
-#include "vec3f.h"
+#include "Vec3d.h"
 
 using namespace std;
 
-Vec3f::Vec3f() {
+Vec3d::Vec3d() {
 	
 }
 
-Vec3f::Vec3f(float x, float y, float z) {
+Vec3d::Vec3d(double x, double y, double z) {
 	v[0] = x;
 	v[1] = y;
 	v[2] = z;
 }
 
-float &Vec3f::operator[](int index) {
+double &Vec3d::operator[](int index) {
 	return v[index];
 }
 
-float Vec3f::operator[](int index) const {
+double Vec3d::operator[](int index) const {
 	return v[index];
 }
 
-Vec3f Vec3f::operator*(float scale) const {
-	return Vec3f(v[0] * scale, v[1] * scale, v[2] * scale);
+Vec3d Vec3d::operator*(double scale) const {
+	return Vec3d(v[0] * scale, v[1] * scale, v[2] * scale);
 }
 
-Vec3f Vec3f::operator/(float scale) const {
-	return Vec3f(v[0] / scale, v[1] / scale, v[2] / scale);
+Vec3d Vec3d::operator/(double scale) const {
+	return Vec3d(v[0] / scale, v[1] / scale, v[2] / scale);
 }
 
-Vec3f Vec3f::operator+(const Vec3f &other) const {
-	return Vec3f(v[0] + other.v[0], v[1] + other.v[1], v[2] + other.v[2]);
+Vec3d Vec3d::operator+(const Vec3d &other) const {
+	return Vec3d(v[0] + other.v[0], v[1] + other.v[1], v[2] + other.v[2]);
 }
 
-Vec3f Vec3f::operator-(const Vec3f &other) const {
-	return Vec3f(v[0] - other.v[0], v[1] - other.v[1], v[2] - other.v[2]);
+Vec3d Vec3d::operator-(const Vec3d &other) const {
+	return Vec3d(v[0] - other.v[0], v[1] - other.v[1], v[2] - other.v[2]);
 }
 
-Vec3f Vec3f::operator-() const {
-	return Vec3f(-v[0], -v[1], -v[2]);
+Vec3d Vec3d::operator-() const {
+	return Vec3d(-v[0], -v[1], -v[2]);
 }
 
-const Vec3f &Vec3f::operator*=(float scale) {
+const Vec3d &Vec3d::operator*=(double scale) {
 	v[0] *= scale;
 	v[1] *= scale;
 	v[2] *= scale;
 	return *this;
 }
 
-const Vec3f &Vec3f::operator/=(float scale) {
+const Vec3d &Vec3d::operator/=(double scale) {
 	v[0] /= scale;
 	v[1] /= scale;
 	v[2] /= scale;
 	return *this;
 }
 
-const Vec3f &Vec3f::operator+=(const Vec3f &other) {
+const Vec3d &Vec3d::operator+=(const Vec3d &other) {
 	v[0] += other.v[0];
 	v[1] += other.v[1];
 	v[2] += other.v[2];
 	return *this;
 }
 
-const Vec3f &Vec3f::operator-=(const Vec3f &other) {
+const Vec3d &Vec3d::operator-=(const Vec3d &other) {
 	v[0] -= other.v[0];
 	v[1] -= other.v[1];
 	v[2] -= other.v[2];
 	return *this;
 }
 
-float Vec3f::magnitude() const {
+double Vec3d::magnitude() const {
 	return sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
 }
 
-float Vec3f::magnitudeSquared() const {
+double Vec3d::magnitudeSquared() const {
 	return v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
 }
 
-Vec3f Vec3f::normalize() const {
-	float m = sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
-	return Vec3f(v[0] / m, v[1] / m, v[2] / m);
+Vec3d Vec3d::normalize() const {
+	double m = sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+	return Vec3d(v[0] / m, v[1] / m, v[2] / m);
 }
 
-float Vec3f::dot(const Vec3f &other) const {
+double Vec3d::dot(const Vec3d &other) const {
 	return v[0] * other.v[0] + v[1] * other.v[1] + v[2] * other.v[2];
 }
 
-Vec3f Vec3f::cross(const Vec3f &other) const {
-	return Vec3f(v[1] * other.v[2] - v[2] * other.v[1],
+Vec3d Vec3d::cross(const Vec3d &other) const {
+	return Vec3d(v[1] * other.v[2] - v[2] * other.v[1],
 				 v[2] * other.v[0] - v[0] * other.v[2],
 				 v[0] * other.v[1] - v[1] * other.v[0]);
 }
 
-Vec3f operator*(float scale, const Vec3f &v) {
+Vec3d operator*(double scale, const Vec3d &v) {
 	return v * scale;
 }
 
-ostream &operator<<(ostream &output, const Vec3f &v) {
+ostream &operator<<(ostream &output, const Vec3d &v) {
 	cout << '(' << v[0] << ", " << v[1] << ", " << v[2] << ')';
 	return output;
 }

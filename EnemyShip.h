@@ -14,7 +14,6 @@ public:
     virtual bool isDone();
 protected:
 	bool dead;
-    double t;
 private:
 };
 

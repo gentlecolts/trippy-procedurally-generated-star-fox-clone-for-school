@@ -11,7 +11,7 @@
 
 #include <iostream>
 
-class Vec3f;
+class Vec3d;
 class Model;
 class GameObject;
 

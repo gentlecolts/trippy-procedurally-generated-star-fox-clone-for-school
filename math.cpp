@@ -1,7 +1,7 @@
 #include "math.h"///WHY THE FLYING FUCK DO WE HAVE math.h?!?!?! see above line for my confusion
 
 #include "constants.h"
-#include "vec3f.h"
+#include "Vec3d.h"
 
 /**
  double invsqrt(double x)
@@ -40,13 +40,22 @@ double radians(double degrees) {
  double getVector(double xrot, double yrot, double vect[3])
  Gets the unit vector in the direction of (0,0,-1) (forward in OpenGL) rotated by xrot (pitch) and yrot (yaw), and stores it in vect
  */
-Vec3f getVector(double xrot,double yrot) {//TODO: consider only calulating once per frame
-	Vec3f vect;
+Vec3d getVector(double xrot,double yrot) {//TODO: consider only calulating once per frame
+	Vec3d vect=Vec3d(0,0,-1);
 	vect[0]=-sin(radians(yrot));
     vect[1]=sin(radians(xrot))*cos(radians(yrot));
 	vect[2]=-cos(radians(xrot))*cos(radians(yrot));
 	
 	return vect;
+}
+
+Vec3d invGetVector(Vec3d vec) {
+	vec.normalize();
+	
+	double yrot=asin(-vec[0])/pi*180;
+	double xrot=asin(vec[1]/cos(radians(yrot)))/pi*180;
+	
+	return Vec3d(xrot,yrot,0);
 }
 
 /**
@@ -60,10 +69,10 @@ int signum(double val) {
     return (0<val)-(val<0);
 }
 
-Vec3f rotate(Vec3f v, Vec3f axis, float degrees) {
+Vec3d rotate(Vec3d v, Vec3d axis, float degrees) {
     axis = axis.normalize();
     float radians = degrees * pi / 180;
-    float s = sin(radians);
+    float s = -sin(radians);		//it's negative deal with it
     float c = cos(radians);
     return v * c + axis * axis.dot(v) * (1 - c) + v.cross(axis) * s;
 }

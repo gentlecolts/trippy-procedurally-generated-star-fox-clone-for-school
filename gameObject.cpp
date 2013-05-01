@@ -1,3 +1,4 @@
+
 #include "gameObject.h"
 
 #include "imports.h"
@@ -26,10 +27,11 @@ GameObject::GameObject() {
 	parent=NULL;
 	attachPointsFilled=NULL;
 	player=false;
+	t=0;
 	
-	pos=Vec3f(0,0,0);
-	vel=Vec3f(0,0,0);
-	rot=Vec3f(0,0,0);
+	pos=Vec3d(0,0,0);
+	vel=Vec3d(0,0,0);
+	rot=Vec3d(0,0,0);
 }
 
 /**
@@ -80,8 +82,9 @@ void GameObject::render() {
 
 	uniqueRenderLast();
 	
-	for(int i=0;i<numChildren;i++) {
-		children[i]->render();
+	for(int i=0;i<model->numAttachPoints;i++) {
+		if(attachPointsFilled[i])
+			children[i]->render();
 	}
 
 	glPopMatrix();
@@ -97,6 +100,8 @@ void GameObject::doUpdate(double dt) {
     if(!didSetup)
         setup();
 	
+    t+=dt;
+	
 	if(theAnimation!=NULL)
 		theAnimation->tick(dt);
 
@@ -106,9 +111,13 @@ void GameObject::doUpdate(double dt) {
 
     update(dt);
 	
-	for(int i=0;i<numChildren;i++) {
-		children[i]->doUpdate(dt);
+	//cout<<"start"<<endl;
+	for(int i=0;i<model->numAttachPoints;i++) {
+		//cout<<"i "<<i<<" filled "<<attachPointsFilled[i]<<endl;
+		if(attachPointsFilled[i])
+			children[i]->doUpdate(dt);
 	}
+	//cout<<"end"<<endl;
 }
 
 /**
@@ -129,6 +138,12 @@ void GameObject::setup() {
 	
 	if(model->numAttachPoints>0) {
 		children=new GameObject*[model->numAttachPoints];
+		
+		attachPointsFilled=new bool[model->numAttachPoints];
+		
+		for(int i=0;i<model->numAttachPoints;i++) {
+			attachPointsFilled[i]=false;
+		}
 	}
 	
 	afterSetup();
@@ -151,16 +166,28 @@ bool GameObject::collidesWithNoise() {
     return false;
 }
 
-void GameObject::addChild(GameObject *child) {
-	children[numChildren]=child;
+void GameObject::addChild(GameObject *child, int index) {
+	addChild(child, index, Vec3d(0,0,0));
+}
+
+void GameObject::addChild(GameObject *child, int index, Vec3d angle) {
+	if(!didSetup) {
+		setup();
+	}
 	
-	child->pos=model->attachPoints[numChildren];
+	if(index==-1)
+		index=numChildren;
+	numChildren++;
 	
-	child->rot=model->attachPointAngles[numChildren];
+	children[index]=child;
+	
+	child->pos=model->attachPoints[index];
+	
+	child->rot=model->attachPointAngles[index]+angle;
+	
+	attachPointsFilled[index]=true;
 	
 	child->player=player;
-									
-	numChildren++;
 }
 
 /**
@@ -175,26 +202,35 @@ void GameObject::setAnimation(Animation *anim) {
 	theAnimation=anim;
 }
 
-Vec3f GameObject::absoluteAngle() {
+Vec3d GameObject::absoluteAngle() {
 	if(parent!=NULL) {
-		Vec3f parentAngle=parent->absoluteAngle();
-		return Vec3f(parentAngle+rot);
+		Vec3d parentAngle=parent->absoluteAngle();
+		return Vec3d(parentAngle+rot);
 	}
 	return rot;
 }
 
-Vec3f GameObject::absolutePosition() {
+Vec3d GameObject::absolutePosition() {
 	if(parent!=NULL) {
-		Vec3f parentPos=parent->absolutePosition();
-		Vec3f ang=parent->absoluteAngle();
+		cout<<"START"<<endl;
+		Vec3d parentPos=parent->absolutePosition();
+		Vec3d ang=parent->absoluteAngle();
 
-		Vec3f dir=pos;
-		dir=rotate(dir,Vec3f(1,0,0),rot[0]);
-		dir=rotate(dir,Vec3f(1,0,0),rot[0]);
-		dir=rotate(dir,Vec3f(1,0,0),rot[0]);
+		Vec3d dir=pos;
+		dir=rotate(dir,Vec3d(1,0,0),ang[0]);
+		dir=rotate(dir,Vec3d(0,1,0),ang[1]);
+		dir=rotate(dir,Vec3d(0,0,1),ang[2]);
+		
+		cout<<"parent pos: "<<parentPos<<endl;
+		cout<<"pos: "<<pos<<endl;
+		cout<<"ang: "<<ang<<endl;
+		cout<<"dir: "<<dir<<endl;
+		
+		cout<<"pos: "<<parentPos+dir*objScale<<endl;
 		
 		return parentPos+dir*objScale;		//completely wrong
 	}
+	//cout<<"pos: "<<pos<<endl;
 	return pos;
 }
 
@@ -207,10 +243,7 @@ void GameObject::destroy() {
  Does collision detection with another object using two spheres with radius of avgDist
  */
 bool GameObject::collidesWithObject(GameObject* obj) {      //crappy method
-    /*double xD=xpos-obj->xpos;
-    double yD=ypos-obj->ypos;
-    double zD=zpos-obj->zpos;*/
-	Vec3f diff=pos-obj->pos;
+	Vec3d diff=pos-obj->pos;
 
     return diff.magnitude()<avgDist+obj->avgDist;
 }
@@ -223,6 +256,7 @@ bool GameObject::isDone(){return false;}	//For checking when enemies are done
 void GameObject::uniqueRenderLast(){}
 void GameObject::uniqueRenderFirst(){}
 void GameObject::afterSetup(){}
+void GameObject::doFire() {}
 
 
 /**
@@ -230,12 +264,14 @@ void GameObject::afterSetup(){}
  Creates a laser at the position, direction
  */
 void GameObject::fireWeapon() {
-    addLaser(new Laser(pos[0],pos[1],pos[2],rot[0],rot[1],rot[2]),player);
+	doFire();
 	
-	for(int i=0;i<numChildren;i++) {
-		children[i]->fireWeapon();
+	for(int i=0;i<model->numAttachPoints;i++) {
+		if(attachPointsFilled[i])
+			children[i]->fireWeapon();
 	}
 }
+
 
 /**
  GameObject::~GameObject()

@@ -3,6 +3,7 @@
 
 #include "structs.h"
 #include "constants.h"
+#include "vec3d.h"
 
 /**how to determine position
  if the cube has side lengths of 2, and the center is at 0,0
@@ -33,11 +34,11 @@ private:
 	static double dotp[2][2][2];
 	#endif
 
-	static vec3d vec;
+	static Vec3d vec;
 
 	inline void setdotp(double x,double y,double z);
 public:
-	vec3d vals[grid*grid*grid];
+	Vec3d vals[grid*grid*grid];
 
 	double get(double x,double y,double z);
 	void init(uint32_t seed);

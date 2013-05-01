@@ -1,7 +1,7 @@
 #include "enemyShip.h"
 #include "globals.h"
 #include "Model.h"
-#include "vec3f.h"
+#include "Vec3d.h"
 #include "ExplodeAnimation.h"
 
 /**
@@ -37,7 +37,6 @@ void EnemyShip::init(double x,double y){
  Increments t by dt, then moves by xvel, yvel, and zvel, and does collision detection with lasers (and eventually other objects)
  */
 void EnemyShip::update(double dt) {
-    t+=dt;
 	pos[2]-=thePlayerShip->vel[2]*dt;
 	//cout<<"subtracting "<<(thePlayerShip->zvel)<<endl;
 	//cout<<"dt "<<dt<<endl;

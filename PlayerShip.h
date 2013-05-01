@@ -13,6 +13,7 @@ public:
 	void uniqueRenderAfterPop();
 	void handleKeyInput(double dt);
 	void afterSetup();
+	void doFire();
 protected:
 private:
 };

@@ -9,7 +9,7 @@
 #include "ExplodeAnimation.h"
 #include "imports.h"
 #include "Model.h"
-#include "vec3f.h"
+#include "Vec3d.h"
 #include "gameController.h"
 #include "GameObject.h"
 

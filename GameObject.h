@@ -4,7 +4,7 @@
 #include "globals.h"
 
 #include <ctime>
-#include "vec3f.h"
+#include "Vec3d.h"
 
 class EnemyWave;
 class Model;
@@ -15,13 +15,14 @@ class GameObject
 public:
 	Model *model;
 	//float xpos,ypos,zpos,xvel,yvel,zvel;
-	Vec3f pos,vel,rot;
+	Vec3d pos,vel,rot;
 	bool *attachPointsFilled;
 	//float xrot,yrot,zrot;
 	double avgDist;
 	Animation* theAnimation;
 	int numChildren;
 	bool player;
+	double t;
 	
 	GameObject *parent;
 	GameObject** children;
@@ -37,8 +38,9 @@ public:
 	void doUpdate(double dt);
 	void setup();
 	void setAnimation(Animation *anim);
-	Vec3f absolutePosition();
-	Vec3f absoluteAngle();
+	Vec3d absolutePosition();
+	Vec3d absoluteAngle();
+	void fireWeapon();
 	
 	virtual void destroy();
 	virtual void update(double dt);
@@ -46,15 +48,15 @@ public:
 	virtual void uniqueRender();
 	virtual void uniqueRenderFirst();
 	virtual void uniqueRenderLast();
-	virtual void fireWeapon();
 	virtual bool isDone();
-	virtual void addChild(GameObject *child);
+	virtual void addChild(GameObject *child, int index);
+	virtual void addChild(GameObject *child, int index, Vec3d angle);
 	virtual void afterSetup();
+	virtual void doFire();
 protected:
 	int modelSize;
 	long invinceStart;
 private:
-	long t;
 	bool didSetup;
 };
 #endif // GAMEOBJECT_H_INCLUDED

@@ -54,9 +54,13 @@ const double rt2=1/sqrt(2);
 #define ymax 720
 
 #define viewangle 60
+const double sinviewangle=sin(radians(viewangle));
 #define playerOffset 1			//the z position of the plane the player moves in (actually the negative of that because -z is forward)
 #define cameraOffset 1			//the z position of the camera
 #define noiseScale 10           //the scale factor of the terrain, or the half size of the game area in x and y
+
+const double cameraWidth=sinviewangle*playerOffset*3;
+const double cameraHeight=(double)xmax/(double)ymax*cameraWidth;
 
 const double d1=2*tan(radians(viewangle/2.0))/grid;
 const double d2=d1/2;//2*tan(viewangle/4.0)/grid;

@@ -14,11 +14,14 @@
 
 class BasicGun : public GameObject {
 public:
-	void init();
-	void fireWeapon();
-	void update(double dt);
+	virtual void init();
+	virtual void update(double dt);
+	virtual void doFire();
+	virtual void doDoFire();
 	
 	BasicGun(GameObject *p);
+	
+	double fireRate, lastFired;
 };
 
 #endif /* defined(__HelloSDL__BasicGun__) */

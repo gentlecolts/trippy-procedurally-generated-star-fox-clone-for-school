@@ -17,6 +17,8 @@ class Model;
 extern Model *playerShipModel;
 extern Model *ramShipModel;
 extern Model *basicGunModel;
+extern Model *basicStrutModel;
+extern Model *longStrutModel;
 extern GLuint laserTexture;
 
 void initModels();

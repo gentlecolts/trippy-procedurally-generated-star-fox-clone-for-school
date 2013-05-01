@@ -16,9 +16,9 @@ int main(int argc,char** argv){
 	while(true){
 		chkCloseEvent();
 		movecam();
-
-		render();
+		
 		updateObjects();
+		render();
 
 		#if doGL
 		SDL_GL_SwapBuffers();

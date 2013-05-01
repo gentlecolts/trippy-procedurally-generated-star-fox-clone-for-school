@@ -27,36 +27,36 @@
 
 #include <iostream>
 
-class Vec3f {
+class Vec3d {
 	private:
-		float v[3];
+		double v[3];
 	public:
-		Vec3f();
-		Vec3f(float x, float y, float z);
+		Vec3d();
+		Vec3d(double x, double y, double z);
 		
-		float &operator[](int index);
-		float operator[](int index) const;
+		double &operator[](int index);
+		double operator[](int index) const;
 		
-		Vec3f operator*(float scale) const;
-		Vec3f operator/(float scale) const;
-		Vec3f operator+(const Vec3f &other) const;
-		Vec3f operator-(const Vec3f &other) const;
-		Vec3f operator-() const;
+		Vec3d operator*(double scale) const;
+		Vec3d operator/(double scale) const;
+		Vec3d operator+(const Vec3d &other) const;
+		Vec3d operator-(const Vec3d &other) const;
+		Vec3d operator-() const;
 		
-		const Vec3f &operator*=(float scale);
-		const Vec3f &operator/=(float scale);
-		const Vec3f &operator+=(const Vec3f &other);
-		const Vec3f &operator-=(const Vec3f &other);
+		const Vec3d &operator*=(double scale);
+		const Vec3d &operator/=(double scale);
+		const Vec3d &operator+=(const Vec3d &other);
+		const Vec3d &operator-=(const Vec3d &other);
 		
-		float magnitude() const;
-		float magnitudeSquared() const;
-		Vec3f normalize() const;
-		float dot(const Vec3f &other) const;
-		Vec3f cross(const Vec3f &other) const;
+		double magnitude() const;
+		double magnitudeSquared() const;
+		Vec3d normalize() const;
+		double dot(const Vec3d &other) const;
+		Vec3d cross(const Vec3d &other) const;
 };
 
-Vec3f operator*(float scale, const Vec3f &v);
-std::ostream &operator<<(std::ostream &output, const Vec3f &v);
+Vec3d operator*(double scale, const Vec3d &v);
+std::ostream &operator<<(std::ostream &output, const Vec3d &v);
 
 
 

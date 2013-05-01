@@ -57,14 +57,15 @@ void RamShip::init(double x, double y) {
 
 void RamShip::afterSetup() {
 	
-	addChild(new BasicGun(this));
-	addChild(new BasicGun(this));
-	addChild(new BasicGun(this));
-	addChild(new BasicGun(this));
-	addChild(new BasicGun(this));
-	addChild(new BasicGun(this));
-	addChild(new BasicGun(this));
-	addChild(new BasicGun(this));
+	addChild(new BasicGun(this),-1);
+	addChild(new BasicGun(this),-1);
+	addChild(new BasicGun(this),-1);
+	addChild(new BasicGun(this),-1);
+	addChild(new BasicGun(this),-1);
+	addChild(new BasicGun(this),-1);
+	addChild(new BasicGun(this),-1);
+	addChild(new BasicGun(this),-1);
+	 
 	
 }
 
@@ -88,7 +89,7 @@ void RamShip::update(double dt) {
 	
 	double fireRate=0.01;
 	
-	if(fmod(t,fireRate)<=fireRate/2 && fmod(oldT,fireRate)>=fireRate/2) {
-		fireWeapon();
-	}
+	//if(fmod(t,fireRate)<=fireRate/2 && fmod(oldT,fireRate)>=fireRate/2) {
+		//fireWeapon();
+	//}
 }

@@ -17,7 +17,7 @@ int perlin3d::a,perlin3d::b,perlin3d::c;
 double perlin3d::dotp[2][2][2];
 #endif
 
-vec3d perlin3d::vec;
+Vec3d perlin3d::vec;
 
 inline void perlin3d::setdotp(double x,double y,double z){
 	#if dotp1d
@@ -36,13 +36,13 @@ inline void perlin3d::setdotp(double x,double y,double z){
 				//vec.y0=b;
 
 				#if dotp1d
-				vec.dx=x-(a=d&0x1);
-				vec.dy=y-(b=(d>>1)&0x1);
-				vec.dz=z-(c=(d>>2)&0x1);
+				vec[0]=x-(a=d&0x1);
+				vec[1]=y-(b=(d>>1)&0x1);
+				vec[2]=z-(c=(d>>2)&0x1);
 				#else
-				vec.dx=x-a;
-				vec.dy=y-b;
-				vec.dz=z-c;
+				vec[0]=x-a;
+				vec[1]=y-b;
+				vec[2]=z-c;
 				#endif
 
 				#define xtemp ((gx+a)%grid)
@@ -51,9 +51,9 @@ inline void perlin3d::setdotp(double x,double y,double z){
 
 				#if quad==0
 				#if dotp1d
-				dotp[d]=vec+vals[xtemp+grid*(ytemp+grid*ztemp)];
+				dotp[d]=vals[xtemp+grid*(ytemp+grid*ztemp)].dot(vec);
 				#else
-				dotp[a][b][c]=vec+vals[xtemp+grid*(ytemp+grid*ztemp)];
+				dotp[a][b][c]=vals[xtemp+grid*(ytemp+grid*ztemp)].dot(vec);
 				#endif
 				#else
 				///TODO implement this
@@ -132,9 +132,9 @@ void perlin3d::init(uint32_t seed){
 	for(int z=0;z<grid;z++){
 		for(int y=0;y<grid;y++){
 			for(int x=0;x<grid;x++){
-				#define dx vals[x+grid*(y+grid*z)].dx
-				#define dy vals[x+grid*(y+grid*z)].dy
-				#define dz vals[x+grid*(y+grid*z)].dz
+				#define dx vals[x+grid*(y+grid*z)][0]
+				#define dy vals[x+grid*(y+grid*z)][1]
+				#define dz vals[x+grid*(y+grid*z)][2]
 				dz=2*(rnd*=4*(1-rnd))-1;
 				dy=2*(rnd*=4*(1-rnd))-1;
 				dx=((rnd*=4*(1-rnd))>0.5?1:-1)*sqrt(1-(dz*dz+dy*dy));
@@ -146,9 +146,9 @@ void perlin3d::init(uint32_t seed){
 	}/*/
 	double inc,azm;
 	for(int i=0;i<grid*grid*grid;i++){
-		#define dx vals[i].dx
-		#define dy vals[i].dy
-		#define dz vals[i].dz
+		#define dx vals[i][0]
+		#define dy vals[i][1]
+		#define dz vals[i][2]
 		/*
 		dx=2*(rnd*=4*(1-rnd))-1;
 		dy=2*(rnd*=4*(1-rnd))-1;
