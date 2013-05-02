@@ -212,7 +212,6 @@ Vec3d GameObject::absoluteAngle() {
 
 Vec3d GameObject::absolutePosition() {
 	if(parent!=NULL) {
-		cout<<"START"<<endl;
 		Vec3d parentPos=parent->absolutePosition();
 		Vec3d ang=parent->absoluteAngle();
 
@@ -220,13 +219,6 @@ Vec3d GameObject::absolutePosition() {
 		dir=rotate(dir,Vec3d(1,0,0),ang[0]);
 		dir=rotate(dir,Vec3d(0,1,0),ang[1]);
 		dir=rotate(dir,Vec3d(0,0,1),ang[2]);
-		
-		cout<<"parent pos: "<<parentPos<<endl;
-		cout<<"pos: "<<pos<<endl;
-		cout<<"ang: "<<ang<<endl;
-		cout<<"dir: "<<dir<<endl;
-		
-		cout<<"pos: "<<parentPos+dir*objScale<<endl;
 		
 		return parentPos+dir*objScale;		//completely wrong
 	}

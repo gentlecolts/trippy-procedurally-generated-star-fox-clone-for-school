@@ -8,7 +8,7 @@
 #include "BasicGun.h"
 #include "gameController.h"
 #include "BasicStrut.h"
-
+#include "RotateStrut.h"
 #include "FanStrutThing.h"
 
 /**
@@ -89,8 +89,8 @@ void PlayerShip::uniqueRenderAfterPop() {
 }
 
 void PlayerShip::afterSetup() {
-	addChild(new FanStrut(this, 3, basicStrutModel), -1);
-	addChild(new FanStrut(this, 3, basicStrutModel), -1);
+	addChild(new FanStrut(this, 5, basicStrutModel), 0);
+	addChild(new FanStrut(this, 5, basicStrutModel), 1);//, Vec3d(0,0,30));
 }
 
 /**

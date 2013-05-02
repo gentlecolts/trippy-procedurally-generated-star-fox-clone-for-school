@@ -31,15 +31,20 @@ void Laser::init(double x, double y, double z, double xr, double yr, double zr){
     yrot=yr;
     zrot=zr;
 
-	Vec3d vect=getVector(xrot,yrot);
+	//Vec3d vect=getVector(xrot,yrot);
+	
+	Vec3d vect=Vec3d(0,0,-1);
+	vect=rotate(vect,Vec3d(1,0,0),xr);
+	vect=rotate(vect,Vec3d(0,1,0),yr);
+	vect=rotate(vect,Vec3d(0,0,1),zr);
 
     xvel=laserSpeed*vect[0];
     yvel=laserSpeed*vect[1];
 	zvel=laserSpeed*vect[2];
 
-	xpos+=xvel*5*0.02;
-	ypos+=yvel*5*0.02;
-	zpos+=zvel*5*0.02;
+	//xpos+=xvel*5*0.02;
+	//ypos+=yvel*5*0.02;
+	//zpos+=zvel*5*0.02;
 }
 
 /**
@@ -53,9 +58,9 @@ void Laser::render() {
     glTranslatef(xpos, ypos, zpos);
 
     glScalef(objScale,objScale,objScale);
-	glRotatef(xrot, 1.0f, 0.0f, 0.0f);
-	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
 	glRotatef(zrot, 0.0f, 0.0f, 1.0f);
+	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+	glRotatef(xrot, 1.0f, 0.0f, 0.0f);
 
     glDisable(GL_LIGHT0);
     //glEnable(GL_LIGHT1);
@@ -67,9 +72,9 @@ void Laser::render() {
 	glTexCoord2f(36, 4);
     glVertex3f(.2,0,0);
 	glTexCoord2f(28, 58);
-    glVertex3f(.2,0,5);
+    glVertex3f(.2,0,-5);
 	glTexCoord2f(36, 58);
-    glVertex3f(-.2,0,5);
+    glVertex3f(-.2,0,-5);
 
     glEnd();
 
@@ -104,7 +109,7 @@ bool Laser::collidesWithObject(GameObject* obj) {
         return true;
     }
     
-    zD+=5*objScale;
+    zD-=5*objScale;
     
     return sqrt(xD*xD+yD*yD+zD*zD)<obj->avgDist*3;
 }
@@ -118,7 +123,7 @@ bool Laser::collidesWithNoise() {
         x=xpos/noiseScale *grid2+grid2,
         y=ypos/noiseScale *grid2+grid2,
         z=-d*grid*(zpos/noiseScale+d/2),
-        z2=-d*grid*((5*objScale+zpos)/noiseScale+d/2)
+        z2=-d*grid*((-5*objScale+zpos)/noiseScale+d/2)
     ;
     if(noise[precompindx(x,y,z+zshft)]>tolerance ||
        noise[precompindx(x,y,z2+zshft)]>tolerance){

@@ -10,6 +10,7 @@
 #include "Model.h"
 #include "BasicGun.h"
 #include "ModelConstants.h"
+#include "RotateStrut.h"
 
 void FanStrut::afterSetup() {
 	BasicStrut::afterSetup();
@@ -18,7 +19,7 @@ void FanStrut::afterSetup() {
 		GameObject *child=this;
 		for(int i=0;i<level;i++) {
 			//cout<<"ADDING"<<endl;
-			BasicStrut *spar=new BasicStrut(child,longStrutModel);
+			BasicStrut *spar=new RotateStrut(child,longStrutModel, Vec3d(30*(num ? 1 : -1),0,0),Vec3d(-30*(num ? 1 : -1),0,0), 1.0);
 			if(i>0)
 				child->addChild(spar, 1);
 			else
@@ -34,7 +35,7 @@ void FanStrut::afterSetup() {
 	}
 	
 	if(level>0) {
-		BasicStrut *childBasicStrut=new BasicStrut(this, longStrutModel);
+		BasicStrut *childBasicStrut=new RotateStrut(this, longStrutModel, Vec3d(0,-30,0),Vec3d(0,30,0),1.0);
 		addChild(childBasicStrut, 3);
 		
 		FanStrut *childFanStrut=new FanStrut(childBasicStrut, level-1, model);

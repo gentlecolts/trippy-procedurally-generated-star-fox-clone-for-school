@@ -28,17 +28,19 @@ void glRender() {
 	///NOTE: need to resolve the issue of the last rect not being drawn
 	double counter=0;
 	for(int a=0;a<grid/step;a++){
-		if(z>((double)playerOffset)/noiseScale)
-			counter+=sin(a/(grid/step));
+		z=grid-a*step;
+		if(z/grid>((double)playerOffset*5)/noiseScale) {
+			counter+=sin(a/(grid/step))*2;
+		}
 	}
-	glRotatef(counter, 0.0, 1.0, 0.7);
+	glRotatef(counter, 0.0, 1.0, 0.3);
 	
 	for(int a=0;a<grid/step;a++){
 		//x=grid*a/(grid/(delta/2));
 		z=grid-a*step;
 		
-		if(z>((double)playerOffset)/noiseScale)
-			glRotatef(-sin(a/(grid/step)), 0.0, 1.0, 0.7);
+		if(z/grid>((double)playerOffset*5)/noiseScale)
+			glRotatef(-sin(a/(grid/step))*2, 0.0, 1.0, 0.3);
 		glBegin(GL_QUADS);
 		
 		for(int b=0;b<grid/step;b++){
