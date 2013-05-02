@@ -17,12 +17,14 @@ class HoverShip : public EnemyShip {
 private:
 protected:
 	Vec3d oldVel;
+	double lastT;
 public:
 	double pauseTime, time;
 	HoverShip(double x, double y, int n);
 	void init(double x, double y);
 	void update(double dt);
 	void afterSetup();
+	bool isDone();
 };
 
 #endif /* defined(__HelloSDL__HoverShip__) */

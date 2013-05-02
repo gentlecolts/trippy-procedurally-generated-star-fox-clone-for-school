@@ -53,7 +53,7 @@ void updateObjects() {
         readyForNextWave=true;
 		//cout<<gameObjects.size()<<endl;
     }
-    if(currentWave==NULL || (readyForNextWave /*&& currentWave->isDone()*/)) {
+    if(currentWave==NULL || (readyForNextWave && currentWave->isDone())) {
         nextWave();
 		lastWaveTime=curTime;
         readyForNextWave=false;

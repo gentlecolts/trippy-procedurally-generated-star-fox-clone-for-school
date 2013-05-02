@@ -30,8 +30,8 @@ void TestEnemyWave1::init(){
     ship3=new RamShip(x,y+.5,s+2);*/
 	
 	ship1=new HoverShip(x,y,s);
-    ship2=new HoverShip(x+.5,y,s+1);
-    ship3=new HoverShip(x,y+.5,s+2);
+    ship2=new HoverShip(x+3,y,s+1);
+    ship3=new HoverShip(x,y+3,s+2);
 
     ship1->parentWave=this;
     ship2->parentWave=this;
@@ -79,10 +79,7 @@ bool TestEnemyWave1::isDone(){
     if(done)
         return true;
     else {
-		if(ship1->t>3)
-			done=childrenDone();
-		else
-			done=false;
+		done=childrenDone();
         return done;
     }
 }
@@ -92,7 +89,6 @@ bool TestEnemyWave1::isDone(){
  Return true if all of its children are done or NULL
  */
 bool TestEnemyWave1::childrenDone(){
-	cout<<"done: "<<((ship1==NULL || ship1->isDone()) && (ship2==NULL || ship2->isDone()) && (ship3==NULL || ship3->isDone()))<<endl;
     return (ship1==NULL || ship1->isDone()) && (ship2==NULL || ship2->isDone()) && (ship3==NULL || ship3->isDone());
 }
 

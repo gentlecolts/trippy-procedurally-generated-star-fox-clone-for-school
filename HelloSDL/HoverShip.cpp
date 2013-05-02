@@ -12,6 +12,7 @@
 #include "Model.h"
 #include "constants.h"
 #include "BasicGun.h"
+#include "FanStrutThing.h"
 
 /**
  HoverShip::HoverShip(double x, double y, int n)
@@ -47,7 +48,8 @@ void HoverShip::init(double x, double y) {
 	pos[0]*=signum(x);
 	pos[1]*=signum(y);
 	
-	int startPos=-50,time=8;
+	int startPos=-20;
+	time=8;
 	pauseTime=8;
 	
     pos[2]=startPos-playerOffset;
@@ -55,10 +57,20 @@ void HoverShip::init(double x, double y) {
     vel[0]=-(pos[0]-x)/(time/2);
     vel[1]=(pos[1]-y)/(time/2);
     vel[2]=(pos[2]+playerOffset-thePlayerShip->vel[2]*time)/time;
+	
+	oldVel=vel;
+}
+
+bool HoverShip::isDone() {	return pos[2]>=cameraOffset;
 }
 
 void HoverShip::afterSetup() {
 	rot[1]+=180;
+	
+	addChild(new FanStrut(this, 5, basicStrutModel), 0);
+	addChild(new FanStrut(this, 5, basicStrutModel), 1);//, Vec3d(0,0,30));
+	
+	lastT=t;
 }
 
 /**
@@ -66,7 +78,6 @@ void HoverShip::afterSetup() {
  Calls the superclass version, sets vel[2] so that it curves parabolically into its target point at (x, y, -playerOffset), then rotates slightly
  */
 void HoverShip::update(double dt) {
-	double oldT=t;
 	EnemyShip::update(dt);
 	
 	if(t>time/2+pauseTime || t<time/2) {
@@ -78,9 +89,11 @@ void HoverShip::update(double dt) {
 		vel=Vec3d(0,0,-thePlayerShip->vel[2]);
 	}
 	
-	double fireRate=0.01;
+	double fireRate=1.0;
 	
-	//if(fmod(t,fireRate)<=fireRate/2 && fmod(oldT,fireRate)>=fireRate/2) {
-	//fireWeapon();
-	//}
+	if(fmod(t,fireRate)<=fireRate/2 && fmod(lastT,fireRate)>=fireRate/2) {
+		fireWeapon();
+	}
+	
+	lastT=t;
 }
