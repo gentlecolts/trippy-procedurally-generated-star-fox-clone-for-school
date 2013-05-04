@@ -50,9 +50,10 @@ Vec3d getVector(double xrot,double yrot) {//TODO: consider only calulating once 
 }
 
 Vec3d invGetVector(Vec3d vec) {
-	vec.normalize();
+	vec=vec.normalize();
 	
 	double yrot=asin(-vec[0])/pi*180;
+	//std::cout<<"vec[0]: "<<-vec[0]<<std::endl;
 	double xrot=asin(vec[1]/cos(radians(yrot)))/pi*180;
 	
 	return Vec3d(xrot,yrot,0);

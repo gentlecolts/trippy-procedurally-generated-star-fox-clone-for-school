@@ -11,6 +11,7 @@
 #include "Model.h"
 #include "constants.h"
 #include "BasicGun.h"
+#include "FanStrutThing.h"
 
 /**
  RamShip::RamShip(double x, double y, int n)
@@ -57,14 +58,24 @@ void RamShip::init(double x, double y) {
 
 void RamShip::afterSetup() {
 	
+	/*addChild(new BasicGun(this),-1);
 	addChild(new BasicGun(this),-1);
 	addChild(new BasicGun(this),-1);
 	addChild(new BasicGun(this),-1);
 	addChild(new BasicGun(this),-1);
 	addChild(new BasicGun(this),-1);
 	addChild(new BasicGun(this),-1);
-	addChild(new BasicGun(this),-1);
-	addChild(new BasicGun(this),-1);
+	addChild(new BasicGun(this),-1);*/
+	
+	
+	addChild(new FanStrut(this, 5, basicStrutModel), -1);
+	addChild(new FanStrut(this, 5, basicStrutModel), -1);
+	addChild(new FanStrut(this, 5, basicStrutModel), -1);
+	addChild(new FanStrut(this, 5, basicStrutModel), -1);
+	addChild(new FanStrut(this, 5, basicStrutModel), -1);
+	addChild(new FanStrut(this, 5, basicStrutModel), -1);
+	addChild(new FanStrut(this, 5, basicStrutModel), -1);
+	addChild(new FanStrut(this, 5, basicStrutModel), -1);
 	 
 	
 }

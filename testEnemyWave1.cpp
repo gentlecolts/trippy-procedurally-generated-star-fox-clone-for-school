@@ -27,12 +27,14 @@ void TestEnemyWave1::init(){
 	
     /*ship1=new RamShip(x,y,s);
     ship2=new RamShip(x+.5,y,s+1);
-    ship3=new RamShip(x,y+.5,s+2);*/
+    ship3=new RamShip(x,y+.5,s+2);//*/
 	
+	//*
 	ship1=new HoverShip(x,y,s);
     ship2=new HoverShip(x+3,y,s+1);
     ship3=new HoverShip(x,y+3,s+2);
-
+	//*/
+	
     ship1->parentWave=this;
     ship2->parentWave=this;
     ship3->parentWave=this;

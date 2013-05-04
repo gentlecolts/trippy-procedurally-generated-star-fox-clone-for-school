@@ -1,0 +1,17 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 Transform relative to the base node\
+Transform so that the base node is facing the right way\
+	(transform backwards each axis in backwards order (z,x,y))\
+Transform target relative to child\
+	rotate the child so it's facing -z\
+		(don't do for the gun itself)\
+\
+^inverse this to get abs. position and angle\
+\
+take the difference in the angles\
+	(atan2 of x and atan2 of z)}

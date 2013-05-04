@@ -10,6 +10,7 @@
 #include "Animation.h"
 #include "math.h"
 #include "enemyWave.h"
+#include "Matrix.h"
 
 #include <iostream>
 
@@ -41,9 +42,9 @@ GameObject::GameObject() {
 void GameObject::render() {
 	glPushMatrix();
 	glTranslatef(pos[0], pos[1], pos[2]);
-
-	glRotatef(rot[0], 1.0f, 0.0f, 0.0f);
+	
 	glRotatef(rot[1], 0.0f, 1.0f, 0.0f);
+	glRotatef(rot[0], 1.0f, 0.0f, 0.0f);
 	glRotatef(rot[2], 0.0f, 0.0f, 1.0f);
 
 	uniqueRenderFirst();
@@ -61,7 +62,7 @@ void GameObject::render() {
 			glPushMatrix();
 			theAnimation->doTriangleTransform(i);
 			glBegin(model->type);
-		} else if(i%3==0) {
+		} else if(i%model->verticesPerFace()==0) {
 			glNormal3f(model->normals[i/model->verticesPerFace()][0], model->normals[i/model->verticesPerFace()][1], model->normals[i/model->verticesPerFace()][2]);
 		}
 		
@@ -69,7 +70,7 @@ void GameObject::render() {
             glColor3f(model->colors[i][0],model->colors[i][1],model->colors[i][2]);
 		glVertex3f(model->vertices[i][0],model->vertices[i][1],model->vertices[i][2]);
 		
-		if(i%3==2 && theAnimation!=NULL) {
+		if(i%model->verticesPerFace()==model->verticesPerFace()-1 && theAnimation!=NULL) {
 			glEnd();
 			glPopMatrix();
 		}
@@ -90,6 +91,11 @@ void GameObject::render() {
 	glPopMatrix();
 
 	uniqueRenderAfterPop();
+}
+
+Matrix GameObject::getMatrix() {
+	
+	
 }
 
 /**

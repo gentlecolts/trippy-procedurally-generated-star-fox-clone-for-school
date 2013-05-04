@@ -47,6 +47,8 @@ class Vec3d {
 		const Vec3d &operator/=(double scale);
 		const Vec3d &operator+=(const Vec3d &other);
 		const Vec3d &operator-=(const Vec3d &other);
+	
+		Vec3d operator*(Matrix mat) const;
 		
 		double magnitude() const;
 		double magnitudeSquared() const;

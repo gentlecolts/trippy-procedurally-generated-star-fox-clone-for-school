@@ -59,4 +59,6 @@ protected:
 private:
 	bool didSetup;
 };
+
+
 #endif // GAMEOBJECT_H_INCLUDED

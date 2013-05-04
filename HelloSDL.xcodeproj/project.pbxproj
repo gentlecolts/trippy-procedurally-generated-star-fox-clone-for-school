@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		640463ED1733FA9100C8F71E /* ObjectFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 640463EB1733FA9000C8F71E /* ObjectFactory.cpp */; };
+		640463F01734383600C8F71E /* AimingStrut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 640463EE1734383600C8F71E /* AimingStrut.cpp */; };
 		64241AE4171317B80021A48E /* enemyWave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64241AE2171317B80021A48E /* enemyWave.cpp */; };
 		64241AE71713187A0021A48E /* testEnemyWave1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64241AE51713187A0021A48E /* testEnemyWave1.cpp */; };
 		642F9D93171705AB005FEFD3 /* ExplodeAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 642F9D91171705AB005FEFD3 /* ExplodeAnimation.cpp */; };
@@ -15,6 +17,7 @@
 		646D9E54171601A3004FD3F5 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 646D9E52171601A3004FD3F5 /* Animation.cpp */; };
 		6473C84B17296A5C00B2AD55 /* gameShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6473C84917296A5C00B2AD55 /* gameShip.cpp */; };
 		6473C84E17296EFE00B2AD55 /* BasicGun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6473C84C17296EFD00B2AD55 /* BasicGun.cpp */; };
+		6482BCEE1735521A0055C84A /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6482BCEC1735521A0055C84A /* Matrix.cpp */; };
 		648F1AB41726C2A80013762E /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 648F1AB31726C2A80013762E /* SDL.framework */; };
 		64A029DB1732AE5E00526D63 /* RotateStrut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A029D91732AE5E00526D63 /* RotateStrut.cpp */; };
 		64A029DE1732EAA600526D63 /* HoverShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A029DC1732EAA500526D63 /* HoverShip.cpp */; };
@@ -51,6 +54,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		640463EB1733FA9000C8F71E /* ObjectFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectFactory.cpp; sourceTree = "<group>"; };
+		640463EC1733FA9100C8F71E /* ObjectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectFactory.h; sourceTree = "<group>"; };
+		640463EE1734383600C8F71E /* AimingStrut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AimingStrut.cpp; sourceTree = "<group>"; };
+		640463EF1734383600C8F71E /* AimingStrut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AimingStrut.h; sourceTree = "<group>"; };
 		64241AE2171317B80021A48E /* enemyWave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enemyWave.cpp; path = "/Users/jonahchazan/Desktop/trippy-procedurally-generated-star-fox-clone-for-school/enemyWave.cpp"; sourceTree = "<absolute>"; };
 		64241AE3171317B80021A48E /* enemyWave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enemyWave.h; path = "/Users/jonahchazan/Desktop/trippy-procedurally-generated-star-fox-clone-for-school/enemyWave.h"; sourceTree = "<absolute>"; };
 		64241AE51713187A0021A48E /* testEnemyWave1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testEnemyWave1.cpp; path = "/Users/jonahchazan/Desktop/trippy-procedurally-generated-star-fox-clone-for-school/testEnemyWave1.cpp"; sourceTree = "<absolute>"; };
@@ -70,6 +77,8 @@
 		6473C84C17296EFD00B2AD55 /* BasicGun.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicGun.cpp; sourceTree = "<group>"; };
 		6473C84D17296EFE00B2AD55 /* BasicGun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicGun.h; sourceTree = "<group>"; };
 		647C39B61714A8A0000B8B1B /* imports.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = imports.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/imports.h"; sourceTree = "<group>"; };
+		6482BCEC1735521A0055C84A /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
+		6482BCED1735521A0055C84A /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
 		648F1AB11726BBD70013762E /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
 		648F1AB31726C2A80013762E /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = Library/Frameworks/SDL.framework; sourceTree = DEVELOPER_DIR; };
 		64A029D91732AE5E00526D63 /* RotateStrut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateStrut.cpp; sourceTree = "<group>"; };
@@ -168,6 +177,8 @@
 			children = (
 				64A789CB170C75F700CCAB2F /* gameObject.cpp */,
 				64A789CC170C75F700CCAB2F /* GameObject.h */,
+				640463EB1733FA9000C8F71E /* ObjectFactory.cpp */,
+				640463EC1733FA9100C8F71E /* ObjectFactory.h */,
 				6473C84917296A5C00B2AD55 /* gameShip.cpp */,
 				6473C84A17296A5C00B2AD55 /* gameShip.h */,
 				64A789DE170C75F800CCAB2F /* PlayerShip.cpp */,
@@ -247,6 +258,8 @@
 				64A789E2170C75F800CCAB2F /* structs.h */,
 				64A789D8170C75F800CCAB2F /* math.cpp */,
 				64A789D9170C75F800CCAB2F /* math.h */,
+				6482BCEC1735521A0055C84A /* Matrix.cpp */,
+				6482BCED1735521A0055C84A /* Matrix.h */,
 				64A789C6170C75F700CCAB2F /* constants.h */,
 				647C39B61714A8A0000B8B1B /* imports.h */,
 				64A789CF170C75F700CCAB2F /* globals.cpp */,
@@ -293,6 +306,8 @@
 			children = (
 				64DBC33B1730301E0078B26C /* FanStrutThing.cpp */,
 				64DBC33C1730301E0078B26C /* FanStrutThing.h */,
+				640463EE1734383600C8F71E /* AimingStrut.cpp */,
+				640463EF1734383600C8F71E /* AimingStrut.h */,
 				6473C84C17296EFD00B2AD55 /* BasicGun.cpp */,
 				6473C84D17296EFE00B2AD55 /* BasicGun.h */,
 				6453CA52172ECB45007D9724 /* BasicStrut.cpp */,
@@ -454,6 +469,9 @@
 				64DBC33D1730301E0078B26C /* FanStrutThing.cpp in Sources */,
 				64A029DB1732AE5E00526D63 /* RotateStrut.cpp in Sources */,
 				64A029DE1732EAA600526D63 /* HoverShip.cpp in Sources */,
+				640463ED1733FA9100C8F71E /* ObjectFactory.cpp in Sources */,
+				640463F01734383600C8F71E /* AimingStrut.cpp in Sources */,
+				6482BCEE1735521A0055C84A /* Matrix.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
