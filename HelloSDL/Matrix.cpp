@@ -12,35 +12,41 @@
 #include "imports.h"
 
 Matrix::Matrix() {
-	v=new Vec3d[3];
-	v[0]=new Vec3d;
-	v[1]=new Vec3d;
-	v[2]=new Vec3d;
+	v=new Vec4d[4];
+	v[0]=Vec4d(1, 0, 0, 0);
+	v[1]=Vec4d(0, 1, 0, 0);
+	v[2]=Vec4d(0, 0, 1, 0);
+	v[3]=Vec4d(0, 0, 0, 1);
 }
 
-Matrix::Matrix(Vec3d x, Vec3d y, Vec3d z) {
+Matrix::Matrix(Vec4d x, Vec4d y, Vec4d z, Vec4d w) {
+	v=new Vec4d[4];
 	v[0] = x;
 	v[1] = y;
 	v[2] = z;
+	v[3] = w;
 }
 
-Matrix::Matrix(Vec3d angles) {
+Matrix::Matrix(Vec4d angles) {
 	Matrix yRotMat=Matrix(
-		Vec3d(cos(radians(angles[1])), 0, sin(radians(angles[1]))),
-		Vec3d(0, 1, 0),
-		Vec3d(-sin(radians(angles[1])), 0, cos(radians(angles[1])))
+		Vec4d(cos(radians(angles[1])), 0, sin(radians(angles[1])), 0),
+		Vec4d(0, 1, 0, 0),
+		Vec4d(-sin(radians(angles[1])), 0, cos(radians(angles[1])), 0),
+		Vec4d(0, 0, 0, 1)
 	);
 	
 	Matrix xRotMat=Matrix(
-						  Vec3d(1, 0, 0),
-						  Vec3d(0, cos(radians(angles[0])), -sin(radians(angles[0]))),
-						  Vec3d(0, sin(radians(angles[0])), cos(radians(angles[0])))
+						  Vec4d(1, 0, 0, 0),
+						  Vec4d(0, cos(radians(angles[0])), -sin(radians(angles[0])), 0),
+						  Vec4d(0, sin(radians(angles[0])), cos(radians(angles[0])), 0),
+						  Vec4d(0, 0, 0, 1)
 						  );
 	
 	Matrix zRotMat=Matrix(
-						  Vec3d(cos(radians(angles[2])), -sin(radians(angles[2])), 0),
-						  Vec3d(sin(radians(angles[2])), cos(radians(angles[2])), 0),
-						  Vec3d(0, 0, 1)
+						  Vec4d(cos(radians(angles[2])), -sin(radians(angles[2])), 0, 0),
+						  Vec4d(sin(radians(angles[2])), cos(radians(angles[2])), 0, 0),
+						  Vec4d(0, 0, 1, 0),
+						  Vec4d(0, 0, 0, 1)
 						  );
 	
 	Matrix comb=yRotMat*xRotMat*zRotMat;
@@ -48,38 +54,39 @@ Matrix::Matrix(Vec3d angles) {
 	v=comb.v;
 }
 
-Vec3d &Matrix::operator[](int index) {
+Vec4d &Matrix::operator[](int index) {
 	return v[index];
 }
 
-Vec3d Matrix::operator[](int index) const {
+Vec4d Matrix::operator[](int index) const {
 	return v[index];
 }
 
 Matrix Matrix::operator*(double scale) const {
-	return Matrix(v[0] * scale, v[1] * scale, v[2] * scale);
+	return Matrix(v[0] * scale, v[1] * scale, v[2] * scale, v[3] * scale);
 }
 
 Matrix Matrix::operator/(double scale) const {
-	return Matrix(v[0] / scale, v[1] / scale, v[2] / scale);
+	return Matrix(v[0] / scale, v[1] / scale, v[2] / scale, v[3] / scale);
 }
 
 Matrix Matrix::operator+(const Matrix &other) const {
-	return Matrix(v[0] + other.v[0], v[1] + other.v[1], v[2] + other.v[2]);
+	return Matrix(v[0] + other.v[0], v[1] + other.v[1], v[2] + other.v[2], v[3] + other.v[3]);
 }
 
 Matrix Matrix::operator-(const Matrix &other) const {
-	return Matrix(v[0] - other.v[0], v[1] - other.v[1], v[2] - other.v[2]);
+	return Matrix(v[0] - other.v[0], v[1] - other.v[1], v[2] - other.v[2], v[3] - other.v[3]);
 }
 
 Matrix Matrix::operator-() const {
-	return Matrix(-v[0], -v[1], -v[2]);
+	return Matrix(-v[0], -v[1], -v[2], -v[3]);
 }
 
-Vec3d Matrix::operator*(Vec3d vect) const {
-	return Vec3d(v[0][0]*vect[0]+v[0][1]*vect[1]+v[0][2]*vect[2],
-				 v[1][0]*vect[0]+v[1][1]*vect[1]+v[1][2]*vect[2],
-				 v[2][0]*vect[0]+v[2][1]*vect[1]+v[2][2]*vect[2]
+Vec4d Matrix::operator*(Vec4d vect) const {
+	return Vec4d(v[0][0]*vect[0]+v[0][1]*vect[1]+v[0][2]*vect[2]+v[0][3]*vect[3],
+				 v[1][0]*vect[0]+v[1][1]*vect[1]+v[1][2]*vect[2]+v[1][3]*vect[3],
+				 v[2][0]*vect[0]+v[2][1]*vect[1]+v[2][2]*vect[2]+v[2][3]*vect[3],
+				 v[3][0]*vect[0]+v[3][1]*vect[1]+v[3][2]*vect[2]+v[3][3]*vect[3]
 	);
 }
 
@@ -88,7 +95,7 @@ Matrix Matrix::operator*(Matrix mat) const {
 	
 	for(int i=0;i<3;i++) {
 		for(int j=0;j<3;j++) {
-			Vec3d columnVec=Vec3d(v[0][i],v[1][i],v[2][i]);
+			Vec4d columnVec=Vec4d(v[0][i],v[1][i],v[2][i], v[3][i]);
 			comb[i][j]=columnVec.dot(mat[j]);
 		}
 	}
@@ -108,6 +115,7 @@ const Matrix &Matrix::operator*=(double scale) {
 	v[0] *= scale;
 	v[1] *= scale;
 	v[2] *= scale;
+	v[3] *= scale;
 	return *this;
 }
 
@@ -115,6 +123,7 @@ const Matrix &Matrix::operator/=(double scale) {
 	v[0] /= scale;
 	v[1] /= scale;
 	v[2] /= scale;
+	v[3] /= scale;
 	return *this;
 }
 
@@ -122,6 +131,7 @@ const Matrix &Matrix::operator+=(const Matrix &other) {
 	v[0] += other.v[0];
 	v[1] += other.v[1];
 	v[2] += other.v[2];
+	v[3] += other.v[3];
 	return *this;
 }
 
@@ -129,5 +139,6 @@ const Matrix &Matrix::operator-=(const Matrix &other) {
 	v[0] -= other.v[0];
 	v[1] -= other.v[1];
 	v[2] -= other.v[2];
+	v[3] -= other.v[3];
 	return *this;
 }

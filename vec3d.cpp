@@ -66,13 +66,6 @@ Vec3d Vec3d::operator-() const {
 	return Vec3d(-v[0], -v[1], -v[2]);
 }
 
-Vec3d Vec3d::operator*(Matrix mat) const {
-	return Vec3d(mat[0][0]*v[0]+mat[0][1]*v[1]+mat[0][2]*v[2],
-				mat[1][0]*v[0]+mat[1][1]*v[1]+mat[1][2]*v[2],
-				mat[2][0]*v[0]+mat[2][1]*v[1]+mat[2][2]*v[2]
-														 );
-}
-
 const Vec3d &Vec3d::operator*=(double scale) {
 	v[0] *= scale;
 	v[1] *= scale;
@@ -126,6 +119,10 @@ Vec3d Vec3d::cross(const Vec3d &other) const {
 
 Vec3d operator*(double scale, const Vec3d &v) {
 	return v * scale;
+}
+
+Vec3d::operator Vec4d() {
+	return Vec4d(v[0], v[1], v[2], 1);
 }
 
 ostream &operator<<(ostream &output, const Vec3d &v) {

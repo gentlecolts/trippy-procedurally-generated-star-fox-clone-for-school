@@ -94,8 +94,21 @@ void GameObject::render() {
 }
 
 Matrix GameObject::getMatrix() {
+	Matrix mat;
+	if(parent!=NULL) {
+		mat=parent->getMatrix();
+	}
 	
+	mat=mat*Matrix(
+				   Vec4d(1, 0, 0, pos[0]),				//translation
+				   Vec4d(0, 1, 0, pos[1]),
+				   Vec4d(0, 0, 1, pos[2]),
+				   Vec4d(0, 0, 0, 1)
+	);
 	
+	mat=mat*Matrix(rot);
+	
+	return mat;
 }
 
 /**
@@ -209,11 +222,9 @@ void GameObject::setAnimation(Animation *anim) {
 }
 
 Vec3d GameObject::absoluteAngle() {
-	if(parent!=NULL) {
-		Vec3d parentAngle=parent->absoluteAngle();
-		return Vec3d(parentAngle+rot);
-	}
-	return rot;
+	Vec3d diff=getMatrix()*Vec4d(0, 0, -1, 1);
+	
+	return invGetVector(diff);
 }
 
 Vec3d GameObject::absolutePosition() {

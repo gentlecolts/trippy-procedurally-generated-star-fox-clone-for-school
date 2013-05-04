@@ -90,9 +90,9 @@ void PlayerShip::uniqueRenderAfterPop() {
 }
 
 void PlayerShip::afterSetup() {
-	//addChild(new FanStrut(this, 5, basicStrutModel), 0);
-	//addChild(new FanStrut(this, 5, basicStrutModel), 1);//, Vec3d(0,0,30));
-	addChild(new AimingStrut(this, 9000, longStrutModel), 0);
+	addChild(new FanStrut(this, 5, basicStrutModel), 0);
+	addChild(new FanStrut(this, 5, basicStrutModel), 1);//, Vec3d(0,0,30));
+	//addChild(new AimingStrut(this, 9000, longStrutModel), 0);
 }
 
 /**

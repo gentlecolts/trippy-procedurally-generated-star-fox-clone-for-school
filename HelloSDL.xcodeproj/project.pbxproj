@@ -18,6 +18,7 @@
 		6473C84B17296A5C00B2AD55 /* gameShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6473C84917296A5C00B2AD55 /* gameShip.cpp */; };
 		6473C84E17296EFE00B2AD55 /* BasicGun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6473C84C17296EFD00B2AD55 /* BasicGun.cpp */; };
 		6482BCEE1735521A0055C84A /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6482BCEC1735521A0055C84A /* Matrix.cpp */; };
+		6482BCF11735A6BC0055C84A /* Vec4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6482BCEF1735A6BC0055C84A /* Vec4d.cpp */; };
 		648F1AB41726C2A80013762E /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 648F1AB31726C2A80013762E /* SDL.framework */; };
 		64A029DB1732AE5E00526D63 /* RotateStrut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A029D91732AE5E00526D63 /* RotateStrut.cpp */; };
 		64A029DE1732EAA600526D63 /* HoverShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A029DC1732EAA500526D63 /* HoverShip.cpp */; };
@@ -79,6 +80,8 @@
 		647C39B61714A8A0000B8B1B /* imports.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = imports.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/imports.h"; sourceTree = "<group>"; };
 		6482BCEC1735521A0055C84A /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
 		6482BCED1735521A0055C84A /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
+		6482BCEF1735A6BC0055C84A /* Vec4d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vec4d.cpp; sourceTree = "<group>"; };
+		6482BCF01735A6BC0055C84A /* Vec4d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vec4d.h; sourceTree = "<group>"; };
 		648F1AB11726BBD70013762E /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
 		648F1AB31726C2A80013762E /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = Library/Frameworks/SDL.framework; sourceTree = DEVELOPER_DIR; };
 		64A029D91732AE5E00526D63 /* RotateStrut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateStrut.cpp; sourceTree = "<group>"; };
@@ -255,6 +258,8 @@
 			children = (
 				646D9E501715FE07004FD3F5 /* vec3d.cpp */,
 				646D9E511715FE07004FD3F5 /* vec3d.h */,
+				6482BCEF1735A6BC0055C84A /* Vec4d.cpp */,
+				6482BCF01735A6BC0055C84A /* Vec4d.h */,
 				64A789E2170C75F800CCAB2F /* structs.h */,
 				64A789D8170C75F800CCAB2F /* math.cpp */,
 				64A789D9170C75F800CCAB2F /* math.h */,
@@ -472,6 +477,7 @@
 				640463ED1733FA9100C8F71E /* ObjectFactory.cpp in Sources */,
 				640463F01734383600C8F71E /* AimingStrut.cpp in Sources */,
 				6482BCEE1735521A0055C84A /* Matrix.cpp in Sources */,
+				6482BCF11735A6BC0055C84A /* Vec4d.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

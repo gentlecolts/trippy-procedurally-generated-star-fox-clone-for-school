@@ -26,6 +26,9 @@
 #define VEC3F_H_INCLUDED
 
 #include <iostream>
+#include "Matrix.h"
+
+class Vec4d;
 
 class Vec3d {
 	private:
@@ -42,13 +45,12 @@ class Vec3d {
 		Vec3d operator+(const Vec3d &other) const;
 		Vec3d operator-(const Vec3d &other) const;
 		Vec3d operator-() const;
+		operator Vec4d();
 		
 		const Vec3d &operator*=(double scale);
 		const Vec3d &operator/=(double scale);
 		const Vec3d &operator+=(const Vec3d &other);
 		const Vec3d &operator-=(const Vec3d &other);
-	
-		Vec3d operator*(Matrix mat) const;
 		
 		double magnitude() const;
 		double magnitudeSquared() const;

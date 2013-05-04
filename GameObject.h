@@ -42,6 +42,8 @@ public:
 	Vec3d absoluteAngle();
 	void fireWeapon();
 	
+	Matrix getMatrix();
+	
 	virtual void destroy();
 	virtual void update(double dt);
 	virtual void uniqueRenderAfterPop();
