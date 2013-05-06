@@ -25,6 +25,7 @@ public:
 	
 	GameShip* destroyAndGetNext();
 	GameShip* getNext();
+	GameShip* head();
 	void setNext(GameShip *n);
 	void deleteAndDeleteChildren();
 	void appendObject(GameShip *obj);

@@ -13,6 +13,7 @@ GameShip::GameShip(int n) : GameObject() {
 	next=NULL;
 	parentWave=NULL;
 	scheduledToDelete=false;
+	previous=NULL;
 	
 	index=n;
 }
@@ -73,6 +74,13 @@ void GameShip::deleteAndDeleteChildren() {
 	delete this;
 }
 
+GameShip* GameShip::head() {
+	if(previous!=NULL)
+		return previous->head();
+	else
+		return this;
+}
+
 /**
  GameShip* GameShip::destroyAndGetNext()
  Sets its previous's next to next and returns that, then deletes this
@@ -81,8 +89,8 @@ GameShip* GameShip::destroyAndGetNext() {
 	if(previous!=NULL)
 		previous->setNext(next);
 	else {
-		thePlayerShip=next;
-		next->previous=NULL;
+		if(next!=NULL)
+			next->previous=NULL;
 	}
 	
 	delete this;

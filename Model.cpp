@@ -63,9 +63,9 @@ int Model::verticesPerFace() {
  void Model::addColor(Vec3d c)
  Add a color to the color vector (create it if needed), increment the last added color
  */
-void Model::addColor(Vec3d c) {
+void Model::addColor(Vec4d c) {
     if(!hasColors) {
-        colors=new Vec3d[length];
+        colors=new Vec4d[length];
         hasColors=true;
     }
     

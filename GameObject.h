@@ -32,9 +32,9 @@ public:
 	GameObject();
 	virtual ~GameObject();
 
-	bool collidesWithNoise();
-	bool collidesWithObject(GameObject *obj);
-	void render();
+	virtual bool collidesWithNoise();
+	virtual bool collidesWithObject(GameObject *obj);
+	virtual void render();
 	void doUpdate(double dt);
 	void setup();
 	void setAnimation(Animation *anim);

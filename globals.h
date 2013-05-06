@@ -7,8 +7,8 @@
 #include "constants.h"
 #include "structs.h"
 #include "perlin3d.h"
-#include "laser.h"
 
+class Laser;
 class GameShip;
 class EnemyWave;
 
@@ -33,9 +33,9 @@ extern double anm8;					//needs a more descriptive name
 extern double d;					//^
 
 /**************** GAME  *********************/
-extern GameShip* thePlayerShip;		//the player's ship
+extern GameShip* thePlayerShip, *lasers, *enemyLasers;		//the player's ship
 extern int numObjects;
-extern std::vector<Laser*> lasers, enemyLasers;			//the projectiles in play
+//extern std::vector<Laser*> lasers, enemyLasers;			//the projectiles in play
 extern long curTime, startTime, lastWaveTime;	//for keeping track of the time between frames, total time running, and last time enemies spawned
 extern EnemyWave* currentWave;				//the current wave of enemies
 extern bool readyForNextWave;				//whether more enemies can spawn

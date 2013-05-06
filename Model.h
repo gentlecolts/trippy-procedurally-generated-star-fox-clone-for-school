@@ -12,13 +12,14 @@
 #include <iostream>
 
 class Vec3d;
+class Vec4d;
 #include "structs.h"
 #include "imports.h"
 
 class Model {
 public:
     Vec3d* vertices;
-    Vec3d* colors;
+    Vec4d* colors;
     Vec3d* normals;
     int length;
 	GLenum type;
@@ -29,7 +30,7 @@ public:
 	
     Model(int l);
     void addVertex(Vec3d v);
-    void addColor(Vec3d c);
+    void addColor(Vec4d c);
     void addNormal(Vec3d n);
 	void addAttachPoint(Vec3d ap);
 	void addAttachPointAngle(Vec3d apn);

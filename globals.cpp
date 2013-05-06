@@ -27,9 +27,9 @@ double anm8=0;
 double d=d1;
 
 /**************** GAME  *********************/
-GameShip* thePlayerShip;
+GameShip* thePlayerShip, *lasers, *enemyLasers;
 int numObjects=0;
-std::vector<Laser*> lasers, enemyLasers;
+//std::vector<Laser*> lasers, enemyLasers;
 long curTime=0,startTime=clock(),lastWaveTime=clock();
 EnemyWave* currentWave=NULL;
 bool readyForNextWave=true;

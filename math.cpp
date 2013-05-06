@@ -3,6 +3,7 @@
 #include "constants.h"
 #include "Vec3d.h"
 
+using namespace std;
 /**
  double invsqrt(double x)
  Fast inverse square root function is quicker than the standard way of doing it, although slightly less precise
@@ -51,10 +52,13 @@ Vec3d getVector(double xrot,double yrot) {//TODO: consider only calulating once 
 
 Vec3d invGetVector(Vec3d vec) {
 	vec=vec.normalize();
+	cout<<"vec: "<<vec<<endl;
 	
 	double yrot=asin(-vec[0])/pi*180;
 	//std::cout<<"vec[0]: "<<-vec[0]<<std::endl;
 	double xrot=asin(vec[1]/cos(radians(yrot)))/pi*180;
+	
+	cout<<"xrot: "<<xrot<<" yrot"<<yrot<<endl;
 	
 	return Vec3d(xrot,yrot,0);
 }

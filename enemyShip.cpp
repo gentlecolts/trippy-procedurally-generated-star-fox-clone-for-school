@@ -3,6 +3,7 @@
 #include "Model.h"
 #include "Vec3d.h"
 #include "ExplodeAnimation.h"
+#include "Laser.h"
 
 /**
  EnemyShip::EnemyShip(int n)
@@ -47,8 +48,11 @@ void EnemyShip::update(double dt) {
 		pos[1]-=vel[1]*dt;
 		pos[2]-=vel[2]*dt;
 		
-		for(int i=0;i<lasers.size();i++) {
-			if(lasers.at(i)->collidesWithObject(this)) {
+		GameShip *obj=lasers;
+		
+		while(obj!=NULL) {
+			cout<<"   obj: "<<obj<<endl;
+			if(obj->collidesWithObject(this)) {
 				invinceStart=clock();
 				setAnimation(new ExplodeAnimation(model,this));
 				
@@ -63,6 +67,7 @@ void EnemyShip::update(double dt) {
 
 				break;
 			}
+			obj=obj->getNext();
 		}
 	}
 }

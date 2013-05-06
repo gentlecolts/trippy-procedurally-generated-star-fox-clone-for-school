@@ -3,8 +3,9 @@
 #include "imports.h"
 #include "constants.h"
 #include "math.h"
-#include "GameObject.h"
 #include "camera.h"
+#include "ModelConstants.h"
+#include "Model.h"
 using namespace std;
 
 #define laserSpeed 15
@@ -13,54 +14,58 @@ using namespace std;
  Laser::Laser(double x, double y, double z, double xr, double yr, double zr)
  Calls init
  */
-Laser::Laser(double x, double y, double z, double xr, double yr, double zr){
-    init(x,y,z,xr,yr,zr);
+Laser::Laser(Vec3d p, Vec3d a) : GameShip(0){
+	model=laserModel;
+	modelSize=laserModel->length;
+    init(p, a);
 }
 
 /**
  void Laser::init(double x, double y, double z, double xr, double yr, double zr)
  Sets the position to the given position, the rotation to the given rotation, and calculates the velocity based on the rotation, then moves forward slightly so it doesn't clip out of the back of objects firing it
  */
-void Laser::init(double x, double y, double z, double xr, double yr, double zr){
+void Laser::init(Vec3d p, Vec3d a){
 
-    xpos=x;
-    ypos=y;
-    zpos=z;
+    pos=p;
 
-    xrot=xr;
-    yrot=yr;
-    zrot=zr;
+    rot=a;
 
 	//Vec3d vect=getVector(xrot,yrot);
 	
 	Vec3d vect=Vec3d(0,0,-1);
-	vect=rotate(vect,Vec3d(1,0,0),xr);
-	vect=rotate(vect,Vec3d(0,1,0),yr);
-	vect=rotate(vect,Vec3d(0,0,1),zr);
+	vect=rotate(vect,Vec3d(1,0,0),rot[0]);
+	vect=rotate(vect,Vec3d(0,1,0),rot[0]);
+	vect=rotate(vect,Vec3d(0,0,1),rot[0]);
 
-    xvel=laserSpeed*vect[0];
-    yvel=laserSpeed*vect[1];
-	zvel=laserSpeed*vect[2];
+    vel=laserSpeed*vect;
+}
 
-	//xpos+=xvel*5*0.02;
-	//ypos+=yvel*5*0.02;
-	//zpos+=zvel*5*0.02;
+void Laser::uniqueRenderFirst() {
+	GameShip::uniqueRenderFirst();
+	
+	glDisable(GL_LIGHTING);
+}
+
+void Laser::uniqueRenderLast() {
+	glEnable(GL_LIGHTING);
+	
+	GameShip::uniqueRenderLast();
 }
 
 /**
  void Laser::render()
  Draws a red quad at its position; will be improved later.
  */
-void Laser::render() {
+/*void Laser::render() {
 	
 	glDisable(GL_LIGHTING);
 	glPushMatrix();
-    glTranslatef(xpos, ypos, zpos);
+    glTranslatef(pos[0], pos[1], pos[2]);
 
     glScalef(objScale,objScale,objScale);
-	glRotatef(zrot, 0.0f, 0.0f, 1.0f);
-	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-	glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+	glRotatef(rot[0], 0.0f, 0.0f, 1.0f);
+	glRotatef(rot[1], 0.0f, 1.0f, 0.0f);
+	glRotatef(rot[2], 1.0f, 0.0f, 0.0f);
 
     glDisable(GL_LIGHT0);
     //glEnable(GL_LIGHT1);
@@ -83,6 +88,10 @@ void Laser::render() {
 
     glPopMatrix();
 	glEnable(GL_LIGHTING);
+}*/
+
+bool Laser::isDone() {
+	return (collidesWithNoise() || pos[2]<-noiseScale*2 || pos[2]>cameraOffset);
 }
 
 /**
@@ -90,46 +99,39 @@ void Laser::render() {
  Move by xvel, yvel, and zvel
  */
 void Laser::update(double dt) {
-    xpos+=xvel*dt;
-    ypos+=yvel*dt;
-
-    zpos+=zvel*dt;
+	pos+=vel*dt;
 }
 
 /**
  bool Laser::collidesWithObject(GameObject* obj)
  Performs collision detection by checking against a sphere with radius equal to the average distance of each vertex of the object's model from the front and back of the laser
  */
-bool Laser::collidesWithObject(GameObject* obj) {
-    double xD=xpos-obj->pos[0];
-    double yD=ypos-obj->pos[1];
-    double zD=zpos-obj->pos[2];
+/*bool Laser::collidesWithObject(GameObject* obj) {
+	Vec3d d=pos-obj->pos;
     
-    if(sqrt(xD*xD+yD*yD+zD*zD)<obj->avgDist*3) {
+    if(sqrt(d[0]*d[0]+d[1]*d[1]+d[2]*d[2])<obj->avgDist*3) {
         return true;
     }
     
-    zD-=5*objScale;
+    d[2]-=5*objScale;
     
-    return sqrt(xD*xD+yD*yD+zD*zD)<obj->avgDist*3;
-}
+    return sqrt(d[0]*d[0]+d[1]*d[1]+d[2]*d[2])<obj->avgDist*3;
+}*/
 
 /**
  bool Laser::collidesWithNoise()
  Does collision detection with the noise by checking at the front and back of the laser
  */
-bool Laser::collidesWithNoise() {
+/*bool Laser::collidesWithNoise() {
     const double
-        x=xpos/noiseScale *grid2+grid2,
-        y=ypos/noiseScale *grid2+grid2,
-        z=-d*grid*(zpos/noiseScale+d/2),
-        z2=-d*grid*((-5*objScale+zpos)/noiseScale+d/2)
+        x=pos[0]/noiseScale *grid2+grid2,
+        y=pos[1]/noiseScale *grid2+grid2,
+        z=-d*grid*(pos[2]/noiseScale+d/2),
+        z2=-d*grid*((-5*objScale+pos[2])/noiseScale+d/2)
     ;
     if(noise[precompindx(x,y,z+zshft)]>tolerance ||
        noise[precompindx(x,y,z2+zshft)]>tolerance){
         return true;
     }
     return false;
-}
-
-Laser::~Laser(){}
+}*/

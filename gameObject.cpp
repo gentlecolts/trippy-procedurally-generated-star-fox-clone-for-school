@@ -67,7 +67,7 @@ void GameObject::render() {
 		}
 		
         if(invinceStart<0)
-            glColor3f(model->colors[i][0],model->colors[i][1],model->colors[i][2]);
+            glColor4f(model->colors[i][0],model->colors[i][1],model->colors[i][2],model->colors[i][3]);
 		glVertex3f(model->vertices[i][0],model->vertices[i][1],model->vertices[i][2]);
 		
 		if(i%model->verticesPerFace()==model->verticesPerFace()-1 && theAnimation!=NULL) {
@@ -91,24 +91,6 @@ void GameObject::render() {
 	glPopMatrix();
 
 	uniqueRenderAfterPop();
-}
-
-Matrix GameObject::getMatrix() {
-	Matrix mat;
-	if(parent!=NULL) {
-		mat=parent->getMatrix();
-	}
-	
-	mat=mat*Matrix(
-				   Vec4d(1, 0, 0, pos[0]),				//translation
-				   Vec4d(0, 1, 0, pos[1]),
-				   Vec4d(0, 0, 1, pos[2]),
-				   Vec4d(0, 0, 0, 1)
-	);
-	
-	mat=mat*Matrix(rot);
-	
-	return mat;
 }
 
 /**
@@ -219,6 +201,24 @@ void GameObject::setAnimation(Animation *anim) {
 	}
 	
 	theAnimation=anim;
+}
+
+Matrix GameObject::getMatrix() {
+	Matrix mat;
+	if(parent!=NULL) {
+		mat=parent->getMatrix();
+	}
+	
+	mat=mat*Matrix(
+				   Vec4d(1, 0, 0, pos[0]),				//translation
+				   Vec4d(0, 1, 0, pos[1]),
+				   Vec4d(0, 0, 1, pos[2]),
+				   Vec4d(0, 0, 0, 1)
+				   );
+	
+	mat=mat*Matrix(rot);
+	
+	return mat;
 }
 
 Vec3d GameObject::absoluteAngle() {

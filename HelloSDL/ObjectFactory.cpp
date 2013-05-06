@@ -41,7 +41,7 @@ GameObject *expandTree(ObjectTypeTree tree) {
 	
 	for(int i=0;i<tree.numChildren;i++) {
 		if(tree.filled[i]) {
-			obj->addChild(expandTree(tree.children[i]), -1);		//doesn't take into account rotations... Hm...
+			obj->addChild(expandTree(tree.children[i]), i);		//doesn't take into account rotations... Hm...
 		}
 	}
 	return obj;

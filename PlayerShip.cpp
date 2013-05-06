@@ -90,9 +90,9 @@ void PlayerShip::uniqueRenderAfterPop() {
 }
 
 void PlayerShip::afterSetup() {
-	addChild(new FanStrut(this, 5, basicStrutModel), 0);
-	addChild(new FanStrut(this, 5, basicStrutModel), 1);//, Vec3d(0,0,30));
-	//addChild(new AimingStrut(this, 9000, longStrutModel), 0);
+	//addChild(new FanStrut(this, 5, basicStrutModel), 0);
+	//addChild(new FanStrut(this, 5, basicStrutModel), 1);//, Vec3d(0,0,30));
+	addChild(new AimingStrut(this, 9000, longStrutModel), 0);
 }
 
 /**
@@ -126,12 +126,15 @@ void PlayerShip::update(double dt) {
 			obj=obj->getNext();
 		}
 		
-		for(int i=0;i<enemyLasers.size();i++) {
-			if(enemyLasers.at(i)->collidesWithObject(this)) {
+		GameShip *las=enemyLasers;
+		while(las!=NULL) {
+			if(las->collidesWithObject(this)) {
 				hit=true;
 				
 				break;
 			}
+			
+			las=las->getNext();
 		}
 		
         if(hit || collidesWithNoise()) {
@@ -143,7 +146,7 @@ void PlayerShip::update(double dt) {
 }
 
 void PlayerShip::doFire() {
-	addLaser(new Laser(pos[0],pos[1],pos[2],rot[0],rot[1],rot[2]),player);
+	addLaser(new Laser(pos,rot),player);
 }
 
 

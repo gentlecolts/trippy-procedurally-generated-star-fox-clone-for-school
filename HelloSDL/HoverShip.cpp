@@ -13,6 +13,7 @@
 #include "constants.h"
 #include "BasicGun.h"
 #include "FanStrutThing.h"
+#include "AimingStrut.h"
 
 /**
  HoverShip::HoverShip(double x, double y, int n)
@@ -67,8 +68,10 @@ bool HoverShip::isDone() {	return pos[2]>=cameraOffset;
 void HoverShip::afterSetup() {
 	rot[1]+=180;
 	
-	addChild(new FanStrut(this, 5, basicStrutModel), 0);
-	addChild(new FanStrut(this, 5, basicStrutModel), 1);//, Vec3d(0,0,30));
+	//addChild(new FanStrut(this, 5, basicStrutModel), 0);
+	//addChild(new FanStrut(this, 5, basicStrutModel), 1);//, Vec3d(0,0,30));
+	//addChild(new AimingStrut(this, 9000, longStrutModel), 0);
+	//addChild(new AimingStrut(this, 9000, longStrutModel), 0);
 	
 	lastT=t;
 }

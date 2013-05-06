@@ -65,46 +65,43 @@ void updateObjects() {
 	
 	GameShip* obj=thePlayerShip;
 	while(obj!=NULL) {
-		//cout<<obj<<", ";
 		obj->doUpdate(dt);
-
+		
+		
 		if(obj->scheduledToDelete || (obj->isDone() && (obj->parentWave==NULL || obj->parentWave->isDone()))) {
 			
 			obj=obj->destroyAndGetNext();
-			//cout<<" and now at "<<obj;
 		} else {
 			obj=obj->getNext();
 		}
 	}
-	//cout<<endl;
 
-    for(int i=0;i<lasers.size();i++) {
-        lasers.at(i)->update(dt);
-
-        //lasers.at(i)->zpos<-noiseScale*2  <- and this is why -> is a stupid operator
-
-        if(lasers.at(i)->collidesWithNoise() || lasers.at(i)->zpos<-noiseScale*2 ||lasers.at(i)->zpos>cameraOffset) {
-            Laser *obj=lasers.at(i);
-            lasers.erase(lasers.begin()+i);
-
-            delete obj;
-            i--;
-        }
-    }
-	
-	for(int i=0;i<enemyLasers.size();i++) {
-        enemyLasers.at(i)->update(dt);
+	obj=lasers;
+	while(obj!=NULL) {
+		obj->doUpdate(dt);
 		
-        //enemyLasers.at(i)->zpos<-noiseScale*2  <- and this is why -> is a stupid operator
-		
-        if(enemyLasers.at(i)->collidesWithNoise() || enemyLasers.at(i)->zpos<-noiseScale*2 ||enemyLasers.at(i)->zpos>cameraOffset) {
-            Laser *obj=enemyLasers.at(i);
-            enemyLasers.erase(enemyLasers.begin()+i);
+		if(obj->scheduledToDelete || obj->isDone()) {
 			
-            delete obj;
-            i--;
-        }
-    }
+			if(obj==lasers)
+				lasers=obj->getNext();
+			obj=obj->destroyAndGetNext();
+		} else {
+			obj=obj->getNext();
+		}
+	}
+	
+	obj=enemyLasers;
+	while(obj!=NULL) {
+		obj->doUpdate(dt);
+		
+		if(obj->scheduledToDelete || obj->isDone()) {
+			if(obj==enemyLasers)
+				enemyLasers=obj->getNext();
+			obj=obj->destroyAndGetNext();
+		} else {
+			obj=obj->getNext();
+		}
+	}
 
 }
 
@@ -140,13 +137,19 @@ void renderObjects() {
 		obj=obj->getNext();
 	}
 
-    for(int i=0;i<lasers.size();i++) {
-        lasers.at(i)->render();
-    }
-    
-	for(int i=0;i<enemyLasers.size();i++) {
-        enemyLasers.at(i)->render();
-    }
+	obj=lasers;
+	while(obj!=NULL) {
+		obj->render();
+		
+		obj=obj->getNext();
+	}
+	
+	obj=enemyLasers;
+	while(obj!=NULL) {
+		obj->render();
+		
+		obj=obj->getNext();
+	}
 }
 
 /**
@@ -154,10 +157,17 @@ void renderObjects() {
  Adds a laser; probably not necessary
  */
 void addLaser(Laser* las, bool player) {
-	if(player)
-		lasers.push_back(las);
-	else
-		enemyLasers.push_back(las);
+	if(player) {
+		GameShip *oldLas=lasers;
+		
+		lasers=las;
+		lasers->setNext(oldLas);
+	} else {
+		GameShip *oldLas=enemyLasers;
+		
+		enemyLasers=las;
+		enemyLasers->setNext(oldLas);
+	}
 }
 
 /**
@@ -168,12 +178,8 @@ void unloadGame() {
     delete currentWave;
 
 	thePlayerShip->deleteAndDeleteChildren();
-
-    for(int i=0;i<lasers.size();i++){
-        delete lasers.at(i);
-    }
-	
-	for(int i=0;i<enemyLasers.size();i++){
-        delete enemyLasers.at(i);
-    }
+	if(lasers!=NULL)
+		lasers->deleteAndDeleteChildren();
+	if(enemyLasers!=NULL)
+		enemyLasers->deleteAndDeleteChildren();
 }

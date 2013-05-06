@@ -17,6 +17,7 @@ Model *playerShipModel=new Model(18);
 Model *basicGunModel=new Model(24);
 Model *basicStrutModel=new Model(24);
 Model *longStrutModel=new Model(24);
+Model *laserModel=new Model(4);
 
 GLuint laserTexture;
 
@@ -178,6 +179,13 @@ void initModels() {
 		longStrutModel->addColor(Vec3d(0.7,0.7,0.7));
 	}
 	longStrutModel->computeNormals();
+	
+	laserModel->type=GL_QUADS;
+	laserModel->addRect(Vec3d(-0.2,0,0), Vec3d(0.2,0,0), Vec3d(0.2,0,-5));
+	for(int i=0;i<laserModel->length;i++) {
+		laserModel->addColor(Vec4d(1.0,0.3,0.3,0.7));
+	}
+	laserModel->computeNormals();
 }
 
 
