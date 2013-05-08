@@ -59,6 +59,7 @@ const double sinviewangle=sin(radians(viewangle));
 #define cameraOffset 1			//the z position of the camera
 #define noiseScale 10           //the scale factor of the terrain, or the half size of the game area in x and y
 
+
 const double cameraWidth=sinviewangle*playerOffset*3;
 const double cameraHeight=(double)xmax/(double)ymax*cameraWidth;
 

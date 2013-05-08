@@ -9,5 +9,6 @@ void renderObjects();
 void addLaser(Laser* las, bool player);
 void unloadGame();
 void nextWave();
+void doTests();
 
 #endif // GAMECONTROLLER_H_INCLUDED

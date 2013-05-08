@@ -41,7 +41,7 @@ extern EnemyWave* currentWave;				//the current wave of enemies
 extern bool readyForNextWave;				//whether more enemies can spawn
 
 /**************** IO    *********************/
-extern bool leftmov,rightmov,upmov,downmov,space;
+extern bool leftmov,rightmov,upmov,downmov,space, fire;
 extern SDL_Event e;
 
 extern SDL_Surface* screen;

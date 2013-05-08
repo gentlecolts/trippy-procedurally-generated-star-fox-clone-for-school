@@ -32,22 +32,24 @@ void AimingStrut::update(double dt) {
 		target=thePlayerShip;
 	}
 	
-	targetPoint=target->pos;
+	targetPoint=target->absolutePosition();
 	
-	Vec3d dist=pos-targetPoint;
+	Vec3d dist=-(targetPoint-absolutePosition());
+	
+//	dist=Vec3d(0,1,0);
+	//cout<<"dist: "<<dist<<endl;
+	//dist[2]*=-1;
+	
+	
+	//dist[2]=-dist[2];
 	
 	Vec3d angles=invGetVector(dist);
-	angles-=absoluteAngle();
 	
-	//cout<<"dist: "<<dist<<endl;
-	//cout<<"angles: "<<angles<<endl;
+
 	
-	/*angles[0]=min(angles[0],speed)*dt;
-	angles[1]=min(angles[1],speed)*dt;
-	angles[2]=min(angles[2],speed)*dt;
-	
-	cout<<"angles: "<<angles<<endl;*/
-	
+	if(parent!=NULL)
+		angles-=parent->absoluteAngle();
+		
 	rot=angles;
 	
 	//cout<<"rot: "<<rot<<endl;

@@ -35,7 +35,7 @@ EnemyWave* currentWave=NULL;
 bool readyForNextWave=true;
 
 /**************** IO    *********************/
-bool leftmov,rightmov,upmov,downmov,space;
+bool leftmov,rightmov,upmov,downmov,space,fire;
 SDL_Event e;
 
 SDL_Surface* screen=NULL;

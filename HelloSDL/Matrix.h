@@ -13,6 +13,7 @@
 #include "vec4d.h"
 //TODO: make this 4x4 so I can represent translations
 
+extern bool logMat;
 
 class Matrix {
 private:
@@ -40,5 +41,7 @@ public:
 	const Matrix &operator+=(const Matrix &other);
 	const Matrix &operator-=(const Matrix &other);
 };
+
+std::ostream &operator<<(std::ostream &output, const Matrix &m);
 
 #endif /* defined(__HelloSDL__Matrix__) */

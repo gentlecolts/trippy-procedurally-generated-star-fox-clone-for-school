@@ -51,7 +51,6 @@ void EnemyShip::update(double dt) {
 		GameShip *obj=lasers;
 		
 		while(obj!=NULL) {
-			cout<<"   obj: "<<obj<<endl;
 			if(obj->collidesWithObject(this)) {
 				invinceStart=clock();
 				setAnimation(new ExplodeAnimation(model,this));

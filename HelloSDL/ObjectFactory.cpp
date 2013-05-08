@@ -10,13 +10,15 @@
 
 vector<ObjectType> objects, weapons, attachments, enemies, bombs;
 
-void registerObjectType(ObjectCategory type, ObjectTypeTree *(*treeFun)(double, double), double (*difficulty)(double), GameObject *(*gameObject)(int seed)) {
+ObjectType registerObjectType(ObjectCategory type, ObjectTypeTree *(*treeFun)(double, double), double (*difficulty)(double), GameObject *(*gameObject)(int seed), double minSize) {
 	ObjectType objType;
 	objType.difficulty=difficulty;
 	objType.treeFun=treeFun;
 	objType.type=type;
+	objType.minSize=minSize;
 	
-	objects.push_back(objType);
+	if(type!=ENEMY)
+		objects.push_back(objType);
 	
 	switch (type) {
 		case WEAPON:
@@ -34,10 +36,12 @@ void registerObjectType(ObjectCategory type, ObjectTypeTree *(*treeFun)(double, 
 		default:
 			break;
 	}
+	
+	return objType;
 }
 
 GameObject *expandTree(ObjectTypeTree tree) {
-	GameObject *obj=objects[tree.type].gameObject(tree.seed);
+	GameObject *obj=tree.type.gameObject(tree.seed);
 	
 	for(int i=0;i<tree.numChildren;i++) {
 		if(tree.filled[i]) {

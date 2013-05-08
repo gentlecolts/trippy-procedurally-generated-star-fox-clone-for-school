@@ -8,7 +8,44 @@
 #include "testEnemyWave1.h"
 #include "ModelConstants.h"
 #include "terrain.h"
+#include "math.h"
+#include "Matrix.h"
 #include <ctime>
+
+
+void doTests() {
+	Vec3d dist=Vec3d(0,1,3);
+	cout<<"dist: "<<dist<<endl;
+	Vec3d ang=invGetVector(dist);
+	cout<<"ang: "<<ang<<endl;
+	
+	Matrix ident2=Matrix();
+	cout<<"ident2: "<<ident2<<endl;
+	
+	Matrix mat=Matrix(ang);
+	//mat=Matrix(ang);
+	
+	cout<<"mat: "<<mat<<endl;
+	
+	Vec3d diff=mat*Vec4d(0, 0, -1, 1)-mat*Vec4d(0, 0, 0, 1);
+	
+	cout<<"diff: "<<diff<<endl;;
+	
+	Vec3d newAng=invGetVector(diff);
+	cout<<"newAng: "<<newAng<<endl;
+}
+
+/*
+ dist: (0, 1, 0)
+ ang: (90, -0, 0)
+ mat: [(1, 0, 0, 0)
+ (0, 6.12323e-17, -1, 0)
+ (0, 1, 6.12323e-17, 0)
+ (0, 0, 0, 1)]
+ diff: (0, 1, -6.12323e-17)
+ newAng: (90, -0, 0)
+
+ */
 
 /**
  void setupGame()

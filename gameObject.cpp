@@ -204,6 +204,7 @@ void GameObject::setAnimation(Animation *anim) {
 }
 
 Matrix GameObject::getMatrix() {
+//	cout<<"CALL"<<endl;
 	Matrix mat;
 	if(parent!=NULL) {
 		mat=parent->getMatrix();
@@ -218,11 +219,17 @@ Matrix GameObject::getMatrix() {
 	
 	mat=mat*Matrix(rot);
 	
+//	cout<<"rot: "<<rot<<endl;
+//	cout<<"rot matrix: "<<Matrix(rot)<<endl;
+	
 	return mat;
 }
 
 Vec3d GameObject::absoluteAngle() {
-	Vec3d diff=getMatrix()*Vec4d(0, 0, -1, 1);
+	//cout<<"MATRIX: "<<getMatrix()<<endl;
+	Vec3d diff=getMatrix()*Vec4d(0, 0, -1, 1)-getMatrix()*Vec4d(0, 0, 0, 1);
+	
+//	cout<<"diff: "<<diff<<endl;
 	
 	return invGetVector(diff);
 }

@@ -52,13 +52,28 @@ Vec3d getVector(double xrot,double yrot) {//TODO: consider only calulating once 
 
 Vec3d invGetVector(Vec3d vec) {
 	vec=vec.normalize();
-	cout<<"vec: "<<vec<<endl;
+//	cout<<"vec: "<<vec<<endl;
 	
-	double yrot=asin(-vec[0])/pi*180;
+	double yrot=atan2(-vec[0],sqrt(1-vec[0]*vec[0]))/pi*180;
+	
+	//double yrot=asin(-vec[0])/pi*180;
 	//std::cout<<"vec[0]: "<<-vec[0]<<std::endl;
-	double xrot=asin(vec[1]/cos(radians(yrot)))/pi*180;
+	double tmp=cos(radians(yrot));
+	double xrot=atan2(vec[1], sqrt(tmp*tmp-vec[1]*vec[1]))/pi*180;
 	
-	cout<<"xrot: "<<xrot<<" yrot"<<yrot<<endl;
+	if(vec[2]>0) {
+		yrot=180-yrot;
+		xrot=-xrot;
+//		cout<<"angles changed to: "<<yrot<<endl;
+	}
+	//if(vec[2]>0)
+	//	yrot=-yrot;
+	
+//	cout<<"xrot: "<<xrot<<" yrot"<<yrot<<endl;
+	Vec3d v=Vec3d(0,0,-1);
+	v=rotate(v,Vec3d(0,1,0),yrot);
+	v=rotate(v,Vec3d(1,0,0),xrot);
+//	cout<<"becomes: "<<v<<endl;
 	
 	return Vec3d(xrot,yrot,0);
 }

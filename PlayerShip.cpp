@@ -91,8 +91,12 @@ void PlayerShip::uniqueRenderAfterPop() {
 
 void PlayerShip::afterSetup() {
 	//addChild(new FanStrut(this, 5, basicStrutModel), 0);
-	//addChild(new FanStrut(this, 5, basicStrutModel), 1);//, Vec3d(0,0,30));
-	addChild(new AimingStrut(this, 9000, longStrutModel), 0);
+	//addChild(new FanStrut(this, 5, basicStrutModel), 1);
+	
+	for(int i=0;i<model->numAttachPoints;i++) {
+		addChild(new AimingStrut(this, 9000, basicStrutModel), i);
+		children[i]->addChild(new BasicGun(children[i]), 1);
+	}
 }
 
 /**
@@ -146,7 +150,7 @@ void PlayerShip::update(double dt) {
 }
 
 void PlayerShip::doFire() {
-	addLaser(new Laser(pos,rot),player);
+//	addLaser(new Laser(pos,rot),player);
 }
 
 
@@ -175,6 +179,11 @@ void PlayerShip::handleKeyInput(double dt) {
 		else
 			rot[0]=0;
 	}
+	if(fire) {
+		fireWeapon();
+	}
+	
+
 
 	rot[1]=max(min((double)rot[1], angleCap),-angleCap);
 	rot[0]=max(min((double)rot[0], angleCap),-angleCap);

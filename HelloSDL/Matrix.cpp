@@ -11,6 +11,10 @@
 #include "math.h"
 #include "imports.h"
 
+using namespace std;
+
+bool logMat=false;
+
 Matrix::Matrix() {
 	v=new Vec4d[4];
 	v[0]=Vec4d(1, 0, 0, 0);
@@ -28,6 +32,8 @@ Matrix::Matrix(Vec4d x, Vec4d y, Vec4d z, Vec4d w) {
 }
 
 Matrix::Matrix(Vec4d angles) {
+	//angles=-angles;
+	
 	Matrix yRotMat=Matrix(
 		Vec4d(cos(radians(angles[1])), 0, sin(radians(angles[1])), 0),
 		Vec4d(0, 1, 0, 0),
@@ -93,10 +99,12 @@ Vec4d Matrix::operator*(Vec4d vect) const {
 Matrix Matrix::operator*(Matrix mat) const {
 	Matrix comb;
 	
-	for(int i=0;i<3;i++) {
-		for(int j=0;j<3;j++) {
-			Vec4d columnVec=Vec4d(v[0][i],v[1][i],v[2][i], v[3][i]);
-			comb[i][j]=columnVec.dot(mat[j]);
+	for(int i=0;i<4;i++) {
+		for(int j=0;j<4;j++) {
+			Vec4d columnVec=Vec4d(mat[0][j],mat[1][j],mat[2][j], mat[3][j]);
+			if(logMat)
+				cout<<"("<<i<<","<<j<<") column: "<<columnVec<<" row: "<<v[i]<<"result: "<<columnVec.dot(v[i])<<endl;
+			comb[i][j]=columnVec.dot(v[i]);
 		}
 	}
 	
@@ -141,4 +149,9 @@ const Matrix &Matrix::operator-=(const Matrix &other) {
 	v[2] -= other.v[2];
 	v[3] -= other.v[3];
 	return *this;
+}
+
+ostream &operator<<(ostream &output, const Matrix &m) {
+	cout << '[' << m[0] << "\n" << m[1] << "\n" << m[2] << "\n" << m[3] << ']';
+	return output;
 }

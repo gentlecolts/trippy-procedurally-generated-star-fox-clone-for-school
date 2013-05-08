@@ -78,6 +78,9 @@ void chkCloseEvent(){
 				//d=d2;
 				space=true;
 			}
+			if(key==SDLK_RETURN){
+				fire=true;
+			}
 			//cout<<key<<endl;
 			break;
 			}
@@ -107,7 +110,7 @@ void chkCloseEvent(){
 				space=false;
 			}
 			if(key==SDLK_RETURN){
-                thePlayerShip->fireWeapon();       //HACKY FIX LATER
+                fire=false;
 			}
 			//cout<<key<<endl;
 			break;

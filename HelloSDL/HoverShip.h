@@ -14,6 +14,8 @@
 #include "EnemyShip.h"
 #include "ObjectFactory.h"
 
+#define hoverShipDiff 10
+
 class HoverShip : public EnemyShip {
 private:
 protected:
@@ -22,15 +24,18 @@ protected:
 public:
 	double pauseTime, time;
 	HoverShip(double x, double y, int n);
+	HoverShip();
 	void init(double x, double y);
 	void update(double dt);
 	void afterSetup();
 	bool isDone();
 };
 
-//ObjectType* hoverShipTreeFun(double diff, double size);
-//GameObject *hoverShipGetGameObject(int seed);
-//double hoverShipDifficulty(double size);
+
+extern ObjectType hoverShipType;
+ObjectTypeTree* hoverShipTreeFun(double diff, double size);
+GameObject *hoverShipGetGameObject(int seed);
+double hoverShipDifficulty(double size);
 
 
 #endif /* defined(__HelloSDL__HoverShip__) */

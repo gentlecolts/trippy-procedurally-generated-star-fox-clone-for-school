@@ -20,8 +20,19 @@ typedef enum {
 	BOMB=3
 } ObjectCategory;
 
+struct ObjectTypeTree;
+
+struct ObjectType {
+	ObjectCategory type;
+	double minSize;
+	
+	ObjectTypeTree *(*treeFun)(double, double);
+	GameObject *(*gameObject)(int seed);
+	double (*difficulty)(double);
+};
+
 struct ObjectTypeTree {
-	uint16_t type;
+	ObjectType type;
 	
 	int seed;
 	
@@ -30,17 +41,9 @@ struct ObjectTypeTree {
 	int numChildren;
 };
 
-struct ObjectType {
-	ObjectCategory type;
-	
-	ObjectTypeTree *(*treeFun)(double, double);
-	GameObject *(*gameObject)(int seed);
-	double (*difficulty)(double);
-};
-
 extern vector<ObjectType> objects, weapons, attachments, enemies, bombs;
 
-void registerObjectType(ObjectCategory type, ObjectTypeTree *(*treeFun)(double, double), double (*difficulty)(double), GameObject *(*gameObject)(int seed));
+ObjectType registerObjectType(ObjectCategory type, ObjectTypeTree *(*treeFun)(double, double), double (*difficulty)(double), GameObject *(*gameObject)(int seed), double minSize);
 GameObject *expandTree(ObjectTypeTree tree);
 ObjectTypeTree *getTree(double diff, double size);
 ObjectType getRandomObject(vector<ObjectType> v, double diff, double size);

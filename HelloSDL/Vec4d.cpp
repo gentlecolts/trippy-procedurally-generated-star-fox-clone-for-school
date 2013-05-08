@@ -93,6 +93,6 @@ Vec4d::operator Vec3d() {
 }
 
 ostream &operator<<(ostream &output, const Vec4d &v) {
-	cout << '(' << v[0] << ", " << v[1] << ", " << v[2] << v[3] << ')';
+	cout << '(' << v[0] << ", " << v[1] << ", " << v[2] << ", " << v[3] << ')';
 	return output;
 }

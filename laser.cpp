@@ -29,13 +29,16 @@ void Laser::init(Vec3d p, Vec3d a){
     pos=p;
 
     rot=a;
-
+	
+	//if(!player)
+//		cout<<"laser rot: "<<rot<<endl;
+	
 	//Vec3d vect=getVector(xrot,yrot);
 	
 	Vec3d vect=Vec3d(0,0,-1);
+	vect=rotate(vect,Vec3d(0,1,0),rot[1]);
 	vect=rotate(vect,Vec3d(1,0,0),rot[0]);
-	vect=rotate(vect,Vec3d(0,1,0),rot[0]);
-	vect=rotate(vect,Vec3d(0,0,1),rot[0]);
+	vect=rotate(vect,Vec3d(0,0,1),rot[2]);
 
     vel=laserSpeed*vect;
 }
@@ -51,44 +54,6 @@ void Laser::uniqueRenderLast() {
 	
 	GameShip::uniqueRenderLast();
 }
-
-/**
- void Laser::render()
- Draws a red quad at its position; will be improved later.
- */
-/*void Laser::render() {
-	
-	glDisable(GL_LIGHTING);
-	glPushMatrix();
-    glTranslatef(pos[0], pos[1], pos[2]);
-
-    glScalef(objScale,objScale,objScale);
-	glRotatef(rot[0], 0.0f, 0.0f, 1.0f);
-	glRotatef(rot[1], 0.0f, 1.0f, 0.0f);
-	glRotatef(rot[2], 1.0f, 0.0f, 0.0f);
-
-    glDisable(GL_LIGHT0);
-    //glEnable(GL_LIGHT1);
-    glBegin(GL_QUADS); // of the pyramid
-
-    glColor4f(1,.3,.3,0.7);
-	glTexCoord2f(28, 4);
-    glVertex3f(-.2,0,0);
-	glTexCoord2f(36, 4);
-    glVertex3f(.2,0,0);
-	glTexCoord2f(28, 58);
-    glVertex3f(.2,0,-5);
-	glTexCoord2f(36, 58);
-    glVertex3f(-.2,0,-5);
-
-    glEnd();
-
-    //glDisable(GL_LIGHT1);
-    glEnable(GL_LIGHT0);
-
-    glPopMatrix();
-	glEnable(GL_LIGHTING);
-}*/
 
 bool Laser::isDone() {
 	return (collidesWithNoise() || pos[2]<-noiseScale*2 || pos[2]>cameraOffset);

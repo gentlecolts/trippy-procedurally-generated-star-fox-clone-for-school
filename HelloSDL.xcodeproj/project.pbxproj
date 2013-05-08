@@ -22,7 +22,6 @@
 		648F1AB41726C2A80013762E /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 648F1AB31726C2A80013762E /* SDL.framework */; };
 		64A029DB1732AE5E00526D63 /* RotateStrut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A029D91732AE5E00526D63 /* RotateStrut.cpp */; };
 		64A029DE1732EAA600526D63 /* HoverShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A029DC1732EAA500526D63 /* HoverShip.cpp */; };
-		64A03E12172184B100AA0436 /* LaserShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A03E10172184B100AA0436 /* LaserShip.cpp */; };
 		64A03E16172189A800AA0436 /* TextureGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A03E14172189A600AA0436 /* TextureGenerator.cpp */; };
 		64A03E191721906000AA0436 /* imageloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A03E1717218F2D00AA0436 /* imageloader.cpp */; };
 		64A789E7170C761900CCAB2F /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A789C3170C75F700CCAB2F /* camera.cpp */; };
@@ -90,8 +89,6 @@
 		64A029DA1732AE5E00526D63 /* RotateStrut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateStrut.h; sourceTree = "<group>"; };
 		64A029DC1732EAA500526D63 /* HoverShip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HoverShip.cpp; sourceTree = "<group>"; };
 		64A029DD1732EAA500526D63 /* HoverShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoverShip.h; sourceTree = "<group>"; };
-		64A03E10172184B100AA0436 /* LaserShip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LaserShip.cpp; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/LaserShip.cpp"; sourceTree = "<group>"; };
-		64A03E11172184B100AA0436 /* LaserShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaserShip.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/LaserShip.h"; sourceTree = "<group>"; };
 		64A03E14172189A600AA0436 /* TextureGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureGenerator.cpp; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/TextureGenerator.cpp"; sourceTree = "<group>"; };
 		64A03E15172189A700AA0436 /* TextureGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureGenerator.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/TextureGenerator.h"; sourceTree = "<group>"; };
 		64A03E1717218F2D00AA0436 /* imageloader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = imageloader.cpp; path = ../imageloader.cpp; sourceTree = "<group>"; };
@@ -200,8 +197,6 @@
 				64AD0865171C357C001AEFCB /* RamShip.h */,
 				64A029DC1732EAA500526D63 /* HoverShip.cpp */,
 				64A029DD1732EAA500526D63 /* HoverShip.h */,
-				64A03E10172184B100AA0436 /* LaserShip.cpp */,
-				64A03E11172184B100AA0436 /* LaserShip.h */,
 				64DBC33A17302FDB0078B26C /* Parts */,
 			);
 			name = Objects;
@@ -484,7 +479,6 @@
 				642F9D93171705AB005FEFD3 /* ExplodeAnimation.cpp in Sources */,
 				64AD0866171C357C001AEFCB /* RamShip.cpp in Sources */,
 				64AD086A171C3E1E001AEFCB /* ModelConstants.cpp in Sources */,
-				64A03E12172184B100AA0436 /* LaserShip.cpp in Sources */,
 				64A03E16172189A800AA0436 /* TextureGenerator.cpp in Sources */,
 				6473C84B17296A5C00B2AD55 /* gameShip.cpp in Sources */,
 				6473C84E17296EFE00B2AD55 /* BasicGun.cpp in Sources */,
