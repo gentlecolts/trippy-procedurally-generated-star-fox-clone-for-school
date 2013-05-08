@@ -54,7 +54,7 @@ Vec3d invGetVector(Vec3d vec) {
 	vec=vec.normalize();
 //	cout<<"vec: "<<vec<<endl;
 	
-	double yrot=atan2(-vec[0],sqrt(1-vec[0]*vec[0]))/pi*180;
+	double yrot=atan2(vec[0],sqrt(1-vec[0]*vec[0]))/pi*180;
 	
 	//double yrot=asin(-vec[0])/pi*180;
 	//std::cout<<"vec[0]: "<<-vec[0]<<std::endl;
@@ -62,8 +62,8 @@ Vec3d invGetVector(Vec3d vec) {
 	double xrot=atan2(vec[1], sqrt(tmp*tmp-vec[1]*vec[1]))/pi*180;
 	
 	if(vec[2]>0) {
-		yrot=180-yrot;
-		xrot=-xrot;
+		yrot=180+yrot;
+		//xrot=-xrot;
 //		cout<<"angles changed to: "<<yrot<<endl;
 	}
 	//if(vec[2]>0)

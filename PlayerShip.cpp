@@ -94,8 +94,9 @@ void PlayerShip::afterSetup() {
 	//addChild(new FanStrut(this, 5, basicStrutModel), 1);
 	
 	for(int i=0;i<model->numAttachPoints;i++) {
-		addChild(new AimingStrut(this, 9000, basicStrutModel), i);
-		children[i]->addChild(new BasicGun(children[i]), 1);
+		//addChild(new AimingStrut(this, 9000, basicStrutModel), i);
+		addChild(new BasicStrut(this, basicStrutModel), i,Vec3d(0,20,0));
+		children[i]->addChild(new BasicGun(children[i]), 0);
 	}
 }
 

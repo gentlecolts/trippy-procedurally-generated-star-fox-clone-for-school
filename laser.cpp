@@ -35,6 +35,8 @@ void Laser::init(Vec3d p, Vec3d a){
 	
 	//Vec3d vect=getVector(xrot,yrot);
 	
+//	cout<<"rot: "<<rot<<endl;
+	
 	Vec3d vect=Vec3d(0,0,-1);
 	vect=rotate(vect,Vec3d(0,1,0),rot[1]);
 	vect=rotate(vect,Vec3d(1,0,0),rot[0]);

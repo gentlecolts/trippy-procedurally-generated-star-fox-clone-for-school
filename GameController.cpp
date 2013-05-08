@@ -14,15 +14,28 @@
 
 
 void doTests() {
-	Vec3d dist=Vec3d(0,1,3);
+	Vec3d dist=Vec3d(1,0,3);
 	cout<<"dist: "<<dist<<endl;
 	Vec3d ang=invGetVector(dist);
-	cout<<"ang: "<<ang<<endl;
 	
-	Matrix ident2=Matrix();
-	cout<<"ident2: "<<ident2<<endl;
+	cout<<"ang: "<<ang<<endl;
+	Vec3d testAng=Vec3d(0,0,-1);
+	testAng=rotate(testAng,Vec3d(0,1,0),ang[1]);
+	testAng=rotate(testAng,Vec3d(1,0,0),ang[0]);
+	testAng=rotate(testAng,Vec3d(0,0,1),ang[2]);
+	cout<<"testAng: "<<testAng<<endl;
+	
+	Matrix y=Matrix(Vec3d(0,ang[1],0));
+	Matrix x=Matrix(Vec3d(0,ang[0],0));
+	
+	cout<<"y comp: "<<y<<endl;
+	
+	cout<<"x comp: "<<x<<endl;
 	
 	Matrix mat=Matrix(ang);
+	/*logMat=true;
+	Matrix mat=y*x;
+	logMat=false;*/
 	//mat=Matrix(ang);
 	
 	cout<<"mat: "<<mat<<endl;
