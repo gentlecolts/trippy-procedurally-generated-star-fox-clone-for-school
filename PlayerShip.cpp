@@ -90,12 +90,15 @@ void PlayerShip::uniqueRenderAfterPop() {
 }
 
 void PlayerShip::afterSetup() {
-	//addChild(new FanStrut(this, 5, basicStrutModel), 0);
-	//addChild(new FanStrut(this, 5, basicStrutModel), 1);
+//	addChild(new FanStrut(this, 1, basicStrutModel), 0);
+//	addChild(new FanStrut(this, 1, basicStrutModel), 1);
+	
+	//addChild(new RotateStrut(this,longStrutModel, Vec3d(30,-70,360),Vec3d(-30,0,-360), 0.5), 0);
+	//children[0]->addChild(new BasicGun(children[0]), 1);
 	
 	for(int i=0;i<model->numAttachPoints;i++) {
-		//addChild(new AimingStrut(this, 9000, basicStrutModel), i);
-		addChild(new BasicStrut(this, basicStrutModel), i,Vec3d(0,20,0));
+		addChild(new AimingStrut(this, 9000, basicStrutModel), i);
+		//addChild(new BasicStrut(this, basicStrutModel), i,Vec3d(0,0,0));
 		children[i]->addChild(new BasicGun(children[i]), 0);
 	}
 }

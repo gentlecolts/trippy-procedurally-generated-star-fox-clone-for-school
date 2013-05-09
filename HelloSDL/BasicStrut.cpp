@@ -23,6 +23,8 @@ BasicStrut::BasicStrut(GameObject *p, Model *m) : GameObject() {
 void BasicStrut::afterSetup() {
 	GameObject::afterSetup();
 	
+	cout<<"rot: "<<rot<<endl;
+	
 	
 	//for(int i=0;i<model->numAttachPoints;i++) {
 	/*addChild(new BasicGun(this),0);
@@ -67,4 +69,81 @@ void BasicStrut::initAttachPoints() {
 			//}
 		}
 	}
+}
+
+ObjectTypeTree* basicStrutTreeFun(double diff, double size) {
+	ObjectTypeTree *tree=new ObjectTypeTree;
+	
+	unsigned int randomNum=rand();
+	
+	//models store an average distance, subtract it from size
+	
+	tree->numChildren=playerShipModel->numAttachPoints;
+	tree->seed=randomNum;
+	tree->type=basicStrutType;
+	
+	for(int i=0;i<playerShipModel->numAttachPoints/2;i++) {		//add random models later
+		
+		double subSize=((double)rand())/RAND_MAX*size;
+		
+		
+		
+		if(size-subSize>10) {
+			double subDiff=((double)rand())/RAND_MAX*diff;
+			if(i==playerShipModel->numAttachPoints/2-1)
+				subDiff=diff;
+			
+			ObjectType obj=getRandomObject(objects, subDiff, subSize);
+			int j = 0;
+			while(j<10 && abs(subDiff-obj.difficulty(subSize))<10) {
+				obj=getRandomObject(objects, subDiff, subSize);
+				j++;
+			}
+			
+			if(j<10) {
+				diff-=subDiff;
+				size-=subSize;
+				tree->children[i]=*obj.treeFun(subDiff,subSize);
+				tree->filled[i]=true;
+				
+				tree->children[playerShipModel->numAttachPoints-i-1]=*getRandomObject(objects, subDiff, subSize).treeFun(subDiff, subSize);
+				tree->filled[playerShipModel->numAttachPoints-i-1]=true;
+			} else {
+				cout<<"Nothing small enough!"<<endl;
+			}
+		}
+	}
+	
+	return tree;
+}
+
+ObjectType basicStrutType;
+
+GameObject* basicStrutGetGameObject(int seed) {
+	srand(seed);
+	
+	Model *mod=(rand()%2==0) ? basicStrutModel : longStrutModel;
+	
+	BasicStrut *strut=new BasicStrut(NULL, mod);
+	
+	return strut;
+	//create a random object
+}
+
+double basicStrutDifficulty(double size) {
+	size-=basicStrutType.minSize;
+	
+	double accum=0;
+	int ct=0;
+	
+	for(int i=0;i<objects.size();i++) {
+		if(objects[i].minSize<=size) {
+			accum+=objects[i].difficulty(size/playerShipModel->numAttachPoints);
+			ct++;
+		}
+	}
+	
+	double attachPoints=(basicStrutModel->numAttachPoints+longStrutModel->numAttachPoints)/2;
+	
+	return accum/ct*playerShipModel->numAttachPoints;
 }

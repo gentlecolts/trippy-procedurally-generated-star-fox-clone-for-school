@@ -35,22 +35,22 @@ Matrix::Matrix(Vec4d angles) {
 	//angles=-angles;
 	
 	Matrix yRotMat=Matrix(
-		Vec4d(cos(radians(angles[1])), 0, -sin(radians(angles[1])), 0),
+		Vec4d(cos(radians(angles[1])), 0, sin(radians(angles[1])), 0),
 		Vec4d(0, 1, 0, 0),
-		Vec4d(sin(radians(angles[1])), 0, cos(radians(angles[1])), 0),
+		Vec4d(-sin(radians(angles[1])), 0, cos(radians(angles[1])), 0),
 		Vec4d(0, 0, 0, 1)
 	);
 	
 	Matrix xRotMat=Matrix(
 						  Vec4d(1, 0, 0, 0),
-						  Vec4d(0, cos(radians(angles[0])), sin(radians(angles[0])), 0),
-						  Vec4d(0, -sin(radians(angles[0])), cos(radians(angles[0])), 0),
+						  Vec4d(0, cos(radians(angles[0])), -sin(radians(angles[0])), 0),
+						  Vec4d(0, sin(radians(angles[0])), cos(radians(angles[0])), 0),
 						  Vec4d(0, 0, 0, 1)
 						  );
 	
 	Matrix zRotMat=Matrix(
-						  Vec4d(cos(radians(angles[2])), sin(radians(angles[2])), 0, 0),
-						  Vec4d(-sin(radians(angles[2])), cos(radians(angles[2])), 0, 0),
+						  Vec4d(cos(radians(angles[2])), -sin(radians(angles[2])), 0, 0),
+						  Vec4d(sin(radians(angles[2])), cos(radians(angles[2])), 0, 0),
 						  Vec4d(0, 0, 1, 0),
 						  Vec4d(0, 0, 0, 1)
 						  );
@@ -152,6 +152,6 @@ const Matrix &Matrix::operator-=(const Matrix &other) {
 }
 
 ostream &operator<<(ostream &output, const Matrix &m) {
-	cout << '[' << m[0] << "\n" << m[1] << "\n" << m[2] << "\n" << m[3] << ']';
+	cout << '[' << m[0] << "\n\t" << m[1] << "\n\t" << m[2] << "\n\t" << m[3] << ']';
 	return output;
 }

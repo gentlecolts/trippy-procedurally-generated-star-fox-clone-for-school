@@ -19,12 +19,12 @@ void FanStrut::afterSetup() {
 		GameObject *child=this;
 		for(int i=0;i<level;i++) {
 			//cout<<"ADDING"<<endl;
-			BasicStrut *spar=new RotateStrut(child,longStrutModel, Vec3d(30*(num ? 1 : -1),0,0),Vec3d(-30*(num ? 1 : -1),0,0), 0.5);
+			BasicStrut *spar=new RotateStrut(child,longStrutModel, Vec3d(30,0,0),Vec3d(-30,0,0), 0.5);
 			//BasicStrut *spar=new BasicStrut(child,longStrutModel);
 			if(i>0)
 				child->addChild(spar, 1);
 			else
-				child->addChild(spar, num+4);
+				child->addChild(spar, num+4, Vec3d(0, 0, num ? 180 : 0));
 			GameObject *next=new BasicStrut(spar, basicStrutModel);
 			spar->addChild(next, 1);
 			

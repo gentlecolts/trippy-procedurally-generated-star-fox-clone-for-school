@@ -51,7 +51,7 @@ void HoverShip::init(double x, double y) {
 	pos[0]*=signum(x);
 	pos[1]*=signum(y);
 	
-	int startPos=-20;
+	int startPos=-5;
 	time=8;
 	pauseTime=8;
 	
@@ -170,7 +170,7 @@ GameObject* hoverShipGetGameObject(int seed) {
 }
 
 double hoverShipDifficulty(double size) {
-	//store a size, subtract it
+	size-=hoverShipType.minSize;
 	
 	double accum=0;
 	int ct=0;

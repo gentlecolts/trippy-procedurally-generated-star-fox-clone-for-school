@@ -38,6 +38,9 @@ void BasicGun::doDoFire() {
 //	cout<<"parent: "<<parent->rot<<endl;
 	
 	Vec3d ang=absoluteAngle();
+	
+	cout<<"rot: "<<parent->rot<<endl;
+	cout<<"ang: "<<ang<<endl;
 //	cout<<"ang: "<<ang<<endl;
 //	cout<<"pos: "<<pos<<endl;
 	addLaser(new Laser(pos, ang), player);
@@ -45,4 +48,6 @@ void BasicGun::doDoFire() {
 }
 
 void BasicGun::update(double dt) {
+	//cout<<"rot: "<<rot<<endl;
+	//cout<<"abs: "<<absoluteAngle()<<endl;
 }

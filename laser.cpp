@@ -29,6 +29,7 @@ void Laser::init(Vec3d p, Vec3d a){
     pos=p;
 
     rot=a;
+	//rot[0]*=-1;
 	
 	//if(!player)
 //		cout<<"laser rot: "<<rot<<endl;
@@ -37,10 +38,15 @@ void Laser::init(Vec3d p, Vec3d a){
 	
 //	cout<<"rot: "<<rot<<endl;
 	
-	Vec3d vect=Vec3d(0,0,-1);
-	vect=rotate(vect,Vec3d(0,1,0),rot[1]);
-	vect=rotate(vect,Vec3d(1,0,0),rot[0]);
-	vect=rotate(vect,Vec3d(0,0,1),rot[2]);
+//	Vec3d vect=Vec3d(0,0,-1);
+//	vect=rotate(vect,Vec3d(0,1,0),rot[1]);
+//	vect=rotate(vect,Vec3d(1,0,0),rot[0]);
+//	vect=rotate(vect,Vec3d(0,0,1),rot[2]);
+	Vec3d vect=Vec3d(
+					 cos(radians(rot[0]))*sin(radians(rot[1])),
+					 -sin(radians(rot[0])),
+					 cos(radians(rot[0]))*cos(radians(rot[1]))
+					 );
 
     vel=laserSpeed*vect;
 }

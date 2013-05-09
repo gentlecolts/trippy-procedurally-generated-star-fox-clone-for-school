@@ -54,7 +54,7 @@ Vec3d invGetVector(Vec3d vec) {
 	vec=vec.normalize();
 //	cout<<"vec: "<<vec<<endl;
 	
-	double yrot=atan2(vec[0],sqrt(1-vec[0]*vec[0]))/pi*180;
+	/*double yrot=atan2(-vec[0],sqrt(1-vec[0]*vec[0]))/pi*180;
 	
 	//double yrot=asin(-vec[0])/pi*180;
 	//std::cout<<"vec[0]: "<<-vec[0]<<std::endl;
@@ -62,8 +62,8 @@ Vec3d invGetVector(Vec3d vec) {
 	double xrot=atan2(vec[1], sqrt(tmp*tmp-vec[1]*vec[1]))/pi*180;
 	
 	if(vec[2]>0) {
-		yrot=180+yrot;
-		//xrot=-xrot;
+		yrot=180-yrot;
+		xrot=-xrot;
 //		cout<<"angles changed to: "<<yrot<<endl;
 	}
 	//if(vec[2]>0)
@@ -73,7 +73,12 @@ Vec3d invGetVector(Vec3d vec) {
 	Vec3d v=Vec3d(0,0,-1);
 	v=rotate(v,Vec3d(0,1,0),yrot);
 	v=rotate(v,Vec3d(1,0,0),xrot);
-//	cout<<"becomes: "<<v<<endl;
+//	cout<<"becomes: "<<v<<endl;*/
+	
+	double xrot=-asin(vec[1])/pi*180;	//negative?
+	double yrot=atan2(vec[0],vec[2])/pi*180;
+	//double xrot=asin(vec[1]);
+	//double yrot=asin(-vec[0]/cos(yrot));
 	
 	return Vec3d(xrot,yrot,0);
 }
@@ -92,10 +97,21 @@ int signum(double val) {
 Vec3d rotate(Vec3d v, Vec3d axis, float degrees) {
     axis = axis.normalize();
     float radians = degrees * pi / 180;
-    float s = -sin(radians);		//it's negative deal with it
+    float s = sin(radians);		//it's negative deal with it
     float c = cos(radians);
     return v * c + axis * axis.dot(v) * (1 - c) + v.cross(axis) * s;
 }
+
+/*Vec3d rotate(Vec3d, int axis, double degrees) {
+	switch (axis) {
+		case 0:
+			<#statements#>
+			break;
+			
+		default:
+			break;
+	}
+}*/
 
 /**
  double distSq(double x1,double y1,double x2,double y2)

@@ -138,8 +138,8 @@ void initModels() {
 	playerShipModel->addAttachPoint(Vec3d(0.5,0.0,0.0));
 	playerShipModel->addAttachPoint(Vec3d(-0.5,0.0,0.0));
 	
-	playerShipModel->addAttachPointAngle(Vec3d(0,0,0.0));
-	playerShipModel->addAttachPointAngle(Vec3d(0,0,180));
+	playerShipModel->addAttachPointAngle(Vec3d(0,180,0.0));
+	playerShipModel->addAttachPointAngle(Vec3d(0,180,180));
 	
 	
 	
@@ -147,7 +147,7 @@ void initModels() {
 	
 	basicGunModel->type=GL_QUADS;
 	
-	basicGunModel->addRectPrism(Vec3d(-0.1,-0.1,0.0), Vec3d(0.1,0.1,-1.0));
+	basicGunModel->addRectPrism(Vec3d(-0.1,-0.1,0.0), Vec3d(0.1,0.1,1.0));
 	
 	for(int i=0;i<24;i++) {
 		if(basicGunModel->vertices[i][2]>0)
@@ -174,14 +174,14 @@ void initModels() {
 	
 	
 	longStrutModel->type=GL_QUADS;
-	longStrutModel->addRectPrism(Vec3d(-0.1,-0.1,0), Vec3d(0.1,0.1,-1));
+	longStrutModel->addRectPrism(Vec3d(-0.1,-0.1,0), Vec3d(0.1,0.1,1));
 	for(int i=0;i<24;i++) {
 		longStrutModel->addColor(Vec3d(0.7,0.7,0.7));
 	}
 	longStrutModel->computeNormals();
 	
 	laserModel->type=GL_QUADS;
-	laserModel->addRect(Vec3d(-0.2,0,0), Vec3d(0.2,0,0), Vec3d(0.2,0,-5));
+	laserModel->addRect(Vec3d(-0.2,0,0), Vec3d(0.2,0,0), Vec3d(0.2,0,5));
 	for(int i=0;i<laserModel->length;i++) {
 		laserModel->addColor(Vec4d(1.0,0.3,0.3,0.7));
 	}

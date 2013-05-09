@@ -9,11 +9,20 @@
 #include "RotateStrut.h"
 
 void RotateStrut::update(double dt) {
-	if(time==0 || (int)(t/time)%2==0) {
+	/*if(time==0 || (int)(t/time)%2==0) {
 		rot+=velAngle*dt;
 	} else {
 		rot-=velAngle*dt;
-	}
+	}*/
+	
+	
+	//cout<<"angle: "<<rot<<endl;
+	if(time!=0 && (int)(t/time)%2==0)
+		rot=startAngle+velAngle*(fmod(t,time));
+	else if(time!=0)
+		rot=endAngle-velAngle*(fmod(t,time));
+	else
+		rot=startAngle+velAngle*t;
 }
 
 void RotateStrut::afterSetup() {

@@ -36,6 +36,9 @@ void AimingStrut::update(double dt) {
 	
 	Vec3d dist=-(targetPoint-absolutePosition());
 	
+	if(!player)
+		dist=-dist;
+	
 //	dist=Vec3d(0,1,0);
 	//cout<<"dist: "<<dist<<endl;
 	//dist[2]*=-1;

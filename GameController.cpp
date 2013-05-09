@@ -14,16 +14,22 @@
 
 
 void doTests() {
-	Vec3d dist=Vec3d(1,0,3);
+	Vec3d dist=Vec3d(1,0,0);
 	cout<<"dist: "<<dist<<endl;
 	Vec3d ang=invGetVector(dist);
 	
 	cout<<"ang: "<<ang<<endl;
-	Vec3d testAng=Vec3d(0,0,-1);
-	testAng=rotate(testAng,Vec3d(0,1,0),ang[1]);
-	testAng=rotate(testAng,Vec3d(1,0,0),ang[0]);
+	Vec3d testAng=Vec3d(0,0,1);
 	testAng=rotate(testAng,Vec3d(0,0,1),ang[2]);
+	testAng=rotate(testAng,Vec3d(1,0,0),ang[0]);
+	testAng=rotate(testAng,Vec3d(0,1,0),ang[1]);
 	cout<<"testAng: "<<testAng<<endl;
+	Vec3d testOtherWay=Vec3d(
+							 cos(radians(ang[0]))*sin(radians(ang[1])),
+							 -sin(radians(ang[0])),
+							 cos(radians(ang[0]))*cos(radians(ang[1]))
+							 );
+	cout<<"testOtherWay: "<<testOtherWay<<endl;
 	
 	Matrix y=Matrix(Vec3d(0,ang[1],0));
 	Matrix x=Matrix(Vec3d(0,ang[0],0));
@@ -40,7 +46,7 @@ void doTests() {
 	
 	cout<<"mat: "<<mat<<endl;
 	
-	Vec3d diff=mat*Vec4d(0, 0, -1, 1)-mat*Vec4d(0, 0, 0, 1);
+	Vec3d diff=mat*Vec4d(0, 0, 1, 1)-mat*Vec4d(0, 0, 0, 1);
 	
 	cout<<"diff: "<<diff<<endl;;
 	

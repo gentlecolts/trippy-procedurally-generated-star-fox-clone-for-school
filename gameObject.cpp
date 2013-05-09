@@ -40,6 +40,8 @@ GameObject::GameObject() {
  Draw the model, calling theAnimation's transform methods, and uniqueRender() and uniqueRenderAfterPop()
  */
 void GameObject::render() {
+	//glDisable(GL_LIGHT0);
+	
 	glPushMatrix();
 	glTranslatef(pos[0], pos[1], pos[2]);
 	
@@ -91,6 +93,8 @@ void GameObject::render() {
 	glPopMatrix();
 
 	uniqueRenderAfterPop();
+	
+	//glEnable(GL_LIGHT0);
 }
 
 /**
@@ -219,6 +223,15 @@ Matrix GameObject::getMatrix() {
 	
 	mat=mat*Matrix(rot);
 	
+	if(parent==NULL) {
+		mat=mat*Matrix(
+					   Vec4d(objScale, 0, 0, 0),
+					   Vec4d(0, objScale, 0, 0),
+					   Vec4d(0, 0, objScale, 0),
+					   Vec4d(0, 0, 0, 1)
+		);
+	}
+	
 //	cout<<"rot: "<<rot<<endl;
 //	cout<<"rot matrix: "<<Matrix(rot)<<endl;
 	
@@ -227,7 +240,8 @@ Matrix GameObject::getMatrix() {
 
 Vec3d GameObject::absoluteAngle() {
 	//cout<<"MATRIX: "<<getMatrix()<<endl;
-	Vec3d diff=getMatrix()*Vec4d(0, 0, -1, 1)-getMatrix()*Vec4d(0, 0, 0, 1);
+	Matrix mat=getMatrix();
+	Vec3d diff=mat*Vec4d(0, 0, 1, 1)-mat*Vec4d(0, 0, 0, 1);
 	
 //	cout<<"diff: "<<diff<<endl;
 	
@@ -236,6 +250,7 @@ Vec3d GameObject::absoluteAngle() {
 
 Vec3d GameObject::absolutePosition() {
 	if(parent!=NULL) {
+		/*
 		Vec3d parentPos=parent->absolutePosition();
 		Vec3d ang=parent->absoluteAngle();
 
@@ -245,6 +260,10 @@ Vec3d GameObject::absolutePosition() {
 		dir=rotate(dir,Vec3d(0,0,1),ang[2]);
 		
 		return parentPos+dir*objScale;		//completely wrong
+		 */
+		
+		Matrix parentMat=parent->getMatrix();
+		return parentMat*pos;
 	}
 	//cout<<"pos: "<<pos<<endl;
 	return pos;
@@ -280,11 +299,13 @@ void GameObject::doFire() {}
  Creates a laser at the position, direction
  */
 void GameObject::fireWeapon() {
-	doFire();
-	
-	for(int i=0;i<model->numAttachPoints;i++) {
-		if(attachPointsFilled[i])
-			children[i]->fireWeapon();
+	if(didSetup) {
+		doFire();
+		
+		for(int i=0;i<model->numAttachPoints;i++) {
+			if(attachPointsFilled[i])
+				children[i]->fireWeapon();
+		}
 	}
 }
 
