@@ -17,6 +17,7 @@ class RamShip : public EnemyShip {
 private:
 protected:
 public:
+	RamShip();
 	RamShip(double x, double y, int n);
 	void init(double x, double y);
 	void update(double dt);

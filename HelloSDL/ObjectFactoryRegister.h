@@ -10,7 +10,13 @@
 #define __HelloSDL__ObjectFactoryRegister__
 
 #include <iostream>
+#include <vector>
+#include "ObjectFactory.h"
+
+class GameObject;
 
 void registerAll();
+
+
 
 #endif /* defined(__HelloSDL__ObjectFactoryRegister__) */

@@ -13,6 +13,8 @@
 		64241AE71713187A0021A48E /* testEnemyWave1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64241AE51713187A0021A48E /* testEnemyWave1.cpp */; };
 		642F9D93171705AB005FEFD3 /* ExplodeAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 642F9D91171705AB005FEFD3 /* ExplodeAnimation.cpp */; };
 		6453CA54172ECB45007D9724 /* BasicStrut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6453CA52172ECB45007D9724 /* BasicStrut.cpp */; };
+		646BD522173EA4CF0078794F /* RegisterEnemies.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 646BD520173EA4CF0078794F /* RegisterEnemies.cpp */; };
+		646BD525173EB53E0078794F /* RegisterStruts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 646BD523173EB53D0078794F /* RegisterStruts.cpp */; };
 		646D9E461715F92C004FD3F5 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 646D9E441715F92C004FD3F5 /* Model.cpp */; };
 		646D9E54171601A3004FD3F5 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 646D9E52171601A3004FD3F5 /* Animation.cpp */; };
 		6473C84B17296A5C00B2AD55 /* gameShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6473C84917296A5C00B2AD55 /* gameShip.cpp */; };
@@ -68,6 +70,10 @@
 		642F9D92171705AB005FEFD3 /* ExplodeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExplodeAnimation.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/ExplodeAnimation.h"; sourceTree = "<group>"; };
 		6453CA52172ECB45007D9724 /* BasicStrut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicStrut.cpp; sourceTree = "<group>"; };
 		6453CA53172ECB45007D9724 /* BasicStrut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicStrut.h; sourceTree = "<group>"; };
+		646BD520173EA4CF0078794F /* RegisterEnemies.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RegisterEnemies.cpp; sourceTree = "<group>"; };
+		646BD521173EA4CF0078794F /* RegisterEnemies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterEnemies.h; sourceTree = "<group>"; };
+		646BD523173EB53D0078794F /* RegisterStruts.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RegisterStruts.cpp; sourceTree = "<group>"; };
+		646BD524173EB53E0078794F /* RegisterStruts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterStruts.h; sourceTree = "<group>"; };
 		646D9E441715F92C004FD3F5 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Model.cpp; path = "/Users/jonahchazan/Desktop/trippy-procedurally-generated-star-fox-clone-for-school/Model.cpp"; sourceTree = "<absolute>"; };
 		646D9E451715F92C004FD3F5 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model.h; path = "/Users/jonahchazan/Desktop/trippy-procedurally-generated-star-fox-clone-for-school/Model.h"; sourceTree = "<absolute>"; };
 		646D9E501715FE07004FD3F5 /* vec3d.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = vec3d.cpp; path = "/Users/jonahchazan/Desktop/trippy-procedurally-generated-star-fox-clone-for-school/vec3d.cpp"; sourceTree = "<absolute>"; };
@@ -187,6 +193,10 @@
 				640463EC1733FA9100C8F71E /* ObjectFactory.h */,
 				64CBE84B1737F92F007C9D08 /* ObjectFactoryRegister.cpp */,
 				64CBE84C1737F930007C9D08 /* ObjectFactoryRegister.h */,
+				646BD520173EA4CF0078794F /* RegisterEnemies.cpp */,
+				646BD521173EA4CF0078794F /* RegisterEnemies.h */,
+				646BD523173EB53D0078794F /* RegisterStruts.cpp */,
+				646BD524173EB53E0078794F /* RegisterStruts.h */,
 				6473C84917296A5C00B2AD55 /* gameShip.cpp */,
 				6473C84A17296A5C00B2AD55 /* gameShip.h */,
 				64A789DE170C75F800CCAB2F /* PlayerShip.cpp */,
@@ -492,6 +502,8 @@
 				6482BCF11735A6BC0055C84A /* Vec4d.cpp in Sources */,
 				64CBE84A17371A22007C9D08 /* Nade.cpp in Sources */,
 				64CBE84D1737F931007C9D08 /* ObjectFactoryRegister.cpp in Sources */,
+				646BD522173EA4CF0078794F /* RegisterEnemies.cpp in Sources */,
+				646BD525173EB53E0078794F /* RegisterStruts.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

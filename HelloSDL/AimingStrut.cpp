@@ -10,7 +10,16 @@
 #include "globals.h"
 #include "gameShip.h"
 
-AimingStrut::AimingStrut(GameObject *p, double s, Model *m) : BasicStrut(p, m) {
+AimingStrut::AimingStrut() : BasicStrut() {
+}
+
+AimingStrut::AimingStrut(GameObject *p, double s, Model *m) : BasicStrut() {
+	init(p, s, m);
+}
+
+void AimingStrut::init(GameObject *p, double s, Model *m) {
+	BasicStrut::init(p, m);
+	
 	speed=s;
 }
 

@@ -16,7 +16,9 @@
 class BasicStrut : public GameObject {
 	
 public:
+	BasicStrut();
 	BasicStrut(GameObject *p, Model *m);
+	void init(GameObject *p, Model *m);
 	virtual void initAttachPoints();
 	virtual void afterSetup();
 };

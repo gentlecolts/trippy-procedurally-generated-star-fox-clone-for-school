@@ -20,6 +20,7 @@ public:
 	virtual void doDoFire();
 	
 	BasicGun(GameObject *p);
+	BasicGun();
 	
 	double fireRate, lastFired;
 };

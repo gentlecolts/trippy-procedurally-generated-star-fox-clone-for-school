@@ -278,6 +278,7 @@ void GameObject::destroy() {
  Does collision detection with another object using two spheres with radius of avgDist
  */
 bool GameObject::collidesWithObject(GameObject* obj) {      //crappy method
+	//cout<<"obj: "<<obj<<endl;
 	Vec3d diff=pos-obj->pos;
 
     return diff.magnitude()<avgDist+obj->avgDist;

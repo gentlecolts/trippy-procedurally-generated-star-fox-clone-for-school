@@ -13,6 +13,9 @@
 #include "BasicGun.h"
 #include "FanStrutThing.h"
 
+RamShip::RamShip() : EnemyShip(0) {
+}
+
 /**
  RamShip::RamShip(double x, double y, int n)
  Just calls init and super

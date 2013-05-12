@@ -10,6 +10,7 @@
 #include "RamShip.h"
 #include "testEnemyWave1.h"
 #include "HoverShip.h"
+#include "ObjectFactory.h"
 
 
 /**
@@ -29,11 +30,20 @@ void TestEnemyWave1::init(){
     ship2=new RamShip(x+.5,y,s+1);
     ship3=new RamShip(x,y+.5,s+2);//*/
 	
-	//*
+	/*
 	ship1=new HoverShip(x,y,s);
     ship2=new HoverShip(x+3,y,s+1);
     ship3=new HoverShip(x,y+3,s+2);
 	//*/
+	
+	ship1=(EnemyShip *)expandTree(NULL, *getTree(15, 5));
+	ship2=(EnemyShip *)expandTree(NULL, *getTree(15, 5));
+	ship3=(EnemyShip *)expandTree(NULL, *getTree(15, 5));
+	
+	ship1->init(x, y);
+	ship2->init(x+5, y);
+	ship3->init(x, y+5);
+	
 	
     ship1->parentWave=this;
     ship2->parentWave=this;

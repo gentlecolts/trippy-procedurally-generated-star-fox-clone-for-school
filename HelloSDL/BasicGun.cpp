@@ -17,6 +17,13 @@ void BasicGun::init() {
     modelSize=model->length;
 }
 
+BasicGun::BasicGun() : GameObject() {
+	lastFired=0;
+	fireRate=10;
+	parent=NULL;
+	lastFired=0;
+}
+
 BasicGun::BasicGun(GameObject *p) : GameObject() {
 	init();
 	
@@ -39,8 +46,8 @@ void BasicGun::doDoFire() {
 	
 	Vec3d ang=absoluteAngle();
 	
-	cout<<"rot: "<<parent->rot<<endl;
-	cout<<"ang: "<<ang<<endl;
+//	cout<<"rot: "<<parent->rot<<endl;
+//	cout<<"ang: "<<ang<<endl;
 //	cout<<"ang: "<<ang<<endl;
 //	cout<<"pos: "<<pos<<endl;
 	addLaser(new Laser(pos, ang), player);

@@ -32,10 +32,4 @@ public:
 };
 
 
-extern ObjectType hoverShipType;
-ObjectTypeTree* hoverShipTreeFun(double diff, double size);
-GameObject *hoverShipGetGameObject(int seed);
-double hoverShipDifficulty(double size);
-
-
 #endif /* defined(__HelloSDL__HoverShip__) */

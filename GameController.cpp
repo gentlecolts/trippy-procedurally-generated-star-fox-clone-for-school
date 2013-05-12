@@ -11,6 +11,7 @@
 #include "math.h"
 #include "Matrix.h"
 #include <ctime>
+#include "ObjectFactoryRegister.h"
 
 
 void doTests() {
@@ -72,6 +73,8 @@ void doTests() {
  */
 void setupGame() {
 	initModels();
+	
+	registerAll();
 	
     //gameObjects.push_back(new PlayerShip(0));
 	thePlayerShip=new PlayerShip(0);
