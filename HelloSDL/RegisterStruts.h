@@ -14,17 +14,17 @@
 
 void registerBasicStrutType();
 GameObject *basicStrutGetGameObject(GameObject *parent, int seed);
-vector<ObjectType>* basicStrutCandidateChildren();
+vector<ObjectType *>* basicStrutCandidateChildren();
 Model *basicStrutGetModel();
 
 void registerAimingStrutType();
 GameObject *aimingStrutGetGameObject(GameObject *parent, int seed);
-vector<ObjectType>* aimingStrutCandidateChildren();
+vector<ObjectType *>* aimingStrutCandidateChildren();
 Model *aimingStrutGetModel();
 
 void registerRotateStrutType();
 GameObject *rotateStrutGetGameObject(GameObject *parent, int seed);
-vector<ObjectType>* rotateStrutCandidateChildren();
+vector<ObjectType *>* rotateStrutCandidateChildren();
 Model *rotateStrutGetModel();
 
 #endif /* defined(__HelloSDL__RegisterStruts__) */

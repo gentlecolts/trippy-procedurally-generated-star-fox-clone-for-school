@@ -106,6 +106,6 @@ void RamShip::update(double dt) {
 	double fireRate=0.01;
 	
 	//if(fmod(t,fireRate)<=fireRate/2 && fmod(oldT,fireRate)>=fireRate/2) {
-		//fireWeapon();
+		fireWeapon();
 	//}
 }

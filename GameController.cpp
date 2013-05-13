@@ -124,9 +124,9 @@ void updateObjects() {
 	updateTerrain(dt);
 	
 	GameShip* obj=thePlayerShip;
-	cout<<"tick"<<endl;
+//	cout<<"tick"<<endl;
 	while(obj!=NULL) {
-		cout<<"obj: "<<obj<<endl;
+//		cout<<"obj: "<<obj<<endl;
 		obj->doUpdate(dt);
 		
 		

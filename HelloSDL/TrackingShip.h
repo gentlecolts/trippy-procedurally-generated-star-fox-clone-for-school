@@ -1,33 +1,31 @@
 //
-//  HoverShip.h
+//  TrackingShip.h
 //  HelloSDL
 //
-//  Created by Jonah Chazan on 5/2/13.
+//  Created by Jonah Chazan on 5/13/13.
 //  Copyright (c) 2013 Student. All rights reserved.
 //
 
-#ifndef __HelloSDL__HoverShip__
-#define __HelloSDL__HoverShip__
+#ifndef __HelloSDL__TrackingShip__
+#define __HelloSDL__TrackingShip__
 
 #include <iostream>
 
 #include "EnemyShip.h"
 #include "ObjectFactory.h"
 
-class HoverShip : public EnemyShip {
+class TrackingShip : public EnemyShip {
 private:
 protected:
 	Vec3d oldVel;
-	double lastT;
 public:
 	double pauseTime, time;
-	HoverShip(Model *m, double x, double y, int n);
-	HoverShip(Model *m);
+	TrackingShip(Model *m, double x, double y, int n);
+	TrackingShip(Model *m);
 	void init(double x, double y);
 	void update(double dt);
 	void afterSetup();
 	bool isDone();
 };
 
-
-#endif /* defined(__HelloSDL__HoverShip__) */
+#endif /* defined(__HelloSDL__TrackingShip__) */

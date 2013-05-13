@@ -38,8 +38,8 @@ void EnemyShip::init(double x,double y){
  Increments t by dt, then moves by xvel, yvel, and zvel, and does collision detection with lasers (and eventually other objects)
  */
 void EnemyShip::update(double dt) {
-	cout<<"children model: "<<children[0]->model<<endl;
-	cout<<"I'm "<<this<<endl;
+//	cout<<"children model: "<<children[0]->model<<endl;
+//	cout<<"I'm "<<this<<endl;
 	
 	pos[2]-=thePlayerShip->vel[2]*dt;
 	//cout<<"subtracting "<<(thePlayerShip->zvel)<<endl;
@@ -59,8 +59,9 @@ void EnemyShip::update(double dt) {
 				setAnimation(new ExplodeAnimation(model,this));
 				
 				for(int i=0;i<numChildren;i++) {
-					cout<<"children["<<i<<"] "<<children[i]<<endl;
-					children[i]->setAnimation(new ExplodeAnimation(children[i]->model,NULL));
+//					cout<<"children["<<i<<"] "<<children[i]<<endl;
+					if(attachPointsFilled[i])
+						children[i]->setAnimation(new ExplodeAnimation(children[i]->model,NULL));
 				}
 				
 				vel[0]=0;

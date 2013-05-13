@@ -38,13 +38,19 @@ void TestEnemyWave1::init(){
     ship3=new HoverShip(x,y+3,s+2);
 	//*/
 	
-	ship1=(EnemyShip *)expandTree(NULL, getTree(5, 5));
-	ship2=(EnemyShip *)expandTree(NULL, getTree(5, 5));
-	ship3=(EnemyShip *)expandTree(NULL, getTree(5, 5));
+	/*ship1=(EnemyShip *)expandTree(NULL, getTree(20, 2));
+	ship2=(EnemyShip *)expandTree(NULL, getTree(5, 2));
+	ship3=(EnemyShip *)expandTree(NULL, getTree(5, 2));*/
+	
+	ObjectType *type=typeForName("trackingShip");
+	
+	ship1=(EnemyShip *)expandTree(NULL, treeFun(type, 20, 2));
+	ship2=(EnemyShip *)expandTree(NULL, treeFun(type, 20, 2));
+	ship3=(EnemyShip *)expandTree(NULL, treeFun(type, 20, 2));
 	
 	ship1->init(x, y);
-	ship2->init(x+5, y);
-	ship3->init(x, y+5);
+	ship2->init(x+2, y);
+	ship3->init(x, y+2);
 	
     ship1->parentWave=this;
     ship2->parentWave=this;

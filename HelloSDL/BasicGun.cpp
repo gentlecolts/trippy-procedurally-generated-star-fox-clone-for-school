@@ -41,6 +41,7 @@ void BasicGun::doFire() {
 }
 
 void BasicGun::doDoFire() {
+	
 	Vec3d pos=absolutePosition();
 //	cout<<"parent: "<<parent->rot<<endl;
 	

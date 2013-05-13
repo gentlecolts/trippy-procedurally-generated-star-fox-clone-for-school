@@ -14,21 +14,21 @@
 #include "RotateStrut.h"
 
 void registerBasicStrutType() {
-	ObjectType basicStrutType;
+	ObjectType* basicStrutType=new ObjectType;
 	
-	basicStrutType.type=ATTACHMENT;
-	basicStrutType.candidateChildren=basicStrutCandidateChildren;
-	basicStrutType.diff=0;
-	basicStrutType.gameObject=basicStrutGetGameObject;
-	basicStrutType.minSize=0.3;
-	basicStrutType.model=basicStrutGetModel;
-	basicStrutType.numAttachPointsEst=6;		//CHANGE THIS WHEN MORE MODELS ADDED
-	basicStrutType.title="basicStrut";
+	basicStrutType->type=ATTACHMENT;
+	basicStrutType->candidateChildren=basicStrutCandidateChildren;
+	basicStrutType->diff=0;
+	basicStrutType->gameObject=basicStrutGetGameObject;
+	basicStrutType->minSize=0.3;
+	basicStrutType->model=basicStrutGetModel;
+	basicStrutType->numAttachPointsEst=6;		//CHANGE THIS WHEN MORE MODELS ADDED
+	basicStrutType->title="basicStrut";
 	
 	registerObjectType(basicStrutType);
 }
 
-vector<ObjectType>* basicStrutCandidateChildren() {
+vector<ObjectType *>* basicStrutCandidateChildren() {
 	return objects;
 }
 
@@ -50,24 +50,24 @@ GameObject* basicStrutGetGameObject(GameObject *parent, int seed) {
 }
 
 
-#define aimingStrutDiff 4
+#define aimingStrutDiff 0
 
 void registerAimingStrutType() {
-	ObjectType aimingStrutType;
+	ObjectType *aimingStrutType=new ObjectType;
 	
-	aimingStrutType.type=ATTACHMENT;
-	aimingStrutType.candidateChildren=aimingStrutCandidateChildren;
-	aimingStrutType.diff=aimingStrutDiff;
-	aimingStrutType.gameObject=aimingStrutGetGameObject;
-	aimingStrutType.minSize=0.3;
-	aimingStrutType.model=aimingStrutGetModel;
-	aimingStrutType.numAttachPointsEst=6;
-	aimingStrutType.title="aimingStrut";
+	aimingStrutType->type=ATTACHMENT;
+	aimingStrutType->candidateChildren=aimingStrutCandidateChildren;
+	aimingStrutType->diff=aimingStrutDiff;
+	aimingStrutType->gameObject=aimingStrutGetGameObject;
+	aimingStrutType->minSize=0.3;
+	aimingStrutType->model=aimingStrutGetModel;
+	aimingStrutType->numAttachPointsEst=6;
+	aimingStrutType->title="aimingStrut";
 	
 	registerObjectType(aimingStrutType);
 }
 
-vector<ObjectType>* aimingStrutCandidateChildren() {
+vector<ObjectType *>* aimingStrutCandidateChildren() {
 	return objects;
 }
 
@@ -94,21 +94,21 @@ GameObject* aimingStrutGetGameObject(GameObject *parent, int seed) {
 
 
 void registerRotateStrutType() {
-	ObjectType rotateStrutType;
+	ObjectType *rotateStrutType=new ObjectType;
 	
-	rotateStrutType.type=ATTACHMENT;
-	rotateStrutType.candidateChildren=rotateStrutCandidateChildren;
-	rotateStrutType.diff=1;
-	rotateStrutType.gameObject=rotateStrutGetGameObject;
-	rotateStrutType.minSize=0.3;
-	rotateStrutType.model=rotateStrutGetModel;
-	rotateStrutType.numAttachPointsEst=6;
-	rotateStrutType.title="rotateStrut";
+	rotateStrutType->type=ATTACHMENT;
+	rotateStrutType->candidateChildren=rotateStrutCandidateChildren;
+	rotateStrutType->diff=0;
+	rotateStrutType->gameObject=rotateStrutGetGameObject;
+	rotateStrutType->minSize=0.3;
+	rotateStrutType->model=rotateStrutGetModel;
+	rotateStrutType->numAttachPointsEst=6;
+	rotateStrutType->title="rotateStrut";
 	
 	registerObjectType(rotateStrutType);
 }
 
-vector<ObjectType>* rotateStrutCandidateChildren() {
+vector<ObjectType *>* rotateStrutCandidateChildren() {
 	return objects;
 }
 

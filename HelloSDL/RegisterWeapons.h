@@ -14,7 +14,7 @@
 
 void registerBasicGunType();
 GameObject *basicGunGetGameObject(GameObject *parent, int seed);
-vector<ObjectType>* basicGunCandidateChildren();
+vector<ObjectType *>* basicGunCandidateChildren();
 Model *basicGunGetModel();
 
 #endif /* defined(__HelloSDL__RegisterWeapons__) */

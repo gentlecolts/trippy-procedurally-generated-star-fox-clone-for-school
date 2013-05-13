@@ -31,19 +31,20 @@
 
 
 void registerAll() {
-	objects=new vector<ObjectType>;
-	enemies=new vector<ObjectType>;
-	attachments=new vector<ObjectType>;
-	weapons=new vector<ObjectType>;
-	bombs=new vector<ObjectType>;
+	objects=new vector<ObjectType *>;
+	enemies=new vector<ObjectType *>;
+	attachments=new vector<ObjectType *>;
+	weapons=new vector<ObjectType *>;
+	bombs=new vector<ObjectType *>;
 	
 	registerHoverShipType();
 	registerRamShipType();
+	registerTrackingShipType();
+	
+	registerBasicGunType();
 	
 	registerBasicStrutType();
 	registerRotateStrutType();
 	registerAimingStrutType();
-	
-	registerBasicGunType();
 }
 

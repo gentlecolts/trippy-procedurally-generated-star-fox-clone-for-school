@@ -11,21 +11,21 @@
 #include "BasicGun.h"
 
 void registerBasicGunType() {
-	ObjectType basicGunType;
+	ObjectType *basicGunType=new ObjectType;
 	
-	basicGunType.type=ATTACHMENT;
-	basicGunType.candidateChildren=basicGunCandidateChildren;
-	basicGunType.diff=5;
-	basicGunType.gameObject=basicGunGetGameObject;
-	basicGunType.minSize=0.3;
-	basicGunType.model=basicGunGetModel;
-	basicGunType.numAttachPointsEst=0;		//CHANGE THIS WHEN MORE MODELS ADDED
-	basicGunType.title="basicGun";
+	basicGunType->type=WEAPON;
+	basicGunType->candidateChildren=basicGunCandidateChildren;
+	basicGunType->diff=5;
+	basicGunType->gameObject=basicGunGetGameObject;
+	basicGunType->minSize=0.3;
+	basicGunType->model=basicGunGetModel;
+	basicGunType->numAttachPointsEst=0;
+	basicGunType->title="basicGun";
 	
 	registerObjectType(basicGunType);
 }
 
-vector<ObjectType>* basicGunCandidateChildren() {
+vector<ObjectType *>* basicGunCandidateChildren() {
 	return objects;
 }
 

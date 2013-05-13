@@ -32,28 +32,29 @@ struct ObjectType {
 	
 	GameObject *(*gameObject)(GameObject *parent, int seed);
 	Model *(*model)();
-	vector<ObjectType>* (*candidateChildren)();
+	vector<ObjectType *>* (*candidateChildren)();
 };
 
 struct ObjectTypeTree {
-	ObjectType type;
+	ObjectType *type;
 	
 	int seed;
 	double diff;
 	
-	ObjectTypeTree* children;
+	ObjectTypeTree** children;
 	bool *filled;
 	int numChildren;
 };
 
-extern vector<ObjectType> *objects, *weapons, *attachments, *enemies, *bombs;
+extern vector<ObjectType *> *objects, *weapons, *attachments, *enemies, *bombs;
 
-ObjectType registerObjectType(ObjectType objType);
+ObjectType *typeForName(string name);
+void registerObjectType(ObjectType *objType);
 GameObject *expandTree(GameObject *parent, ObjectTypeTree* tree);
 ObjectTypeTree *getTree(double diff, double size);
-ObjectType getRandomObject(vector<ObjectType>* v, double diff, double size);
-ObjectTypeTree* treeFun(ObjectType type, double diff, double size);
-double difficulty(ObjectType type, double size);
+ObjectType *getRandomObject(vector<ObjectType *>* v, double diff, double size);
+ObjectTypeTree* treeFun(ObjectType *type, double diff, double size);
+double difficulty(ObjectType *type, double size);
 
 
 #endif /* defined(__HelloSDL__ObjectFactory__) */

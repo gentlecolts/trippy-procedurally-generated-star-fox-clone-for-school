@@ -321,7 +321,7 @@ void GameObject::fireWeapon() {
  Deletes theAnimation
  */
 GameObject::~GameObject() {
-	cout<<"deleting something! @"<<this<<endl;
+//	cout<<"deleting something! @"<<this<<endl;
 	delete theAnimation;
 	delete[] children;
 }
