@@ -23,11 +23,12 @@ void registerBasicStrutType() {
 	basicStrutType.minSize=0.3;
 	basicStrutType.model=basicStrutGetModel;
 	basicStrutType.numAttachPointsEst=6;		//CHANGE THIS WHEN MORE MODELS ADDED
+	basicStrutType.title="basicStrut";
 	
 	registerObjectType(basicStrutType);
 }
 
-vector<ObjectType> basicStrutCandidateChildren() {
+vector<ObjectType>* basicStrutCandidateChildren() {
 	return objects;
 }
 
@@ -49,7 +50,7 @@ GameObject* basicStrutGetGameObject(GameObject *parent, int seed) {
 }
 
 
-#define aimingStrutDiff 7
+#define aimingStrutDiff 4
 
 void registerAimingStrutType() {
 	ObjectType aimingStrutType;
@@ -61,11 +62,12 @@ void registerAimingStrutType() {
 	aimingStrutType.minSize=0.3;
 	aimingStrutType.model=aimingStrutGetModel;
 	aimingStrutType.numAttachPointsEst=6;
+	aimingStrutType.title="aimingStrut";
 	
 	registerObjectType(aimingStrutType);
 }
 
-vector<ObjectType> aimingStrutCandidateChildren() {
+vector<ObjectType>* aimingStrutCandidateChildren() {
 	return objects;
 }
 
@@ -101,11 +103,12 @@ void registerRotateStrutType() {
 	rotateStrutType.minSize=0.3;
 	rotateStrutType.model=rotateStrutGetModel;
 	rotateStrutType.numAttachPointsEst=6;
+	rotateStrutType.title="rotateStrut";
 	
 	registerObjectType(rotateStrutType);
 }
 
-vector<ObjectType> rotateStrutCandidateChildren() {
+vector<ObjectType>* rotateStrutCandidateChildren() {
 	return objects;
 }
 

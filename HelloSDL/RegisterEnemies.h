@@ -16,12 +16,12 @@ class GameObject;
 
 void registerHoverShipType();
 GameObject *hoverShipGetGameObject(GameObject *parent, int seed);
-vector<ObjectType> hoverShipCandidateChildren();
+vector<ObjectType>* hoverShipCandidateChildren();
 Model *hoverShipGetModel();
 
 void registerRamShipType();
 GameObject *ramShipGetGameObject(GameObject *parent, int seed);
-vector<ObjectType> ramShipCandidateChildren();
+vector<ObjectType>* ramShipCandidateChildren();
 Model *ramShipGetModel();
 
 #endif /* defined(__HelloSDL__RegisterEnemies__) */

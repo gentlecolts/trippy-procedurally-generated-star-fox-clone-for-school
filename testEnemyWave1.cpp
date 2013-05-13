@@ -18,6 +18,8 @@
  Creates 3 RamShips and puts them in play
  */
 void TestEnemyWave1::init(){
+	cout<<"wave"<<endl;
+	
     //double x=rand()%(2*noiseScale)-noiseScale;
     //double y=rand()%(2*noiseScale)-noiseScale;
 	
@@ -36,14 +38,13 @@ void TestEnemyWave1::init(){
     ship3=new HoverShip(x,y+3,s+2);
 	//*/
 	
-	ship1=(EnemyShip *)expandTree(NULL, *getTree(15, 5));
-	ship2=(EnemyShip *)expandTree(NULL, *getTree(15, 5));
-	ship3=(EnemyShip *)expandTree(NULL, *getTree(15, 5));
+	ship1=(EnemyShip *)expandTree(NULL, getTree(5, 5));
+	ship2=(EnemyShip *)expandTree(NULL, getTree(5, 5));
+	ship3=(EnemyShip *)expandTree(NULL, getTree(5, 5));
 	
 	ship1->init(x, y);
 	ship2->init(x+5, y);
 	ship3->init(x, y+5);
-	
 	
     ship1->parentWave=this;
     ship2->parentWave=this;

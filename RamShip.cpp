@@ -13,15 +13,20 @@
 #include "BasicGun.h"
 #include "FanStrutThing.h"
 
-RamShip::RamShip() : EnemyShip(0) {
+RamShip::RamShip(Model *m) : EnemyShip(0) {
+	model=m;
+    modelSize=m->length;
 }
 
 /**
  RamShip::RamShip(double x, double y, int n)
  Just calls init and super
  */
-RamShip::RamShip(double x, double y, int n) : EnemyShip(x, y, n) {
+RamShip::RamShip(Model *m, double x, double y, int n) : EnemyShip(x, y, n) {
 	init(x,y);
+	
+	model=m;
+    modelSize=m->length;
 }
 
 
@@ -30,9 +35,6 @@ RamShip::RamShip(double x, double y, int n) : EnemyShip(x, y, n) {
  Sets the model to the constant ramShipModel, then calculates pos[0] and pos[1] as the points around the edge of the game in line with the target position and sets vel[0], vel[1], and vel[2] so that it will intersect the plane at -playerOffset at (x,y)
  */
 void RamShip::init(double x, double y) {
-	model=ramShipModel;
-    modelSize=model->length;
-	
 	if(x==0) {
 		x=0.001;
 	} else if(y==0) {
@@ -71,14 +73,14 @@ void RamShip::afterSetup() {
 	addChild(new BasicGun(this),-1);*/
 	
 	
+	/*addChild(new FanStrut(this, 5, basicStrutModel), -1);
 	addChild(new FanStrut(this, 5, basicStrutModel), -1);
 	addChild(new FanStrut(this, 5, basicStrutModel), -1);
 	addChild(new FanStrut(this, 5, basicStrutModel), -1);
 	addChild(new FanStrut(this, 5, basicStrutModel), -1);
 	addChild(new FanStrut(this, 5, basicStrutModel), -1);
 	addChild(new FanStrut(this, 5, basicStrutModel), -1);
-	addChild(new FanStrut(this, 5, basicStrutModel), -1);
-	addChild(new FanStrut(this, 5, basicStrutModel), -1);
+	addChild(new FanStrut(this, 5, basicStrutModel), -1);*/
 	 
 	
 }

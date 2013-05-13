@@ -13,26 +13,26 @@
 
 //TODO: add scaling difficulty on objects - range?
 
-vector<ObjectType> objects, weapons, attachments, enemies, bombs;
+vector<ObjectType>* objects, *weapons, *attachments, *enemies, *bombs;
 
 ObjectType registerObjectType(ObjectType objType) {
 	ObjectCategory type=objType.type;
 	
 	if(type!=ENEMY)
-		objects.push_back(objType);
+		objects->push_back(objType);
 	
 	switch (type) {
 		case WEAPON:
-			weapons.push_back(objType);
+			weapons->push_back(objType);
 			break;
 		case ATTACHMENT:
-			attachments.push_back(objType);
+			attachments->push_back(objType);
 			break;
 		case ENEMY:
-			enemies.push_back(objType);
+			enemies->push_back(objType);
 			break;
 		case BOMB:
-			bombs.push_back(objType);
+			bombs->push_back(objType);
 			break;
 		default:
 			break;
@@ -41,57 +41,63 @@ ObjectType registerObjectType(ObjectType objType) {
 	return objType;
 }
 
-GameObject *expandTree(GameObject *parent, ObjectTypeTree tree) {
-	cout<<"type: "<<tree.type.type<<endl;
-	cout<<"object function: "<<tree.type.gameObject<<endl;
-	cout<<"should be: "<<hoverShipGetGameObject<<endl;
+GameObject *expandTree(GameObject *parent, ObjectTypeTree *tree) {
 	
-	GameObject *obj=tree.type.gameObject(parent, tree.seed);
+	GameObject *obj=tree->type.gameObject(parent, tree->seed);
 	
-	
+	cout<<"type: "<<tree->type.title<<endl;
+	cout<<"model size: "<<obj->model->length<<endl;
+	cout<<"attach points: "<<obj->model->numAttachPoints<<endl;
+	cout<<"object: "<<obj<<endl;
+	cout<<"num children: "<<tree->numChildren<<endl;
 //	cout<<"obj: "<<obj<<endl;
 	
-	for(int i=0;i<tree.numChildren;i++) {
-		if(tree.filled[i]) {
-			GameObject* childObj=expandTree(obj, tree.children[i]);
-			childObj->addChild(obj, i);		//doesn't take into account rotations... Hm...
-		} else {
-			cout<<"not filled!"<<endl;
+	for(int i=0;i<tree->numChildren;i++) {
+		if(tree->filled[i]) {
+			GameObject* childObj=expandTree(obj, &tree->children[i]);
+			cout<<"o: "<<obj<<endl;
+			cout<<"i: "<<i<<endl;
+			obj->addChild(childObj, i);		//doesn't take into account rotations... Hm...
 		}
 	}
+	
+	cout<<"obj: "<<obj<<endl;
+	cout<<"real num children: "<<obj->numChildren<<endl;
+	
 	return obj;
 }
 
-ObjectTypeTree *getTree(double diff, double size) {		//maybe take enemy? vector of possible types?
+ObjectTypeTree* getTree(double diff, double size) {		//maybe take enemy? vector of possible types?
 	ObjectType enemy=getRandomObject(enemies, diff, size);
 	
-	cout<<"enemy: "<<enemy.diff<<endl;
+//	cout<<"enemy: "<<enemy.diff<<endl;
 	
 	return treeFun(enemy, diff, size);
 }
 
-ObjectType getRandomObject(vector<ObjectType> v, double diff, double size) {
-	double probabilities[enemies.size()];
+
+ObjectType getRandomObject(vector<ObjectType> *v, double diff, double size) {
+	double probabilities[enemies->size()];
 	double total=0;
 	
-	for(int i=0;i<v.size();i++) {
-		probabilities[i]=abs(1/(v[i].diff-diff));
+	for(int i=0;i<v->size();i++) {
+		probabilities[i]=abs(1/(v->at(i).diff-diff));
 		total+=probabilities[i];
 	}
 	
 	double randnum=(double)(rand())/RAND_MAX*total;
 	
-	for(int i=0;i<v.size();i++) {
+	for(int i=0;i<v->size();i++) {
 		if(randnum>probabilities[i]) {
 			randnum-=probabilities[i];
 		} else {
-			return v[i];
+			return v->at(i);
 		}
 	}
 	
 	cout<<"????"<<endl;
 	
-	return v[0];
+	return v->at(0);
 }
 
 ObjectTypeTree* treeFun(ObjectType type, double diff, double size) {
@@ -111,8 +117,8 @@ ObjectTypeTree* treeFun(ObjectType type, double diff, double size) {
 	tree->seed=randomNum;
 	tree->type=type;
 	
-	tree->filled=new bool[tree->numChildren];
-	tree->children=new ObjectTypeTree[tree->numChildren];
+	tree->filled=new bool[mod->numAttachPoints];
+	tree->children=new ObjectTypeTree[mod->numAttachPoints];
 	
 	//Need to get the objects for each attach point from the thingy
 	
@@ -125,7 +131,7 @@ ObjectTypeTree* treeFun(ObjectType type, double diff, double size) {
 			if(i==mod->numAttachPoints/2-1)
 				subDiff=diff;
 			
-			vector<ObjectType> cand=type.candidateChildren();
+			vector<ObjectType>* cand=type.candidateChildren();
 			
 			ObjectType obj=getRandomObject(cand, subDiff, subSize);
 			int j = 0;
@@ -139,7 +145,6 @@ ObjectTypeTree* treeFun(ObjectType type, double diff, double size) {
 				size-=subSize;
 				tree->children[i]=*treeFun(obj,subDiff,subSize);
 				tree->filled[i]=true;
-				cout<<"filed["<<i<<"] is true?!"<<endl;
 				
 				tree->children[mod->numAttachPoints-i-1]=*treeFun(obj,subDiff, subSize);
 				tree->filled[mod->numAttachPoints-i-1]=true;
@@ -155,16 +160,16 @@ ObjectTypeTree* treeFun(ObjectType type, double diff, double size) {
 double difficulty(ObjectType type, double size) {
 	size-=type.minSize;
 	
-	cout<<"size: "<<size<<endl;
+	/*cout<<"size: "<<size<<endl;
 	cout<<"minSize: "<<type.minSize<<endl;
-	cout<<"num...est: "<<type.numAttachPointsEst<<endl;
+	cout<<"num...est: "<<type.numAttachPointsEst<<endl;*/
 	
 	double accum=0;
 	int ct=0;
 	
-	for(int i=0;i<objects.size();i++) {
-		if(objects[i].minSize<=size/type.numAttachPointsEst) {
-			accum+=difficulty(objects[i],size/type.numAttachPointsEst);
+	for(int i=0;i<objects->size();i++) {
+		if(objects->at(i).minSize<=size/type.numAttachPointsEst) {
+			accum+=difficulty(objects->at(i),size/type.numAttachPointsEst);
 			ct++;
 		}
 	}

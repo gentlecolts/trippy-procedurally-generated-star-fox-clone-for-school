@@ -19,11 +19,16 @@
  HoverShip::HoverShip(double x, double y, int n)
  Just calls init and super
  */
-HoverShip::HoverShip(double x, double y, int n) : EnemyShip(x, y, n) {
+HoverShip::HoverShip(Model *m, double x, double y, int n) : EnemyShip(x, y, n) {
+	model=ramShipModel;
+    modelSize=model->length;
+	
 	init(x,y);
 }
 
-HoverShip::HoverShip() : EnemyShip(0) {
+HoverShip::HoverShip(Model *m) : EnemyShip(0) {
+	model=ramShipModel;
+    modelSize=model->length;
 }
 
 /**
@@ -31,9 +36,6 @@ HoverShip::HoverShip() : EnemyShip(0) {
  Sets the model to the constant HoverShipModel, then calculates pos[0] and pos[1] as the points around the edge of the game in line with the target position and sets vel[0], vel[1], and vel[2] so that it will intersect the plane at -playerOffset at (x,y)
  */
 void HoverShip::init(double x, double y) {
-	model=ramShipModel;
-    modelSize=model->length;
-	
 	if(x==0) {
 		x=0.001;
 	} else if(y==0) {

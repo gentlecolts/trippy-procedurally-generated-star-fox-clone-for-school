@@ -9,6 +9,7 @@
 #include "ObjectFactoryRegister.h"
 #include "RegisterEnemies.h"
 #include "RegisterStruts.h"
+#include "RegisterWeapons.h"
 
 /*
  TODO:
@@ -30,11 +31,19 @@
 
 
 void registerAll() {
+	objects=new vector<ObjectType>;
+	enemies=new vector<ObjectType>;
+	attachments=new vector<ObjectType>;
+	weapons=new vector<ObjectType>;
+	bombs=new vector<ObjectType>;
+	
 	registerHoverShipType();
 	registerRamShipType();
 	
 	registerBasicStrutType();
 	registerRotateStrutType();
 	registerAimingStrutType();
+	
+	registerBasicGunType();
 }
 

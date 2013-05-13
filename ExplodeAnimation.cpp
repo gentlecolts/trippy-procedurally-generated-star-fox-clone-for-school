@@ -34,8 +34,11 @@ void ExplodeAnimation::doTriangleTransform(int index) {
  */
 void ExplodeAnimation::update(double dt) {
 	if(t>.5) {
-		if(object!=NULL)
+		if(object!=NULL) {
+			cout<<"DESTROYING"<<endl;
 			object->destroy();
+			
+		}
 	}
 }
 

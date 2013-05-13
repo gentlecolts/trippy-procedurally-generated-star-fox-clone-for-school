@@ -8,7 +8,7 @@ using namespace std;
 
 int main(int argc,char** argv){
     initSDL();
-	doTests();
+//	doTests();
 
 	#define rotspeed 4
 

@@ -105,6 +105,7 @@ void setupGame() {
  Ticks each object and laser, creates a new EnemyWave if necessary, deletes the old if necessary
  */
 void updateObjects() {
+//	cout<<"tick"<<endl;
     long prev=curTime;
     curTime=SDL_GetTicks();
 
@@ -123,7 +124,9 @@ void updateObjects() {
 	updateTerrain(dt);
 	
 	GameShip* obj=thePlayerShip;
+	cout<<"tick"<<endl;
 	while(obj!=NULL) {
+		cout<<"obj: "<<obj<<endl;
 		obj->doUpdate(dt);
 		
 		

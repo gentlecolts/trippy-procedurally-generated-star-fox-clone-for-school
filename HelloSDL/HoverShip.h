@@ -23,8 +23,8 @@ protected:
 	double lastT;
 public:
 	double pauseTime, time;
-	HoverShip(double x, double y, int n);
-	HoverShip();
+	HoverShip(Model *m, double x, double y, int n);
+	HoverShip(Model *m);
 	void init(double x, double y);
 	void update(double dt);
 	void afterSetup();

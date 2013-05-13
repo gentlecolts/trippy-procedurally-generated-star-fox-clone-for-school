@@ -19,6 +19,7 @@
 		646D9E54171601A3004FD3F5 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 646D9E52171601A3004FD3F5 /* Animation.cpp */; };
 		6473C84B17296A5C00B2AD55 /* gameShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6473C84917296A5C00B2AD55 /* gameShip.cpp */; };
 		6473C84E17296EFE00B2AD55 /* BasicGun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6473C84C17296EFD00B2AD55 /* BasicGun.cpp */; };
+		648207421741330400BE1045 /* RegisterWeapons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 648207401741330100BE1045 /* RegisterWeapons.cpp */; };
 		6482BCEE1735521A0055C84A /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6482BCEC1735521A0055C84A /* Matrix.cpp */; };
 		6482BCF11735A6BC0055C84A /* Vec4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6482BCEF1735A6BC0055C84A /* Vec4d.cpp */; };
 		648F1AB41726C2A80013762E /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 648F1AB31726C2A80013762E /* SDL.framework */; };
@@ -85,6 +86,8 @@
 		6473C84C17296EFD00B2AD55 /* BasicGun.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicGun.cpp; sourceTree = "<group>"; };
 		6473C84D17296EFE00B2AD55 /* BasicGun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicGun.h; sourceTree = "<group>"; };
 		647C39B61714A8A0000B8B1B /* imports.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = imports.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/imports.h"; sourceTree = "<group>"; };
+		648207401741330100BE1045 /* RegisterWeapons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RegisterWeapons.cpp; sourceTree = "<group>"; };
+		648207411741330200BE1045 /* RegisterWeapons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterWeapons.h; sourceTree = "<group>"; };
 		6482BCEC1735521A0055C84A /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
 		6482BCED1735521A0055C84A /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
 		6482BCEF1735A6BC0055C84A /* Vec4d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vec4d.cpp; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 				646BD521173EA4CF0078794F /* RegisterEnemies.h */,
 				646BD523173EB53D0078794F /* RegisterStruts.cpp */,
 				646BD524173EB53E0078794F /* RegisterStruts.h */,
+				648207401741330100BE1045 /* RegisterWeapons.cpp */,
+				648207411741330200BE1045 /* RegisterWeapons.h */,
 				6473C84917296A5C00B2AD55 /* gameShip.cpp */,
 				6473C84A17296A5C00B2AD55 /* gameShip.h */,
 				64A789DE170C75F800CCAB2F /* PlayerShip.cpp */,
@@ -504,6 +509,7 @@
 				64CBE84D1737F931007C9D08 /* ObjectFactoryRegister.cpp in Sources */,
 				646BD522173EA4CF0078794F /* RegisterEnemies.cpp in Sources */,
 				646BD525173EB53E0078794F /* RegisterStruts.cpp in Sources */,
+				648207421741330400BE1045 /* RegisterWeapons.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

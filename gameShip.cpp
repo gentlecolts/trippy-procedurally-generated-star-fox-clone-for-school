@@ -99,6 +99,9 @@ GameShip* GameShip::destroyAndGetNext() {
 }
 
 GameShip::~GameShip() {
+	if(parent!=0)
+		cout<<"parent: "<<parentWave<<endl;
+	
 	if(parentWave!=NULL) {
 		parentWave->remove(this);
 		parentWave->release();

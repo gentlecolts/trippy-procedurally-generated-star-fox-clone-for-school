@@ -28,6 +28,7 @@ GameObject::GameObject() {
 	parent=NULL;
 	attachPointsFilled=NULL;
 	player=false;
+	modelSize=0;
 	t=0;
 	
 	pos=Vec3d(0,0,0);
@@ -182,6 +183,9 @@ void GameObject::addChild(GameObject *child, int index, Vec3d angle) {
 	
 	if(index==-1)
 		index=numChildren;
+	
+	cout<<"adding something to "<<this<<" at "<<index<<endl;
+	
 	numChildren++;
 	
 	children[index]=child;
@@ -201,6 +205,7 @@ void GameObject::addChild(GameObject *child, int index, Vec3d angle) {
  */
 void GameObject::setAnimation(Animation *anim) {
 	if(theAnimation!=NULL) {
+		cout<<"animation belongs to: "<<this<<endl;
 		delete theAnimation;
 	}
 	
@@ -316,7 +321,7 @@ void GameObject::fireWeapon() {
  Deletes theAnimation
  */
 GameObject::~GameObject() {
-	//cout<<"deleting something!"<<endl;
+	cout<<"deleting something! @"<<this<<endl;
 	delete theAnimation;
 	delete[] children;
 }

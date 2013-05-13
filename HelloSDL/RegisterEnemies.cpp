@@ -21,24 +21,26 @@ void registerHoverShipType() {
 	hoverShipType.gameObject=hoverShipGetGameObject;
 	hoverShipType.minSize=1;
 	hoverShipType.model=hoverShipGetModel;
-	hoverShipType.numAttachPointsEst=playerShipModel->numAttachPoints;
+	hoverShipType.numAttachPointsEst=ramShipModel->numAttachPoints;
+	hoverShipType.title="hoverShip";
 	cout<<"numAttach..: "<<playerShipModel->numAttachPoints<<endl;
 	
 	registerObjectType(hoverShipType);
 }
 
-vector<ObjectType> hoverShipCandidateChildren() {
+vector<ObjectType>* hoverShipCandidateChildren() {
 	return objects;
 }
 
 Model *hoverShipGetModel() {
-	return playerShipModel;
+	cout<<"hoverShipGetModel?!"<<endl;
+	return ramShipModel;
 }
 
 GameObject* hoverShipGetGameObject(GameObject *parent, int seed) {
 	//srand(seed);
 	
-	HoverShip *ship=new HoverShip();
+	HoverShip *ship=new HoverShip(hoverShipGetModel());
 	
 	return ship;
 	//create a random object
@@ -54,23 +56,25 @@ void registerRamShipType() {
 	ramShipType.gameObject=ramShipGetGameObject;
 	ramShipType.minSize=1;
 	ramShipType.model=ramShipGetModel;
-	ramShipType.numAttachPointsEst=ramShipModel->numAttachPoints;
+	ramShipType.numAttachPointsEst=playerShipModel->numAttachPoints;
+	ramShipType.title="ramShip";
 	
 	registerObjectType(ramShipType);
 }
 
-vector<ObjectType> ramShipCandidateChildren() {
+vector<ObjectType>* ramShipCandidateChildren() {
 	return objects;
 }
 
 Model *ramShipGetModel() {
-	return ramShipModel;
+	cout<<"ramSHipShtegMoel?!"<<endl;
+	return playerShipModel;
 }
 
 GameObject* ramShipGetGameObject(GameObject *parent, int seed) {
 	//srand(seed);
 	
-	RamShip *ship=new RamShip();
+	RamShip *ship=new RamShip(ramShipGetModel());
 	
 	return ship;
 	//create a random object

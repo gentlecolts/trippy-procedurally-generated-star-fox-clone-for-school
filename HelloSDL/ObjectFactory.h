@@ -28,9 +28,11 @@ struct ObjectType {
 	double diff;
 	int numAttachPointsEst;
 	
+	string title;
+	
 	GameObject *(*gameObject)(GameObject *parent, int seed);
 	Model *(*model)();
-	vector<ObjectType> (*candidateChildren)();
+	vector<ObjectType>* (*candidateChildren)();
 };
 
 struct ObjectTypeTree {
@@ -44,12 +46,12 @@ struct ObjectTypeTree {
 	int numChildren;
 };
 
-extern vector<ObjectType> objects, weapons, attachments, enemies, bombs;
+extern vector<ObjectType> *objects, *weapons, *attachments, *enemies, *bombs;
 
 ObjectType registerObjectType(ObjectType objType);
-GameObject *expandTree(GameObject *parent, ObjectTypeTree tree);
+GameObject *expandTree(GameObject *parent, ObjectTypeTree* tree);
 ObjectTypeTree *getTree(double diff, double size);
-ObjectType getRandomObject(vector<ObjectType> v, double diff, double size);
+ObjectType getRandomObject(vector<ObjectType>* v, double diff, double size);
 ObjectTypeTree* treeFun(ObjectType type, double diff, double size);
 double difficulty(ObjectType type, double size);
 
