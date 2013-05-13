@@ -20,6 +20,7 @@ void registerBasicGunType() {
 	basicGunType->minSize=0.3;
 	basicGunType->model=basicGunGetModel;
 	basicGunType->numAttachPointsEst=0;
+	basicGunType->maxChildren=0;
 	basicGunType->title="basicGun";
 	
 	registerObjectType(basicGunType);

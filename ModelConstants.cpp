@@ -180,6 +180,10 @@ void initModels() {
 	}
 	longStrutModel->computeNormals();
 	
+	longStrutModel->numAttachPoints=1;
+	longStrutModel->addAttachPoint(Vec3d(0,0,1));
+	longStrutModel->addAttachPointAngle(Vec3d(0,0,0));
+	
 	laserModel->type=GL_QUADS;
 	laserModel->addRect(Vec3d(-0.2,0,0), Vec3d(0.2,0,0), Vec3d(0.2,0,5));
 	for(int i=0;i<laserModel->length;i++) {

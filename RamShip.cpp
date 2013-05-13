@@ -90,7 +90,7 @@ void RamShip::afterSetup() {
  Returns whether it's behind the camera; it starts off the screen to the side, and isn't done, so the superclass version doesn't work in this case
  */
 bool RamShip::isDone() {
-	return pos[2]>=cameraOffset;
+	return pos[2]>=cameraOffset || abs(pos[0])>noiseScale*4 || abs(pos[1])>noiseScale*4;
 }
 
 /**

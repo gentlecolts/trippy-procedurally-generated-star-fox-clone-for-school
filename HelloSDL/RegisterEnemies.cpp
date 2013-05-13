@@ -23,6 +23,7 @@ void registerHoverShipType() {
 	hoverShipType->minSize=1;
 	hoverShipType->model=hoverShipGetModel;
 	hoverShipType->numAttachPointsEst=ramShipModel->numAttachPoints;
+	hoverShipType->maxChildren=-1;
 	hoverShipType->title="hoverShip";
 	cout<<"numAttach->->: "<<playerShipModel->numAttachPoints<<endl;
 	
@@ -58,6 +59,7 @@ void registerRamShipType() {
 	ramShipType->minSize=1;
 	ramShipType->model=ramShipGetModel;
 	ramShipType->numAttachPointsEst=playerShipModel->numAttachPoints;
+	ramShipType->maxChildren=-1;
 	ramShipType->title="ramShip";
 	
 	registerObjectType(ramShipType);
@@ -93,6 +95,7 @@ void registerTrackingShipType() {
 	trackingShipType->minSize=1;
 	trackingShipType->model=trackingShipGetModel;
 	trackingShipType->numAttachPointsEst=playerShipModel->numAttachPoints;
+	trackingShipType->maxChildren=-1;
 	trackingShipType->title="trackingShip";
 	
 	registerObjectType(trackingShipType);

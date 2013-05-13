@@ -27,6 +27,7 @@ struct ObjectType {
 	double minSize;
 	double diff;
 	int numAttachPointsEst;
+	int maxChildren;
 	
 	string title;
 	
@@ -43,7 +44,7 @@ struct ObjectTypeTree {
 	
 	ObjectTypeTree** children;
 	bool *filled;
-	int numChildren;
+	int numChildren=0;
 };
 
 extern vector<ObjectType *> *objects, *weapons, *attachments, *enemies, *bombs;

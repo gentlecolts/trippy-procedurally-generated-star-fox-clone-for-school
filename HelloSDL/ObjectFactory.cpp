@@ -79,7 +79,7 @@ ObjectType *getRandomObject(vector<ObjectType *> *v, double diff, double size) {
 	double total=0;
 	
 	for(int i=0;i<v->size();i++) {
-		probabilities[i]=abs(1/(v->at(i)->diff-diff));
+		probabilities[i]=abs(1/(v->at(i)->diff-diff)+.001);
 		total+=probabilities[i];
 	}
 	
@@ -122,7 +122,12 @@ ObjectType *typeForName(string name) {
 	return NULL;
 }
 
+int ct=0;
+
 ObjectTypeTree* treeFun(ObjectType *type, double diff, double size) {
+	ct++;
+	cout<<"ct: "<<ct<<endl;
+	
 	ObjectTypeTree *tree=new ObjectTypeTree;
 	
 	unsigned int randomNum=rand();
@@ -142,22 +147,26 @@ ObjectTypeTree* treeFun(ObjectType *type, double diff, double size) {
 	tree->filled=new bool[mod->numAttachPoints];
 	tree->children=new ObjectTypeTree*[mod->numAttachPoints];
 	
+	int childrenCt=type->maxChildren/2;
+	if(type->maxChildren==-1)
+		childrenCt=mod->numAttachPoints/2;
+	
 	//Need to get the objects for each attach point from the thingy
 	
-	for(int i=0;i<mod->numAttachPoints/2;i++) {		//add random models later
+	for(int i=0;i<childrenCt;i++) {		//add random models later
 		
 		double subSize=((double)rand())/RAND_MAX*size;
 		
-		if(size-subSize>0 && diff>0) {
+		if(size-subSize>0.1 && diff>0.1) {
 			double subDiff=((double)rand())/RAND_MAX*diff;
-			if(i==mod->numAttachPoints/2-1)
+			if(i==childrenCt-1)
 				subDiff=diff;
 			
 			vector<ObjectType *>* cand=type->candidateChildren();
 			
 			ObjectType *obj=getRandomObject(cand, subDiff, subSize);
 			int j = 0;
-			while(j<10 && abs(subDiff-difficulty(obj,subSize))<0) {
+			while(j<10 && abs(subDiff-difficulty(obj,subSize))<0.1) {
 //				cout<<"NOPE"<<endl;
 				obj=getRandomObject(cand, subDiff, subSize);
 				j++;
@@ -169,7 +178,9 @@ ObjectTypeTree* treeFun(ObjectType *type, double diff, double size) {
 				tree->children[i]=treeFun(obj,subDiff,subSize);
 				tree->filled[i]=true;
 				
-				tree->children[mod->numAttachPoints-i-1]=treeFun(obj,subDiff, subSize);
+				tree->children[mod->numAttachPoints-i-1]=tree->children[i];
+				cout<<"set children["<<(mod->numAttachPoints-i-1)<<"] to: "<<tree->children[mod->numAttachPoints-i-1]<<endl;
+				cout<<"should be: "<<tree->children[i]<<endl;
 				tree->filled[mod->numAttachPoints-i-1]=true;
 			} else {
 				cout<<"Nothing small enough!"<<endl;

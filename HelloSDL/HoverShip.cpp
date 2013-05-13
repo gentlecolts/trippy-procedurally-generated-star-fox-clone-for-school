@@ -67,7 +67,7 @@ void HoverShip::init(double x, double y) {
 }
 
 bool HoverShip::isDone() {
-	return pos[2]>=cameraOffset;
+	return pos[2]>=cameraOffset || abs(pos[0])>noiseScale*4 || abs(pos[1])>noiseScale*4;
 }
 
 void HoverShip::afterSetup() {
