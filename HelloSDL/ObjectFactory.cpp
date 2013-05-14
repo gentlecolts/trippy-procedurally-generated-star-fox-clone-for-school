@@ -79,7 +79,7 @@ ObjectType *getRandomObject(vector<ObjectType *> *v, double diff, double size) {
 	double total=0;
 	
 	for(int i=0;i<v->size();i++) {
-		probabilities[i]=abs(1/(v->at(i)->diff-diff)+.001);
+		probabilities[i]=abs(1/(difficulty(v->at(i), size)-diff)+.001);
 		total+=probabilities[i];
 	}
 	
@@ -157,7 +157,7 @@ ObjectTypeTree* treeFun(ObjectType *type, double diff, double size) {
 		
 		double subSize=((double)rand())/RAND_MAX*size;
 		
-		if(size-subSize>0.1 && diff>0.1) {
+		if(size>0.1 && diff>0.1) {
 			double subDiff=((double)rand())/RAND_MAX*diff;
 			if(i==childrenCt-1)
 				subDiff=diff;
@@ -180,11 +180,18 @@ ObjectTypeTree* treeFun(ObjectType *type, double diff, double size) {
 				
 				tree->children[mod->numAttachPoints-i-1]=tree->children[i];
 				cout<<"set children["<<(mod->numAttachPoints-i-1)<<"] to: "<<tree->children[mod->numAttachPoints-i-1]<<endl;
-				cout<<"should be: "<<tree->children[i]<<endl;
+				cout<<"should be ["<<i<<"]: "<<tree->children[i]<<endl;
 				tree->filled[mod->numAttachPoints-i-1]=true;
 			} else {
-				cout<<"Nothing small enough!"<<endl;
+				cout<<"Nothing small enough! ["<<i<<"]"<<endl;
+				cout<<"should be paired with ["<<mod->numAttachPoints-i-1<<"]"<<endl;
+				tree->filled[i]=false;
+				tree->filled[mod->numAttachPoints-i-1]=false;
 			}
+		} else {
+			cout<<"=( ["<<i<<"]"<<endl;
+			tree->filled[i]=false;
+			tree->filled[mod->numAttachPoints-i-1]=false;
 		}
 	}
 	
@@ -202,14 +209,22 @@ double difficulty(ObjectType *type, double size) {
 		double accum=0;
 		int ct=0;
 		
-		for(int i=0;i<objects->size();i++) {
-			if(objects->at(i)->minSize<=size/type->numAttachPointsEst) {
-				accum+=difficulty(objects->at(i),size/type->numAttachPointsEst);
+		vector<ObjectType *>* children=type->candidateChildren();
+		
+		cout<<"size: "<<children->size()<<endl;
+		
+		for(int i=0;i<children->size();i++) {
+			if(children->at(i)->minSize<=size/type->maxChildren) {
+				accum+=difficulty(children->at(i),size/type->maxChildren);
 				ct++;
+			} else {
+				cout<<"minsize: "<<children->at(i)->minSize<<endl;
 			}
 		}
 		
-		return accum/ct*type->numAttachPointsEst+type->diff;
+		if(accum!=0)
+			return accum/ct*type->maxChildren+type->diff;
+		return type->diff;
 	}
 	return type->diff;
 }
