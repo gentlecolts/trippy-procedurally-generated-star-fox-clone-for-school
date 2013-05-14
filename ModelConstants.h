@@ -20,6 +20,8 @@ extern Model *basicGunModel;
 extern Model *basicStrutModel;
 extern Model *longStrutModel;
 extern Model *laserModel;
+extern Model *grenadeModel;
+extern Model *rocketLauncherModel;
 extern GLuint laserTexture;
 
 void initModels();

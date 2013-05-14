@@ -18,6 +18,8 @@ Model *basicGunModel=new Model(24);
 Model *basicStrutModel=new Model(24);
 Model *longStrutModel=new Model(24);
 Model *laserModel=new Model(4);
+Model *grenadeModel=new Model(18);
+Model *rocketLauncherModel=new Model(88);
 
 GLuint laserTexture;
 
@@ -143,6 +145,46 @@ void initModels() {
 	
 	
 	
+	grenadeModel->addRect(Vec3d(-0.2,-0.2,0.0), Vec3d(-0.2,0.2,0.0),Vec3d(0.2,0.2,0.0));
+	grenadeModel->addTriangle(Vec3d(0.2,0.2,0.0), Vec3d(-0.2,0.2,0.0), Vec3d(0.0,0.0,0.4));
+	grenadeModel->addTriangle(Vec3d(0.2,-0.2,0.0), Vec3d(0.2,0.2,0.0), Vec3d(0.0,0.0,0.4));
+	grenadeModel->addTriangle(Vec3d(-0.2,0.2,0.0), Vec3d(-0.2,-0.2,0.0), Vec3d(0.0,0.0,0.4));
+	grenadeModel->addTriangle(Vec3d(0.2,-0.2,0.0), Vec3d(-0.2,-0.2,0.0), Vec3d(0.0,0.0,0.4));
+	for(int i=0;i<18;i++) {
+		grenadeModel->addColor(Vec4d(1.0,(i%4)/4.0,(i%4)/6.0,1.0));
+	}
+	grenadeModel->computeNormals();
+	
+	
+	rocketLauncherModel->type=GL_QUADS;
+	rocketLauncherModel->addRectPrism(Vec3d(-.3,-.3,0), Vec3d(.3,.3,.6));
+	rocketLauncherModel->addRectPrism(Vec3d(-.1,-.1,.6), Vec3d(.1,.1,1.2));
+	rocketLauncherModel->addRectPrism(Vec3d(-.2,-.2,1.2), Vec3d(.2,.2,1.6));
+	rocketLauncherModel->addRect(Vec3d(-.3,-.1,.6),Vec3d(-.2,-.1,1.2),Vec3d(-.2,.1,1.2));
+	rocketLauncherModel->addRect(Vec3d(.3,-.1,.6),Vec3d(.2,-.1,1.2),Vec3d(.2,.1,1.2));
+	rocketLauncherModel->addRect(Vec3d(-.1,-.3,.6),Vec3d(-.1,-.2,1.2),Vec3d(.1,-.2,1.2));
+	rocketLauncherModel->addRect(Vec3d(-.1,.3,.6),Vec3d(-.1,.2,1.2),Vec3d(.1,.2,1.2));
+	
+	for(int i=0;i<rocketLauncherModel->length;i++) {
+		if(rocketLauncherModel->vertices[i][2]>.6)
+			rocketLauncherModel->addColor(Vec3d(0.5,1.0,1.0));
+		else if(rocketLauncherModel->vertices[i][2]>0)
+			rocketLauncherModel->addColor(Vec3d(0.0,1.0,1.0));
+		else
+			rocketLauncherModel->addColor(Vec3d(0.0,0.0,1.0));
+	}
+	
+	rocketLauncherModel->computeNormals();
+	
+	rocketLauncherModel->numAttachPoints=4;
+	rocketLauncherModel->addAttachPoint(Vec3d(-0.3,0,.3));
+	rocketLauncherModel->addAttachPointAngle(Vec3d(0,-90,0));
+	rocketLauncherModel->addAttachPoint(Vec3d(0.3,0,.3));
+	rocketLauncherModel->addAttachPointAngle(Vec3d(0,90,0));
+	rocketLauncherModel->addAttachPoint(Vec3d(0,-0.3,.3));
+	rocketLauncherModel->addAttachPointAngle(Vec3d(90,0,0));
+	rocketLauncherModel->addAttachPoint(Vec3d(0,0.3,.3));
+	rocketLauncherModel->addAttachPointAngle(Vec3d(-90,0,0));
 	
 	
 	basicGunModel->type=GL_QUADS;

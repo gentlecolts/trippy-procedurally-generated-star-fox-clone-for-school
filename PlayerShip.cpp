@@ -11,6 +11,7 @@
 #include "RotateStrut.h"
 #include "FanStrutThing.h"
 #include "AimingStrut.h"
+#include "BasicRocketLauncher.h"
 
 /**
  PlayerShip::PlayerShip(int n)
@@ -96,11 +97,13 @@ void PlayerShip::afterSetup() {
 	//addChild(new RotateStrut(this,longStrutModel, Vec3d(30,-70,360),Vec3d(-30,0,-360), 0.5), 0);
 	//children[0]->addChild(new BasicGun(children[0]), 1);
 	
-	for(int i=0;i<model->numAttachPoints;i++) {
-		//addChild(new AimingStrut(this, 9000, basicStrutModel), i);
-		addChild(new BasicStrut(this, basicStrutModel), i, Vec3d(0,180,0));	//???
-		children[i]->addChild(new BasicGun(children[i]), 0);
-	}
+	//	for(int i=0;i<model->numAttachPoints;i++) {
+	addChild(new BasicStrut(this, basicStrutModel), 0, Vec3d(0,180,0));	//???
+//		addChild(new AimingStrut(this, 9000, basicStrutModel), 0);
+	children[0]->addChild(new BasicRocketLauncher(children[0]), 0);
+	addChild(new BasicStrut(this, basicStrutModel), 1, Vec3d(0,180,0));	//???
+		children[1]->addChild(new BasicGun(children[1]), 0);
+//	}
 }
 
 /**

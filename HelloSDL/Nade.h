@@ -12,17 +12,25 @@
 #include <iostream>
 #include "Nade.h"
 #include "gameShip.h"
+#include "Laser.h"
 
-class Grenade : public GameShip {
+class Grenade : public Laser {
 public:
+	Grenade();
+	Grenade(Vec3d p, Vec3d v, Vec3d a, double r, long mt);
 	
-	Grenade(Vec3d p, Vec3d v, Vec3d a, double r);
-	
-	void init(Vec3d p, Vec3d v, Vec3d a, double r);
+	void init(Vec3d p, Vec3d v, Vec3d a, double r, long mt);
 	void update(double dt);
+	void explode();
+	void activate();
+	void render();
+	bool isDone();
 	
 	double radius;
 	Vec3d accell;
+	long explodeTime;
+	long maxTime;
+	bool going;
 };
 
 #endif /* defined(__HelloSDL__Nade__) */

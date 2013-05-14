@@ -12,47 +12,16 @@
 #include "Matrix.h"
 #include <ctime>
 #include "ObjectFactoryRegister.h"
+#include "ObjectFactory.h"
 
 
 void doTests() {
-	Vec3d dist=Vec3d(1,0,0);
-	cout<<"dist: "<<dist<<endl;
-	Vec3d ang=invGetVector(dist);
-	
-	cout<<"ang: "<<ang<<endl;
-	Vec3d testAng=Vec3d(0,0,1);
-	testAng=rotate(testAng,Vec3d(0,0,1),ang[2]);
-	testAng=rotate(testAng,Vec3d(1,0,0),ang[0]);
-	testAng=rotate(testAng,Vec3d(0,1,0),ang[1]);
-	cout<<"testAng: "<<testAng<<endl;
-	Vec3d testOtherWay=Vec3d(
-							 cos(radians(ang[0]))*sin(radians(ang[1])),
-							 -sin(radians(ang[0])),
-							 cos(radians(ang[0]))*cos(radians(ang[1]))
-							 );
-	cout<<"testOtherWay: "<<testOtherWay<<endl;
-	
-	Matrix y=Matrix(Vec3d(0,ang[1],0));
-	Matrix x=Matrix(Vec3d(0,ang[0],0));
-	
-	cout<<"y comp: "<<y<<endl;
-	
-	cout<<"x comp: "<<x<<endl;
-	
-	Matrix mat=Matrix(ang);
-	/*logMat=true;
-	Matrix mat=y*x;
-	logMat=false;*/
-	//mat=Matrix(ang);
-	
-	cout<<"mat: "<<mat<<endl;
-	
-	Vec3d diff=mat*Vec4d(0, 0, 1, 1)-mat*Vec4d(0, 0, 0, 1);
-	
-	cout<<"diff: "<<diff<<endl;;
-	
-	Vec3d newAng=invGetVector(diff);
-	cout<<"newAng: "<<newAng<<endl;
+	cout<<"TESTS!"<<endl;
+	getRandomObject(objects, 120, 40);
+	getRandomObject(objects, 120, 20);
+	getRandomObject(objects, 120, 10);
+	getRandomObject(objects, 120, 5);
+	cout<<"END TESTS!"<<endl;
 }
 
 /*

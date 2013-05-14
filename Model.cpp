@@ -156,22 +156,12 @@ void Model::computeNormals() {
 }
 
 void Model::addRectPrism(Vec3d start, Vec3d end) {
-	/*for(int pos=0;pos<=1;pos++) {
-		for(int axis=0;axis<3;axis++) {
-			addRect(
-					Vec3d(start[axis]*pos+end[axis]*(1-pos), start[(axis+1)%3]*pos+end[(axis+1)%3]*(1-pos), start[(axis+2)%3]*pos+end[(axis+2)%3]*(1-pos)),
-					Vec3d(start[axis]*(1-pos)+end[axis]*pos, start[(axis+1)%3]*pos+end[(axis+1)%3]*(1-pos), start[(axis+2)%3]*pos+end[(axis+2)%3]*(1-pos)),
-					Vec3d(start[axis]*(1-pos)+end[axis]*pos, start[(axis+1)%3]*(1-pos)+end[(axis+1)%3]*pos, start[(axis+2)%3]*pos+end[(axis+2)%3]*(1-pos))
-					);
-		}
-	}*/
-	
 	addRect(
-			start,
+			start,									//back
 			Vec3d(end[0],start[1],start[2]),
 			Vec3d(end[0],end[1],start[2])
 			);
-	addRect(
+	addRect(										//front
 			end,
 			Vec3d(start[0],end[1],end[2]),
 			Vec3d(start[0],start[1],end[2])
@@ -179,21 +169,21 @@ void Model::addRectPrism(Vec3d start, Vec3d end) {
 	
 	addRect(
 			start,
-			Vec3d(start[0],end[1],start[2]),
+			Vec3d(start[0],end[1],start[2]),		//left
 			Vec3d(start[0],end[1],end[2])
 			);
-	addRect(
+	addRect(										//right
 			end,
 			Vec3d(end[0],start[1],end[2]),
 			Vec3d(end[0],start[1],start[2])
 			);
 	
-	addRect(
+	addRect(										//bottom
 			start,
 			Vec3d(start[0],start[1],end[2]),
 			Vec3d(end[0],start[1],end[2])
 			);
-	addRect(
+	addRect(										//top
 			end,
 			Vec3d(end[0],end[1],start[2]),
 			Vec3d(start[0],end[1],start[2])

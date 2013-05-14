@@ -41,6 +41,7 @@ void registerObjectType(ObjectType *objType) {
 
 GameObject *expandTree(GameObject *parent, ObjectTypeTree *tree) {
 	
+//	GameObject *obj=tree->type->gameObject(parent, tree->seed, tree->diff, tree->size);
 	GameObject *obj=tree->type->gameObject(parent, tree->seed);
 	
 	cout<<"type: "<<tree->type->title<<endl;
@@ -85,7 +86,7 @@ ObjectType *getRandomObject(vector<ObjectType *> *v, double diff, double size) {
 	
 	cout<<"difficulty: "<<diff<<" size: "<<size<<endl;
 	for(int i=0;i<v->size();i++) {
-		cout<<"\tobject: "<<v->at(i)->title<<" p="<<probabilities[i]<<endl;
+		cout<<"\tobject: "<<v->at(i)->title<<" p="<<probabilities[i]<<" diff="<<difficulty(v->at(i), size)<<endl;
 	}
 	
 	cout<<"total: "<<total<<endl;
@@ -195,6 +196,9 @@ ObjectTypeTree* treeFun(ObjectType *type, double diff, double size) {
 		}
 	}
 	
+	tree->diff=diff+type->diff;
+	tree->size=size+type->minSize;
+	
 	return tree;
 }
 
@@ -211,14 +215,14 @@ double difficulty(ObjectType *type, double size) {
 		
 		vector<ObjectType *>* children=type->candidateChildren();
 		
-		cout<<"size: "<<children->size()<<endl;
+//		cout<<"size: "<<children->size()<<endl;
 		
 		for(int i=0;i<children->size();i++) {
 			if(children->at(i)->minSize<=size/type->maxChildren) {
 				accum+=difficulty(children->at(i),size/type->maxChildren);
 				ct++;
 			} else {
-				cout<<"minsize: "<<children->at(i)->minSize<<endl;
+//				cout<<"minsize: "<<children->at(i)->minSize<<endl;
 			}
 		}
 		

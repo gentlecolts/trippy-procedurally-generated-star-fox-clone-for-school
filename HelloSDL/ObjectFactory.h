@@ -25,12 +25,13 @@ struct ObjectTypeTree;
 struct ObjectType {
 	ObjectCategory type;
 	double minSize;
-	double diff;
+	double diff;			//have maxdiff too, check (1/(1+dist)) for prob
 	int numAttachPointsEst;
 	int maxChildren;
 	
 	string title;
 	
+//	GameObject *(*gameObject)(GameObject *parent, int seed, double diff, double size);
 	GameObject *(*gameObject)(GameObject *parent, int seed);
 	Model *(*model)();
 	vector<ObjectType *>* (*candidateChildren)();
@@ -41,6 +42,7 @@ struct ObjectTypeTree {
 	
 	int seed;
 	double diff;
+	double size;
 	
 	ObjectTypeTree** children;
 	bool *filled;

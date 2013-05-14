@@ -5,14 +5,6 @@
 class GameShip;
 class EnemyWave;
 
-/**************** NOISE ********************/
-perlin3d perlin(theseed);
-pixel vals[xmax*ymax];
-double noise[res3];
-
-
-/**************** MATH  *********************/
-
 
 /**************** CAMERA ********************/
 double camx=0,camy=0;
@@ -25,6 +17,17 @@ GLfloat light1[4];
 double zshft;
 double anm8=0;
 double d=d1;
+uint16_t xmax=1280, ymax=720;
+double cameraHeight=cameraHeight=(double)xmax/(double)ymax*cameraWidth;
+
+
+/**************** NOISE ********************/
+perlin3d perlin(theseed);
+pixel vals[xmax*ymax];
+double noise[res3];
+
+
+/**************** MATH  *********************/
 
 /**************** GAME  *********************/
 GameShip* thePlayerShip, *lasers, *enemyLasers;

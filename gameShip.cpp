@@ -19,7 +19,8 @@ GameShip::GameShip(int n) : GameObject() {
 }
 
 void GameShip::uniqueRenderFirst() {
-	glScalef(objScale,objScale,objScale);
+	if(parent==NULL)
+		glScalef(objScale,objScale,objScale);
 	
 	glDisable(GL_LIGHT0);
 }

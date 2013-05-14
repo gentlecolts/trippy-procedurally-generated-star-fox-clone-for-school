@@ -6,6 +6,7 @@
 class Laser : public GameShip
 {
 public:
+	Laser();
 	Laser(Vec3d p, Vec3d a);
 
 	void init(Vec3d p, Vec3d a);

@@ -50,8 +50,8 @@ const double rt2=1/sqrt(2);
 /**************** CAMERA ********************/
 #define objScale 0.3			//the scale factor applied to models for in-game objects
 
-#define xmax 1280				//the resolution of the game window
-#define ymax 720
+//#define xmax 1280				//the resolution of the game window
+//#define ymax 720
 
 #define viewangle 60
 const double sinviewangle=sin(radians(viewangle));
@@ -61,7 +61,6 @@ const double sinviewangle=sin(radians(viewangle));
 
 
 const double cameraWidth=sinviewangle*playerOffset*3;
-const double cameraHeight=(double)xmax/(double)ymax*cameraWidth;
 
 const double d1=2*tan(radians(viewangle/2.0))/grid;
 const double d2=d1/2;//2*tan(viewangle/4.0)/grid;
