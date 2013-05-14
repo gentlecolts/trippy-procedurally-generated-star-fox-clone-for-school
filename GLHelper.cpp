@@ -43,7 +43,7 @@ void glInit(){
 	GLfloat mat_shininess[] = { 50.0 };
 	//GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
 	GLfloat mat_diffuse[] = { 50, 50, 50, 1.0 };
-	GLfloat light_position[] = {0,0,0,1};
+	GLfloat light_position[] = {0,0,3,1};
 	glShadeModel(GL_SMOOTH);
 	//glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER,1);
 	//glLightModelf(GL_LIGHT_MODEL_TWO_SIDE,1);

@@ -23,7 +23,6 @@ double cameraHeight=cameraHeight=(double)xmax/(double)ymax*cameraWidth;
 
 /**************** NOISE ********************/
 perlin3d perlin(theseed);
-pixel vals[xmax*ymax];
 double noise[res3];
 
 

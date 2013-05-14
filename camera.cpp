@@ -4,9 +4,7 @@
 #include "globals.h"
 #include "gameController.h"
 
-#include "trace.h"
 #include "glRender.h"
-#include "outline.h"
 #include "math.h"
 #include "gameShip.h"
 
@@ -110,11 +108,8 @@ void render(){
 	#if doGL
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	#endif
-
-	#if drawmethod==4
-		trace();
-		doOutline();
-	#elif drawmethod==9
+	
+	#if drawmethod==9
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 		//glTranslatef(-camx,camy,0);
@@ -147,8 +142,5 @@ void render(){
 		}glEnd();
 		//*/
         glPopMatrix();
-	#elif drawmethod==11///awww yeah turn it up to 11
-		#include "cltrace.h"
-		renderObjects();
 	#endif
 }

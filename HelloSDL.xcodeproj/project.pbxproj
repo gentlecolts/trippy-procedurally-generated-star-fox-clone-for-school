@@ -39,11 +39,9 @@
 		64A789F0170C761900CCAB2F /* laser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A789D5170C75F800CCAB2F /* laser.cpp */; };
 		64A789F1170C761900CCAB2F /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A789D7170C75F800CCAB2F /* Main.cpp */; };
 		64A789F2170C761900CCAB2F /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A789D8170C75F800CCAB2F /* math.cpp */; };
-		64A789F3170C761900CCAB2F /* outline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A789DA170C75F800CCAB2F /* outline.cpp */; };
 		64A789F4170C761900CCAB2F /* perlin3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A789DC170C75F800CCAB2F /* perlin3d.cpp */; };
 		64A789F5170C761900CCAB2F /* PlayerShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A789DE170C75F800CCAB2F /* PlayerShip.cpp */; };
 		64A789F7170C761900CCAB2F /* terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A789E3170C75F800CCAB2F /* terrain.cpp */; };
-		64A789F8170C761900CCAB2F /* trace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A789E5170C75F800CCAB2F /* trace.cpp */; };
 		64AD0866171C357C001AEFCB /* RamShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AD0864171C357C001AEFCB /* RamShip.cpp */; };
 		64AD086A171C3E1E001AEFCB /* ModelConstants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AD0868171C3E1D001AEFCB /* ModelConstants.cpp */; };
 		64C6238A174274F500C072C9 /* BasicRocketLauncher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64C62388174274F500C072C9 /* BasicRocketLauncher.cpp */; };
@@ -130,8 +128,6 @@
 		64A789D7170C75F800CCAB2F /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/Main.cpp"; sourceTree = "<group>"; };
 		64A789D8170C75F800CCAB2F /* math.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = math.cpp; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/math.cpp"; sourceTree = "<group>"; };
 		64A789D9170C75F800CCAB2F /* math.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = math.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/math.h"; sourceTree = "<group>"; };
-		64A789DA170C75F800CCAB2F /* outline.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = outline.cpp; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/outline.cpp"; sourceTree = "<group>"; };
-		64A789DB170C75F800CCAB2F /* outline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = outline.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/outline.h"; sourceTree = "<group>"; };
 		64A789DC170C75F800CCAB2F /* perlin3d.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = perlin3d.cpp; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/perlin3d.cpp"; sourceTree = "<group>"; };
 		64A789DD170C75F800CCAB2F /* perlin3d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = perlin3d.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/perlin3d.h"; sourceTree = "<group>"; };
 		64A789DE170C75F800CCAB2F /* PlayerShip.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PlayerShip.cpp; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/PlayerShip.cpp"; sourceTree = "<group>"; };
@@ -139,8 +135,6 @@
 		64A789E2170C75F800CCAB2F /* structs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = structs.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/structs.h"; sourceTree = "<group>"; };
 		64A789E3170C75F800CCAB2F /* terrain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = terrain.cpp; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/terrain.cpp"; sourceTree = "<group>"; };
 		64A789E4170C75F800CCAB2F /* terrain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = terrain.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/terrain.h"; sourceTree = "<group>"; };
-		64A789E5170C75F800CCAB2F /* trace.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = trace.cpp; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/trace.cpp"; sourceTree = "<group>"; };
-		64A789E6170C75F800CCAB2F /* trace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = trace.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/trace.h"; sourceTree = "<group>"; };
 		64AD0864171C357C001AEFCB /* RamShip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RamShip.cpp; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/RamShip.cpp"; sourceTree = "<group>"; };
 		64AD0865171C357C001AEFCB /* RamShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RamShip.h; path = "../../trippy-procedurally-generated-star-fox-clone-for-school/RamShip.h"; sourceTree = "<group>"; };
 		64AD0868171C3E1D001AEFCB /* ModelConstants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelConstants.cpp; path = ../ModelConstants.cpp; sourceTree = "<group>"; };
@@ -304,12 +298,8 @@
 			children = (
 				64A789D1170C75F800CCAB2F /* glRender.cpp */,
 				64A789D2170C75F800CCAB2F /* glrender.h */,
-				64A789E5170C75F800CCAB2F /* trace.cpp */,
-				64A789E6170C75F800CCAB2F /* trace.h */,
 				64A789E3170C75F800CCAB2F /* terrain.cpp */,
 				64A789E4170C75F800CCAB2F /* terrain.h */,
-				64A789DA170C75F800CCAB2F /* outline.cpp */,
-				64A789DB170C75F800CCAB2F /* outline.h */,
 				64A789DC170C75F800CCAB2F /* perlin3d.cpp */,
 				64A789DD170C75F800CCAB2F /* perlin3d.h */,
 			);
@@ -507,11 +497,9 @@
 				64A789F0170C761900CCAB2F /* laser.cpp in Sources */,
 				64A789F1170C761900CCAB2F /* Main.cpp in Sources */,
 				64A789F2170C761900CCAB2F /* math.cpp in Sources */,
-				64A789F3170C761900CCAB2F /* outline.cpp in Sources */,
 				64A789F4170C761900CCAB2F /* perlin3d.cpp in Sources */,
 				64A789F5170C761900CCAB2F /* PlayerShip.cpp in Sources */,
 				64A789F7170C761900CCAB2F /* terrain.cpp in Sources */,
-				64A789F8170C761900CCAB2F /* trace.cpp in Sources */,
 				9C93E3A913942B5A0096FAB3 /* HelloSDLAppDelegate.m in Sources */,
 				9C93E3B613942C360096FAB3 /* SDLMain.m in Sources */,
 				64241AE4171317B80021A48E /* enemyWave.cpp in Sources */,

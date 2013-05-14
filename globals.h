@@ -29,7 +29,6 @@ extern double cameraHeight;
 
 /**************** NOISE ********************/
 extern perlin3d perlin;				//not actually used either I think...?
-extern pixel vals[];		//not used?
 extern double noise[res3];
 
 

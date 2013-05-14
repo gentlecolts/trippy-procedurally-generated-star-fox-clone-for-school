@@ -80,13 +80,13 @@ ObjectType *getRandomObject(vector<ObjectType *> *v, double diff, double size) {
 	double total=0;
 	
 	for(int i=0;i<v->size();i++) {
-		probabilities[i]=abs(1/(difficulty(v->at(i), size)-diff)+.001);
+		probabilities[i]=abs(1/(difficulty(v->at(i), diff, size)-diff)+.001);
 		total+=probabilities[i];
 	}
 	
 	cout<<"difficulty: "<<diff<<" size: "<<size<<endl;
 	for(int i=0;i<v->size();i++) {
-		cout<<"\tobject: "<<v->at(i)->title<<" p="<<probabilities[i]<<" diff="<<difficulty(v->at(i), size)<<endl;
+		cout<<"\tobject: "<<v->at(i)->title<<" p="<<probabilities[i]<<" diff="<<difficulty(v->at(i), diff, size)<<endl;
 	}
 	
 	cout<<"total: "<<total<<endl;
@@ -166,14 +166,14 @@ ObjectTypeTree* treeFun(ObjectType *type, double diff, double size) {
 			vector<ObjectType *>* cand=type->candidateChildren();
 			
 			ObjectType *obj=getRandomObject(cand, subDiff, subSize);
-			int j = 0;
-			while(j<10 && abs(subDiff-difficulty(obj,subSize))<0.1) {
+			//int j = 0;
+//			while(j<10 && abs(subDiff-difficulty(obj,subSize))<0.1) {
 //				cout<<"NOPE"<<endl;
 				obj=getRandomObject(cand, subDiff, subSize);
-				j++;
-			}
+//				j++;
+//			}
 			
-			if(j<10) {			//fix this somehow
+//			if(j<10) {			//fix this somehow
 				diff-=subDiff;
 				size-=subSize;
 				tree->children[i]=treeFun(obj,subDiff,subSize);
@@ -183,12 +183,12 @@ ObjectTypeTree* treeFun(ObjectType *type, double diff, double size) {
 				cout<<"set children["<<(mod->numAttachPoints-i-1)<<"] to: "<<tree->children[mod->numAttachPoints-i-1]<<endl;
 				cout<<"should be ["<<i<<"]: "<<tree->children[i]<<endl;
 				tree->filled[mod->numAttachPoints-i-1]=true;
-			} else {
+			/*} else {
 				cout<<"Nothing small enough! ["<<i<<"]"<<endl;
 				cout<<"should be paired with ["<<mod->numAttachPoints-i-1<<"]"<<endl;
 				tree->filled[i]=false;
 				tree->filled[mod->numAttachPoints-i-1]=false;
-			}
+			}*/
 		} else {
 			cout<<"=( ["<<i<<"]"<<endl;
 			tree->filled[i]=false;
@@ -202,7 +202,7 @@ ObjectTypeTree* treeFun(ObjectType *type, double diff, double size) {
 	return tree;
 }
 
-double difficulty(ObjectType *type, double size) {
+double difficulty(ObjectType *type, double diff, double size) {
 	if(type->numAttachPointsEst>0) {
 		size-=type->minSize;
 		
@@ -218,8 +218,8 @@ double difficulty(ObjectType *type, double size) {
 //		cout<<"size: "<<children->size()<<endl;
 		
 		for(int i=0;i<children->size();i++) {
-			if(children->at(i)->minSize<=size/type->maxChildren) {
-				accum+=difficulty(children->at(i),size/type->maxChildren);
+			if(children->at(i)->minSize<=size/type->maxChildren && children->at(i)->diff<=diff/type->maxChildren) {
+				accum+=difficulty(children->at(i), diff/type->maxChildren,size/type->maxChildren);
 				ct++;
 			} else {
 //				cout<<"minsize: "<<children->at(i)->minSize<<endl;

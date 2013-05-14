@@ -4,6 +4,7 @@
 #include "imports.h"
 
 #include "camera.h"
+#include "globals.h"
 #include "GLHelper.h"
 #include "gameController.h"
 #include "Model.h"
@@ -143,6 +144,7 @@ void GameObject::setup() {
     avgDist*=objScale;
 	
 	if(model->numAttachPoints>0) {
+		cout<<"DFDSD"<<model->numAttachPoints<<endl;
 		children=new GameObject*[model->numAttachPoints];
 		
 		attachPointsFilled=new bool[model->numAttachPoints];
