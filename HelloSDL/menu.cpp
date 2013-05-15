@@ -34,6 +34,8 @@ void launchMenu() {
 	
 	playButton=new button(s1,s2,s3);
 	quitButton=new button(s4,s5,s6);
+	
+	playButton->setPos(0, 0);
 	quitButton->setPos(0, 300);
 	
 	playButton->fn=play;
