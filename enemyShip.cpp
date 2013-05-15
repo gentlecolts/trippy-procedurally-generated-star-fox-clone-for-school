@@ -71,6 +71,8 @@ void EnemyShip::update(double dt) {
 							children[i]->setAnimation(new ExplodeAnimation(children[i]->model,NULL));
 					}
 					
+					playerScore+=score;
+					
 					vel[0]=0;
 					vel[1]=0;
 					

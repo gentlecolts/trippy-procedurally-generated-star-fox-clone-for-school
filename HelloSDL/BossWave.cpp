@@ -38,6 +38,8 @@ void BossWave::init(){
 	
 	thePlayerShip->appendObject(ship);
 	
+	ship->score=100+difficulty*1.5;
+	
     retain();
 }
 

@@ -42,6 +42,7 @@ void SwarmWave::init(){
 		ships[i]->init(x+i+((double)rand())/RAND_MAX*(3+i)-3, y+i*slope+((double)rand())/RAND_MAX*(3+i)-3,-10,4);
 		ships[i]->parentWave=this;
 		thePlayerShip->appendObject(ships[i]);
+		ships[i]->score=20+difficulty;
 		
 		ships[i]->health=3;
 		

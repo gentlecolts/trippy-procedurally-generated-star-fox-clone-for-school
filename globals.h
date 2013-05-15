@@ -42,7 +42,8 @@ extern long curTime, startTime, lastWaveTime;	//for keeping track of the time be
 extern EnemyWave* currentWave;				//the current wave of enemies
 extern bool readyForNextWave;				//whether more enemies can spawn
 extern long waveTime;
-extern bool didSetup;
+extern bool didGameSetup, needToUnload;
+extern int playerScore;
 
 /**************** IO    *********************/
 extern bool leftmov,rightmov,upmov,downmov,space, fire, fireRockets;

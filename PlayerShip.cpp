@@ -29,7 +29,7 @@ void PlayerShip::init(){
 	model=playerShipModel;
     modelSize=model->length;
 	player=true;
-	health=100;
+	health=10;
 
     pos[2]=-playerOffset;
 }
@@ -166,6 +166,10 @@ void PlayerShip::update(double dt) {
             //xvel=0;
             //xvel=0;
         }
+		
+		if(health<0) {
+			needToUnload=true;
+		}
     }
 }
 

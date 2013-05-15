@@ -48,6 +48,16 @@ void quit(button *b) {
 }
 
 void chkCloseEvent(){
+	if(needToUnload) {
+		inGame=false;
+		screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_HWPALETTE | SDL_HWACCEL | SDL_DOUBLEBUF | SDL_SRCALPHA | SDL_ASYNCBLIT);
+		
+		unloadGame();
+		didGameSetup=false;
+		needToUnload=false;
+		cout<<"score: "<<playerScore<<endl;
+	}
+	
 	if(SDL_PollEvent(&e)) {
 		switch(e.type) {
 		case SDL_QUIT:

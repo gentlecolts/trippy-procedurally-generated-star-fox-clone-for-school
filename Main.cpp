@@ -34,10 +34,11 @@ int main(int argc,char** argv){
 			SDL_Flip(screen);
 			
 			if(inGame) {
-				if(!didSetup)
+				if(!didGameSetup)
 					setupGame();
 				
 				screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_OPENGL);
+				//crashes here sometimes
 				glInit();
 				
 				glMatrixMode(GL_MODELVIEW);

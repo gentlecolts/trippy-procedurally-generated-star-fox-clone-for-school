@@ -33,6 +33,7 @@ GameObject::GameObject() {
 	t=0;
 	health=0;
 	bigGun=false;
+	score=50;
 	
 	pos=Vec3d(0,0,0);
 	vel=Vec3d(0,0,0);

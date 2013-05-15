@@ -25,6 +25,7 @@ public:
 	double t;
 	int health;
 	bool bigGun;
+	int score;
 	
 	GameObject *parent;
 	GameObject** children;

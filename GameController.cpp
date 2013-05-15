@@ -44,7 +44,7 @@ void doTests() {
  Calls initModels() from ModelConstants, creates the player ship, and creates the light applied to objects only
  */
 void setupGame() {
-	didSetup=true;
+	didGameSetup=true;
 	
 	initModels();
 	
@@ -204,7 +204,7 @@ void addLaser(Laser* las, bool player) {
  Deletes everything
  */
 void unloadGame() {
-	if(didSetup) {
+	if(didGameSetup) {
 		delete currentWave;
 
 		thePlayerShip->deleteAndDeleteChildren();
