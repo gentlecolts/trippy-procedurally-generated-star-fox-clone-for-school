@@ -41,20 +41,24 @@ void initSDL() {
 	SDL_WM_SetCaption("done",NULL);
 }
 
+void quit(button *b) {
+	unloadGame();
+	SDL_Quit();
+	exit(0);
+}
+
 void chkCloseEvent(){
 	if(SDL_PollEvent(&e)) {
 		switch(e.type) {
 		case SDL_QUIT:
-			quitnow:
-			    unloadGame();
-			SDL_Quit();
-			exit(0);
+			quit(NULL);
 			break;
 		case SDL_KEYDOWN:
 			{
 			int key=e.key.keysym.sym;
 			if(key==27){
-				goto quitnow;
+				inGame=false;
+				screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_HWPALETTE | SDL_HWACCEL | SDL_DOUBLEBUF | SDL_SRCALPHA | SDL_ASYNCBLIT);
 			}
 
 			if(key==SDLK_DOWN || key==SDLK_s){//DOWN

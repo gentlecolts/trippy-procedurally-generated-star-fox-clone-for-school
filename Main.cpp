@@ -6,6 +6,7 @@ using namespace std;
 #include "gameController.h"
 #include "camera.h"
 #include "menu.h"
+#include "GLHelper.h"
 
 int main(int argc,char** argv){
     initSDL();
@@ -33,7 +34,14 @@ int main(int argc,char** argv){
 			SDL_Flip(screen);
 			
 			if(inGame) {
-				setupGame();
+				if(!didSetup)
+					setupGame();
+				
+				screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_OPENGL);
+				glInit();
+				
+				glMatrixMode(GL_MODELVIEW);
+				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			}
 		}
 	}

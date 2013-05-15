@@ -44,6 +44,8 @@ void doTests() {
  Calls initModels() from ModelConstants, creates the player ship, and creates the light applied to objects only
  */
 void setupGame() {
+	didSetup=true;
+	
 	initModels();
 	
 	registerAll();
@@ -55,12 +57,6 @@ void setupGame() {
     /*for(int i=1;i<numGameObjects;i++) {
         gameObjects.push_back(new EnemyShip());
     }*/
-	
-	screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_OPENGL);
-	glInit();
-	
-	glMatrixMode(GL_MODELVIEW);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 /**
@@ -208,11 +204,13 @@ void addLaser(Laser* las, bool player) {
  Deletes everything
  */
 void unloadGame() {
-    delete currentWave;
+	if(didSetup) {
+		delete currentWave;
 
-	thePlayerShip->deleteAndDeleteChildren();
-	if(lasers!=NULL)
-		lasers->deleteAndDeleteChildren();
-	if(enemyLasers!=NULL)
-		enemyLasers->deleteAndDeleteChildren();
+		thePlayerShip->deleteAndDeleteChildren();
+		if(lasers!=NULL)
+			lasers->deleteAndDeleteChildren();
+		if(enemyLasers!=NULL)
+			enemyLasers->deleteAndDeleteChildren();
+	}
 }

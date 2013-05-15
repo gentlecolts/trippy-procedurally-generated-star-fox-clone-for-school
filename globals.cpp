@@ -36,6 +36,7 @@ long curTime=0,startTime=clock(),lastWaveTime=clock();
 EnemyWave* currentWave=NULL;
 bool readyForNextWave=true;
 long waveTime=10000;
+bool didSetup=false;
 
 /**************** IO    *********************/
 bool leftmov,rightmov,upmov,downmov,space,fire,fireRockets;
