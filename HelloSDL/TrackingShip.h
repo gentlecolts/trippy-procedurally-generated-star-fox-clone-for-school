@@ -22,7 +22,7 @@ public:
 	double pauseTime, time;
 	TrackingShip(Model *m, double x, double y, int n);
 	TrackingShip(Model *m);
-	void init(double x, double y);
+	void init(double x, double y, int startPos, int time);
 	void update(double dt);
 	void afterSetup();
 	bool isDone();

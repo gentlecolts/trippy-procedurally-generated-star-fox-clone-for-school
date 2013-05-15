@@ -23,7 +23,7 @@ HoverShip::HoverShip(Model *m, double x, double y, int n) : EnemyShip(x, y, n) {
 	model=ramShipModel;
     modelSize=model->length;
 	
-	init(x,y);
+	init(x,y,-5,8);
 }
 
 HoverShip::HoverShip(Model *m) : EnemyShip(0) {
@@ -35,7 +35,7 @@ HoverShip::HoverShip(Model *m) : EnemyShip(0) {
  void HoverShip::init(double x, double y)
  Sets the model to the constant HoverShipModel, then calculates pos[0] and pos[1] as the points around the edge of the game in line with the target position and sets vel[0], vel[1], and vel[2] so that it will intersect the plane at -playerOffset at (x,y)
  */
-void HoverShip::init(double x, double y) {
+void HoverShip::init(double x, double y, int startPos, int t) {
 	if(x==0) {
 		x=0.001;
 	} else if(y==0) {
@@ -53,9 +53,8 @@ void HoverShip::init(double x, double y) {
 	pos[0]*=signum(x);
 	pos[1]*=signum(y);
 	
-	int startPos=-5;
-	time=8;
 	pauseTime=8;
+	time=t;
 	
     pos[2]=startPos-playerOffset;
 	
@@ -67,7 +66,7 @@ void HoverShip::init(double x, double y) {
 }
 
 bool HoverShip::isDone() {
-	return pos[2]>=cameraOffset || abs(pos[0])>noiseScale*4 || abs(pos[1])>noiseScale*4;
+	return pos[2]>=cameraOffset || abs(pos[0])>noiseScale*1.5 || abs(pos[1])>noiseScale*1.5;
 }
 
 void HoverShip::afterSetup() {

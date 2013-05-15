@@ -34,13 +34,23 @@ void Grenade::init(Vec3d p, Vec3d v, Vec3d a, double r, long mt) {
 					 );
 	
 	pos=p;
-	vel=vect*3;
+	vel=vect*5;
 	rot=v;
 	accell=a;
 	radius=r;
 	maxTime=mt;
 	
 	explodeTime=-1;
+}
+
+int Grenade::getDamage(GameObject *other) {
+	if(explodeTime<0 && t<maxTime) {
+		return 3;
+	}
+	
+	Vec3d diff=pos-other->pos;
+	
+	return 30/(1+diff.magnitude());
 }
 
 bool Grenade::isDone() {
@@ -56,12 +66,23 @@ void Grenade::update(double dt) {
 			pos+=vel*dt;
 			vel+=accell*dt;
 			
+			GameShip *obj=thePlayerShip;
+			while(obj!=NULL) {
+				Vec3d diff=obj->pos-pos;
+				if(obj->player!=player && diff[2]>0 && diff.magnitude()<radius/2) {
+					explode();
+					break;
+				}
+				
+				obj=obj->getNext();
+			}
+			
 			if(collidesWithNoise()) {
 				explode();
 			}
 		} else {
 //			cout<<"here? "<<this<<endl;
-			pos[2]-=thePlayerShip->vel[2]*dt;
+			pos[2]-=thePlayerShip->vel[2]/4*dt;
 			
 			avgDist+=dt*5;
 			

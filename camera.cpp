@@ -7,6 +7,7 @@
 #include "glRender.h"
 #include "math.h"
 #include "gameShip.h"
+#include "GLHelper.h"
 
 
 int precompindx(double x,double y,double z){
@@ -123,6 +124,7 @@ void render(){
 	gluLookAt(camx,camy+1,cameraOffset,thePlayerShip->pos[0],thePlayerShip->pos[1],thePlayerShip->pos[2]*3,0,1,0);
 	//gluLookAt(xpos*0.8,ypos*0.8+1,cameraOffset,xpos,ypos,thePlayerShip->pos[2]*3,0,1,0);
 	
+	initLights();
 	
 		renderObjects();
 	

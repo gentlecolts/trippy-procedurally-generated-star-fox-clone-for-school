@@ -47,6 +47,8 @@
 		64C6238A174274F500C072C9 /* BasicRocketLauncher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64C62388174274F500C072C9 /* BasicRocketLauncher.cpp */; };
 		64C6238D1742A6DE00C072C9 /* SlideDownAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64C6238B1742A6DE00C072C9 /* SlideDownAnimation.cpp */; };
 		64C623911742B4B500C072C9 /* OpenUpAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64C6238F1742B4B400C072C9 /* OpenUpAnimation.cpp */; };
+		64C623941742EF5B00C072C9 /* SwarmWave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64C623921742EF5B00C072C9 /* SwarmWave.cpp */; };
+		64C62397174305B100C072C9 /* BossWave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64C62395174305AF00C072C9 /* BossWave.cpp */; };
 		64CBE84A17371A22007C9D08 /* Nade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64CBE84817371A22007C9D08 /* Nade.cpp */; };
 		64CBE84D1737F931007C9D08 /* ObjectFactoryRegister.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64CBE84B1737F92F007C9D08 /* ObjectFactoryRegister.cpp */; };
 		64DBC33D1730301E0078B26C /* FanStrutThing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64DBC33B1730301E0078B26C /* FanStrutThing.cpp */; };
@@ -145,6 +147,10 @@
 		64C6238C1742A6DE00C072C9 /* SlideDownAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideDownAnimation.h; sourceTree = "<group>"; };
 		64C6238F1742B4B400C072C9 /* OpenUpAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenUpAnimation.cpp; sourceTree = "<group>"; };
 		64C623901742B4B500C072C9 /* OpenUpAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUpAnimation.h; sourceTree = "<group>"; };
+		64C623921742EF5B00C072C9 /* SwarmWave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SwarmWave.cpp; sourceTree = "<group>"; };
+		64C623931742EF5B00C072C9 /* SwarmWave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwarmWave.h; sourceTree = "<group>"; };
+		64C62395174305AF00C072C9 /* BossWave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BossWave.cpp; sourceTree = "<group>"; };
+		64C62396174305B000C072C9 /* BossWave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossWave.h; sourceTree = "<group>"; };
 		64CBE84817371A22007C9D08 /* Nade.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Nade.cpp; sourceTree = "<group>"; };
 		64CBE84917371A22007C9D08 /* Nade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nade.h; sourceTree = "<group>"; };
 		64CBE84B1737F92F007C9D08 /* ObjectFactoryRegister.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectFactoryRegister.cpp; sourceTree = "<group>"; };
@@ -223,6 +229,10 @@
 			children = (
 				64241AE2171317B80021A48E /* enemyWave.cpp */,
 				64241AE3171317B80021A48E /* enemyWave.h */,
+				64C623921742EF5B00C072C9 /* SwarmWave.cpp */,
+				64C623931742EF5B00C072C9 /* SwarmWave.h */,
+				64C62395174305AF00C072C9 /* BossWave.cpp */,
+				64C62396174305B000C072C9 /* BossWave.h */,
 				64241AE51713187A0021A48E /* testEnemyWave1.cpp */,
 				64241AE61713187A0021A48E /* testEnemyWave1.h */,
 			);
@@ -530,6 +540,8 @@
 				64C6238A174274F500C072C9 /* BasicRocketLauncher.cpp in Sources */,
 				64C6238D1742A6DE00C072C9 /* SlideDownAnimation.cpp in Sources */,
 				64C623911742B4B500C072C9 /* OpenUpAnimation.cpp in Sources */,
+				64C623941742EF5B00C072C9 /* SwarmWave.cpp in Sources */,
+				64C62397174305B100C072C9 /* BossWave.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

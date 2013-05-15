@@ -13,7 +13,8 @@ EnemyShip::EnemyShip(int n) : GameShip(n)
 {
     t=0;
 	dead=false;
-	init((double)(rand())/RAND_MAX*2-1,(double)(rand())/RAND_MAX*2-1);
+	init((double)(rand())/RAND_MAX*2-1,(double)(rand())/RAND_MAX*2-1,-8,8);
+	health=3;
 }
 
 /**
@@ -23,14 +24,15 @@ EnemyShip::EnemyShip(int n) : GameShip(n)
 EnemyShip::EnemyShip(double x,double y, int n) : GameShip(n) {
     t=0;
 	dead=false;
-    init(x, y);
+    init(x, y,-8,8);
+	health=3;
 }
 
 /**
  void EnemyShip::init(double x,double y)
  Does nothing because this shouldn't be instantiated, only subclassed
  */
-void EnemyShip::init(double x,double y){
+void EnemyShip::init(double x,double y, int startPos, int time){
 }
 
 /**
@@ -56,20 +58,26 @@ void EnemyShip::update(double dt) {
 		while(obj!=NULL) {
 			if(obj->collidesWithObject(this)) {
 				invinceStart=clock();
-				setAnimation(new ExplodeAnimation(model,this));
 				
-				for(int i=0;i<numChildren;i++) {
-//					cout<<"children["<<i<<"] "<<children[i]<<endl;
-					if(attachPointsFilled[i])
-						children[i]->setAnimation(new ExplodeAnimation(children[i]->model,NULL));
-				}
+				health-=obj->getDamage(this);
 				
-				vel[0]=0;
-				vel[1]=0;
-				
-				dead=true;
+				if(health<0) {
+					
+					setAnimation(new ExplodeAnimation(model,this));
+					
+					for(int i=0;i<numChildren;i++) {
+	//					cout<<"children["<<i<<"] "<<children[i]<<endl;
+						if(attachPointsFilled[i])
+							children[i]->setAnimation(new ExplodeAnimation(children[i]->model,NULL));
+					}
+					
+					vel[0]=0;
+					vel[1]=0;
+					
+					dead=true;
 
-				break;
+					break;
+				}
 			}
 			obj=obj->getNext();
 		}

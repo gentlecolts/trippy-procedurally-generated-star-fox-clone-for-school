@@ -39,27 +39,9 @@ void glPreInit(){
 }
 
 void glInit(){
-	GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
-	GLfloat mat_shininess[] = { 50.0 };
-	//GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
-	GLfloat mat_diffuse[] = { 50, 50, 50, 1.0 };
-	GLfloat light_position[] = {0,0,3,1};
-	glShadeModel(GL_SMOOTH);
-	//glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER,1);
-	//glLightModelf(GL_LIGHT_MODEL_TWO_SIDE,1);
 
-	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-	glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, mat_diffuse);
-	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 2.0);
-	//glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 1.0);
-	glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.5);
-	//glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.5);
-	glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.125);
 
 	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
 	glEnable(GL_DEPTH_TEST);
 	glColorMaterial ( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE );
 	glEnable(GL_COLOR_MATERIAL);
@@ -99,6 +81,42 @@ void drawquad(point3d p[4]){
 	glVertex3d(p[2].x,p[2].y,p[2].z);
 	glVertex3d(p[3].x,p[3].y,p[3].z);
 	//glEnd();
+}
+
+void initLights() {
+	//GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
+	GLfloat mat_diffuse[] = { 100, 100, 100/*-curTime/100*/, 1.0 };
+//	cout<<"val: "<<(100-curTime/100)<<endl;
+	GLfloat light_position[] = {0,0,4,1};
+	glShadeModel(GL_SMOOTH);
+	//glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER,1);
+	//glLightModelf(GL_LIGHT_MODEL_TWO_SIDE,1);
+	
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, mat_diffuse);
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 2.0);
+	//glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 1.0);
+	glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.5);
+	//glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.5);
+	glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.125);
+	
+	glEnable(GL_LIGHT0);
+	
+	
+	light1[0]=0;
+    light1[1]=0;
+    light1[2]=-1.5;
+    light1[3]=1;
+	
+	GLfloat diffuse[]={3.0,0.0,0.0,1.0};
+	
+    glLightfv(GL_LIGHT1, GL_POSITION, light1);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuse);
+    glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 2.0);
+    glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.5);
+    glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.125);
+	
+	glEnable(GL_LIGHT1);
 }
 
 void drawquad(){

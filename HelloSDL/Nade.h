@@ -25,6 +25,7 @@ public:
 	void activate();
 	void render();
 	bool isDone();
+	int getDamage(GameObject *other);
 	
 	double radius;
 	Vec3d accell;

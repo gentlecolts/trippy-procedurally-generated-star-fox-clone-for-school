@@ -80,7 +80,7 @@ ObjectType *getRandomObject(vector<ObjectType *> *v, double diff, double size) {
 	double total=0;
 	
 	for(int i=0;i<v->size();i++) {
-		probabilities[i]=abs(1/(difficulty(v->at(i), diff, size)-diff)+.001);
+		probabilities[i]=abs(1/((maxSize(v->at(i), diff, size)-size)+(difficulty(v->at(i), diff, size)-diff)));
 		total+=probabilities[i];
 	}
 	
@@ -205,6 +205,7 @@ ObjectTypeTree* treeFun(ObjectType *type, double diff, double size) {
 double difficulty(ObjectType *type, double diff, double size) {
 	if(type->numAttachPointsEst>0) {
 		size-=type->minSize;
+		diff-=type->diff;
 		
 		/*cout<<"size: "<<size<<endl;
 		cout<<"minSize: "<<type.minSize<<endl;
@@ -233,20 +234,34 @@ double difficulty(ObjectType *type, double diff, double size) {
 	return type->diff;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+double maxSize(ObjectType *type, double diff, double size) {
+	if(type->numAttachPointsEst>0) {
+		size-=type->minSize;
+		diff-=type->diff;
+		
+		/*cout<<"size: "<<size<<endl;
+		 cout<<"minSize: "<<type.minSize<<endl;
+		 cout<<"num...est: "<<type.numAttachPointsEst<<endl;*/
+		
+		double accum=0;
+		int ct=0;
+		
+		vector<ObjectType *>* children=type->candidateChildren();
+		
+		//		cout<<"size: "<<children->size()<<endl;
+		
+		for(int i=0;i<children->size();i++) {
+			if(children->at(i)->minSize<=size/type->maxChildren && children->at(i)->diff<=diff/type->maxChildren) {
+				accum+=maxSize(children->at(i), diff/type->maxChildren,size/type->maxChildren);
+				ct++;
+			} else {
+				//				cout<<"minsize: "<<children->at(i)->minSize<<endl;
+			}
+		}
+		
+		if(accum!=0)
+			return accum/ct*type->maxChildren+type->minSize;
+		return type->minSize;
+	}
+	return type->minSize;
+}

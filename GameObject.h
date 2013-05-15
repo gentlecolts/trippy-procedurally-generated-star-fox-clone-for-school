@@ -23,6 +23,8 @@ public:
 	int numChildren;
 	bool player;
 	double t;
+	int health;
+	bool bigGun;
 	
 	GameObject *parent;
 	GameObject** children;
@@ -41,6 +43,10 @@ public:
 	Vec3d absolutePosition();
 	Vec3d absoluteAngle();
 	void fireWeapon();
+	void fireBigGuns();
+	void addUpHealth(int h);
+	void setPlayer(bool p);
+	virtual int getDamage(GameObject *other);
 	
 	Matrix getMatrix();
 	

@@ -58,6 +58,7 @@ ObjectTypeTree *getTree(double diff, double size);
 ObjectType *getRandomObject(vector<ObjectType *>* v, double diff, double size);
 ObjectTypeTree* treeFun(ObjectType *type, double diff, double size);
 double difficulty(ObjectType *type, double maxDiff, double size);
+double maxSize(ObjectType *type, double maxDiff, double size);
 
 
 #endif /* defined(__HelloSDL__ObjectFactory__) */

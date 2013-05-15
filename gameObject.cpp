@@ -31,6 +31,8 @@ GameObject::GameObject() {
 	player=false;
 	modelSize=0;
 	t=0;
+	health=0;
+	bigGun=false;
 	
 	pos=Vec3d(0,0,0);
 	vel=Vec3d(0,0,0);
@@ -127,6 +129,14 @@ void GameObject::doUpdate(double dt) {
 	//cout<<"end"<<endl;
 }
 
+void GameObject::addUpHealth(int h) {
+	if(parent!=NULL) {
+		parent->addUpHealth(h);
+	}
+	
+	health+=h;
+}
+
 /**
  void GameObject::setup()
  Do setup that needs to be done after initialization: calculating the average vertex distance
@@ -144,7 +154,7 @@ void GameObject::setup() {
     avgDist*=objScale;
 	
 	if(model->numAttachPoints>0) {
-		cout<<"DFDSD"<<model->numAttachPoints<<endl;
+		cout<<"DFDSD "<<model->numAttachPoints<<endl;
 		children=new GameObject*[model->numAttachPoints];
 		
 		attachPointsFilled=new bool[model->numAttachPoints];
@@ -178,6 +188,18 @@ void GameObject::addChild(GameObject *child, int index) {
 	addChild(child, index, Vec3d(0,0,0));
 }
 
+void GameObject::setPlayer(bool p) {
+	player=p;
+	
+	if(didSetup) {
+		for(int i=0;i<model->numAttachPoints;i++) {
+			if(attachPointsFilled[i]) {
+				children[i]->setPlayer(p);
+			}
+		}
+	}
+}
+
 void GameObject::addChild(GameObject *child, int index, Vec3d angle) {
 	if(!didSetup) {
 		setup();
@@ -198,7 +220,13 @@ void GameObject::addChild(GameObject *child, int index, Vec3d angle) {
 	
 	attachPointsFilled[index]=true;
 	
-	child->player=player;
+	child->setPlayer(player);
+	
+	addUpHealth(child->health);
+}
+
+int GameObject::getDamage(GameObject *other) {
+	return 10;
 }
 
 /**
@@ -308,11 +336,24 @@ void GameObject::doFire() {}
  */
 void GameObject::fireWeapon() {
 	if(didSetup) {
-		doFire();
+		if(!bigGun)
+			doFire();
 		
 		for(int i=0;i<model->numAttachPoints;i++) {
 			if(attachPointsFilled[i])
 				children[i]->fireWeapon();
+		}
+	}
+}
+
+void GameObject::fireBigGuns() {
+	if(didSetup) {
+		if(bigGun)
+			doFire();
+		
+		for(int i=0;i<model->numAttachPoints;i++) {
+			if(attachPointsFilled[i])
+				children[i]->fireBigGuns();
 		}
 	}
 }

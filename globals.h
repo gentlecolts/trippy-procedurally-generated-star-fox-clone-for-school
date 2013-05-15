@@ -41,9 +41,10 @@ extern int numObjects;
 extern long curTime, startTime, lastWaveTime;	//for keeping track of the time between frames, total time running, and last time enemies spawned
 extern EnemyWave* currentWave;				//the current wave of enemies
 extern bool readyForNextWave;				//whether more enemies can spawn
+extern long waveTime;
 
 /**************** IO    *********************/
-extern bool leftmov,rightmov,upmov,downmov,space, fire;
+extern bool leftmov,rightmov,upmov,downmov,space, fire, fireRockets;
 extern SDL_Event e;
 
 extern SDL_Surface* screen;

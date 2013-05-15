@@ -18,10 +18,12 @@ void BasicGun::init() {
 }
 
 BasicGun::BasicGun() : GameObject() {
+	
 	lastFired=0;
 	fireRate=10;
 	parent=NULL;
 	lastFired=0;
+	health=3;
 }
 
 BasicGun::BasicGun(GameObject *p) : GameObject() {

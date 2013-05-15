@@ -15,6 +15,8 @@
 
 BasicRocketLauncher::BasicRocketLauncher(GameObject *obj) : BasicGun(obj){
 	init();
+	bigGun=true;
+	health=3;
 }
 
 void BasicRocketLauncher::init() {
@@ -24,6 +26,7 @@ void BasicRocketLauncher::init() {
 	fireRate=1;
 	
 	addChild(new Grenade(), 0);
+	cout<<"launcher player: "<<player<<" ammo: "<<children[0]->player<<endl;
 	children[0]->parent=this;
 	addChild(new Grenade(), 1);
 	children[1]->parent=this;

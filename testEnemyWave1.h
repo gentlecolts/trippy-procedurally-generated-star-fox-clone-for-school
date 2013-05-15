@@ -11,21 +11,22 @@
 
 #include "enemyWave.h"
 #include <iostream>
+class EnemyShip;
 
 class TestEnemyWave1 : public EnemyWave {
+private:
+    EnemyShip *ship1,*ship2,*ship3;
+    bool done;
+protected:
 public:
     void init();
     void tick();
     bool isDone();
     bool childrenDone();
     void remove(GameObject *obj);
-
+	
     TestEnemyWave1():done(false){}
     ~TestEnemyWave1();
-private:
-    EnemyShip *ship1,*ship2,*ship3;
-    bool done;
-protected:
 };
 
 #endif /* defined(__HelloSDL__testEnemyWave1__) */

@@ -61,8 +61,13 @@ void AimingStrut::update(double dt) {
 	
 	if(parent!=NULL)
 		angles-=parent->absoluteAngle();
-		
-	rot=angles;
+	
+	Vec3d diff=angles-rot;
+	if(diff.magnitude()>speed) {
+		diff=speed*diff.normalize();
+	}
+	
+	rot+=diff*dt;
 	
 	//cout<<"rot: "<<rot<<endl;
 }

@@ -7,9 +7,9 @@
 //  Copyright (c) 2013 Student. All rights reserved.
 //
 
-#include "RamShip.h"
 #include "testEnemyWave1.h"
 #include "HoverShip.h"
+#include "RamShip.h"
 #include "ObjectFactory.h"
 
 
@@ -38,9 +38,9 @@ void TestEnemyWave1::init(){
     ship3=new HoverShip(x,y+3,s+2);
 	//*/
 	
-	ship1=(EnemyShip *)expandTree(NULL, getTree(500, 80));
-	ship2=(EnemyShip *)expandTree(NULL, getTree(500, 80));
-	ship3=(EnemyShip *)expandTree(NULL, getTree(50, 80));
+	ship1=(EnemyShip *)expandTree(NULL, getTree(20, 5));
+	ship2=(EnemyShip *)expandTree(NULL, getTree(20, 5));
+	ship3=(EnemyShip *)expandTree(NULL, getTree(20, 5));
 	
 	/*ObjectType *type=typeForName("hoverShip");
 	
@@ -48,9 +48,9 @@ void TestEnemyWave1::init(){
 	ship2=(EnemyShip *)expandTree(NULL, treeFun(type, 20, 2));
 	ship3=(EnemyShip *)expandTree(NULL, treeFun(type, 20, 2));*/
 	
-	ship1->init(x, y);
-	ship2->init(x+2, y);
-	ship3->init(x, y+2);
+	ship1->init(x, y,-5,8);
+	ship2->init(x+2, y,-5,8);
+	ship3->init(x, y+2,-5,8);
 	
     ship1->parentWave=this;
     ship2->parentWave=this;

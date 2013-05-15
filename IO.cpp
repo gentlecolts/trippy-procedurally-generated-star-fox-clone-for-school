@@ -81,6 +81,9 @@ void chkCloseEvent(){
 			if(key==SDLK_RETURN){
 				fire=true;
 			}
+			if(key==SDLK_QUOTE) {
+				fireRockets=true;
+			}
 			//cout<<key<<endl;
 			break;
 			}
@@ -111,6 +114,9 @@ void chkCloseEvent(){
 			}
 			if(key==SDLK_RETURN){
                 fire=false;
+			}
+			if(key==SDLK_QUOTE) {
+				fireRockets=false;
 			}
 			//cout<<key<<endl;
 			break;

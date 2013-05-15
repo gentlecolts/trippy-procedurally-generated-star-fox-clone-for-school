@@ -13,6 +13,8 @@
 #include <ctime>
 #include "ObjectFactoryRegister.h"
 #include "ObjectFactory.h"
+#include "SwarmWave.h"
+#include "BossWave.h"
 
 
 void doTests() {
@@ -53,20 +55,7 @@ void setupGame() {
         gameObjects.push_back(new EnemyShip());
     }*/
 
-    light1[0]=0;
-    light1[1]=0;
-    light1[2]=-1.5;
-    light1[3]=1;
 
-	GLfloat diffuse[]={3.0,0.0,0.0,1.0};
-
-    glLightfv(GL_LIGHT1, GL_POSITION, light1);
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuse);
-    glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 2.0);
-    glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.5);
-    glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.125);
-
-	glEnable(GL_LIGHT1);
 }
 
 /**
@@ -80,6 +69,7 @@ void updateObjects() {
 
     if(curTime-lastWaveTime>waveTime) {
         readyForNextWave=true;
+		waveTime*=0.98;
 		//cout<<gameObjects.size()<<endl;
     }
     if(currentWave==NULL || (readyForNextWave && currentWave->isDone())) {
@@ -144,7 +134,14 @@ void nextWave() {
     if(currentWave!=NULL)
         currentWave->release();
 
-    currentWave=new TestEnemyWave1;
+	int num=rand()%6;
+	if(num<3) {
+		currentWave=new TestEnemyWave1;
+	} else if(num==4) {
+		currentWave=new SwarmWave(curTime/1000);
+	} else {
+		currentWave=new BossWave(curTime/1000);
+	}
 
     currentWave->init();
     currentWave->retain();

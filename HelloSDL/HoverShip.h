@@ -23,7 +23,7 @@ public:
 	double pauseTime, time;
 	HoverShip(Model *m, double x, double y, int n);
 	HoverShip(Model *m);
-	void init(double x, double y);
+	void init(double x, double y, int startPos, int time);
 	void update(double dt);
 	void afterSetup();
 	bool isDone();

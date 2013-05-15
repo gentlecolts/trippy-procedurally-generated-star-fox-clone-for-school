@@ -19,7 +19,7 @@ protected:
 public:
 	RamShip(Model *m);
 	RamShip(Model *m, double x, double y, int n);
-	void init(double x, double y);
+	void init(double x, double y, int startPos, int time);
 	void update(double dt);
 	bool isDone();
 	void afterSetup();

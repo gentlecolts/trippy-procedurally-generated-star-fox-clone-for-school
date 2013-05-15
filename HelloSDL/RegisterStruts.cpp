@@ -63,7 +63,7 @@ void registerAimingStrutType() {
 	aimingStrutType->minSize=0.3;
 	aimingStrutType->model=aimingStrutGetModel;
 	aimingStrutType->numAttachPointsEst=3;
-	aimingStrutType->maxChildren=3;
+	aimingStrutType->maxChildren=7;
 	aimingStrutType->title="aimingStrut";
 	
 	registerObjectType(aimingStrutType);

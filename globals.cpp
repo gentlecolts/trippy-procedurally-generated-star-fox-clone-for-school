@@ -35,9 +35,10 @@ int numObjects=0;
 long curTime=0,startTime=clock(),lastWaveTime=clock();
 EnemyWave* currentWave=NULL;
 bool readyForNextWave=true;
+long waveTime=10000;
 
 /**************** IO    *********************/
-bool leftmov,rightmov,upmov,downmov,space,fire;
+bool leftmov,rightmov,upmov,downmov,space,fire,fireRockets;
 SDL_Event e;
 
 SDL_Surface* screen=NULL;

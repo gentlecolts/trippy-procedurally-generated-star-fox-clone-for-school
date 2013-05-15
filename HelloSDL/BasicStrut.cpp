@@ -13,11 +13,12 @@
 #include "BasicGun.h"
 
 BasicStrut::BasicStrut() : GameObject() {
-	
+	health=3;
 }
 
 BasicStrut::BasicStrut(GameObject *p, Model *m) : GameObject() {
 	init(p,m);
+	health=3;
 }
 
 void BasicStrut::init(GameObject *p, Model *m) {

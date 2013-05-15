@@ -29,6 +29,7 @@ void PlayerShip::init(){
 	model=playerShipModel;
     modelSize=model->length;
 	player=true;
+	health=100;
 
     pos[2]=-playerOffset;
 }
@@ -150,6 +151,18 @@ void PlayerShip::update(double dt) {
 		
         if(hit || collidesWithNoise()) {
             invinceStart=clock();
+			
+			if(hit) {
+				if(obj!=NULL) {
+					health-=obj->getDamage(this);
+				}
+				if(las!=NULL) {
+					health-=las->getDamage(this);
+				}
+			} else {
+				health-=3;
+			}
+			
             //xvel=0;
             //xvel=0;
         }
@@ -189,8 +202,9 @@ void PlayerShip::handleKeyInput(double dt) {
 	if(fire) {
 		fireWeapon();
 	}
-	
-
+	if(fireRockets) {
+		fireBigGuns();
+	}
 
 	rot[1]=max(min((double)rot[1], angleCap),-angleCap);
 	rot[0]=max(min((double)rot[0], angleCap),-angleCap);

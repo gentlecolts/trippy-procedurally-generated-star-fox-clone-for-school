@@ -9,7 +9,7 @@ class EnemyShip : public GameShip
 public:
 	EnemyShip(int n);
     EnemyShip(double x,double y,int n);
-    virtual void init(double x,double y);
+    virtual void init(double x,double y, int startPos, int time);
 	virtual void update(double dt);
     virtual bool isDone();
 protected:

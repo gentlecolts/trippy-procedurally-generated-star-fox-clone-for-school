@@ -23,7 +23,7 @@ RamShip::RamShip(Model *m) : EnemyShip(0) {
  Just calls init and super
  */
 RamShip::RamShip(Model *m, double x, double y, int n) : EnemyShip(x, y, n) {
-	init(x,y);
+	init(x,y, -50, 4);
 	
 	model=m;
     modelSize=m->length;
@@ -34,7 +34,7 @@ RamShip::RamShip(Model *m, double x, double y, int n) : EnemyShip(x, y, n) {
  void RamShip::init(double x, double y)
  Sets the model to the constant ramShipModel, then calculates pos[0] and pos[1] as the points around the edge of the game in line with the target position and sets vel[0], vel[1], and vel[2] so that it will intersect the plane at -playerOffset at (x,y)
  */
-void RamShip::init(double x, double y) {
+void RamShip::init(double x, double y, int startPos, int time) {
 	if(x==0) {
 		x=0.001;
 	} else if(y==0) {
@@ -52,13 +52,13 @@ void RamShip::init(double x, double y) {
 	pos[0]*=signum(x);
 	pos[1]*=signum(y);
 	
-	int startPos=-50,time=8;
-	
     pos[2]=startPos-playerOffset;
 	
     vel[0]=-(pos[0]-x)/time;
     vel[1]=(pos[1]-y)/time;
     vel[2]=(pos[2]+playerOffset-thePlayerShip->vel[2]*time)/time;
+	
+	rot=invGetVector(pos-Vec3d(x,y,playerOffset));
 }
 
 void RamShip::afterSetup() {
@@ -90,7 +90,7 @@ void RamShip::afterSetup() {
  Returns whether it's behind the camera; it starts off the screen to the side, and isn't done, so the superclass version doesn't work in this case
  */
 bool RamShip::isDone() {
-	return pos[2]>=cameraOffset || abs(pos[0])>noiseScale*4 || abs(pos[1])>noiseScale*4;
+	return pos[2]>=cameraOffset || abs(pos[0])>noiseScale*1.5 || abs(pos[1])>noiseScale*1.5;
 }
 
 /**
@@ -101,7 +101,7 @@ void RamShip::update(double dt) {
 	double oldT=t;
 	EnemyShip::update(dt);
 	
-	rot[1]+=45*dt;
+	//rot[1]+=45*dt;
 	
 	double fireRate=0.01;
 	
