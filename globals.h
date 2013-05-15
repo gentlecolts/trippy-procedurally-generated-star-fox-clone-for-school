@@ -46,6 +46,7 @@ extern long waveTime;
 /**************** IO    *********************/
 extern bool leftmov,rightmov,upmov,downmov,space, fire, fireRockets;
 extern SDL_Event e;
+extern bool inGame;
 
 extern SDL_Surface* screen;
 

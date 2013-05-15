@@ -6,6 +6,7 @@
 #include "gameController.h"
 #include "gameShip.h"
 #include "glhelper.h"
+#include "guiobj.h"
 
 void initSDL() {
     putenv("SDL_VIDEO_WINDOW_POS=center");
@@ -18,7 +19,8 @@ void initSDL() {
 
     #if doGL
 	glPreInit();
-	screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_OPENGL);
+	screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_HWPALETTE | SDL_HWACCEL | SDL_DOUBLEBUF | SDL_SRCALPHA | SDL_ASYNCBLIT);
+//	screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_OPENGL);
 	#else
 	screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_DOUBLEBUF);// | SDL_FULLSCREEN);
 	#endif
@@ -29,15 +31,14 @@ void initSDL() {
 	}
 
 	#if doGL
-	glInit();
+//	glInit();
 	#endif
+	
+	picture::target=screen;
 
 	chkCloseEvent();
 
 	SDL_WM_SetCaption("done",NULL);
-
-	glMatrixMode(GL_MODELVIEW);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void chkCloseEvent(){

@@ -1,5 +1,5 @@
 #include "guifont.h"
-#include <SDL/SDL_Image.h>
+#include <SDL_image/SDL_Image.h>
 #include <iostream>
 using namespace std;
 

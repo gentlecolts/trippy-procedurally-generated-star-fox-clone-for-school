@@ -15,6 +15,7 @@
 #include "ObjectFactory.h"
 #include "SwarmWave.h"
 #include "BossWave.h"
+#include "GLHelper.h"
 
 
 void doTests() {
@@ -54,8 +55,12 @@ void setupGame() {
     /*for(int i=1;i<numGameObjects;i++) {
         gameObjects.push_back(new EnemyShip());
     }*/
-
-
+	
+	screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_OPENGL);
+	glInit();
+	
+	glMatrixMode(GL_MODELVIEW);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 /**

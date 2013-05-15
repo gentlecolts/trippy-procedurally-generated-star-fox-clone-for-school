@@ -1,7 +1,8 @@
 #ifndef GUILIB_H_INCLUDED
 #define GUILIB_H_INCLUDED
 
-#include <SDL/SDL_image.h>
+//#include <SDL/SDL_image.h>
+#include <SDL_image/SDL_image.h>
 
 #include "guiobj.h"
 #include "guianimate.h"

@@ -5,6 +5,7 @@
 #include <SDL/SDL.h>
 //#include <SDL/SDL_image.h>
 #include <SDL_image/SDL_image.h>
+#include "imports.h"
 
 #include "linkedlist.h"
 
@@ -30,6 +31,7 @@ protected:
 public:
 	static mouse mousepos;
 	SDL_Surface* pic;
+	GLuint texture;
 	SDL_Rect bounds;
 	SDL_Rect dest;//destination bounding box, x and y of this are the coordinates that the pic is drawn to
 	static SDL_Surface* target;

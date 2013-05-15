@@ -5,29 +5,37 @@ using namespace std;
 #include "IO.h"
 #include "gameController.h"
 #include "camera.h"
+#include "menu.h"
 
 int main(int argc,char** argv){
     initSDL();
 
 	#define rotspeed 4
-
-    setupGame();
-
 	
-	doTests();
+	launchMenu();
+	
+//	doTests();
 	
 	while(true){
 		chkCloseEvent();
-		movecam();
 		
-		updateObjects();
-		render();
-
-		#if doGL
-		SDL_GL_SwapBuffers();
-		#else
-		SDL_Flip(screen);
-		#endif
+		if(inGame) {
+			
+			movecam();
+		
+			updateObjects();
+			
+			render();
+			SDL_GL_SwapBuffers();
+		} else {
+			picture::updateAll(&e);
+			
+			SDL_Flip(screen);
+			
+			if(inGame) {
+				setupGame();
+			}
+		}
 	}
 	return 0;
 }

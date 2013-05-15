@@ -40,5 +40,6 @@ long waveTime=10000;
 /**************** IO    *********************/
 bool leftmov,rightmov,upmov,downmov,space,fire,fireRockets;
 SDL_Event e;
+bool inGame=false;
 
 SDL_Surface* screen=NULL;

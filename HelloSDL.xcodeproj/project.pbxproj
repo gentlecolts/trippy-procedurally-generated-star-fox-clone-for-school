@@ -49,6 +49,14 @@
 		64C623911742B4B500C072C9 /* OpenUpAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64C6238F1742B4B400C072C9 /* OpenUpAnimation.cpp */; };
 		64C623941742EF5B00C072C9 /* SwarmWave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64C623921742EF5B00C072C9 /* SwarmWave.cpp */; };
 		64C62397174305B100C072C9 /* BossWave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64C62395174305AF00C072C9 /* BossWave.cpp */; };
+		64C623A617430EE200C072C9 /* menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64C623A417430EE000C072C9 /* menu.cpp */; };
+		64C623A81743123200C072C9 /* menuPlayTest.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C623A71743123100C072C9 /* menuPlayTest.png */; };
+		64C623AB1743171600C072C9 /* SDL_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C623AA1743171500C072C9 /* SDL_image.framework */; };
+		64C623AC1743193800C072C9 /* guianimate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64C6239917430E6A00C072C9 /* guianimate.cpp */; };
+		64C623AD1743193800C072C9 /* guifont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64C6239B17430E6A00C072C9 /* guifont.cpp */; };
+		64C623AE1743193800C072C9 /* guiIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64C6239D17430E6A00C072C9 /* guiIO.cpp */; };
+		64C623AF1743193800C072C9 /* guiobj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64C623A017430E6A00C072C9 /* guiobj.cpp */; };
+		64C623B21743344700C072C9 /* ImageConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64C623B01743344500C072C9 /* ImageConverter.cpp */; };
 		64CBE84A17371A22007C9D08 /* Nade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64CBE84817371A22007C9D08 /* Nade.cpp */; };
 		64CBE84D1737F931007C9D08 /* ObjectFactoryRegister.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64CBE84B1737F92F007C9D08 /* ObjectFactoryRegister.cpp */; };
 		64DBC33D1730301E0078B26C /* FanStrutThing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64DBC33B1730301E0078B26C /* FanStrutThing.cpp */; };
@@ -151,6 +159,23 @@
 		64C623931742EF5B00C072C9 /* SwarmWave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwarmWave.h; sourceTree = "<group>"; };
 		64C62395174305AF00C072C9 /* BossWave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BossWave.cpp; sourceTree = "<group>"; };
 		64C62396174305B000C072C9 /* BossWave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossWave.h; sourceTree = "<group>"; };
+		64C6239917430E6A00C072C9 /* guianimate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = guianimate.cpp; path = guilib/guianimate.cpp; sourceTree = SOURCE_ROOT; };
+		64C6239A17430E6A00C072C9 /* guianimate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = guianimate.h; path = guilib/guianimate.h; sourceTree = SOURCE_ROOT; };
+		64C6239B17430E6A00C072C9 /* guifont.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = guifont.cpp; path = guilib/guifont.cpp; sourceTree = SOURCE_ROOT; };
+		64C6239C17430E6A00C072C9 /* guifont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = guifont.h; path = guilib/guifont.h; sourceTree = SOURCE_ROOT; };
+		64C6239D17430E6A00C072C9 /* guiIO.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = guiIO.cpp; path = guilib/guiIO.cpp; sourceTree = SOURCE_ROOT; };
+		64C6239E17430E6A00C072C9 /* guiIO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = guiIO.h; path = guilib/guiIO.h; sourceTree = SOURCE_ROOT; };
+		64C6239F17430E6A00C072C9 /* guilib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = guilib.h; path = guilib/guilib.h; sourceTree = SOURCE_ROOT; };
+		64C623A017430E6A00C072C9 /* guiobj.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = guiobj.cpp; path = guilib/guiobj.cpp; sourceTree = SOURCE_ROOT; };
+		64C623A117430E6A00C072C9 /* guiobj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = guiobj.h; path = guilib/guiobj.h; sourceTree = SOURCE_ROOT; };
+		64C623A217430E6A00C072C9 /* linkedlist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = linkedlist.h; path = guilib/linkedlist.h; sourceTree = SOURCE_ROOT; };
+		64C623A317430E6A00C072C9 /* sdlInit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sdlInit.h; path = guilib/sdlInit.h; sourceTree = SOURCE_ROOT; };
+		64C623A417430EE000C072C9 /* menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu.cpp; sourceTree = "<group>"; };
+		64C623A517430EE100C072C9 /* menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menu.h; sourceTree = "<group>"; };
+		64C623A71743123100C072C9 /* menuPlayTest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuPlayTest.png; path = Images/menuPlayTest.png; sourceTree = SOURCE_ROOT; };
+		64C623AA1743171500C072C9 /* SDL_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_image.framework; path = Library/Frameworks/SDL_image.framework; sourceTree = DEVELOPER_DIR; };
+		64C623B01743344500C072C9 /* ImageConverter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageConverter.cpp; sourceTree = "<group>"; };
+		64C623B11743344600C072C9 /* ImageConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageConverter.h; sourceTree = "<group>"; };
 		64CBE84817371A22007C9D08 /* Nade.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Nade.cpp; sourceTree = "<group>"; };
 		64CBE84917371A22007C9D08 /* Nade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nade.h; sourceTree = "<group>"; };
 		64CBE84B1737F92F007C9D08 /* ObjectFactoryRegister.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectFactoryRegister.cpp; sourceTree = "<group>"; };
@@ -179,6 +204,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64C623AB1743171600C072C9 /* SDL_image.framework in Frameworks */,
 				648F1AB41726C2A80013762E /* SDL.framework in Frameworks */,
 				9C93E3BB13942F620096FAB3 /* OpenGL.framework in Frameworks */,
 				9C93E39613942B5A0096FAB3 /* Cocoa.framework in Frameworks */,
@@ -349,6 +375,37 @@
 			name = "Object Factory";
 			sourceTree = "<group>";
 		};
+		64C6239817430E5C00C072C9 /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				64C623A91743123800C072C9 /* Resources */,
+				64C6239917430E6A00C072C9 /* guianimate.cpp */,
+				64C6239A17430E6A00C072C9 /* guianimate.h */,
+				64C6239B17430E6A00C072C9 /* guifont.cpp */,
+				64C6239C17430E6A00C072C9 /* guifont.h */,
+				64C6239D17430E6A00C072C9 /* guiIO.cpp */,
+				64C6239E17430E6A00C072C9 /* guiIO.h */,
+				64C6239F17430E6A00C072C9 /* guilib.h */,
+				64C623A017430E6A00C072C9 /* guiobj.cpp */,
+				64C623A117430E6A00C072C9 /* guiobj.h */,
+				64C623B01743344500C072C9 /* ImageConverter.cpp */,
+				64C623B11743344600C072C9 /* ImageConverter.h */,
+				64C623A217430E6A00C072C9 /* linkedlist.h */,
+				64C623A317430E6A00C072C9 /* sdlInit.h */,
+				64C623A417430EE000C072C9 /* menu.cpp */,
+				64C623A517430EE100C072C9 /* menu.h */,
+			);
+			name = GUI;
+			sourceTree = "<group>";
+		};
+		64C623A91743123800C072C9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				64C623A71743123100C072C9 /* menuPlayTest.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		64CBE84717371A0F007C9D08 /* Projectiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,7 +439,6 @@
 		9C93E38613942B590096FAB3 = {
 			isa = PBXGroup;
 			children = (
-				648F1AB31726C2A80013762E /* SDL.framework */,
 				9C93E39B13942B5A0096FAB3 /* HelloSDL */,
 				9C93E39413942B5A0096FAB3 /* Frameworks */,
 				9C93E39213942B5A0096FAB3 /* Products */,
@@ -400,6 +456,8 @@
 		9C93E39413942B5A0096FAB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64C623AA1743171500C072C9 /* SDL_image.framework */,
+				648F1AB31726C2A80013762E /* SDL.framework */,
 				648F1AB11726BBD70013762E /* SDL.framework */,
 				9C93E3BA13942F620096FAB3 /* OpenGL.framework */,
 				9C93E39513942B5A0096FAB3 /* Cocoa.framework */,
@@ -421,6 +479,7 @@
 		9C93E39B13942B5A0096FAB3 /* HelloSDL */ = {
 			isa = PBXGroup;
 			children = (
+				64C6239817430E5C00C072C9 /* GUI */,
 				646D9E4A1715F999004FD3F5 /* Graphics */,
 				646D9E4D1715F9E8004FD3F5 /* Globals */,
 				646D9E4B1715F9B7004FD3F5 /* Objects */,
@@ -485,6 +544,7 @@
 				9C93E3A013942B5A0096FAB3 /* InfoPlist.strings in Resources */,
 				9C93E3A613942B5A0096FAB3 /* Credits.rtf in Resources */,
 				9C93E3AC13942B5A0096FAB3 /* MainMenu.xib in Resources */,
+				64C623A81743123200C072C9 /* menuPlayTest.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +555,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64C623AC1743193800C072C9 /* guianimate.cpp in Sources */,
+				64C623AD1743193800C072C9 /* guifont.cpp in Sources */,
+				64C623AE1743193800C072C9 /* guiIO.cpp in Sources */,
+				64C623AF1743193800C072C9 /* guiobj.cpp in Sources */,
 				64A03E191721906000AA0436 /* imageloader.cpp in Sources */,
 				64A789E7170C761900CCAB2F /* camera.cpp in Sources */,
 				64A789E9170C761900CCAB2F /* enemyShip.cpp in Sources */,
@@ -542,6 +606,8 @@
 				64C623911742B4B500C072C9 /* OpenUpAnimation.cpp in Sources */,
 				64C623941742EF5B00C072C9 /* SwarmWave.cpp in Sources */,
 				64C62397174305B100C072C9 /* BossWave.cpp in Sources */,
+				64C623A617430EE200C072C9 /* menu.cpp in Sources */,
+				64C623B21743344700C072C9 /* ImageConverter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,9 @@
 #include "guiobj.h"
 
 #include <iostream>
+#include "globals.h"
+#include "constants.h"
+#include "ImageConverter.h"
 using namespace std;
 
 linkedlist<picture*> picture::objects;
@@ -40,6 +43,33 @@ void picture::init(){
 		bounds.h=pic->h;
 	}
 	objects.addToBack(this);
+	
+	texture=loadTexture(pic);
+	
+	if(texture==0) {
+		cout<<"error!?"<<endl;
+	}
+	
+	/*glPixelStorei(GL_UNPACK_ALIGNMENT,4);
+	
+	glGenTextures(1,&texture);
+	glBindTexture(GL_TEXTURE_2D,texture);
+	
+	int Mode = GL_RGB;
+	
+	if(pic->format->BytesPerPixel == 4) {
+		Mode = GL_RGBA;
+		
+		cout<<"rgba!"<<endl;
+	}
+	
+	glTexImage2D(GL_TEXTURE_2D, 0, Mode, pic->w, pic->h, 0, Mode, GL_UNSIGNED_BYTE, pic->pixels);
+	
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+	
+	glBindTexture(GL_TEXTURE_2D, NULL);*/
+
 
 	//cout<<"created type: "<<type<<" at: "<<this<<endl;
 	//cout<<"created picture object at: "<<this<<endl;
@@ -84,6 +114,11 @@ void picture::updateAll(SDL_Event* e){
 	}else if(e->type==SDL_MOUSEBUTTONUP){
 		mousepos.isDown=false;
 	}
+	
+	mousepos.x/=(2*cameraWidth);
+	mousepos.x-=cameraWidth;
+	mousepos.y/=(2*cameraHeight);
+	mousepos.y-=cameraHeight;
 
 	node<picture*>* tmp=objects.head;
 	while(tmp!=NULL){
@@ -107,10 +142,10 @@ void picture::draw(){
 }
 void picture::draw(SDL_Surface* pic){
 	if(pic!=NULL){
-		dest.w=target->w;
-		dest.h=target->h;
+//		dest.w=target->w;
+//		dest.h=target->h;
 
-		if(pic->format->BitsPerPixel==32){
+		/*if(pic->format->BitsPerPixel==32){
 			SDL_Surface* src=SDL_ConvertSurface(pic,pic->format,pic->flags);
 			//SDL_Surface* src=pic;
 			scaleAlpha(src);
@@ -121,7 +156,22 @@ void picture::draw(SDL_Surface* pic){
 			SDL_SetAlpha(pic,SDL_SRCALPHA | SDL_SRCCOLORKEY,255*alpha);
 			//SDL_SetColorKey(pic,SDL_SRCCOLORKEY,((uint32_t)(255*alpha))<<16);
 			SDL_BlitSurface(pic,&bounds,target,&dest);
-		}
+		}*/
+		
+		glBindTexture(GL_TEXTURE_2D, texture);
+		
+		glDisable(GL_LIGHTING);
+		
+		glBegin(GL_QUADS);
+		glTexCoord2f(0, 1); glVertex3f(dest.x, dest.y, -1);
+		glTexCoord2f(1, 1); glVertex3f(dest.x + 1, dest.y, -1);
+		glTexCoord2f(1, 0); glVertex3f(dest.x + 1, dest.y + 1, -1);
+		glTexCoord2f(0, 0); glVertex3f(dest.x, dest.y + 1, -1);
+		glEnd();
+		
+		glEnable(GL_LIGHTING);
+		
+		glBindTexture(GL_TEXTURE_2D, NULL);
 
 		//printf("%i\n",pic->format->BitsPerPixel);
 	}
@@ -246,8 +296,7 @@ void button::updateBtn(){
 		current=over;
 	}
 	if(current==NULL){
-		curren
-		t=pic;
+		current=pic;
 	}
 #endif
 }
