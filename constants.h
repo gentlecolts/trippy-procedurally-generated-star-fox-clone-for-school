@@ -78,6 +78,8 @@ const double raise=-0.1;//0.1;
 
 /**************** GAME  *********************/
 
+#define playerHP 15
+
 #define maxV 20					//the player's velocity
 #define accel 90				//the player's angular acceleration per second
 #define angleCap 70.0			//the maximum angle in each axis the player can rotate to

@@ -7,7 +7,7 @@
 //
 
 #include "SlideDownAnimation.h"
-#include "imports.h"
+#include "../imports.h"
 
 using namespace std;
 
@@ -24,7 +24,7 @@ void SlideDownAnimation::doModelTransform() {
 
 void SlideDownAnimation::update(double dt) {
 	if(t>speed) {
-		cout<<"calling callback!"<<endl;
+//		cout<<"calling callback!"<<endl;
 		callback(callbackObj, object);
 	}
 }

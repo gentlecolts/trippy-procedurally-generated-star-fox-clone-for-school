@@ -55,6 +55,7 @@ void Laser::init(Vec3d p, Vec3d a){
 }
 
 void Laser::uniqueRenderFirst() {
+	
 	GameShip::uniqueRenderFirst();
 	
 	glDisable(GL_LIGHTING);

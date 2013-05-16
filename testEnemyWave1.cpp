@@ -8,9 +8,9 @@
 //
 
 #include "testEnemyWave1.h"
-#include "HoverShip.h"
+#include "HelloSDL/HoverShip.h"
 #include "RamShip.h"
-#include "ObjectFactory.h"
+#include "HelloSDL/ObjectFactory.h"
 
 
 /**
@@ -18,40 +18,40 @@
  Creates 3 RamShips and puts them in play
  */
 void TestEnemyWave1::init(){
-	cout<<"wave"<<endl;
-	
+//	cout<<"wave"<<endl;
+
     //double x=rand()%(2*noiseScale)-noiseScale;
     //double y=rand()%(2*noiseScale)-noiseScale;
-	
+
 	double x=thePlayerShip->pos[0];
 	double y=thePlayerShip->pos[1];
 
 	int s=numObjects;
-	
+
     /*ship1=new RamShip(x,y,s);
     ship2=new RamShip(x+.5,y,s+1);
     ship3=new RamShip(x,y+.5,s+2);//*/
-	
+
 	/*
 	ship1=new HoverShip(x,y,s);
     ship2=new HoverShip(x+3,y,s+1);
     ship3=new HoverShip(x,y+3,s+2);
 	//*/
-	
+
 	ship1=(EnemyShip *)expandTree(NULL, getTree(20, 5));
 	ship2=(EnemyShip *)expandTree(NULL, getTree(20, 5));
 	ship3=(EnemyShip *)expandTree(NULL, getTree(20, 5));
-	
+
 	/*ObjectType *type=typeForName("hoverShip");
-	
+
 	ship1=(EnemyShip *)expandTree(NULL, treeFun(type, 20, 2));
 	ship2=(EnemyShip *)expandTree(NULL, treeFun(type, 20, 2));
 	ship3=(EnemyShip *)expandTree(NULL, treeFun(type, 20, 2));*/
-	
+
 	ship1->init(x, y,-5,8);
 	ship2->init(x+2, y,-5,8);
 	ship3->init(x, y+2,-5,8);
-	
+
     ship1->parentWave=this;
     ship2->parentWave=this;
     ship3->parentWave=this;

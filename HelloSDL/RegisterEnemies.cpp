@@ -8,14 +8,14 @@
 
 #include "RegisterEnemies.h"
 #include "HoverShip.h"
-#include "ModelConstants.h"
-#include "Model.h"
-#include "RamShip.h"
+#include "../ModelConstants.h"
+#include "../Model.h"
+#include "../RamShip.h"
 #include "TrackingShip.h"
 
 void registerHoverShipType() {
 	ObjectType* hoverShipType = new ObjectType;
-	
+
 	hoverShipType->type=ENEMY;
 	hoverShipType->candidateChildren=hoverShipCandidateChildren;
 	hoverShipType->diff=10;
@@ -25,8 +25,8 @@ void registerHoverShipType() {
 	hoverShipType->numAttachPointsEst=ramShipModel->numAttachPoints;
 	hoverShipType->maxChildren=-1;
 	hoverShipType->title="hoverShip";
-	cout<<"numAttach->->: "<<playerShipModel->numAttachPoints<<endl;
-	
+//	cout<<"numAttach->->: "<<playerShipModel->numAttachPoints<<endl;
+
 	registerObjectType(hoverShipType);
 }
 
@@ -35,15 +35,15 @@ vector<ObjectType *>* hoverShipCandidateChildren() {
 }
 
 Model *hoverShipGetModel() {
-	cout<<"hoverShipGetModel?!"<<endl;
+//	cout<<"hoverShipGetModel?!"<<endl;
 	return ramShipModel;
 }
 
 GameObject* hoverShipGetGameObject(GameObject *parent, int seed) {
 	//srand(seed);
-	
+
 	HoverShip *ship=new HoverShip(hoverShipGetModel());
-	
+
 	return ship;
 	//create a random object
 }
@@ -51,7 +51,7 @@ GameObject* hoverShipGetGameObject(GameObject *parent, int seed) {
 
 void registerRamShipType() {
 	ObjectType* ramShipType = new ObjectType;
-	
+
 	ramShipType->type=ENEMY;
 	ramShipType->candidateChildren=ramShipCandidateChildren;
 	ramShipType->diff=5;
@@ -61,7 +61,7 @@ void registerRamShipType() {
 	ramShipType->numAttachPointsEst=playerShipModel->numAttachPoints;
 	ramShipType->maxChildren=-1;
 	ramShipType->title="ramShip";
-	
+
 	registerObjectType(ramShipType);
 }
 
@@ -70,15 +70,15 @@ vector<ObjectType *>* ramShipCandidateChildren() {
 }
 
 Model *ramShipGetModel() {
-	cout<<"ramSHipShtegMoel?!"<<endl;
+//	cout<<"ramSHipShtegMoel?!"<<endl;
 	return playerShipModel;
 }
 
 GameObject* ramShipGetGameObject(GameObject *parent, int seed) {
 	//srand(seed);
-	
+
 	RamShip *ship=new RamShip(ramShipGetModel());
-	
+
 	return ship;
 	//create a random object
 }
@@ -87,7 +87,7 @@ GameObject* ramShipGetGameObject(GameObject *parent, int seed) {
 
 void registerTrackingShipType() {
 	ObjectType* trackingShipType= new ObjectType;
-	
+
 	trackingShipType->type=ENEMY;
 	trackingShipType->candidateChildren=trackingShipCandidateChildren;
 	trackingShipType->diff=7;
@@ -97,7 +97,7 @@ void registerTrackingShipType() {
 	trackingShipType->numAttachPointsEst=playerShipModel->numAttachPoints;
 	trackingShipType->maxChildren=-1;
 	trackingShipType->title="trackingShip";
-	
+
 	registerObjectType(trackingShipType);
 }
 
@@ -106,15 +106,15 @@ vector<ObjectType *>* trackingShipCandidateChildren() {
 }
 
 Model *trackingShipGetModel() {
-	cout<<"trackingShipShtegMoel?!"<<endl;
+//	cout<<"trackingShipShtegMoel?!"<<endl;
 	return playerShipModel;
 }
 
 GameObject* trackingShipGetGameObject(GameObject *parent, int seed) {
 	//srand(seed);
-	
+
 	TrackingShip *ship=new TrackingShip(trackingShipGetModel());
-	
+
 	return ship;
 	//create a random object
 }

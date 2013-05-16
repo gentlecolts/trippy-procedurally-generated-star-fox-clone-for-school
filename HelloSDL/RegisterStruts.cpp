@@ -8,14 +8,14 @@
 
 #include "RegisterStruts.h"
 #include "BasicStrut.h"
-#include "ModelConstants.h"
-#include "Model.h"
+#include "../ModelConstants.h"
+#include "../Model.h"
 #include "AimingStrut.h"
 #include "RotateStrut.h"
 
 void registerBasicStrutType() {
 	ObjectType* basicStrutType=new ObjectType;
-	
+
 	basicStrutType->type=ATTACHMENT;
 	basicStrutType->candidateChildren=basicStrutCandidateChildren;
 	basicStrutType->diff=0;
@@ -25,7 +25,7 @@ void registerBasicStrutType() {
 	basicStrutType->numAttachPointsEst=3;
 	basicStrutType->maxChildren=3;
 	basicStrutType->title="basicStrut";
-	
+
 	registerObjectType(basicStrutType);
 }
 
@@ -41,11 +41,11 @@ Model *basicStrutGetModel() {
 
 GameObject* basicStrutGetGameObject(GameObject *parent, int seed) {
 	srand(seed);
-	
+
 	BasicStrut *ship=new BasicStrut();
-	
+
 	ship->init(parent, basicStrutGetModel());
-	
+
 	return ship;
 	//create a random object
 }
@@ -55,7 +55,7 @@ GameObject* basicStrutGetGameObject(GameObject *parent, int seed) {
 
 void registerAimingStrutType() {
 	ObjectType *aimingStrutType=new ObjectType;
-	
+
 	aimingStrutType->type=ATTACHMENT;
 	aimingStrutType->candidateChildren=aimingStrutCandidateChildren;
 	aimingStrutType->diff=aimingStrutDiff;
@@ -65,7 +65,7 @@ void registerAimingStrutType() {
 	aimingStrutType->numAttachPointsEst=3;
 	aimingStrutType->maxChildren=7;
 	aimingStrutType->title="aimingStrut";
-	
+
 	registerObjectType(aimingStrutType);
 }
 
@@ -81,14 +81,14 @@ Model *aimingStrutGetModel() {
 
 GameObject* aimingStrutGetGameObject(GameObject *parent, int seed) {
 	//srand(seed);
-	
+
 	AimingStrut *ship=new AimingStrut();
 	//need to get a difficulty from somewhere
-	
+
 	Model *m=aimingStrutGetModel();
-	
+
 	ship->init(parent, rand()%90, m);
-	
+
 	return ship;
 	//create a random object
 }
@@ -97,7 +97,7 @@ GameObject* aimingStrutGetGameObject(GameObject *parent, int seed) {
 
 void registerRotateStrutType() {
 	ObjectType *rotateStrutType=new ObjectType;
-	
+
 	rotateStrutType->type=ATTACHMENT;
 	rotateStrutType->candidateChildren=rotateStrutCandidateChildren;
 	rotateStrutType->diff=0;
@@ -107,7 +107,7 @@ void registerRotateStrutType() {
 	rotateStrutType->numAttachPointsEst=3;
 	rotateStrutType->maxChildren=3;
 	rotateStrutType->title="rotateStrut";
-	
+
 	registerObjectType(rotateStrutType);
 }
 
@@ -123,15 +123,15 @@ Model *rotateStrutGetModel() {
 
 GameObject* rotateStrutGetGameObject(GameObject *parent, int seed) {
 	//srand(seed);
-	
+
 	RotateStrut *ship=new RotateStrut();
-	
+
 	Model *m=rotateStrutGetModel();
-	
+
 	Vec3d s=Vec3d(rand()%90-45,rand()%90-45,rand()%90-45);
-	
+
 	ship->init(parent, m, s, -s, ((double)rand())/RAND_MAX*5);
-	
+
 	return ship;
 	//create a random object
 }

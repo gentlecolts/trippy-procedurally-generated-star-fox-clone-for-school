@@ -9,7 +9,7 @@
 #ifndef __HelloSDL__SwarmWave__
 #define __HelloSDL__SwarmWave__
 
-#include "enemyWave.h"
+#include "../enemyWave.h"
 #include <iostream>
 
 class EnemyShip;
@@ -21,7 +21,7 @@ public:
     bool isDone();
     bool childrenDone();
     void remove(GameObject *obj);
-	
+
     SwarmWave(double diff);
     ~SwarmWave();
 private:

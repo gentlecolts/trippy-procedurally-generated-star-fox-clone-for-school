@@ -10,11 +10,11 @@
 #define __HelloSDL__BasicStrut__
 
 #include <iostream>
-#include "GameObject.h"
+#include "../GameObject.h"
 #include "ObjectFactory.h"
 
 class BasicStrut : public GameObject {
-	
+
 public:
 	BasicStrut();
 	BasicStrut(GameObject *p, Model *m);

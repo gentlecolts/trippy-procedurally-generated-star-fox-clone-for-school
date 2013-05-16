@@ -10,7 +10,7 @@
 #define __HelloSDL__BasicGun__
 
 #include <iostream>
-#include "GameObject.h"
+#include "../GameObject.h"
 
 class BasicGun : public GameObject {
 public:
@@ -18,10 +18,10 @@ public:
 	virtual void update(double dt);
 	virtual void doFire();
 	virtual void doDoFire();
-	
+
 	BasicGun(GameObject *p);
 	BasicGun();
-	
+
 	double fireRate, lastFired;
 };
 

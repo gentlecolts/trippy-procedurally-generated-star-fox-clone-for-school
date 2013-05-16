@@ -12,6 +12,19 @@
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-pg" />
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg -lgmon" />
+				</Linker>
+			</Target>
+			<Target title="Debug-opt">
+				<Option output="bin/Debug-opt/TheGame2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug-opt/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
 					<Add option="-fexpensive-optimizations" />
 					<Add option="-O3" />
 					<Add option="-O2" />
@@ -39,15 +52,20 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="opengl32" />
-					<Add library="glu32" />
-					<Add library="sdl" />
-					<Add library="SDLMain" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-march=core2" />
+			<Add option="-Wshadow" />
+			<Add option="-Winit-self" />
+			<Add option="-Wcast-align" />
+			<Add option="-Wundef" />
+			<Add option="-Wunreachable-code" />
+			<Add option="-Wmissing-include-dirs" />
+			<Add option="-Weffc++" />
+			<Add option="-pedantic" />
+			<Add option="-Wextra" />
 			<Add option="-Wall" />
 		</Compiler>
 		<Linker>
@@ -56,15 +74,70 @@
 		</Linker>
 		<Unit filename="Animation.cpp" />
 		<Unit filename="Animation.h" />
+		<Unit filename="EnemyShip.h" />
 		<Unit filename="ExplodeAnimation.cpp" />
 		<Unit filename="ExplodeAnimation.h" />
 		<Unit filename="GLHelper.cpp" />
 		<Unit filename="GLHelper.h" />
+		<Unit filename="GameObject.h" />
+		<Unit filename="HelloSDL/AimingStrut.cpp" />
+		<Unit filename="HelloSDL/AimingStrut.h" />
+		<Unit filename="HelloSDL/BasicGun.cpp" />
+		<Unit filename="HelloSDL/BasicGun.h" />
+		<Unit filename="HelloSDL/BasicRocketLauncher.cpp" />
+		<Unit filename="HelloSDL/BasicRocketLauncher.h" />
+		<Unit filename="HelloSDL/BasicStrut.cpp" />
+		<Unit filename="HelloSDL/BasicStrut.h" />
+		<Unit filename="HelloSDL/BossWave.cpp" />
+		<Unit filename="HelloSDL/BossWave.h" />
+		<Unit filename="HelloSDL/FanStrutThing.cpp" />
+		<Unit filename="HelloSDL/FanStrutThing.h" />
+		<Unit filename="HelloSDL/HelloSDLAppDelegate.h" />
+		<Unit filename="HelloSDL/HoverShip.cpp" />
+		<Unit filename="HelloSDL/HoverShip.h" />
+		<Unit filename="HelloSDL/ImageConverter.cpp" />
+		<Unit filename="HelloSDL/ImageConverter.h" />
+		<Unit filename="HelloSDL/Matrix.cpp" />
+		<Unit filename="HelloSDL/Matrix.h" />
+		<Unit filename="HelloSDL/Nade.cpp" />
+		<Unit filename="HelloSDL/Nade.h" />
+		<Unit filename="HelloSDL/ObjectFactory.cpp" />
+		<Unit filename="HelloSDL/ObjectFactory.h" />
+		<Unit filename="HelloSDL/ObjectFactoryRegister.cpp" />
+		<Unit filename="HelloSDL/ObjectFactoryRegister.h" />
+		<Unit filename="HelloSDL/OpenUpAnimation.cpp" />
+		<Unit filename="HelloSDL/OpenUpAnimation.h" />
+		<Unit filename="HelloSDL/RegisterEnemies.cpp" />
+		<Unit filename="HelloSDL/RegisterEnemies.h" />
+		<Unit filename="HelloSDL/RegisterStruts.cpp" />
+		<Unit filename="HelloSDL/RegisterStruts.h" />
+		<Unit filename="HelloSDL/RegisterWeapons.cpp" />
+		<Unit filename="HelloSDL/RegisterWeapons.h" />
+		<Unit filename="HelloSDL/RotateStrut.cpp" />
+		<Unit filename="HelloSDL/RotateStrut.h" />
+		<Unit filename="HelloSDL/SlideDownAnimation.cpp" />
+		<Unit filename="HelloSDL/SlideDownAnimation.h" />
+		<Unit filename="HelloSDL/SwarmWave.cpp" />
+		<Unit filename="HelloSDL/SwarmWave.h" />
+		<Unit filename="HelloSDL/TrackingShip.cpp" />
+		<Unit filename="HelloSDL/TrackingShip.h" />
+		<Unit filename="HelloSDL/Vec4d.cpp" />
+		<Unit filename="HelloSDL/Vec4d.h" />
+		<Unit filename="HelloSDL/menu.cpp" />
+		<Unit filename="HelloSDL/menu.h" />
 		<Unit filename="IO.cpp" />
 		<Unit filename="IO.h" />
 		<Unit filename="Laser.h" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="Model.cpp" />
+		<Unit filename="Model.h" />
+		<Unit filename="ModelConstants.cpp" />
+		<Unit filename="ModelConstants.h" />
+		<Unit filename="PlayerShip.h" />
+		<Unit filename="RamShip.cpp" />
+		<Unit filename="RamShip.h" />
+		<Unit filename="SDLMain.h" />
+		<Unit filename="TextureGenerator.h" />
 		<Unit filename="camera.cpp" />
 		<Unit filename="camera.h" />
 		<Unit filename="constants.h" />
@@ -76,24 +149,30 @@
 		<Unit filename="gameController.h" />
 		<Unit filename="gameObject.cpp" />
 		<Unit filename="gameObject.h" />
+		<Unit filename="gameShip.cpp" />
+		<Unit filename="gameShip.h" />
 		<Unit filename="glRender.cpp" />
 		<Unit filename="globals.cpp" />
 		<Unit filename="globals.h" />
 		<Unit filename="glrender.h" />
-		<Unit filename="imports.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="guilib/guiIO.cpp" />
+		<Unit filename="guilib/guiIO.h" />
+		<Unit filename="guilib/guianimate.cpp" />
+		<Unit filename="guilib/guianimate.h" />
+		<Unit filename="guilib/guifont.cpp" />
+		<Unit filename="guilib/guifont.h" />
+		<Unit filename="guilib/guilib.h" />
+		<Unit filename="guilib/guiobj.cpp" />
+		<Unit filename="guilib/guiobj.h" />
+		<Unit filename="guilib/linkedlist.h" />
+		<Unit filename="guilib/sdlInit.h" />
+		<Unit filename="imageloader.h" />
+		<Unit filename="imports.h" />
 		<Unit filename="laser.cpp" />
 		<Unit filename="math.cpp" />
-		<Unit filename="math.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="outline.cpp" />
-		<Unit filename="outline.h" />
+		<Unit filename="math.h" />
 		<Unit filename="perlin3d.cpp" />
-		<Unit filename="perlin3d.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="perlin3d.h" />
 		<Unit filename="playerShip.cpp" />
 		<Unit filename="playerShip.h" />
 		<Unit filename="structs.h" />
@@ -101,9 +180,8 @@
 		<Unit filename="terrain.h" />
 		<Unit filename="testEnemyWave1.cpp" />
 		<Unit filename="testEnemyWave1.h" />
-		<Unit filename="trace.cpp" />
-		<Unit filename="trace.h" />
-		<Unit filename="vec3f.cpp" />
+		<Unit filename="vec3d.cpp" />
+		<Unit filename="vec3d.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

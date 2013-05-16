@@ -7,9 +7,9 @@
 //
 
 #include "BasicStrut.h"
-#include "Model.h"
-#include "math.h"
-#include "ModelConstants.h"
+#include "../Model.h"
+#include "../math.h"
+#include "../ModelConstants.h"
 #include "BasicGun.h"
 
 BasicStrut::BasicStrut() : GameObject() {
@@ -25,7 +25,7 @@ void BasicStrut::init(GameObject *p, Model *m) {
 	model=m;
 	modelSize=m->length;
 	initAttachPoints();
-	
+
 	parent=p;
 }
 
@@ -42,18 +42,18 @@ void BasicStrut::initAttachPoints() {
 			 for (int j=1; j<verticesPerFace(); j++) {
 			 checkFlip+=vertices[i+j];
 			 }*/
-			
+
 			// Need to find a good way to decide?
-			
+
 			//if(model->normals[i][2]>=0) {
 				numAttachPoints++;
 			//}
 		}
 		model->numAttachPoints=numAttachPoints;
-		
+
 		Vec3d center;
 		for (int i=0; i<model->length/model->verticesPerFace();i++) {
-			
+
 			//if(model->normals[i][2]>=0) {
 				center=Vec3d(0,0,0);
 				for(int j=0;j<model->verticesPerFace();j++) {
@@ -61,7 +61,7 @@ void BasicStrut::initAttachPoints() {
 					center+=model->vertices[i*model->verticesPerFace()+j];
 				}
 				center/=model->verticesPerFace();
-				
+
 				model->addAttachPoint(center);
 				model->addAttachPointAngle(invGetVector(model->normals[i]));
 			//}

@@ -10,8 +10,8 @@
 #include "ModelConstants.h"
 #include "Model.h"
 #include "constants.h"
-#include "BasicGun.h"
-#include "FanStrutThing.h"
+#include "HelloSDL/BasicGun.h"
+#include "HelloSDL/FanStrutThing.h"
 
 RamShip::RamShip(Model *m) : EnemyShip(0) {
 	model=m;
@@ -24,7 +24,7 @@ RamShip::RamShip(Model *m) : EnemyShip(0) {
  */
 RamShip::RamShip(Model *m, double x, double y, int n) : EnemyShip(x, y, n) {
 	init(x,y, -50, 4);
-	
+
 	model=m;
     modelSize=m->length;
 }
@@ -40,7 +40,7 @@ void RamShip::init(double x, double y, int startPos, int time) {
 	} else if(y==0) {
 		y=0.001;
 	}
-	
+
 	if(abs(x)>abs(y)) {
 		pos[0]=noiseScale;
 		pos[1]=abs(y/x*noiseScale);
@@ -48,21 +48,21 @@ void RamShip::init(double x, double y, int startPos, int time) {
 		pos[1]=noiseScale;
 		pos[0]=abs(x/y*noiseScale);
 	}
-	
+
 	pos[0]*=signum(x);
 	pos[1]*=signum(y);
-	
+
     pos[2]=startPos-playerOffset;
-	
+
     vel[0]=-(pos[0]-x)/time;
     vel[1]=(pos[1]-y)/time;
     vel[2]=(pos[2]+playerOffset-thePlayerShip->vel[2]*time)/time;
-	
+
 	rot=invGetVector(pos-Vec3d(x,y,playerOffset));
 }
 
 void RamShip::afterSetup() {
-	
+
 	/*addChild(new BasicGun(this),-1);
 	addChild(new BasicGun(this),-1);
 	addChild(new BasicGun(this),-1);
@@ -71,8 +71,8 @@ void RamShip::afterSetup() {
 	addChild(new BasicGun(this),-1);
 	addChild(new BasicGun(this),-1);
 	addChild(new BasicGun(this),-1);*/
-	
-	
+
+
 	/*addChild(new FanStrut(this, 5, basicStrutModel), -1);
 	addChild(new FanStrut(this, 5, basicStrutModel), -1);
 	addChild(new FanStrut(this, 5, basicStrutModel), -1);
@@ -81,8 +81,8 @@ void RamShip::afterSetup() {
 	addChild(new FanStrut(this, 5, basicStrutModel), -1);
 	addChild(new FanStrut(this, 5, basicStrutModel), -1);
 	addChild(new FanStrut(this, 5, basicStrutModel), -1);*/
-	 
-	
+
+
 }
 
 /**
@@ -100,11 +100,11 @@ bool RamShip::isDone() {
 void RamShip::update(double dt) {
 	double oldT=t;
 	EnemyShip::update(dt);
-	
+
 	//rot[1]+=45*dt;
-	
+
 	double fireRate=0.01;
-	
+
 	//if(fmod(t,fireRate)<=fireRate/2 && fmod(oldT,fireRate)>=fireRate/2) {
 		fireWeapon();
 	//}

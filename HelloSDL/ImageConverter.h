@@ -10,7 +10,7 @@
 #define __HelloSDL__ImageConverter__
 
 #include <iostream>
-#include <SDL_image/SDL_image.h>
+#include <SDL/SDL_image.h>
 
 int loadTexture(SDL_Surface *sdlimage);
 

@@ -463,67 +463,68 @@
 	"globals.h"
 	"camera.h"
 
-1365906573 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\camera.cpp
+1368633768 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\camera.cpp
 	"camera.h"
 	"imports.h"
 	"globals.h"
 	"gameController.h"
-	"trace.h"
 	"glRender.h"
-	"outline.h"
 	"math.h"
-	"gameObject.h"
-	"cltrace.h"
+	"gameShip.h"
+	"GLHelper.h"
+	"guilib/guilib.h"
 
-1365379918 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\camera.h
+1365690484 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\camera.h
 
-1367185395 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\globals.h
+1368594484 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\globals.h
 	"imports.h"
 	<vector>
 	"constants.h"
 	"structs.h"
 	"perlin3d.h"
-	"laser.h"
 
-1367708181 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\constants.h
+1368630850 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\constants.h
 	<cmath>
 	"math.h"
 
-1367708181 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\structs.h
+1367420860 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\structs.h
 	"imports.h"
 
-1367708181 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\perlin3d.h
+1367420878 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\perlin3d.h
 	"structs.h"
 	"constants.h"
 	"vec3d.h"
 
-1366939146 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\laser.h
+1368542402 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\laser.h
+	"gameShip.h"
 
-1365903397 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gamecontroller.h
+1367979982 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gamecontroller.h
 	"laser.h"
 
 1365379919 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\trace.h
 
-1365379918 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glrender.h
+1365690484 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glrender.h
 
 1365379919 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\outline.h
 
-1365903397 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\enemyship.cpp
+1368594206 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\enemyship.cpp
 	"enemyShip.h"
 	"globals.h"
 	"Model.h"
-	"vec3f.h"
+	"Vec3d.h"
 	"ExplodeAnimation.h"
+	"Laser.h"
 
-1365903397 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\enemyship.h
-	"gameObject.h"
+1368581148 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\enemyship.h
+	"GameObject.h"
+	"gameShip.h"
 
-1367708181 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gameobject.h
+1368594092 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gameobject.h
 	"globals.h"
 	<ctime>
 	"Vec3d.h"
 
-1365906839 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gamecontroller.cpp
+1368633821 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gamecontroller.cpp
 	"gameController.h"
 	"imports.h"
 	"globals.h"
@@ -531,38 +532,51 @@
 	"enemyShip.h"
 	"enemyWave.h"
 	"testEnemyWave1.h"
+	"ModelConstants.h"
+	"terrain.h"
+	"math.h"
+	"HelloSDL/Matrix.h"
 	<ctime>
+	"HelloSDL/ObjectFactoryRegister.h"
+	"HelloSDL/ObjectFactory.h"
+	"HelloSDL/SwarmWave.h"
+	"HelloSDL/BossWave.h"
+	"GLHelper.h"
 
-1365903397 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\playership.h
+1367206504 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\playership.h
 	"gameObject.h"
+	"gameShip.h"
 
-1365903397 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gameobject.cpp
+1368635470 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gameobject.cpp
 	"gameObject.h"
 	"imports.h"
 	"camera.h"
+	"globals.h"
 	"GLHelper.h"
 	"gameController.h"
 	"Model.h"
-	"vec3f.h"
 	"Animation.h"
+	"math.h"
+	"enemyWave.h"
+	"HelloSDL/Matrix.h"
 	<iostream>
 
-1365903397 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glhelper.h
+1368581148 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glhelper.h
 	"imports.h"
 	"structs.h"
 
-1365903397 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glhelper.cpp
+1368581148 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glhelper.cpp
 	"GLHelper.h"
 	<SDL/SDL.h>
 	<iostream>
 	"constants.h"
 	"globals.h"
 
-1365629978 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\globals.cpp
+1368594492 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\globals.cpp
 	"globals.h"
 	<ctime>
 
-1365903397 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glrender.cpp
+1367508190 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\glrender.cpp
 	"glRender.h"
 	"structs.h"
 	"constants.h"
@@ -570,48 +584,53 @@
 	"camera.h"
 	"GLHelper.h"
 
-1365903397 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\io.cpp
+1368647792 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\io.cpp
 	"IO.h"
 	<SDL/SDL.h>
 	"imports.h"
 	"globals.h"
 	"gameController.h"
-	"gameObject.h"
+	"gameShip.h"
 	"glhelper.h"
+	"guilib/guiobj.h"
+	"HelloSDL/menu.h"
 
-1365379905 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\io.h
+1368593746 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\io.h
 	"globals.h"
 
-1365903397 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\laser.cpp
+1368627746 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\laser.cpp
 	"laser.h"
 	"imports.h"
 	"constants.h"
 	"math.h"
-	"GameObject.h"
 	"camera.h"
+	"ModelConstants.h"
+	"Model.h"
 
-1365379905 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\main.cpp
+1368634106 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\main.cpp
 	"imports.h"
 	"constants.h"
 	"IO.h"
-	"terrain.h"
 	"gameController.h"
 	"camera.h"
+	"HelloSDL/menu.h"
+	"GLHelper.h"
 
-1365379919 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\terrain.h
+1366212110 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\terrain.h
 
-1365903397 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\math.cpp
+1368320002 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\math.cpp
 	"math.h"
 	"constants.h"
+	"Vec3d.h"
 
-1367708181 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\math.h
+1368320006 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\math.h
 
 1365907266 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\outline.cpp
 	"outline.h"
 	<stdint.h>
 	"globals.h"
 
-1365379919 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\perlin3d.cpp
+1367420990 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\perlin3d.cpp
 	"perlin3d.h"
 	<climits>
 	"globals.h"
@@ -619,16 +638,25 @@
 	"optimizePrecomp.h"
 	"optimizePrecomp2.h"
 
-1365903397 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\playership.cpp
+1368634179 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\playership.cpp
 	"playerShip.h"
+	"ModelConstants.h"
 	"math.h"
 	"imports.h"
 	"Model.h"
-	"vec3f.h"
+	"Vec3d.h"
+	"HelloSDL/BasicGun.h"
+	"gameController.h"
+	"HelloSDL/BasicStrut.h"
+	"HelloSDL/RotateStrut.h"
+	"HelloSDL/FanStrutThing.h"
+	"HelloSDL/AimingStrut.h"
+	"HelloSDL/BasicRocketLauncher.h"
 
-1365379919 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\terrain.cpp
+1367006084 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\terrain.cpp
 	"terrain.h"
 	"globals.h"
+	"gameShip.h"
 
 1365629979 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\trace.cpp
 	"trace.h"
@@ -658,7 +686,7 @@
 	<GL/gl.h>
 	<GL/glu.h>
 
-1366939153 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\imports.h
+1366725358 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\imports.h
 	<iostream>
 	<stdlib.h>
 	<stdint.h>
@@ -669,56 +697,381 @@
 	<GL/gl.h>
 	<GL/glu.h>
 
-1366939153 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\enemywave.h
+1368594082 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\enemywave.h
 	<iostream>
 
-1365633454 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\testenemywave1.h
+1368581148 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\testenemywave1.h
 	"enemyWave.h"
 	<iostream>
 
-1366939153 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\enemywave.cpp
+1368594088 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\enemywave.cpp
 	"enemyWave.h"
 	"imports.h"
 
-1365903397 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\testenemywave1.cpp
-	"EnemyShip.h"
+1368634202 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\testenemywave1.cpp
 	"testEnemyWave1.h"
+	"HelloSDL/HoverShip.h"
+	"RamShip.h"
+	"HelloSDL/ObjectFactory.h"
 
-1365630888 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\model.h
+1367854568 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\model.h
 	<iostream>
 	"structs.h"
+	"imports.h"
 
 1365630888 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\vec3f.h
 	<iostream>
 
-1365903397 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\explodeanimation.h
+1366124598 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\explodeanimation.h
 	<iostream>
 	"Animation.h"
 
-1367708181 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\animation.h
+1367420710 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\animation.h
 	<iostream>
 
-1366939146 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\animation.cpp
+1366332692 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\animation.cpp
 	"Animation.h"
 	"GameObject.h"
 
-1365906232 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\explodeanimation.cpp
+1368482542 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\explodeanimation.cpp
 	"ExplodeAnimation.h"
 	"imports.h"
 	"Model.h"
-	"vec3f.h"
+	"Vec3d.h"
 	"gameController.h"
+	"GameObject.h"
 	<ctime>
 
-1365903397 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\model.cpp
+1368553498 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\model.cpp
 	"Model.h"
-	"Vec3f.h"
+	"math.h"
+	"Vec3d.h"
 
 1365630888 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\vec3f.cpp
 	<math.h>
 	"vec3f.h"
 
-1367708181 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\vec3d.h
+1368633761 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\vec3d.h
 	<iostream>
+	"HelloSDL/Matrix.h"
+
+1367981320 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\matrix.h
+	<iostream>
+	"vec4d.h"
+
+1367705300 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\vec4d.h
+	<iostream>
+
+1367853118 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gameship.h
+	<iostream>
+	"GameObject.h"
+
+1368633777 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\guilib\guilib.h
+	<SDL/SDL_image.h>
+	"guiobj.h"
+	"guianimate.h"
+	"guiIO.h"
+
+1368633783 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\guilib\guiobj.h
+	<string>
+	<SDL/SDL.h>
+	<SDL/SDL_image.h>
+	"linkedlist.h"
+
+1368581146 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\guilib\linkedlist.h
+	<iostream>
+
+1368581146 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\guilib\guianimate.h
+	"guiobj.h"
+
+1368581146 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\guilib\guiio.h
+	"guifont.h"
+	"guiobj.h"
+
+1368581146 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\guilib\guifont.h
+	<SDL/SDL.h>
+	<string>
+
+1368550926 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\modelconstants.h
+	<iostream>
+	"imports.h"
+
+1368321048 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\objectfactoryregister.h
+	<iostream>
+	<vector>
+	"ObjectFactory.h"
+
+1368633810 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\objectfactory.h
+	<iostream>
+	<cmath>
+	"../GameObject.h"
+
+1368633826 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\swarmwave.h
+	"../enemyWave.h"
+	<iostream>
+
+1368633830 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\bosswave.h
+	<iostream>
+	"../enemyWave.h"
+
+1368626522 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\gameship.cpp
+	"gameShip.h"
+	"enemyWave.h"
+
+1368581146 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\guilib\guianimate.cpp
+	"guianimate.h"
+	<ctime>
+	<iostream>
+
+1368634505 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\guilib\guifont.cpp
+	"guifont.h"
+	<SDL/SDL_Image.h>
+	<iostream>
+
+1368581146 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\guilib\guiio.cpp
+	"guiIO.h"
+	<fstream>
+
+1368592466 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\guilib\guiobj.cpp
+	"guiobj.h"
+	<iostream>
+
+1368633878 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\aimingstrut.cpp
+	"AimingStrut.h"
+	"../globals.h"
+	"../gameShip.h"
+
+1368297342 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\aimingstrut.h
+	<iostream>
+	"BasicStrut.h"
+
+1368633873 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\basicstrut.h
+	<iostream>
+	"../GameObject.h"
+	"ObjectFactory.h"
+
+1368633919 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\basicgun.cpp
+	"BasicGun.h"
+	"../ModelConstants.h"
+	"../Model.h"
+	"../gameController.h"
+	"../Vec3d.h"
+
+1368633901 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\basicgun.h
+	<iostream>
+	"../GameObject.h"
+
+1368633958 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\basicrocketlauncher.cpp
+	"BasicRocketLauncher.h"
+	"Nade.h"
+	"../gameController.h"
+	"../ModelConstants.h"
+	"../Model.h"
+	"SlideDownAnimation.h"
+
+1368571588 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\basicrocketlauncher.h
+	<iostream>
+	"BasicGun.h"
+
+1368633932 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\nade.h
+	<iostream>
+	"Nade.h"
+	"../gameShip.h"
+	"../Laser.h"
+
+1368633964 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\slidedownanimation.h
+	<iostream>
+	"../Animation.h"
+
+1368633897 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\basicstrut.cpp
+	"BasicStrut.h"
+	"../Model.h"
+	"../math.h"
+	"../ModelConstants.h"
+	"BasicGun.h"
+
+1368633981 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\bosswave.cpp
+	"BossWave.h"
+	"HoverShip.h"
+	"../RamShip.h"
+	"ObjectFactory.h"
+
+1368633976 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\hovership.h
+	<iostream>
+	"../EnemyShip.h"
+	"ObjectFactory.h"
+
+1368581148 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\ramship.h
+	<iostream>
+	"EnemyShip.h"
+
+1368633989 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\fanstrutthing.cpp
+	"FanStrutThing.h"
+	"../Model.h"
+	"BasicGun.h"
+	"../ModelConstants.h"
+	"RotateStrut.h"
+
+1367419822 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\fanstrutthing.h
+	<iostream>
+	"BasicStrut.h"
+
+1368297926 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\rotatestrut.h
+	<iostream>
+	"BasicStrut.h"
+
+1368634001 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\hovership.cpp
+	"HoverShip.h"
+	"../ModelConstants.h"
+	"../Model.h"
+	"../constants.h"
+	"BasicGun.h"
+	"FanStrutThing.h"
+	"AimingStrut.h"
+
+1368634603 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\imageconverter.cpp
+	"ImageConverter.h"
+	"../imports.h"
+
+1368634561 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\imageconverter.h
+	<iostream>
+	<SDL/SDL_image.h>
+
+1368634651 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\matrix.cpp
 	"Matrix.h"
+	"../vec3d.h"
+	"../math.h"
+	"../imports.h"
+
+1368647457 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\menu.cpp
+	"menu.h"
+	"../globals.h"
+	"../IO.h"
+	"../gameController.h"
+	<direct.h>
+
+1368647742 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\menu.h
+	<iostream>
+	"../guilib/guilib.h"
+
+1368634009 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\nade.cpp
+	"Nade.h"
+	"../ModelConstants.h"
+	"../Model.h"
+
+1368634017 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\objectfactory.cpp
+	"ObjectFactory.h"
+	"../Model.h"
+	"RegisterEnemies.h"
+
+1368481324 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\registerenemies.h
+	<iostream>
+	"ObjectFactoryRegister.h"
+
+1368487566 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\objectfactoryregister.cpp
+	"ObjectFactoryRegister.h"
+	"RegisterEnemies.h"
+	"RegisterStruts.h"
+	"RegisterWeapons.h"
+
+1368481378 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\registerstruts.h
+	<iostream>
+	"ObjectFactoryRegister.h"
+
+1368481468 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\registerweapons.h
+	<iostream>
+	"ObjectFactoryRegister.h"
+
+1368634671 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\openupanimation.cpp
+	"OpenUpAnimation.h"
+	"../imports.h"
+
+1368634666 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\openupanimation.h
+	<iostream>
+	"../Animation.h"
+
+1368634030 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\registerenemies.cpp
+	"RegisterEnemies.h"
+	"HoverShip.h"
+	"../ModelConstants.h"
+	"../Model.h"
+	"../RamShip.h"
+	"TrackingShip.h"
+
+1368634034 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\trackingship.h
+	<iostream>
+	"../EnemyShip.h"
+	"ObjectFactory.h"
+
+1368634045 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\registerstruts.cpp
+	"RegisterStruts.h"
+	"BasicStrut.h"
+	"../ModelConstants.h"
+	"../Model.h"
+	"AimingStrut.h"
+	"RotateStrut.h"
+
+1368634050 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\registerweapons.cpp
+	"RegisterWeapons.h"
+	"../ModelConstants.h"
+	"BasicGun.h"
+
+1368298024 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\rotatestrut.cpp
+	"RotateStrut.h"
+
+1368634054 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\slidedownanimation.cpp
+	"SlideDownAnimation.h"
+	"../imports.h"
+
+1368634059 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\swarmwave.cpp
+	"SwarmWave.h"
+	"HoverShip.h"
+	"../RamShip.h"
+	"ObjectFactory.h"
+
+1368634078 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\trackingship.cpp
+	"TrackingShip.h"
+	"../ModelConstants.h"
+	"../Model.h"
+	"../constants.h"
+	"BasicGun.h"
+	"FanStrutThing.h"
+	"AimingStrut.h"
+
+1368634689 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\hellosdl\vec4d.cpp
+	"Vec4d.h"
+	"../vec3d.h"
+
+1366939153 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\imageloader.cpp
+	<assert.h>
+	<fstream>
+	"imageloader.h"
+
+1219431990 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\imageloader.h
+
+1368558102 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\modelconstants.cpp
+	"ModelConstants.h"
+	"Model.h"
+	"Vec3d.h"
+	"imageloader.h"
+	"constants.h"
+
+1368634188 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\ramship.cpp
+	"RamShip.h"
+	"ModelConstants.h"
+	"Model.h"
+	"constants.h"
+	"HelloSDL/BasicGun.h"
+	"HelloSDL/FanStrutThing.h"
+
+1366939147 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\texturegenerator.cpp
+	"TextureGenerator.h"
+	"imports.h"
+
+1366939147 c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\texturegenerator.h
+	<iostream>
+
+1367705266 source:c:\users\jack\documents\github\trippy-procedurally-generated-star-fox-clone-for-school\vec3d.cpp
+	<math.h>
+	"Vec3d.h"
 
