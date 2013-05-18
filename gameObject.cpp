@@ -155,7 +155,7 @@ void GameObject::setup() {
     avgDist*=objScale;
 	
 	if(model->numAttachPoints>0) {
-		cout<<"DFDSD "<<model->numAttachPoints<<endl;
+//		cout<<"DFDSD "<<model->numAttachPoints<<endl;
 		children=new GameObject*[model->numAttachPoints];
 		
 		attachPointsFilled=new bool[model->numAttachPoints];
@@ -175,9 +175,9 @@ void GameObject::setup() {
 bool GameObject::collidesWithNoise() {
     for(int i=0;i<modelSize;i++) {
         const double
-            x=(model->vertices[i][0]*objScale+pos[0])/noiseScale *grid2+grid2,
-            y=(model->vertices[i][1]*objScale+pos[1])/noiseScale *grid2+grid2,
-            z=grid2-d*grid*((model->vertices[i][2]*objScale+pos[2])/noiseScale+d/2);
+            x=(model->vertices[i][0]*objScale+pos[0])/frameSize *grid2+grid2,
+            y=(model->vertices[i][1]*objScale+pos[1])/frameSize *grid2+grid2,
+            z=grid2-d*grid*((model->vertices[i][2]*objScale+pos[2])/frameSize+d/2);
         if(noise[precompindx(x,y,z+zshft)]>tolerance){
             return true;
         }
@@ -209,7 +209,7 @@ void GameObject::addChild(GameObject *child, int index, Vec3d angle) {
 	if(index==-1)
 		index=numChildren;
 	
-	cout<<"adding something to "<<this<<" at "<<index<<endl;
+//	cout<<"adding something to "<<this<<" at "<<index<<endl;
 	
 	numChildren++;
 	
@@ -222,6 +222,8 @@ void GameObject::addChild(GameObject *child, int index, Vec3d angle) {
 	attachPointsFilled[index]=true;
 	
 	child->setPlayer(player);
+	
+	child->parent=this;
 	
 	addUpHealth(child->health);
 }
@@ -236,7 +238,7 @@ int GameObject::getDamage(GameObject *other) {
  */
 void GameObject::setAnimation(Animation *anim) {
 	if(theAnimation!=NULL) {
-		cout<<"animation belongs to: "<<this<<endl;
+//		cout<<"animation belongs to: "<<this<<endl;
 		delete theAnimation;
 	}
 	
@@ -248,7 +250,9 @@ Matrix GameObject::getMatrix() {
 	Matrix mat;
 	if(parent!=NULL) {
 		mat=parent->getMatrix();
+//		cout<<"got parent matrix"<<endl;
 	}
+//	cout<<"parent matrix: "<<mat<<endl;
 	
 	mat=mat*Matrix(
 				   Vec4d(1, 0, 0, pos[0]),				//translation
@@ -256,6 +260,9 @@ Matrix GameObject::getMatrix() {
 				   Vec4d(0, 0, 1, pos[2]),
 				   Vec4d(0, 0, 0, 1)
 				   );
+	
+//	cout<<"matrix: "<<mat<<endl;
+//	cout<<"my pos: "<<pos<<endl;
 	
 	mat=mat*Matrix(rot);
 	

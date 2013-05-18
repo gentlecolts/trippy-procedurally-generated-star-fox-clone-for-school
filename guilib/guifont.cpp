@@ -64,7 +64,7 @@ void guifont::init(string charlist,SDL_Surface* data,SDL_Surface* mapPic){
 			//cout<<"from: "<<i<<'\t';
 		}else if(!hascolor && inchar){//end of char
 			chars[c].w=i-chars[c].picpos;//dont need to add 1 because this i is outside of the character
-			cout<<"to: "<<i<<"\tchar: "<<chars[c].c<<"\tw: "<<chars[c].w<<"\tat: "<<chars[c].picpos<<endl;
+//			cout<<"to: "<<i<<"\tchar: "<<chars[c].c<<"\tw: "<<chars[c].w<<"\tat: "<<chars[c].picpos<<endl;
 			c++;
 			inchar=false;
 		}

@@ -44,6 +44,7 @@ extern bool readyForNextWave;				//whether more enemies can spawn
 extern long waveTime;
 extern bool didGameSetup, needToUnload;
 extern int playerScore;
+extern double noiseScale;
 
 /**************** IO    *********************/
 extern bool leftmov,rightmov,upmov,downmov,space, fire, fireRockets;

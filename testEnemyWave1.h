@@ -17,6 +17,7 @@ class TestEnemyWave1 : public EnemyWave {
 private:
     EnemyShip *ship1,*ship2,*ship3;
     bool done;
+	double difficulty;
 protected:
 public:
     void init();
@@ -25,7 +26,7 @@ public:
     bool childrenDone();
     void remove(GameObject *obj);
 	
-    TestEnemyWave1():done(false){}
+    TestEnemyWave1(double diff);
     ~TestEnemyWave1();
 };
 

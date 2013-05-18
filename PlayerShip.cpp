@@ -29,7 +29,7 @@ void PlayerShip::init(){
 	model=playerShipModel;
     modelSize=model->length;
 	player=true;
-	health=10;
+	health=playerHP;
 
     pos[2]=-playerOffset;
 }
@@ -89,6 +89,19 @@ void PlayerShip::uniqueRenderAfterPop() {
 
     glEnd();
     glPopMatrix();
+	
+	glPushMatrix();
+	glTranslatef(-.7+pos[0],1+pos[1],pos[2]);
+	
+	glBegin(GL_QUADS);
+	glColor3f(max(0,playerHP-health), max(0,health-playerHP), 0.3);
+	glVertex3d(-0.2, 0.05,1);
+	glVertex3d(0.2-(playerHP-(double)health)/playerHP*0.4, 0.05,1);
+	glVertex3d(0.3-(playerHP-(double)health)/playerHP*0.5, -0.05,1);
+	glVertex3d(-0.2, -.05,1);
+	glEnd();
+	
+	glPopMatrix();
 }
 
 void PlayerShip::afterSetup() {
@@ -100,8 +113,11 @@ void PlayerShip::afterSetup() {
 	
 	//	for(int i=0;i<model->numAttachPoints;i++) {
 	addChild(new BasicStrut(this, basicStrutModel), 0, Vec3d(0,180,0));	//???
+	children[0]->addChild(new BasicStrut(children[0], basicStrutModel), 5);
 //		addChild(new AimingStrut(this, 9000, basicStrutModel), 0);
-	children[0]->addChild(new BasicRocketLauncher(children[0]), 0);
+	children[0]->children[5]->addChild(new BasicRocketLauncher(children[0]->children[5]), 5);
+	children[0]->addChild(new BasicGun(children[0]), 0);
+
 	addChild(new BasicStrut(this, basicStrutModel), 1, Vec3d(0,180,0));	//???
 		children[1]->addChild(new BasicGun(children[1]), 0);
 //	}
@@ -121,9 +137,8 @@ void PlayerShip::update(double dt) {
 	pos[0]+=vel[0]*dt;
     pos[1]+=vel[1]*dt;
 	
-	pos[0]=max(min((double)pos[0],1.0*noiseScale),-1.0*noiseScale);
-	pos[1]=max(min((double)pos[1],1.0*noiseScale),-1.0*noiseScale);
-
+	pos[0]=max(min((double)pos[0],1.0*frameSize),-1.0*frameSize);
+	pos[1]=max(min((double)pos[1],1.0*frameSize),-1.0*frameSize);
 
     if(invinceStart<0) {
         bool hit=false;

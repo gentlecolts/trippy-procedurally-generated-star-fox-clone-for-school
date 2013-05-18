@@ -24,7 +24,7 @@ void SlideDownAnimation::doModelTransform() {
 
 void SlideDownAnimation::update(double dt) {
 	if(t>speed) {
-		cout<<"calling callback!"<<endl;
+//		cout<<"calling callback!"<<endl;
 		callback(callbackObj, object);
 	}
 }

@@ -57,11 +57,11 @@ void movecam(){
 	camvx=-(camx-thePlayerShip->pos[0])/5;
 	camvy=-(camy-thePlayerShip->pos[1])/5;
 
-	double x=camx/noiseScale*grid2+grid2;
-	double y=camy/noiseScale*grid2+grid2;
-	double dx=camvx/noiseScale*grid2;
-	double dy=camvy/noiseScale*grid2;
-	double z=-d*cameraOffset*grid/noiseScale+d/2;
+	double x=camx/frameSize*grid2+grid2;
+	double y=camy/frameSize*grid2+grid2;
+	double dx=camvx/frameSize*grid2;
+	double dy=camvy/frameSize*grid2;
+	double z=-d*cameraOffset*grid/frameSize+d/2;
 
 	if(noise[precompindx(x+dx, y+dy, z)]>tolerance) {
 		camvx*=1.1;
@@ -83,8 +83,8 @@ void movecam(){
     //camx+=min(camvx,abs(thePlayerShip->xpos-camx))*signum(thePlayerShip->xpos-camx);
     //camy+=min(camvy,abs(thePlayerShip->ypos-camy))*signum(thePlayerShip->ypos-camy);
 
-	//camx=max((double)(-noiseScale+cameraWidth), min((double)(noiseScale-cameraWidth), camx));
-	//camy=max((double)(-noiseScale+cameraHeight), min((double)(noiseScale-cameraHeight), camy));
+	//camx=max((double)(-frameSize+cameraWidth), min((double)(frameSize-cameraWidth), camx));
+	//camy=max((double)(-frameSize+cameraHeight), min((double)(frameSize-cameraHeight), camy));
 
 //	camx=max(-)
 
@@ -116,33 +116,24 @@ void render(){
 		glLoadIdentity();
 		//glTranslatef(-camx,camy,0);
 
-	if(inGame) {
 	
 			//gluLookAt(0,0,0,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);			BEST CAMERA
 			//gluLookAt(camx/2,-camy/2,cameraOffset,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);
-		double xpos=max((double)(-noiseScale-2+cameraWidth), min((double)(noiseScale+2-cameraWidth), thePlayerShip->pos[0]));
-		double ypos=max((double)(-noiseScale-2+cameraHeight), min((double)(noiseScale+2-cameraHeight), thePlayerShip->pos[1]));
+		double xpos=max((double)(-frameSize-2+cameraWidth), min((double)(frameSize+2-cameraWidth), thePlayerShip->pos[0]));
+		double ypos=max((double)(-frameSize-2+cameraHeight), min((double)(frameSize+2-cameraHeight), thePlayerShip->pos[1]));
 		
 		//gluLookAt(camx,camy+1,cameraOffset,xpos,ypos,thePlayerShip->pos[2]*3,0,1,0);
 		gluLookAt(camx,camy+1,cameraOffset,thePlayerShip->pos[0],thePlayerShip->pos[1],thePlayerShip->pos[2]*3,0,1,0);
 		
 		//gluLookAt(xpos*0.8,ypos*0.8+1,cameraOffset,xpos,ypos,thePlayerShip->pos[2]*3,0,1,0);
 		
-	} else {
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		//gluPerspective(viewangle,1,0.5,1/d+1);
-		
-		gluPerspective(viewangle,(double)xmax/(double)ymax,0.5,10/d+10);
-	}
 	
 	initLights();
 		
-	if(inGame)
 		renderObjects();
 	
         glPushMatrix();
-        glScalef(noiseScale, noiseScale, noiseScale);
+        glScalef(frameSize, frameSize, frameSize);
 		glColor4f(1.0f,1.0f,1.0f,0.5f);
 		glRender();
 
@@ -157,5 +148,7 @@ void render(){
 		}glEnd();
 		//*/
         glPopMatrix();
+	
+	
 	#endif
 }

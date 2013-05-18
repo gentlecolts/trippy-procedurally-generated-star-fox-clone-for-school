@@ -14,7 +14,7 @@
 button *playButton, *quitButton;
 
 void play(button *b) {
-	cout<<"PLAY!"<<endl;
+//	cout<<"PLAY!"<<endl;
 	inGame=true;
 }
 

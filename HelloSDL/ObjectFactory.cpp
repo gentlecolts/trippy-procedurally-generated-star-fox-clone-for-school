@@ -44,24 +44,24 @@ GameObject *expandTree(GameObject *parent, ObjectTypeTree *tree) {
 //	GameObject *obj=tree->type->gameObject(parent, tree->seed, tree->diff, tree->size);
 	GameObject *obj=tree->type->gameObject(parent, tree->seed);
 	
-	cout<<"type: "<<tree->type->title<<endl;
+	/*cout<<"type: "<<tree->type->title<<endl;
 	cout<<"model size: "<<obj->model->length<<endl;
 	cout<<"attach points: "<<obj->model->numAttachPoints<<endl;
 	cout<<"object: "<<obj<<endl;
-	cout<<"num children: "<<tree->numChildren<<endl;
+	cout<<"num children: "<<tree->numChildren<<endl;*/
 //	cout<<"obj: "<<obj<<endl;
 	
 	for(int i=0;i<tree->numChildren;i++) {
 		if(tree->filled[i]) {
 			GameObject* childObj=expandTree(obj, tree->children[i]);
-			cout<<"o: "<<obj<<endl;
-			cout<<"i: "<<i<<endl;
+//			cout<<"o: "<<obj<<endl;
+//			cout<<"i: "<<i<<endl;
 			obj->addChild(childObj, i);		//doesn't take into account rotations... Hm...
 		}
 	}
 	
-	cout<<"obj: "<<obj<<endl;
-	cout<<"real num children: "<<obj->numChildren<<endl;
+//	cout<<"obj: "<<obj<<endl;
+//	cout<<"real num children: "<<obj->numChildren<<endl;
 	
 	return obj;
 }
@@ -84,27 +84,27 @@ ObjectType *getRandomObject(vector<ObjectType *> *v, double diff, double size) {
 		total+=probabilities[i];
 	}
 	
-	cout<<"difficulty: "<<diff<<" size: "<<size<<endl;
+//	cout<<"difficulty: "<<diff<<" size: "<<size<<endl;
 	for(int i=0;i<v->size();i++) {
-		cout<<"\tobject: "<<v->at(i)->title<<" p="<<probabilities[i]<<" diff="<<difficulty(v->at(i), diff, size)<<endl;
+//		cout<<"\tobject: "<<v->at(i)->title<<" p="<<probabilities[i]<<" diff="<<difficulty(v->at(i), diff, size)<<endl;
 	}
 	
-	cout<<"total: "<<total<<endl;
+//	cout<<"total: "<<total<<endl;
 	
 	double randnum=(double)(rand())/RAND_MAX*total;
 	
-	cout<<"randnum: "<<randnum<<endl;
+//	cout<<"randnum: "<<randnum<<endl;
 	
 	for(int i=0;i<v->size();i++) {
 		if(randnum>probabilities[i]) {
 			randnum-=probabilities[i];
 		} else {
-			cout<<"returned "<<v->at(i)->title<<endl;
+//			cout<<"returned "<<v->at(i)->title<<endl;
 			return v->at(i);
 		}
 	}
 	
-	cout<<"????"<<endl;
+//	cout<<"????"<<endl;
 	
 	return v->at(0);
 }
@@ -127,7 +127,7 @@ int ct=0;
 
 ObjectTypeTree* treeFun(ObjectType *type, double diff, double size) {
 	ct++;
-	cout<<"ct: "<<ct<<endl;
+//	cout<<"ct: "<<ct<<endl;
 	
 	ObjectTypeTree *tree=new ObjectTypeTree;
 	
@@ -180,8 +180,8 @@ ObjectTypeTree* treeFun(ObjectType *type, double diff, double size) {
 				tree->filled[i]=true;
 				
 				tree->children[mod->numAttachPoints-i-1]=tree->children[i];
-				cout<<"set children["<<(mod->numAttachPoints-i-1)<<"] to: "<<tree->children[mod->numAttachPoints-i-1]<<endl;
-				cout<<"should be ["<<i<<"]: "<<tree->children[i]<<endl;
+//				cout<<"set children["<<(mod->numAttachPoints-i-1)<<"] to: "<<tree->children[mod->numAttachPoints-i-1]<<endl;
+//				cout<<"should be ["<<i<<"]: "<<tree->children[i]<<endl;
 				tree->filled[mod->numAttachPoints-i-1]=true;
 			/*} else {
 				cout<<"Nothing small enough! ["<<i<<"]"<<endl;
@@ -190,7 +190,7 @@ ObjectTypeTree* treeFun(ObjectType *type, double diff, double size) {
 				tree->filled[mod->numAttachPoints-i-1]=false;
 			}*/
 		} else {
-			cout<<"=( ["<<i<<"]"<<endl;
+//			cout<<"=( ["<<i<<"]"<<endl;
 			tree->filled[i]=false;
 			tree->filled[mod->numAttachPoints-i-1]=false;
 		}

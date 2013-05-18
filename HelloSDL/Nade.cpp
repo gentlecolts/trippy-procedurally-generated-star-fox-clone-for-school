@@ -54,7 +54,7 @@ int Grenade::getDamage(GameObject *other) {
 }
 
 bool Grenade::isDone() {
-	return going && (pos[2]<-noiseScale*2 || pos[2]>cameraOffset);
+	return going && (pos[2]<-frameSize*2 || pos[2]>cameraOffset);
 }
 
 void Grenade::update(double dt) {

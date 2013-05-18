@@ -57,7 +57,7 @@ const double rt2=1/sqrt(2);
 const double sinviewangle=sin(radians(viewangle));
 #define playerOffset 1			//the z position of the plane the player moves in (actually the negative of that because -z is forward)
 #define cameraOffset 1			//the z position of the camera
-#define noiseScale 10           //the scale factor of the terrain, or the half size of the game area in x and y
+#define frameSize 10           //the scale factor of the terrain, or the half size of the game area in x and y
 
 
 const double cameraWidth=sinviewangle*playerOffset*3;
@@ -77,6 +77,8 @@ const double raise=-0.1;//0.1;
 #endif
 
 /**************** GAME  *********************/
+
+#define playerHP 30
 
 #define maxV 20					//the player's velocity
 #define accel 90				//the player's angular acceleration per second

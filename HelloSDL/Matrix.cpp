@@ -29,6 +29,8 @@ Matrix::Matrix(Vec4d x, Vec4d y, Vec4d z, Vec4d w) {
 	v[1] = y;
 	v[2] = z;
 	v[3] = w;
+	
+//	cout<<"z: "<<z<<endl;
 }
 
 Matrix::Matrix(Vec4d angles) {
@@ -102,8 +104,8 @@ Matrix Matrix::operator*(Matrix mat) const {
 	for(int i=0;i<4;i++) {
 		for(int j=0;j<4;j++) {
 			Vec4d columnVec=Vec4d(mat[0][j],mat[1][j],mat[2][j], mat[3][j]);
-			if(logMat)
-				cout<<"("<<i<<","<<j<<") column: "<<columnVec<<" row: "<<v[i]<<"result: "<<columnVec.dot(v[i])<<endl;
+//			if(logMat)
+//				cout<<"("<<i<<","<<j<<") column: "<<columnVec<<" row: "<<v[i]<<"result: "<<columnVec.dot(v[i])<<endl;
 			comb[i][j]=columnVec.dot(v[i]);
 		}
 	}

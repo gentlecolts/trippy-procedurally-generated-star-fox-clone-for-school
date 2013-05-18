@@ -25,7 +25,7 @@ void registerHoverShipType() {
 	hoverShipType->numAttachPointsEst=ramShipModel->numAttachPoints;
 	hoverShipType->maxChildren=-1;
 	hoverShipType->title="hoverShip";
-	cout<<"numAttach->->: "<<playerShipModel->numAttachPoints<<endl;
+//	cout<<"numAttach->->: "<<playerShipModel->numAttachPoints<<endl;
 	
 	registerObjectType(hoverShipType);
 }
@@ -35,7 +35,7 @@ vector<ObjectType *>* hoverShipCandidateChildren() {
 }
 
 Model *hoverShipGetModel() {
-	cout<<"hoverShipGetModel?!"<<endl;
+//	cout<<"hoverShipGetModel?!"<<endl;
 	return ramShipModel;
 }
 
@@ -70,7 +70,7 @@ vector<ObjectType *>* ramShipCandidateChildren() {
 }
 
 Model *ramShipGetModel() {
-	cout<<"ramSHipShtegMoel?!"<<endl;
+//	cout<<"ramSHipShtegMoel?!"<<endl;
 	return playerShipModel;
 }
 
@@ -106,7 +106,7 @@ vector<ObjectType *>* trackingShipCandidateChildren() {
 }
 
 Model *trackingShipGetModel() {
-	cout<<"trackingShipShtegMoel?!"<<endl;
+//	cout<<"trackingShipShtegMoel?!"<<endl;
 	return playerShipModel;
 }
 

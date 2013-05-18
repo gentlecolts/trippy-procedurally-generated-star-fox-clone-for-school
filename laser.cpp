@@ -55,6 +55,7 @@ void Laser::init(Vec3d p, Vec3d a){
 }
 
 void Laser::uniqueRenderFirst() {
+	
 	GameShip::uniqueRenderFirst();
 	
 	glDisable(GL_LIGHTING);
@@ -67,7 +68,7 @@ void Laser::uniqueRenderLast() {
 }
 
 bool Laser::isDone() {
-	return (collidesWithNoise() || pos[2]<-noiseScale*2 || pos[2]>cameraOffset);
+	return (collidesWithNoise() || pos[2]<-frameSize*2 || pos[2]>cameraOffset);
 }
 
 /**
@@ -100,10 +101,10 @@ void Laser::update(double dt) {
  */
 /*bool Laser::collidesWithNoise() {
     const double
-        x=pos[0]/noiseScale *grid2+grid2,
-        y=pos[1]/noiseScale *grid2+grid2,
-        z=-d*grid*(pos[2]/noiseScale+d/2),
-        z2=-d*grid*((-5*objScale+pos[2])/noiseScale+d/2)
+        x=pos[0]/frameSize *grid2+grid2,
+        y=pos[1]/frameSize *grid2+grid2,
+        z=-d*grid*(pos[2]/frameSize+d/2),
+        z2=-d*grid*((-5*objScale+pos[2])/frameSize+d/2)
     ;
     if(noise[precompindx(x,y,z+zshft)]>tolerance ||
        noise[precompindx(x,y,z2+zshft)]>tolerance){

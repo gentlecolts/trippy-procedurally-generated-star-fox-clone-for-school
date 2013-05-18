@@ -18,7 +18,7 @@ BasicStrut::BasicStrut() : GameObject() {
 
 BasicStrut::BasicStrut(GameObject *p, Model *m) : GameObject() {
 	init(p,m);
-	health=3;
+	health=2;
 }
 
 void BasicStrut::init(GameObject *p, Model *m) {

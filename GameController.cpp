@@ -68,9 +68,15 @@ void updateObjects() {
     long prev=curTime;
     curTime=SDL_GetTicks();
 
-    if(curTime-lastWaveTime>waveTime) {
+    if(!readyForNextWave && curTime-lastWaveTime>waveTime) {
         readyForNextWave=true;
 		waveTime*=0.98;
+		noiseScale*=0.95;
+		
+		cout<<"noiseScale: "<<noiseScale<<endl;
+		
+		thePlayerShip->health+=10;
+		thePlayerShip->health=min(playerHP,thePlayerShip->health);
 		//cout<<gameObjects.size()<<endl;
     }
     if(currentWave==NULL || (readyForNextWave && currentWave->isDone())) {
@@ -80,6 +86,8 @@ void updateObjects() {
     }
 	
 	double dt=(double)(curTime-prev)/1000;		//millis to seconds
+	
+	playerScore+=dt;
 	
 	updateTerrain(dt);
 	
@@ -137,7 +145,7 @@ void nextWave() {
 
 	int num=rand()%6;
 	if(num<3) {
-		currentWave=new TestEnemyWave1;
+		currentWave=new TestEnemyWave1(curTime/1000);
 	} else if(num==4) {
 		currentWave=new SwarmWave(curTime/1000);
 	} else {

@@ -22,7 +22,7 @@ SwarmWave::SwarmWave(double diff) {
  Creates 3 RamShips and puts them in play
  */
 void SwarmWave::init(){
-	cout<<"swarm wave"<<endl;
+//	cout<<"swarm wave"<<endl;
 	
 	double x=thePlayerShip->pos[0];
 	double y=thePlayerShip->pos[1];
@@ -31,7 +31,7 @@ void SwarmWave::init(){
 	
 	ObjectType *type=typeForName("ramShip");
 	
-	ObjectTypeTree *tree=treeFun(type, 5+difficulty/3, 3+rand()%4);
+	ObjectTypeTree *tree=treeFun(type, 1+difficulty/9, 3+rand()%4);
 	
 	ships=new EnemyShip*[numShips];
 	

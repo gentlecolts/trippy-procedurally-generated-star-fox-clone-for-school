@@ -13,15 +13,19 @@
 #include "ObjectFactory.h"
 
 
+TestEnemyWave1::TestEnemyWave1(double diff) {
+	difficulty=diff;
+}
+
 /**
  void TestEnemyWave1::init()
  Creates 3 RamShips and puts them in play
  */
 void TestEnemyWave1::init(){
-	cout<<"wave"<<endl;
+//	cout<<"wave"<<endl;
 	
-    //double x=rand()%(2*noiseScale)-noiseScale;
-    //double y=rand()%(2*noiseScale)-noiseScale;
+    //double x=rand()%(2*frameSize)-frameSize;
+    //double y=rand()%(2*frameSize)-frameSize;
 	
 	double x=thePlayerShip->pos[0];
 	double y=thePlayerShip->pos[1];
@@ -38,9 +42,9 @@ void TestEnemyWave1::init(){
     ship3=new HoverShip(x,y+3,s+2);
 	//*/
 	
-	ship1=(EnemyShip *)expandTree(NULL, getTree(20, 5));
-	ship2=(EnemyShip *)expandTree(NULL, getTree(20, 5));
-	ship3=(EnemyShip *)expandTree(NULL, getTree(20, 5));
+	ship1=(EnemyShip *)expandTree(NULL, getTree(6+difficulty/10, 5));
+	ship2=(EnemyShip *)expandTree(NULL, getTree(6+difficulty/10, 5));
+	ship3=(EnemyShip *)expandTree(NULL, getTree(6+difficulty/10, 5));
 	
 	/*ObjectType *type=typeForName("hoverShip");
 	

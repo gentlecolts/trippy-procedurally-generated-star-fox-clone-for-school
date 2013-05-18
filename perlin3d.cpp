@@ -69,6 +69,8 @@ inline void perlin3d::setdotp(double x,double y,double z){
 }
 
 double perlin3d::get(double x,double y,double z){
+	x/=noiseScale;
+	y/=noiseScale;
 	/*
 	gx=((int)x)%grid;
 	gy=((int)y)%grid;

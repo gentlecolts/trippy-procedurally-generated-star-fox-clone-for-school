@@ -91,5 +91,5 @@ void EnemyShip::update(double dt) {
  Returns true if it's out of the game area in x, y or z
  */
 bool EnemyShip::isDone() {
-    return abs(pos[0])>noiseScale || abs(pos[1])>noiseScale || pos[2]>cameraOffset || pos[2]<-noiseScale*2;
+    return abs(pos[0])>frameSize || abs(pos[1])>frameSize || pos[2]>cameraOffset || pos[2]<-frameSize*2;
 }

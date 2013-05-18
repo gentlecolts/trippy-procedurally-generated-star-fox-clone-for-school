@@ -20,17 +20,18 @@ BossWave::BossWave(double diff) {
  Creates 3 RamShips and puts them in play
  */
 void BossWave::init(){
-	cout<<"wave"<<endl;
+//	cout<<"wave"<<endl;
 	
-    //double x=rand()%(2*noiseScale)-noiseScale;
-    //double y=rand()%(2*noiseScale)-noiseScale;
+    //double x=rand()%(2*frameSize)-frameSize;
+    //double y=rand()%(2*frameSize)-frameSize;
 	
 	double x=thePlayerShip->pos[0];
 	double y=thePlayerShip->pos[1];
 	
 	ObjectType *type=typeForName("hoverShip");
 	 
-	ship=(EnemyShip *)expandTree(NULL, treeFun(type, 10+difficulty, 100));
+	ship=(EnemyShip *)expandTree(NULL, treeFun(type, 3+difficulty/4, 50+difficulty/10));
+	cout<<"diff: "<<difficulty<<endl;
 	
 	ship->init(x, y,-5,8);
 	

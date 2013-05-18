@@ -29,7 +29,7 @@ void glRender() {
 	double counter=0;
 	for(int a=0;a<grid/step;a++){
 		z=grid-a*step;
-		if(z/grid>((double)playerOffset*5)/noiseScale) {
+		if(z/grid>((double)playerOffset*5)/frameSize) {
 			counter+=sin(a/(grid/step))*2;
 		}
 	}
@@ -39,7 +39,7 @@ void glRender() {
 		//x=grid*a/(grid/(delta/2));
 		z=grid-a*step;
 		
-		if(z/grid>((double)playerOffset*5)/noiseScale)
+		if(z/grid>((double)playerOffset*5)/frameSize)
 			glRotatef(-sin(a/(grid/step))*2, 0.0, 1.0, 0.3);
 		glBegin(GL_QUADS);
 		
@@ -58,6 +58,7 @@ void glRender() {
 				
 			//*/
 				if(noise[precompindx(x,y,z+zshft)]>tolerance){
+//				if(perlin.get(x,y,z+zshft)>tolerance){
 					if(!inCube){
 						inCube=true;
 						beenDrawn=false;
@@ -79,7 +80,7 @@ void glRender() {
 
 							corners[indx].y=(y-grid2+j*delt2)/grid2;
 							corners[indx].z=-(z-grid2+k*delt2)/(d*grid)-d/2+(fmod(zshft,step));
-							//corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-d/2+(zshft-(int)zshft)/noiseScale;
+							//corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-d/2+(zshft-(int)zshft)/frameSize;
 							
 							//*
 #if 0

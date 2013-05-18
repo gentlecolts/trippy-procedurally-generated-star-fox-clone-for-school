@@ -42,11 +42,11 @@ void RamShip::init(double x, double y, int startPos, int time) {
 	}
 	
 	if(abs(x)>abs(y)) {
-		pos[0]=noiseScale;
-		pos[1]=abs(y/x*noiseScale);
+		pos[0]=frameSize;
+		pos[1]=abs(y/x*frameSize);
 	} else {
-		pos[1]=noiseScale;
-		pos[0]=abs(x/y*noiseScale);
+		pos[1]=frameSize;
+		pos[0]=abs(x/y*frameSize);
 	}
 	
 	pos[0]*=signum(x);
@@ -90,7 +90,7 @@ void RamShip::afterSetup() {
  Returns whether it's behind the camera; it starts off the screen to the side, and isn't done, so the superclass version doesn't work in this case
  */
 bool RamShip::isDone() {
-	return pos[2]>=cameraOffset || abs(pos[0])>noiseScale*1.5 || abs(pos[1])>noiseScale*1.5;
+	return pos[2]>=cameraOffset || abs(pos[0])>frameSize*1.5 || abs(pos[1])>frameSize*1.5;
 }
 
 /**
