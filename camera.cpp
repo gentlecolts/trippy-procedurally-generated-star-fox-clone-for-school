@@ -8,7 +8,7 @@
 #include "math.h"
 #include "gameShip.h"
 #include "GLHelper.h"
-#include "guilib.h"
+#include "guilib/guilib.h"
 
 
 int precompindx(double x,double y,double z){
@@ -110,28 +110,44 @@ void render(){
 	#if doGL
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	#endif
-	
+
 	#if drawmethod==9
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 		//glTranslatef(-camx,camy,0);
 
+<<<<<<< HEAD
 	
 			//gluLookAt(0,0,0,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);			BEST CAMERA
 			//gluLookAt(camx/2,-camy/2,cameraOffset,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);
 		double xpos=max((double)(-frameSize-2+cameraWidth), min((double)(frameSize+2-cameraWidth), thePlayerShip->pos[0]));
 		double ypos=max((double)(-frameSize-2+cameraHeight), min((double)(frameSize+2-cameraHeight), thePlayerShip->pos[1]));
 		
+=======
+
+			//gluLookAt(0,0,0,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);			BEST CAMERA
+			//gluLookAt(camx/2,-camy/2,cameraOffset,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);
+		double xpos=max((double)(-noiseScale-2+cameraWidth), min((double)(noiseScale+2-cameraWidth), thePlayerShip->pos[0]));
+		double ypos=max((double)(-noiseScale-2+cameraHeight), min((double)(noiseScale+2-cameraHeight), thePlayerShip->pos[1]));
+
+>>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 		//gluLookAt(camx,camy+1,cameraOffset,xpos,ypos,thePlayerShip->pos[2]*3,0,1,0);
 		gluLookAt(camx,camy+1,cameraOffset,thePlayerShip->pos[0],thePlayerShip->pos[1],thePlayerShip->pos[2]*3,0,1,0);
-		
+
 		//gluLookAt(xpos*0.8,ypos*0.8+1,cameraOffset,xpos,ypos,thePlayerShip->pos[2]*3,0,1,0);
+<<<<<<< HEAD
 		
 	
 	initLights();
 		
+=======
+
+
+	initLights();
+
+>>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 		renderObjects();
-	
+
         glPushMatrix();
         glScalef(frameSize, frameSize, frameSize);
 		glColor4f(1.0f,1.0f,1.0f,0.5f);
@@ -148,7 +164,12 @@ void render(){
 		}glEnd();
 		//*/
         glPopMatrix();
+<<<<<<< HEAD
 	
 	
+=======
+
+
+>>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	#endif
 }

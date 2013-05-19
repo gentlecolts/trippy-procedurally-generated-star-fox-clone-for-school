@@ -6,7 +6,9 @@
 #include "gameController.h"
 #include "gameShip.h"
 #include "glhelper.h"
-#include "guiobj.h"
+#include "guilib/guiobj.h"
+
+#include "HelloSDL/menu.h"
 
 void initSDL() {
     putenv("SDL_VIDEO_WINDOW_POS=center");
@@ -33,7 +35,7 @@ void initSDL() {
 	#if doGL
 //	glInit();
 	#endif
-	
+
 	picture::target=screen;
 
 	chkCloseEvent();
@@ -51,13 +53,13 @@ void chkCloseEvent(){
 	if(needToUnload) {
 		inGame=false;
 		screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_HWPALETTE | SDL_HWACCEL | SDL_DOUBLEBUF | SDL_SRCALPHA | SDL_ASYNCBLIT);
-		
+
 		unloadGame();
 		didGameSetup=false;
 		needToUnload=false;
 		cout<<"score: "<<playerScore<<endl;
 	}
-	
+
 	if(SDL_PollEvent(&e)) {
 		switch(e.type) {
 		case SDL_QUIT:
@@ -69,6 +71,10 @@ void chkCloseEvent(){
 			if(key==27){
 				inGame=false;
 				screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_HWPALETTE | SDL_HWACCEL | SDL_DOUBLEBUF | SDL_SRCALPHA | SDL_ASYNCBLIT);
+			}
+
+			if(key==SDLK_SPACE){
+				play(NULL);
 			}
 
 			if(key==SDLK_DOWN || key==SDLK_s){//DOWN

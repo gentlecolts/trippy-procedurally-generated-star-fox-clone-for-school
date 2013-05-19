@@ -9,12 +9,12 @@
 #include "ModelConstants.h"
 #include "terrain.h"
 #include "math.h"
-#include "Matrix.h"
+#include "HelloSDL/Matrix.h"
 #include <ctime>
-#include "ObjectFactoryRegister.h"
-#include "ObjectFactory.h"
-#include "SwarmWave.h"
-#include "BossWave.h"
+#include "HelloSDL/ObjectFactoryRegister.h"
+#include "HelloSDL/ObjectFactory.h"
+#include "HelloSDL/SwarmWave.h"
+#include "HelloSDL/BossWave.h"
 #include "GLHelper.h"
 
 
@@ -45,11 +45,11 @@ void doTests() {
  */
 void setupGame() {
 	didGameSetup=true;
-	
+
 	initModels();
-	
+
 	registerAll();
-	
+
     //gameObjects.push_back(new PlayerShip(0));
 	thePlayerShip=new PlayerShip(0);
 	numObjects=1;
@@ -84,22 +84,26 @@ void updateObjects() {
 		lastWaveTime=curTime;
         readyForNextWave=false;
     }
-	
+
 	double dt=(double)(curTime-prev)/1000;		//millis to seconds
+<<<<<<< HEAD
 	
 	playerScore+=dt;
 	
+=======
+
+>>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	updateTerrain(dt);
-	
+
 	GameShip* obj=thePlayerShip;
 //	cout<<"tick"<<endl;
 	while(obj!=NULL) {
 //		cout<<"obj: "<<obj<<endl;
 		obj->doUpdate(dt);
-		
-		
+
+
 		if(obj->scheduledToDelete || (obj->isDone() && (obj->parentWave==NULL || obj->parentWave->isDone()))) {
-			
+
 			obj=obj->destroyAndGetNext();
 		} else {
 			obj=obj->getNext();
@@ -109,9 +113,9 @@ void updateObjects() {
 	obj=lasers;
 	while(obj!=NULL) {
 		obj->doUpdate(dt);
-		
+
 		if(obj->scheduledToDelete || obj->isDone()) {
-			
+
 			if(obj==lasers)
 				lasers=obj->getNext();
 			obj=obj->destroyAndGetNext();
@@ -119,11 +123,11 @@ void updateObjects() {
 			obj=obj->getNext();
 		}
 	}
-	
+
 	obj=enemyLasers;
 	while(obj!=NULL) {
 		obj->doUpdate(dt);
-		
+
 		if(obj->scheduledToDelete || obj->isDone()) {
 			if(obj==enemyLasers)
 				enemyLasers=obj->getNext();
@@ -166,25 +170,25 @@ void renderObjects() {
     /*for(int i=0;i<gameObjects.size();i++) {
         gameObjects.at(i)->render();
     }*/
-	
+
 	GameShip *obj=thePlayerShip;
 	while(obj!=NULL) {
 		obj->render();
-		
+
 		obj=obj->getNext();
 	}
 
 	obj=lasers;
 	while(obj!=NULL) {
 		obj->render();
-		
+
 		obj=obj->getNext();
 	}
-	
+
 	obj=enemyLasers;
 	while(obj!=NULL) {
 		obj->render();
-		
+
 		obj=obj->getNext();
 	}
 }
@@ -196,12 +200,12 @@ void renderObjects() {
 void addLaser(Laser* las, bool player) {
 	if(player) {
 		GameShip *oldLas=lasers;
-		
+
 		lasers=las;
 		lasers->setNext(oldLas);
 	} else {
 		GameShip *oldLas=enemyLasers;
-		
+
 		enemyLasers=las;
 		enemyLasers->setNext(oldLas);
 	}

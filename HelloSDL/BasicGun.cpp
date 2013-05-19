@@ -7,10 +7,10 @@
 //
 
 #include "BasicGun.h"
-#include "ModelConstants.h"
-#include "Model.h"
-#include "gameController.h"
-#include "Vec3d.h"
+#include "../ModelConstants.h"
+#include "../Model.h"
+#include "../gameController.h"
+#include "../Vec3d.h"
 
 void BasicGun::init() {
 	model=basicGunModel;
@@ -18,7 +18,7 @@ void BasicGun::init() {
 }
 
 BasicGun::BasicGun() : GameObject() {
-	
+
 	lastFired=0;
 	fireRate=10;
 	parent=NULL;
@@ -28,7 +28,7 @@ BasicGun::BasicGun() : GameObject() {
 
 BasicGun::BasicGun(GameObject *p) : GameObject() {
 	init();
-	
+
 	lastFired=0;
 	fireRate=10;
 	parent=p;
@@ -43,11 +43,17 @@ void BasicGun::doFire() {
 }
 
 void BasicGun::doDoFire() {
-	
+
 	Vec3d pos=absolutePosition();
+<<<<<<< HEAD
 	
 //	cout<<"pos: "<<pos<<endl;
 	
+=======
+
+//	cout<<"pos: "<<pos<<endl;
+
+>>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	Vec3d ang=absoluteAngle();
 	addLaser(new Laser(pos, ang), player);
 }

@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include <cmath>
-#include "GameObject.h"
+#include "../GameObject.h"
 
 typedef enum {
 	WEAPON=0,
@@ -28,9 +28,9 @@ struct ObjectType {
 	double diff;			//have maxdiff too, check (1/(1+dist)) for prob
 	int numAttachPointsEst;
 	int maxChildren;
-	
+
 	string title;
-	
+
 //	GameObject *(*gameObject)(GameObject *parent, int seed, double diff, double size);
 	GameObject *(*gameObject)(GameObject *parent, int seed);
 	Model *(*model)();
@@ -39,11 +39,11 @@ struct ObjectType {
 
 struct ObjectTypeTree {
 	ObjectType *type;
-	
+
 	int seed;
 	double diff;
 	double size;
-	
+
 	ObjectTypeTree** children;
 	bool *filled;
 	int numChildren=0;

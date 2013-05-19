@@ -7,12 +7,12 @@
 //
 
 #include "RegisterWeapons.h"
-#include "ModelConstants.h"
+#include "../ModelConstants.h"
 #include "BasicGun.h"
 
 void registerBasicGunType() {
 	ObjectType *basicGunType=new ObjectType;
-	
+
 	basicGunType->type=WEAPON;
 	basicGunType->candidateChildren=basicGunCandidateChildren;
 	basicGunType->diff=5;
@@ -22,7 +22,7 @@ void registerBasicGunType() {
 	basicGunType->numAttachPointsEst=0;
 	basicGunType->maxChildren=0;
 	basicGunType->title="basicGun";
-	
+
 	registerObjectType(basicGunType);
 }
 
@@ -36,9 +36,9 @@ Model *basicGunGetModel() {
 
 GameObject* basicGunGetGameObject(GameObject *parent, int seed) {
 	srand(seed);
-	
+
 	BasicGun *gun=new BasicGun(parent);
-	
+
 	return gun;
 	//create a random object
 }

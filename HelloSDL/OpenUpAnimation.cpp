@@ -7,7 +7,7 @@
 //
 
 #include "OpenUpAnimation.h"
-#include "imports.h"
+#include "../imports.h"
 
 OpenUpAnimation::OpenUpAnimation(GameObject *obj, Model *m, double t, int f) : Animation(m, obj) {
 	time=t;
@@ -23,5 +23,5 @@ void OpenUpAnimation::doTriangleTransform(int n) {
 }
 
 void OpenUpAnimation::update(double dt) {
-	
+
 }

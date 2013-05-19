@@ -10,7 +10,7 @@
 #define __HelloSDL__SlideDownAnimation__
 
 #include <iostream>
-#include "Animation.h"
+#include "../Animation.h"
 
 class SlideDownAnimation : public Animation {
 protected:

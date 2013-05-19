@@ -7,8 +7,8 @@
 //
 
 #include "AimingStrut.h"
-#include "globals.h"
-#include "gameShip.h"
+#include "../globals.h"
+#include "../gameShip.h"
 
 AimingStrut::AimingStrut() : BasicStrut() {
 }
@@ -19,7 +19,7 @@ AimingStrut::AimingStrut(GameObject *p, double s, Model *m) : BasicStrut() {
 
 void AimingStrut::init(GameObject *p, double s, Model *m) {
 	BasicStrut::init(p, m);
-	
+
 	speed=s;
 }
 
@@ -30,48 +30,48 @@ void AimingStrut::update(double dt) {
 		target=thePlayerShip->getNext();
 		if(target==NULL)
 			return;
-		
+
 		while(target->player) {
 			target=target->getNext();
-			
+
 			if(target==NULL)
 				return;
 		}
 	} else {
 		target=thePlayerShip;
 	}
-	
+
 	targetPoint=target->absolutePosition();
-	
+
 	Vec3d dist=-(targetPoint-absolutePosition());
-	
+
 	if(!player)
 		dist=-dist;
-	
+
 //	dist=Vec3d(0,1,0);
 	//cout<<"dist: "<<dist<<endl;
 	//dist[2]*=-1;
-	
-	
-	//dist[2]=-dist[2];
-	
-	Vec3d angles=invGetVector(dist);
-	
 
-	
+
+	//dist[2]=-dist[2];
+
+	Vec3d angles=invGetVector(dist);
+
+
+
 	if(parent!=NULL)
 		angles-=parent->absoluteAngle();
-	
+
 	Vec3d diff=angles-rot;
 	if(diff.magnitude()>speed) {
 		diff=speed*diff.normalize();
 	}
-	
+
 	rot+=diff*dt;
-	
+
 	//cout<<"rot: "<<rot<<endl;
 }
 
 void AimingStrut::afterSetup() {
-	
+
 }

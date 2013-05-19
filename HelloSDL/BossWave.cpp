@@ -8,7 +8,7 @@
 
 #include "BossWave.h"
 #include "HoverShip.h"
-#include "RamShip.h"
+#include "../RamShip.h"
 #include "ObjectFactory.h"
 
 BossWave::BossWave(double diff) {
@@ -20,27 +20,22 @@ BossWave::BossWave(double diff) {
  Creates 3 RamShips and puts them in play
  */
 void BossWave::init(){
-//	cout<<"wave"<<endl;
-	
-    //double x=rand()%(2*frameSize)-frameSize;
-    //double y=rand()%(2*frameSize)-frameSize;
-	
 	double x=thePlayerShip->pos[0];
 	double y=thePlayerShip->pos[1];
-	
+
 	ObjectType *type=typeForName("hoverShip");
 	 
 	ship=(EnemyShip *)expandTree(NULL, treeFun(type, 3+difficulty/4, 50+difficulty/10));
 	cout<<"diff: "<<difficulty<<endl;
 	
 	ship->init(x, y,-5,8);
-	
+
     ship->parentWave=this;
-	
+
 	thePlayerShip->appendObject(ship);
-	
+
 	ship->score=100+difficulty*1.5;
-	
+
     retain();
 }
 
@@ -49,7 +44,7 @@ void BossWave::init(){
  This wave does nothing after being created, just spawns some enemies at the beginnings
  */
 void BossWave::tick(){
-	
+
 }
 
 /**
@@ -60,7 +55,7 @@ void BossWave::remove(GameObject *obj) {
     if(ship==obj) {
         ship=NULL;
     }
-	
+
 }
 
 /**

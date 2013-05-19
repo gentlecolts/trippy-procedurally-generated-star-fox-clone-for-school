@@ -8,9 +8,9 @@
 
 #include "BasicRocketLauncher.h"
 #include "Nade.h"
-#include "gameController.h"
-#include "ModelConstants.h"
-#include "Model.h"
+#include "../gameController.h"
+#include "../ModelConstants.h"
+#include "../Model.h"
 #include "SlideDownAnimation.h"
 
 BasicRocketLauncher::BasicRocketLauncher(GameObject *obj) : BasicGun(obj){
@@ -22,9 +22,9 @@ BasicRocketLauncher::BasicRocketLauncher(GameObject *obj) : BasicGun(obj){
 void BasicRocketLauncher::init() {
 	model=rocketLauncherModel;
 	modelSize=rocketLauncherModel->length;
-	
+
 	fireRate=1;
-	
+
 	addChild(new Grenade(), 0);
 //	cout<<"launcher player: "<<player<<" ammo: "<<children[0]->player<<endl;
 	children[0]->parent=this;
@@ -50,14 +50,14 @@ void BasicRocketLauncher::doDoFire() {
 
 void BasicRocketLauncher::fireRocket(Grenade *g) {
 	Vec3d pos=absolutePosition();
-	
+
 	Vec3d ang=absoluteAngle();
-	
+
 	g->init(pos, ang, Vec3d(0,0,0), 5, 5);
 	g->parent=NULL;
 	g->activate();
 	g->setAnimation(NULL);
-	
+
 	for(int i=0;i<model->numAttachPoints;i++) {
 //		cout<<"children: "<<children[i]<<"g: "<<g<<endl;
 //		cout<<"equal: "<<(children[i]==g)<<endl;
@@ -67,7 +67,7 @@ void BasicRocketLauncher::fireRocket(Grenade *g) {
 			numChildren--;
 		}
 	}
-	
+
 	addLaser(g, player);
 }
 

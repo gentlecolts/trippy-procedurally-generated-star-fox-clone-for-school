@@ -11,7 +11,7 @@
 
 #include <iostream>
 
-#include "EnemyShip.h"
+#include "../EnemyShip.h"
 #include "ObjectFactory.h"
 
 class TrackingShip : public EnemyShip {

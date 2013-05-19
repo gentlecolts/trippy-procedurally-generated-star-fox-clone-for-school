@@ -4,10 +4,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above notice and this permission notice shall be included in all copies
  * or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
 #define VEC3F_H_INCLUDED
 
 #include <iostream>
-#include "Matrix.h"
+#include "HelloSDL/Matrix.h"
 
 class Vec4d;
 
@@ -36,22 +36,22 @@ class Vec3d {
 	public:
 		Vec3d();
 		Vec3d(double x, double y, double z);
-		
+
 		double &operator[](int index);
 		double operator[](int index) const;
-		
+
 		Vec3d operator*(double scale) const;
 		Vec3d operator/(double scale) const;
 		Vec3d operator+(const Vec3d &other) const;
 		Vec3d operator-(const Vec3d &other) const;
 		Vec3d operator-() const;
 		operator Vec4d();
-		
+
 		const Vec3d &operator*=(double scale);
 		const Vec3d &operator/=(double scale);
 		const Vec3d &operator+=(const Vec3d &other);
 		const Vec3d &operator-=(const Vec3d &other);
-		
+
 		double magnitude() const;
 		double magnitudeSquared() const;
 		Vec3d normalize() const;

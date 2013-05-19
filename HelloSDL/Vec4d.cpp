@@ -7,12 +7,12 @@
 //
 
 #include "Vec4d.h"
-#include "vec3d.h"
+#include "../vec3d.h"
 
 using namespace std;
 
 Vec4d::Vec4d() {
-	
+
 }
 
 Vec4d::Vec4d(double x, double y, double z, double w) {

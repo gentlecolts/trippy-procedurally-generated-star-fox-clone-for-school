@@ -10,7 +10,7 @@
 #define __HelloSDL__OpenUpAnimation__
 
 #include <iostream>
-#include "Animation.h"
+#include "../Animation.h"
 
 class OpenUpAnimation : public Animation {
 protected:

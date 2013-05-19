@@ -11,14 +11,14 @@
 
 #include <iostream>
 #include "Nade.h"
-#include "gameShip.h"
-#include "Laser.h"
+#include "../gameShip.h"
+#include "../Laser.h"
 
 class Grenade : public Laser {
 public:
 	Grenade();
 	Grenade(Vec3d p, Vec3d v, Vec3d a, double r, long mt);
-	
+
 	void init(Vec3d p, Vec3d v, Vec3d a, double r, long mt);
 	void update(double dt);
 	void explode();
@@ -26,7 +26,7 @@ public:
 	void render();
 	bool isDone();
 	int getDamage(GameObject *other);
-	
+
 	double radius;
 	Vec3d accell;
 	long explodeTime;

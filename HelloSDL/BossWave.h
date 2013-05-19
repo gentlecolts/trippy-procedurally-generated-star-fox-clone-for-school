@@ -10,7 +10,7 @@
 #define __HelloSDL__BossWave__
 
 #include <iostream>
-#include "enemyWave.h"
+#include "../enemyWave.h"
 
 class EnemyShip;
 
@@ -21,7 +21,7 @@ public:
     bool isDone();
     bool childrenDone();
     void remove(GameObject *obj);
-	
+
     BossWave(double diff);
 	~BossWave();
 private:

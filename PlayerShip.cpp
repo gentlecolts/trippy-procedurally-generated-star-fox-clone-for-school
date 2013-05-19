@@ -5,13 +5,13 @@
 #include "imports.h"
 #include "Model.h"
 #include "Vec3d.h"
-#include "BasicGun.h"
+#include "HelloSDL/BasicGun.h"
 #include "gameController.h"
-#include "BasicStrut.h"
-#include "RotateStrut.h"
-#include "FanStrutThing.h"
-#include "AimingStrut.h"
-#include "BasicRocketLauncher.h"
+#include "HelloSDL/BasicStrut.h"
+#include "HelloSDL/RotateStrut.h"
+#include "HelloSDL/FanStrutThing.h"
+#include "HelloSDL/AimingStrut.h"
+#include "HelloSDL/BasicRocketLauncher.h"
 
 /**
  PlayerShip::PlayerShip(int n)
@@ -89,10 +89,17 @@ void PlayerShip::uniqueRenderAfterPop() {
 
     glEnd();
     glPopMatrix();
+<<<<<<< HEAD
 	
 	glPushMatrix();
 	glTranslatef(-.7+pos[0],1+pos[1],pos[2]);
 	
+=======
+
+	glPushMatrix();
+	glTranslatef(-.7+pos[0],1+pos[1],pos[2]);
+
+>>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	glBegin(GL_QUADS);
 	glColor3f(max(0,playerHP-health), max(0,health-playerHP), 0.3);
 	glVertex3d(-0.2, 0.05,1);
@@ -100,17 +107,21 @@ void PlayerShip::uniqueRenderAfterPop() {
 	glVertex3d(0.3-(playerHP-(double)health)/playerHP*0.5, -0.05,1);
 	glVertex3d(-0.2, -.05,1);
 	glEnd();
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	glPopMatrix();
 }
 
 void PlayerShip::afterSetup() {
 //	addChild(new FanStrut(this, 1, basicStrutModel), 0);
 //	addChild(new FanStrut(this, 1, basicStrutModel), 1);
-	
+
 	//addChild(new RotateStrut(this,longStrutModel, Vec3d(30,-70,360),Vec3d(-30,0,-360), 0.5), 0);
 	//children[0]->addChild(new BasicGun(children[0]), 1);
-	
+
 	//	for(int i=0;i<model->numAttachPoints;i++) {
 	addChild(new BasicStrut(this, basicStrutModel), 0, Vec3d(0,180,0));	//???
 	children[0]->addChild(new BasicStrut(children[0], basicStrutModel), 5);
@@ -129,44 +140,50 @@ void PlayerShip::afterSetup() {
  */
 void PlayerShip::update(double dt) {
 	handleKeyInput(dt);
-	
+
 	Vec3d vec=getVector(rot[0], rot[1]);
-	
+
 	vel=vec*maxV;
-	
+
 	pos[0]+=vel[0]*dt;
     pos[1]+=vel[1]*dt;
+<<<<<<< HEAD
 	
 	pos[0]=max(min((double)pos[0],1.0*frameSize),-1.0*frameSize);
 	pos[1]=max(min((double)pos[1],1.0*frameSize),-1.0*frameSize);
+=======
+
+	pos[0]=max(min((double)pos[0],1.0*noiseScale),-1.0*noiseScale);
+	pos[1]=max(min((double)pos[1],1.0*noiseScale),-1.0*noiseScale);
+>>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 
     if(invinceStart<0) {
         bool hit=false;
-		
+
 		GameShip *obj=getNext();
 		while(obj!=NULL) {
 			if(collidesWithObject(obj)) {
                 hit=true;
                 break;
             }
-			
+
 			obj=obj->getNext();
 		}
-		
+
 		GameShip *las=enemyLasers;
 		while(las!=NULL) {
 			if(las->collidesWithObject(this)) {
 				hit=true;
-				
+
 				break;
 			}
-			
+
 			las=las->getNext();
 		}
-		
+
         if(hit || collidesWithNoise()) {
             invinceStart=clock();
-			
+
 			if(hit) {
 				if(obj!=NULL) {
 					health-=obj->getDamage(this);
@@ -177,11 +194,11 @@ void PlayerShip::update(double dt) {
 			} else {
 				health-=3;
 			}
-			
+
             //xvel=0;
             //xvel=0;
         }
-		
+
 		if(health<0) {
 			needToUnload=true;
 		}

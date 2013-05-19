@@ -10,11 +10,12 @@
 #define __HelloSDL__menu__
 
 #include <iostream>
-#include "guilib.h"
+#include "../guilib/guilib.h"
 
 class button;
 
 void launchMenu();
+void play(button* b);
 
 extern button *playButton, *creditsButton, *settingsButton, *quitButton;
 
