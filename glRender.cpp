@@ -57,8 +57,8 @@ void glRender() {
 			x=c*step;
 				
 			//*/
-				if(noise[precompindx(x,y,z+zshft)]>tolerance){
-//				if(perlin.get(x,y,z+zshft)>tolerance){
+//				if(noise[precompindx(x,y,z+zshft)]>tolerance){
+				if(perlin.get(x,y,z+zshft)>tolerance){
 					if(!inCube){
 						inCube=true;
 						beenDrawn=false;

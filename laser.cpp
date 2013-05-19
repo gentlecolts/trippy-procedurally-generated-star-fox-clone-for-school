@@ -10,14 +10,14 @@ using namespace std;
 
 #define laserSpeed 15
 
-Laser::Laser() : GameShip(0) {
+Laser::Laser() : GameShip() {
 }
 
 /**
  Laser::Laser(double x, double y, double z, double xr, double yr, double zr)
  Calls init
  */
-Laser::Laser(Vec3d p, Vec3d a) : GameShip(0){
+Laser::Laser(Vec3d p, Vec3d a) : GameShip(){
 	model=laserModel;
 	modelSize=laserModel->length;
     init(p, a);

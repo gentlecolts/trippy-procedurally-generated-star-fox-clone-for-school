@@ -24,7 +24,6 @@ public:
 	TrackingShip(Model *m);
 	void init(double x, double y, int startPos, int time);
 	void update(double dt);
-	void afterSetup();
 	bool isDone();
 };
 

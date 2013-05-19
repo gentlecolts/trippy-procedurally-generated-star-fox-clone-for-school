@@ -51,7 +51,7 @@ void setupGame() {
 	registerAll();
 
     //gameObjects.push_back(new PlayerShip(0));
-	thePlayerShip=new PlayerShip(0);
+	thePlayerShip=new PlayerShip();
 
     /*for(int i=1;i<numGameObjects;i++) {
         gameObjects.push_back(new EnemyShip());

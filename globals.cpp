@@ -37,7 +37,7 @@ bool readyForNextWave=true;
 long waveTime=10000;
 bool didGameSetup=false, needToUnload=false;
 int playerScore=0;
-double noiseScale=2;
+double noiseScale=1;
 
 /**************** IO    *********************/
 bool leftmov,rightmov,upmov,downmov,space,fire,fireRockets;

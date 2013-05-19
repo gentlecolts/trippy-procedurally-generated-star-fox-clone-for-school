@@ -17,7 +17,6 @@ public:
 	AimingStrut();
 	AimingStrut(GameObject *p, double speed, Model *m);
 	void init(GameObject *p, double speed, Model *m);
-	void afterSetup();
 	void update(double dt);
 	
 	double speed;
