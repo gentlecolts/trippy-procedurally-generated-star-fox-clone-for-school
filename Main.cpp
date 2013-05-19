@@ -37,6 +37,10 @@ int main(int argc,char** argv){
 				if(!didGameSetup)
 					setupGame();
 
+				if(screen!=NULL) {
+					SDL_FreeSurface(screen);
+				}
+				
 				screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_OPENGL);
 				//crashes here sometimes
 				glInit();

@@ -29,11 +29,6 @@ Matrix::Matrix(Vec4d x, Vec4d y, Vec4d z, Vec4d w) {
 	v[1] = y;
 	v[2] = z;
 	v[3] = w;
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 //	cout<<"z: "<<z<<endl;
 }
 

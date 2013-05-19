@@ -70,7 +70,8 @@ void launchMenu() {
 		*s3=IMG_Load("/Users/jonahchazan/Desktop/trippy-procedurally-generated-star-fox-clone-for-school/Images/menuPlayP.png"),
 		*s4=IMG_Load("/Users/jonahchazan/Desktop/trippy-procedurally-generated-star-fox-clone-for-school/Images/menuQuit.png"),
 		*s5=IMG_Load("/Users/jonahchazan/Desktop/trippy-procedurally-generated-star-fox-clone-for-school/Images/menuQuitH.png"),
-		*s6=IMG_Load("/Users/jonahchazan/Desktop/trippy-procedurally-generated-star-fox-clone-for-school/Images/menuQuitP.png");
+		*s6=IMG_Load("/Users/jonahchazan/Desktop/trippy-procedurally-generated-star-fox-clone-for-school/Images/menuQuitP.png"),
+		*s7=IMG_Load("/Users/jonahchazan/Desktop/trippy-procedurally-generated-star-fox-clone-for-school/Images/instructions.png");
 	#endif
 
 	if(s1==NULL || s2==NULL || s3==NULL || s4==NULL || s5==NULL || s6==NULL) {

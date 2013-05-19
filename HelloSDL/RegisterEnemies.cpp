@@ -26,11 +26,6 @@ void registerHoverShipType() {
 	hoverShipType->maxChildren=-1;
 	hoverShipType->title="hoverShip";
 //	cout<<"numAttach->->: "<<playerShipModel->numAttachPoints<<endl;
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	registerObjectType(hoverShipType);
 }
 

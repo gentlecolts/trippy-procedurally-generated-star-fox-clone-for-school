@@ -116,36 +116,18 @@ void render(){
 		glLoadIdentity();
 		//glTranslatef(-camx,camy,0);
 
-<<<<<<< HEAD
-	
-			//gluLookAt(0,0,0,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);			BEST CAMERA
-			//gluLookAt(camx/2,-camy/2,cameraOffset,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);
-		double xpos=max((double)(-frameSize-2+cameraWidth), min((double)(frameSize+2-cameraWidth), thePlayerShip->pos[0]));
-		double ypos=max((double)(-frameSize-2+cameraHeight), min((double)(frameSize+2-cameraHeight), thePlayerShip->pos[1]));
-		
-=======
-
 			//gluLookAt(0,0,0,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);			BEST CAMERA
 			//gluLookAt(camx/2,-camy/2,cameraOffset,thePlayerShip->xpos,thePlayerShip->ypos,thePlayerShip->zpos,0,1,0);
 		double xpos=max((double)(-noiseScale-2+cameraWidth), min((double)(noiseScale+2-cameraWidth), thePlayerShip->pos[0]));
 		double ypos=max((double)(-noiseScale-2+cameraHeight), min((double)(noiseScale+2-cameraHeight), thePlayerShip->pos[1]));
 
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 		//gluLookAt(camx,camy+1,cameraOffset,xpos,ypos,thePlayerShip->pos[2]*3,0,1,0);
 		gluLookAt(camx,camy+1,cameraOffset,thePlayerShip->pos[0],thePlayerShip->pos[1],thePlayerShip->pos[2]*3,0,1,0);
 
 		//gluLookAt(xpos*0.8,ypos*0.8+1,cameraOffset,xpos,ypos,thePlayerShip->pos[2]*3,0,1,0);
-<<<<<<< HEAD
-		
 	
-	initLights();
-		
-=======
-
-
-	initLights();
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
+		initLights();
+	
 		renderObjects();
 
         glPushMatrix();
@@ -164,12 +146,6 @@ void render(){
 		}glEnd();
 		//*/
         glPopMatrix();
-<<<<<<< HEAD
 	
-	
-=======
-
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	#endif
 }

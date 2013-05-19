@@ -86,13 +86,8 @@ void updateObjects() {
     }
 
 	double dt=(double)(curTime-prev)/1000;		//millis to seconds
-<<<<<<< HEAD
 	
 	playerScore+=dt;
-	
-=======
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	updateTerrain(dt);
 
 	GameShip* obj=thePlayerShip;

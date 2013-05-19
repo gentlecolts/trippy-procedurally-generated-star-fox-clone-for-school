@@ -43,11 +43,7 @@ GameObject *expandTree(GameObject *parent, ObjectTypeTree *tree) {
 
 //	GameObject *obj=tree->type->gameObject(parent, tree->seed, tree->diff, tree->size);
 	GameObject *obj=tree->type->gameObject(parent, tree->seed);
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	/*cout<<"type: "<<tree->type->title<<endl;
 	cout<<"model size: "<<obj->model->length<<endl;
 	cout<<"attach points: "<<obj->model->numAttachPoints<<endl;
@@ -63,17 +59,7 @@ GameObject *expandTree(GameObject *parent, ObjectTypeTree *tree) {
 			obj->addChild(childObj, i);		//doesn't take into account rotations... Hm...
 		}
 	}
-<<<<<<< HEAD
 	
-//	cout<<"obj: "<<obj<<endl;
-//	cout<<"real num children: "<<obj->numChildren<<endl;
-	
-=======
-
-//	cout<<"obj: "<<obj<<endl;
-//	cout<<"real num children: "<<obj->numChildren<<endl;
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	return obj;
 }
 
@@ -94,32 +80,12 @@ ObjectType *getRandomObject(vector<ObjectType *> *v, double diff, double size) {
 		probabilities[i]=abs(1/((maxSize(v->at(i), diff, size)-size)+(difficulty(v->at(i), diff, size)-diff)));
 		total+=probabilities[i];
 	}
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
-//	cout<<"difficulty: "<<diff<<" size: "<<size<<endl;
-	for(int i=0;i<v->size();i++) {
-//		cout<<"\tobject: "<<v->at(i)->title<<" p="<<probabilities[i]<<" diff="<<difficulty(v->at(i), diff, size)<<endl;
-	}
-<<<<<<< HEAD
 	
 //	cout<<"total: "<<total<<endl;
 	
 	double randnum=(double)(rand())/RAND_MAX*total;
-	
-//	cout<<"randnum: "<<randnum<<endl;
-	
-=======
 
-//	cout<<"total: "<<total<<endl;
-
-	double randnum=(double)(rand())/RAND_MAX*total;
-
-//	cout<<"randnum: "<<randnum<<endl;
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	for(int i=0;i<v->size();i++) {
 		if(randnum>probabilities[i]) {
 			randnum-=probabilities[i];
@@ -128,15 +94,8 @@ ObjectType *getRandomObject(vector<ObjectType *> *v, double diff, double size) {
 			return v->at(i);
 		}
 	}
-<<<<<<< HEAD
 	
-//	cout<<"????"<<endl;
 	
-=======
-
-//	cout<<"????"<<endl;
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	return v->at(0);
 }
 
@@ -159,11 +118,7 @@ int ct=0;
 ObjectTypeTree* treeFun(ObjectType *type, double diff, double size) {
 	ct++;
 //	cout<<"ct: "<<ct<<endl;
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	ObjectTypeTree *tree=new ObjectTypeTree;
 
 	unsigned int randomNum=rand();

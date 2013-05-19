@@ -209,15 +209,7 @@ void GameObject::addChild(GameObject *child, int index, Vec3d angle) {
 
 	if(index==-1)
 		index=numChildren;
-<<<<<<< HEAD
 	
-//	cout<<"adding something to "<<this<<" at "<<index<<endl;
-	
-=======
-
-//	cout<<"adding something to "<<this<<" at "<<index<<endl;
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	numChildren++;
 
 	children[index]=child;
@@ -229,15 +221,9 @@ void GameObject::addChild(GameObject *child, int index, Vec3d angle) {
 	attachPointsFilled[index]=true;
 
 	child->setPlayer(player);
-<<<<<<< HEAD
 	
 	child->parent=this;
 	
-=======
-
-	child->parent=this;
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	addUpHealth(child->health);
 }
 
@@ -266,28 +252,14 @@ Matrix GameObject::getMatrix() {
 //		cout<<"got parent matrix"<<endl;
 	}
 //	cout<<"parent matrix: "<<mat<<endl;
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	mat=mat*Matrix(
 				   Vec4d(1, 0, 0, pos[0]),				//translation
 				   Vec4d(0, 1, 0, pos[1]),
 				   Vec4d(0, 0, 1, pos[2]),
 				   Vec4d(0, 0, 0, 1)
 				   );
-<<<<<<< HEAD
 	
-//	cout<<"matrix: "<<mat<<endl;
-//	cout<<"my pos: "<<pos<<endl;
-	
-=======
-
-//	cout<<"matrix: "<<mat<<endl;
-//	cout<<"my pos: "<<pos<<endl;
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	mat=mat*Matrix(rot);
 
 	if(parent==NULL) {

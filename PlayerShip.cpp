@@ -89,17 +89,10 @@ void PlayerShip::uniqueRenderAfterPop() {
 
     glEnd();
     glPopMatrix();
-<<<<<<< HEAD
 	
 	glPushMatrix();
 	glTranslatef(-.7+pos[0],1+pos[1],pos[2]);
 	
-=======
-
-	glPushMatrix();
-	glTranslatef(-.7+pos[0],1+pos[1],pos[2]);
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	glBegin(GL_QUADS);
 	glColor3f(max(0,playerHP-health), max(0,health-playerHP), 0.3);
 	glVertex3d(-0.2, 0.05,1);
@@ -107,11 +100,7 @@ void PlayerShip::uniqueRenderAfterPop() {
 	glVertex3d(0.3-(playerHP-(double)health)/playerHP*0.5, -0.05,1);
 	glVertex3d(-0.2, -.05,1);
 	glEnd();
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
 	glPopMatrix();
 }
 
@@ -147,15 +136,10 @@ void PlayerShip::update(double dt) {
 
 	pos[0]+=vel[0]*dt;
     pos[1]+=vel[1]*dt;
-<<<<<<< HEAD
 	
 	pos[0]=max(min((double)pos[0],1.0*frameSize),-1.0*frameSize);
 	pos[1]=max(min((double)pos[1],1.0*frameSize),-1.0*frameSize);
-=======
-
-	pos[0]=max(min((double)pos[0],1.0*noiseScale),-1.0*noiseScale);
-	pos[1]=max(min((double)pos[1],1.0*noiseScale),-1.0*noiseScale);
->>>>>>> ea6e2b2a642d651c58cf69f29f0be7ab55a1335c
+	
 
     if(invinceStart<0) {
         bool hit=false;
