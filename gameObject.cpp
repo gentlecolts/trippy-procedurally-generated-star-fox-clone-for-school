@@ -17,7 +17,7 @@
 
 /**
  GameObject::GameObject(int n)
- Initialize
+ Initialize the object
  */
 GameObject::GameObject() {
 	invinceStart=-1;
@@ -45,8 +45,6 @@ GameObject::GameObject() {
  Draw the model, calling theAnimation's transform methods, and uniqueRender() and uniqueRenderAfterPop()
  */
 void GameObject::render() {
-	//glDisable(GL_LIGHT0);
-
 	glPushMatrix();
 	glTranslatef(pos[0], pos[1], pos[2]);
 
@@ -57,7 +55,7 @@ void GameObject::render() {
 	uniqueRenderFirst();
 
 	if(theAnimation==NULL)
-		glBegin(model->type); // of the pyramid
+		glBegin(model->type);
 	else
 		theAnimation->doModelTransform();
 
@@ -98,8 +96,6 @@ void GameObject::render() {
 	glPopMatrix();
 
 	uniqueRenderAfterPop();
-
-	//glEnable(GL_LIGHT0);
 }
 
 /**
@@ -122,15 +118,16 @@ void GameObject::doUpdate(double dt) {
 
     update(dt);
 
-	//cout<<"start"<<endl;
 	for(int i=0;i<model->numAttachPoints;i++) {
-		//cout<<"i "<<i<<" filled "<<attachPointsFilled[i]<<endl;
 		if(attachPointsFilled[i])
 			children[i]->doUpdate(dt);
 	}
-	//cout<<"end"<<endl;
 }
 
+/**
+ void GameObject::addUpHealth(int h)
+ Propagates health up through the tree of objects; this allows adding children onto an enemy to increase its health, making more difficult enemies tougher to kill and providing some benefit to enemies that decide to stack struts without building anything offensive
+ */
 void GameObject::addUpHealth(int h) {
 	if(parent!=NULL) {
 		parent->addUpHealth(h);
@@ -141,7 +138,7 @@ void GameObject::addUpHealth(int h) {
 
 /**
  void GameObject::setup()
- Do setup that needs to be done after initialization: calculating the average vertex distance
+ Do setup that needs to be done after initialization: calculating the average vertex distance, initializing the child object arrays
  */
 void GameObject::setup() {
     didSetup=true;
@@ -156,7 +153,6 @@ void GameObject::setup() {
     avgDist*=objScale;
 
 	if(model->numAttachPoints>0) {
-//		cout<<"DFDSD "<<model->numAttachPoints<<endl;
 		children=new GameObject*[model->numAttachPoints];
 
 		attachPointsFilled=new bool[model->numAttachPoints];
@@ -186,10 +182,18 @@ bool GameObject::collidesWithNoise() {
     return false;
 }
 
+/**
+ void GameObject::addChild(GameObject *child, int index)
+ Adds a child object at the given attach point number
+ */
 void GameObject::addChild(GameObject *child, int index) {
 	addChild(child, index, Vec3d(0,0,0));
 }
 
+/**
+ void GameObject::setPlayer(bool p)
+ Sets whether the object is on the player or enemy side and applies this to all of its children
+ */
 void GameObject::setPlayer(bool p) {
 	player=p;
 
@@ -202,6 +206,10 @@ void GameObject::setPlayer(bool p) {
 	}
 }
 
+/**
+ void GameObject::addChild(GameObject *child, int index, Vec3d angle)
+ Adds a child at a given attach point number with an offset angle
+ */
 void GameObject::addChild(GameObject *child, int index, Vec3d angle) {
 	if(!didSetup) {
 		setup();
@@ -227,8 +235,12 @@ void GameObject::addChild(GameObject *child, int index, Vec3d angle) {
 	addUpHealth(child->health);
 }
 
+/**
+ int GameObject::getDamage(GameObject *other)
+ Returns the amount of damage dealt by the two objects colliding
+ */
 int GameObject::getDamage(GameObject *other) {
-	return 10;
+	return 3;
 }
 
 /**
@@ -237,21 +249,21 @@ int GameObject::getDamage(GameObject *other) {
  */
 void GameObject::setAnimation(Animation *anim) {
 	if(theAnimation!=NULL) {
-//		cout<<"animation belongs to: "<<this<<endl;
 		delete theAnimation;
 	}
 
 	theAnimation=anim;
 }
 
+/**
+ Matrix GameObject::getMatrix()
+ Gets the cumulative transformation matrix of this object and its parents
+ */
 Matrix GameObject::getMatrix() {
-//	cout<<"CALL"<<endl;
 	Matrix mat;
 	if(parent!=NULL) {
 		mat=parent->getMatrix();
-//		cout<<"got parent matrix"<<endl;
 	}
-//	cout<<"parent matrix: "<<mat<<endl;
 	
 	mat=mat*Matrix(
 				   Vec4d(1, 0, 0, pos[0]),				//translation
@@ -260,51 +272,41 @@ Matrix GameObject::getMatrix() {
 				   Vec4d(0, 0, 0, 1)
 				   );
 	
-	mat=mat*Matrix(rot);
+	mat=mat*Matrix(rot);								//rotation
 
 	if(parent==NULL) {
 		mat=mat*Matrix(
-					   Vec4d(objScale, 0, 0, 0),
+					   Vec4d(objScale, 0, 0, 0),		//scale: the root node scales everything by objScale
 					   Vec4d(0, objScale, 0, 0),
 					   Vec4d(0, 0, objScale, 0),
 					   Vec4d(0, 0, 0, 1)
 		);
 	}
 
-//	cout<<"rot: "<<rot<<endl;
-//	cout<<"rot matrix: "<<Matrix(rot)<<endl;
-
 	return mat;
 }
 
+
+/**
+ Vec3d GameObject::absoluteAngle()
+ Gets the direction the object is pointing in world space instead of relative to its parent
+ */
 Vec3d GameObject::absoluteAngle() {
-	//cout<<"MATRIX: "<<getMatrix()<<endl;
 	Matrix mat=getMatrix();
 	Vec3d diff=mat*Vec4d(0, 0, 1, 1)-mat*Vec4d(0, 0, 0, 1);
-
-//	cout<<"diff: "<<diff<<endl;
 
 	return invGetVector(diff);
 }
 
+/**
+ Vec3d GameObject::absolutePosition()
+ Gets the object's position in world space instead of relative to its parent
+ */
 Vec3d GameObject::absolutePosition() {
 	if(parent!=NULL) {
-		/*
-		Vec3d parentPos=parent->absolutePosition();
-		Vec3d ang=parent->absoluteAngle();
-
-		Vec3d dir=pos;
-		dir=rotate(dir,Vec3d(1,0,0),ang[0]);
-		dir=rotate(dir,Vec3d(0,1,0),ang[1]);
-		dir=rotate(dir,Vec3d(0,0,1),ang[2]);
-
-		return parentPos+dir*objScale;		//completely wrong
-		 */
-
 		Matrix parentMat=parent->getMatrix();
 		return parentMat*pos;
 	}
-	//cout<<"pos: "<<pos<<endl;
 	return pos;
 }
 
@@ -328,15 +330,15 @@ void GameObject::update(double dt){}		//Update for subclasses
 void GameObject::uniqueRender(){}			//If a subclass wants to do its own drawing after rendering the model
 void GameObject::uniqueRenderAfterPop(){}	//If a subclass wants to do its own drawing with no transforms applied
 bool GameObject::isDone(){return false;}	//For checking when enemies are done
-void GameObject::uniqueRenderLast(){}
-void GameObject::uniqueRenderFirst(){}
-void GameObject::afterSetup(){}
-void GameObject::doFire() {}
+void GameObject::uniqueRenderFirst(){}		//If a subclass wants to do its own drawing before rendering the model
+void GameObject::uniqueRenderLast(){}		//If a subclass wants to do its own drawing after drawing everything
+void GameObject::afterSetup(){}				//For a subclass to do initial setup after after the children array is initialized
+void GameObject::doFire() {}				//For a subclass to be able to fire as a weapon
 
 
 /**
  void GameObject::fireWeapon()
- Creates a laser at the position, direction
+ Goes through the tree and calls fireWeapon on all children as well as doFire if they are not a big gun, essentially firing all guns in the tree
  */
 void GameObject::fireWeapon() {
 	if(didSetup) {
@@ -350,6 +352,10 @@ void GameObject::fireWeapon() {
 	}
 }
 
+/**
+ void GameObject::fireBigGuns()
+ Goes through the tree and calls fireWeapon on all children as well as doFire if they are a big gun, essentially firing all guns in the tree; this separation is so that the player doesn't waste ammo on guns with limited ammo (the rocket launcher) while being able to fire unlimited weapons such as the laser
+ */
 void GameObject::fireBigGuns() {
 	if(didSetup) {
 		if(bigGun)
@@ -365,10 +371,11 @@ void GameObject::fireBigGuns() {
 
 /**
  GameObject::~GameObject()
- Deletes theAnimation
+ Deletes theAnimation and children
  */
 GameObject::~GameObject() {
 //	cout<<"deleting something! @"<<this<<endl;
 	delete theAnimation;
 	delete[] children;
+	delete[] attachPointsFilled;
 }

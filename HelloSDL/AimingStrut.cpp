@@ -10,19 +10,35 @@
 #include "../globals.h"
 #include "../gameShip.h"
 
+/**
+ AimingStrut::AimingStrut()
+ Doesn't do much
+ */
 AimingStrut::AimingStrut() : BasicStrut() {
 }
 
+/**
+ AimingStrut::AimingStrut(GameObject *p, double s, Model *m)
+ Initializes parent, speed, and sets model
+ */
 AimingStrut::AimingStrut(GameObject *p, double s, Model *m) : BasicStrut() {
 	init(p, s, m);
 }
 
+/**
+ void AimingStrut::init(GameObject *p, double s, Model *m)
+ Does superclass init, sets speed
+ */
 void AimingStrut::init(GameObject *p, double s, Model *m) {
 	BasicStrut::init(p, m);
 
 	speed=s;
 }
 
+/**
+ void AimingStrut::update(double dt)
+ Tries to face the first thing on the opposite side (with opposite value for player), moving at a maximum speed of speed
+ */
 void AimingStrut::update(double dt) {
 	Vec3d targetPoint;
 	GameShip *target;
@@ -48,13 +64,6 @@ void AimingStrut::update(double dt) {
 	if(!player)
 		dist=-dist;
 
-//	dist=Vec3d(0,1,0);
-	//cout<<"dist: "<<dist<<endl;
-	//dist[2]*=-1;
-
-
-	//dist[2]=-dist[2];
-
 	Vec3d angles=invGetVector(dist);
 
 
@@ -70,8 +79,4 @@ void AimingStrut::update(double dt) {
 	rot+=diff*dt;
 
 	//cout<<"rot: "<<rot<<endl;
-}
-
-void AimingStrut::afterSetup() {
-
 }

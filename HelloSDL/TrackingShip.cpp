@@ -17,23 +17,27 @@
 
 /**
  TrackingShip::TrackingShip(double x, double y, int n)
- Just calls init and super
+ Just calls init and super and sets the model
  */
-TrackingShip::TrackingShip(Model *m, double x, double y, int n) : EnemyShip(x, y, n) {
+TrackingShip::TrackingShip(Model *m, double x, double y) : EnemyShip(x, y) {
 	model=ramShipModel;
     modelSize=model->length;
 
 	init(x,y,-5,8);
 }
 
-TrackingShip::TrackingShip(Model *m) : EnemyShip(0) {
+/**
+ TrackingShip::TrackingShip(Model *m)
+ Sets the model
+ */
+TrackingShip::TrackingShip(Model *m) : EnemyShip() {
 	model=ramShipModel;
     modelSize=model->length;
 }
 
 /**
- void TrackingShip::init(double x, double y)
- Sets the model to the constant TrackingShipModel, then calculates pos[0] and pos[1] as the points around the edge of the game in line with the target position and sets vel[0], vel[1], and vel[2] so that it will intersect the plane at -playerOffset at (x,y)
+ void TrackingShip::init(double x, double y, int startPos, int t)
+ Calculates pos[0] and pos[1] as the points around the edge of the game in line with the target position and sets vel[0], vel[1], and vel[2] so that it will intersect the plane at -playerOffset at (x,y) after t if it didn't pause
  */
 void TrackingShip::init(double x, double y, int startPos, int t) {
 	if(x==0) {
@@ -66,16 +70,17 @@ void TrackingShip::init(double x, double y, int startPos, int t) {
 	oldVel=vel;
 }
 
+/**
+ bool TrackingShip::isDone()
+ Returns whether it's behind the camera; it starts off the screen to the side, and isn't done, so the superclass version doesn't work in this case
+ */
 bool TrackingShip::isDone() {
 	return pos[2]>=cameraOffset || abs(pos[0])>frameSize*1.5 || abs(pos[1])>frameSize*1.5;
 }
 
-void TrackingShip::afterSetup() {
-}
-
 /**
  void TrackingShip::update(double dt)
- Calls the superclass version, sets vel[2] so that it curves parabolically into its target point at (x, y, -playerOffset), then rotates slightly
+ First moves it, then has it follow the player, then has it continue its motion, firing its weapon when it hovers.
  */
 void TrackingShip::update(double dt) {
 	EnemyShip::update(dt);
@@ -87,7 +92,7 @@ void TrackingShip::update(double dt) {
 			vel=oldVel;
 	} else {
 		vel=Vec3d(thePlayerShip->vel[0],-thePlayerShip->vel[1],-thePlayerShip->vel[2]);
+		
+		fireWeapon();
 	}
-
-	fireWeapon();
 }

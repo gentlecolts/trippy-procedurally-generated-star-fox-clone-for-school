@@ -30,7 +30,6 @@ double noise[res3];
 
 /**************** GAME  *********************/
 GameShip* thePlayerShip, *lasers, *enemyLasers;
-int numObjects=0;
 //std::vector<Laser*> lasers, enemyLasers;
 long curTime=0,startTime=clock(),lastWaveTime=clock();
 EnemyWave* currentWave=NULL;

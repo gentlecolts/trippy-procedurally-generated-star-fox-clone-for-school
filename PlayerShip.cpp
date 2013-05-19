@@ -17,13 +17,13 @@
  PlayerShip::PlayerShip(int n)
  Constructor just calls init after super
  */
-PlayerShip::PlayerShip(int n) : GameShip(n) {
+PlayerShip::PlayerShip() : GameShip() {
 	init();
 }
 
 /**
  void PlayerShip::init()
- Sets the model to the constant playerShipModel, sets the z position to -playerOffset
+ Sets the model to the constant playerShipModel, sets the z position to -playerOffset, sets health to playerHP, and that it is on the player side
  */
 void PlayerShip::init(){
 	model=playerShipModel;
@@ -36,16 +36,12 @@ void PlayerShip::init(){
 
 /**
  void PlayerShip::uniqueRenderAfterPop()
- Draws the targeting reticule
+ Draws the targeting reticule and the health bar
  */
 void PlayerShip::uniqueRenderAfterPop() {
     glPushMatrix();
 
 	Vec3d vect=getVector(rot[0],rot[1]);
-
-    /*double x=-sin(radians(yrot));
-    double y=sin(radians(xrot))*cos(radians(yrot));
-	double z=-cos(radians(xrot))*cos(radians(yrot*/
 
 	double x=vect[0];
     double y=vect[1];
@@ -94,7 +90,7 @@ void PlayerShip::uniqueRenderAfterPop() {
 	glTranslatef(-.7+pos[0],1+pos[1],pos[2]);
 	
 	glBegin(GL_QUADS);
-	glColor3f(max(0,playerHP-health), max(0,health-playerHP), 0.3);
+	glColor3f(((double)max(0,playerHP-health))/playerHP, ((double)max(0,health-playerHP))/playerHP, 0.3);
 	glVertex3d(-0.2, 0.05,1);
 	glVertex3d(0.2-(playerHP-(double)health)/playerHP*0.4, 0.05,1);
 	glVertex3d(0.3-(playerHP-(double)health)/playerHP*0.5, -0.05,1);
@@ -104,28 +100,23 @@ void PlayerShip::uniqueRenderAfterPop() {
 	glPopMatrix();
 }
 
+/**
+ void PlayerShip::afterSetup()
+ Sets up the guns: two forward and a rocket launcher also forward
+ */
 void PlayerShip::afterSetup() {
-//	addChild(new FanStrut(this, 1, basicStrutModel), 0);
-//	addChild(new FanStrut(this, 1, basicStrutModel), 1);
-
-	//addChild(new RotateStrut(this,longStrutModel, Vec3d(30,-70,360),Vec3d(-30,0,-360), 0.5), 0);
-	//children[0]->addChild(new BasicGun(children[0]), 1);
-
-	//	for(int i=0;i<model->numAttachPoints;i++) {
-	addChild(new BasicStrut(this, basicStrutModel), 0, Vec3d(0,180,0));	//???
+	addChild(new BasicStrut(this, basicStrutModel), 0, Vec3d(0,180,0));
 	children[0]->addChild(new BasicStrut(children[0], basicStrutModel), 5);
-//		addChild(new AimingStrut(this, 9000, basicStrutModel), 0);
 	children[0]->children[5]->addChild(new BasicRocketLauncher(children[0]->children[5]), 5);
 	children[0]->addChild(new BasicGun(children[0]), 0);
 
-	addChild(new BasicStrut(this, basicStrutModel), 1, Vec3d(0,180,0));	//???
+	addChild(new BasicStrut(this, basicStrutModel), 1, Vec3d(0,180,0));
 		children[1]->addChild(new BasicGun(children[1]), 0);
-//	}
 }
 
 /**
  void PlayerShip::update(double dt)
- Calls handleKeyInput(), then sets the velocities to maxV in the direction it's pointing. Uses xvel and yvel to change xpos and ypos. Checks collision detection with enemies and terrain (and eventually projectiles).
+ Calls handleKeyInput(), then sets the velocities to maxV in the direction it's pointing. Uses the velocities to rotate the ship. Checks collision detection with enemies and terrain and projectiles. Ends the game if the player dies
  */
 void PlayerShip::update(double dt) {
 	handleKeyInput(dt);
@@ -178,9 +169,6 @@ void PlayerShip::update(double dt) {
 			} else {
 				health-=3;
 			}
-
-            //xvel=0;
-            //xvel=0;
         }
 
 		if(health<0) {
@@ -189,14 +177,10 @@ void PlayerShip::update(double dt) {
     }
 }
 
-void PlayerShip::doFire() {
-//	addLaser(new Laser(pos,rot),player);
-}
-
 
 /**
  void PlayerShip::handleKeyInput(double dt)
- Rotates in y and x based on the keyboard input
+ Rotates in y and x based on the keyboard input, and fires the lasers and/or the rocket launcher
  */
 void PlayerShip::handleKeyInput(double dt) {
 	if(leftmov){

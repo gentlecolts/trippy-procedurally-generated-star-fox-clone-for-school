@@ -15,6 +15,10 @@ using namespace std;
 
 bool logMat=false;
 
+/**
+ Matrix::Matrix()
+ Returns the 4x4 identity matrix.
+ */
 Matrix::Matrix() {
 	v=new Vec4d[4];
 	v[0]=Vec4d(1, 0, 0, 0);
@@ -23,6 +27,10 @@ Matrix::Matrix() {
 	v[3]=Vec4d(0, 0, 0, 1);
 }
 
+/**
+ Matrix::Matrix(Vec4d x, Vec4d y, Vec4d z, Vec4d w)
+ Creates a matrix with the 4 given rows
+ */
 Matrix::Matrix(Vec4d x, Vec4d y, Vec4d z, Vec4d w) {
 	v=new Vec4d[4];
 	v[0] = x;
@@ -32,9 +40,11 @@ Matrix::Matrix(Vec4d x, Vec4d y, Vec4d z, Vec4d w) {
 //	cout<<"z: "<<z<<endl;
 }
 
+/**
+ Matrix::Matrix(Vec4d angles)
+ Creates a rotation matrix with the given angles
+ */
 Matrix::Matrix(Vec4d angles) {
-	//angles=-angles;
-
 	Matrix yRotMat=Matrix(
 		Vec4d(cos(radians(angles[1])), 0, sin(radians(angles[1])), 0),
 		Vec4d(0, 1, 0, 0),
@@ -103,8 +113,6 @@ Matrix Matrix::operator*(Matrix mat) const {
 	for(int i=0;i<4;i++) {
 		for(int j=0;j<4;j++) {
 			Vec4d columnVec=Vec4d(mat[0][j],mat[1][j],mat[2][j], mat[3][j]);
-//			if(logMat)
-//				cout<<"("<<i<<","<<j<<") column: "<<columnVec<<" row: "<<v[i]<<"result: "<<columnVec.dot(v[i])<<endl;
 			comb[i][j]=columnVec.dot(v[i]);
 		}
 	}

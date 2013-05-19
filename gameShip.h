@@ -20,7 +20,6 @@ protected:
 public:
 	GameShip *previous;
 	EnemyWave* parentWave;
-	int index;
 	bool scheduledToDelete;
 	
 	GameShip* destroyAndGetNext();
@@ -34,7 +33,7 @@ public:
 	void uniqueRenderLast();
 	
 	virtual ~GameShip();
-	GameShip(int n);
+	GameShip();
 };
 
 #endif /* defined(__HelloSDL__gameShip__) */

@@ -13,16 +13,20 @@
 #include "HelloSDL/BasicGun.h"
 #include "HelloSDL/FanStrutThing.h"
 
-RamShip::RamShip(Model *m) : EnemyShip(0) {
+/**
+ RamShip::RamShip(Model *m)
+ Creates a RamShip with a given model
+ */
+RamShip::RamShip(Model *m) : EnemyShip() {
 	model=m;
     modelSize=m->length;
 }
 
 /**
- RamShip::RamShip(double x, double y, int n)
- Just calls init and super
+ RamShip::RamShip(double x, double y)
+ Just calls init and super and sets the model
  */
-RamShip::RamShip(Model *m, double x, double y, int n) : EnemyShip(x, y, n) {
+RamShip::RamShip(Model *m, double x, double y) : EnemyShip(x, y) {
 	init(x,y, -50, 4);
 
 	model=m;
@@ -31,8 +35,8 @@ RamShip::RamShip(Model *m, double x, double y, int n) : EnemyShip(x, y, n) {
 
 
 /**
- void RamShip::init(double x, double y)
- Sets the model to the constant ramShipModel, then calculates pos[0] and pos[1] as the points around the edge of the game in line with the target position and sets vel[0], vel[1], and vel[2] so that it will intersect the plane at -playerOffset at (x,y)
+ void RamShip::init(double x, double y, int startPos, int time)
+ Calculates pos[0] and pos[1] as the points around the edge of the game in line with the target position and sets vel[0], vel[1], and vel[2] so that it will intersect the plane at -playerOffset at (x,y) after time seconds
  */
 void RamShip::init(double x, double y, int startPos, int time) {
 	if(x==0) {
@@ -61,30 +65,6 @@ void RamShip::init(double x, double y, int startPos, int time) {
 	rot=invGetVector(pos-Vec3d(x,y,playerOffset));
 }
 
-void RamShip::afterSetup() {
-
-	/*addChild(new BasicGun(this),-1);
-	addChild(new BasicGun(this),-1);
-	addChild(new BasicGun(this),-1);
-	addChild(new BasicGun(this),-1);
-	addChild(new BasicGun(this),-1);
-	addChild(new BasicGun(this),-1);
-	addChild(new BasicGun(this),-1);
-	addChild(new BasicGun(this),-1);*/
-
-
-	/*addChild(new FanStrut(this, 5, basicStrutModel), -1);
-	addChild(new FanStrut(this, 5, basicStrutModel), -1);
-	addChild(new FanStrut(this, 5, basicStrutModel), -1);
-	addChild(new FanStrut(this, 5, basicStrutModel), -1);
-	addChild(new FanStrut(this, 5, basicStrutModel), -1);
-	addChild(new FanStrut(this, 5, basicStrutModel), -1);
-	addChild(new FanStrut(this, 5, basicStrutModel), -1);
-	addChild(new FanStrut(this, 5, basicStrutModel), -1);*/
-
-
-}
-
 /**
  bool RamShip::isDone()
  Returns whether it's behind the camera; it starts off the screen to the side, and isn't done, so the superclass version doesn't work in this case
@@ -95,17 +75,10 @@ bool RamShip::isDone() {
 
 /**
  void RamShip::update(double dt)
- Calls the superclass version, sets vel[2] so that it curves parabolically into its target point at (x, y, -playerOffset), then rotates slightly
+ Calls the superclass version, and fires the weapons
  */
 void RamShip::update(double dt) {
-	double oldT=t;
 	EnemyShip::update(dt);
-
-	//rot[1]+=45*dt;
-
-	double fireRate=0.01;
-
-	//if(fmod(t,fireRate)<=fireRate/2 && fmod(oldT,fireRate)>=fireRate/2) {
-		fireWeapon();
-	//}
+	
+	fireWeapon();
 }

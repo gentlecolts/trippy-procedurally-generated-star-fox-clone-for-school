@@ -78,7 +78,7 @@ const double raise=-0.1;//0.1;
 
 /**************** GAME  *********************/
 
-#define playerHP 30
+#define playerHP 30				//the player's maximum hp
 
 #define maxV 20					//the player's velocity
 #define accel 90				//the player's angular acceleration per second

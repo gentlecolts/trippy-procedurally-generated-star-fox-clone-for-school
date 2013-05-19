@@ -17,16 +17,20 @@
 
 /**
  HoverShip::HoverShip(double x, double y, int n)
- Just calls init and super
+ Just calls init and super and sets the model
  */
-HoverShip::HoverShip(Model *m, double x, double y, int n) : EnemyShip(x, y, n) {
+HoverShip::HoverShip(Model *m, double x, double y) : EnemyShip(x, y) {
 	model=ramShipModel;
     modelSize=model->length;
 
 	init(x,y,-5,8);
 }
 
-HoverShip::HoverShip(Model *m) : EnemyShip(0) {
+/**
+ HoverShip::HoverShip(Model *m)
+ Sets the model
+ */
+HoverShip::HoverShip(Model *m) : EnemyShip() {
 	model=ramShipModel;
     modelSize=model->length;
 }
@@ -65,29 +69,17 @@ void HoverShip::init(double x, double y, int startPos, int t) {
 	oldVel=vel;
 }
 
+/**
+ bool HoverShip::isDone()
+ Returns whether it's behind the camera; it starts off the screen to the side, and isn't done, so the superclass version doesn't work in this case
+ */
 bool HoverShip::isDone() {
 	return pos[2]>=cameraOffset || abs(pos[0])>frameSize*1.5 || abs(pos[1])>frameSize*1.5;
 }
 
-void HoverShip::afterSetup() {
-	//rot[1]+=180;
-
-	//addChild(new FanStrut(this, 5, basicStrutModel), 0);
-	//addChild(new FanStrut(this, 5, basicStrutModel), 1);//, Vec3d(0,0,30));
-	//addChild(new AimingStrut(this, 9000, longStrutModel), 0);
-	//addChild(new AimingStrut(this, 9000, longStrutModel), 0);
-
-	/*for(int i=0;i<model->numAttachPoints;i++) {
-		addChild(new AimingStrut(this, 9000, basicStrutModel), i);
-		children[i]->addChild(new BasicGun(children[i]), 1);
-	}*/
-
-	lastT=t;
-}
-
 /**
  void HoverShip::update(double dt)
- Calls the superclass version, sets vel[2] so that it curves parabolically into its target point at (x, y, -playerOffset), then rotates slightly
+ First moves it, then has it stay in place, then has it continue its motion, firing its weapon when it hovers.
  */
 void HoverShip::update(double dt) {
 	EnemyShip::update(dt);
@@ -100,12 +92,6 @@ void HoverShip::update(double dt) {
 	} else {
 		vel=Vec3d(0,0,-thePlayerShip->vel[2]);
 	}
-
-	//double fireRate=1.0;
-
-	//if(fmod(t,fireRate)<=fireRate/2 && fmod(lastT,fireRate)>=fireRate/2) {
-		fireWeapon();
-	//}
-
-	lastT=t;
+	
+	fireWeapon();
 }

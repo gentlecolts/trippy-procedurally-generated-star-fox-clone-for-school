@@ -8,7 +8,7 @@ class PlayerShip : public GameShip
 {
 public:
 	void update(double dt);
-	PlayerShip(int n);
+	PlayerShip();
 	void init();
 	void uniqueRenderAfterPop();
 	void handleKeyInput(double dt);

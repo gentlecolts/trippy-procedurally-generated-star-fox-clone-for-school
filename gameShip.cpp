@@ -9,15 +9,21 @@
 #include "gameShip.h"
 #include "enemyWave.h"
 
-GameShip::GameShip(int n) : GameObject() {
+/**
+ GameShip::GameShip()
+ Initializes the GameShip
+ */
+GameShip::GameShip() : GameObject() {
 	next=NULL;
 	parentWave=NULL;
 	scheduledToDelete=false;
 	previous=NULL;
-	
-	index=n;
 }
 
+/**
+ void GameShip::uniqueRenderFirst()
+ If it is the top node, scales itself by objScale, and disables the light for the terrain
+ */
 void GameShip::uniqueRenderFirst() {
 	if(parent==NULL)
 		glScalef(objScale,objScale,objScale);
@@ -25,6 +31,10 @@ void GameShip::uniqueRenderFirst() {
 	glDisable(GL_LIGHT0);
 }
 
+/**
+ void GameShip::uniqueRenderLast()
+ Reenables the light that was disabled; there is no need to undo the scaling as the OpenGL matrix stack has been popped
+ */
 void GameShip::uniqueRenderLast() {
 	glEnable(GL_LIGHT0);
 }
@@ -60,6 +70,10 @@ void GameShip::appendObject(GameShip *obj) {
 	}
 }
 
+/**
+ void GameShip::destroy()
+ Sets the ship to be destroyed the next time it is updated
+ */
 void GameShip::destroy() {
 	scheduledToDelete=true;
 }
@@ -75,6 +89,10 @@ void GameShip::deleteAndDeleteChildren() {
 	delete this;
 }
 
+/**
+ GameShip* GameShip::head()
+ Returns the first node in the linked list
+ */
 GameShip* GameShip::head() {
 	if(previous!=NULL)
 		return previous->head();
@@ -99,10 +117,11 @@ GameShip* GameShip::destroyAndGetNext() {
 	return next;
 }
 
+/**
+ GameShip::~GameShip()
+ Notifies the parent wave that it has been destroyed
+ */
 GameShip::~GameShip() {
-//	if(parent!=0)
-//		cout<<"parent: "<<parentWave<<endl;
-	
 	if(parentWave!=NULL) {
 		parentWave->remove(this);
 		parentWave->release();

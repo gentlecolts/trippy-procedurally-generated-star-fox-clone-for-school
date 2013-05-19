@@ -2,9 +2,7 @@
 #define GUIOBJ_H_INCLUDED
 
 #include <string>
-#include <SDL/SDL.h>
-//#include <SDL/SDL_image.h>
-#include <SDL_image/SDL_image.h>
+#include "imports.h"
 
 #include "linkedlist.h"
 

@@ -12,15 +12,19 @@
 #include "../ModelConstants.h"
 #include "RotateStrut.h"
 
+//This was for testing that everything worked mathematically, and isn't actually in the game
+
+/**
+ void FanStrut::afterSetup()
+ Creates a FanStrutThing and its wings, creates another one with 1 less parameter as its child to create the wing shape
+ */
 void FanStrut::afterSetup() {
 	BasicStrut::afterSetup();
 
 	for(int num=0;num<=1;num++) {
 		GameObject *child=this;
 		for(int i=0;i<level;i++) {
-			//cout<<"ADDING"<<endl;
 			BasicStrut *spar=new RotateStrut(child,longStrutModel, Vec3d(30,0,0),Vec3d(-30,0,0), 0.5);
-			//BasicStrut *spar=new BasicStrut(child,longStrutModel);
 			if(i>0)
 				child->addChild(spar, 1);
 			else
@@ -37,7 +41,6 @@ void FanStrut::afterSetup() {
 
 	if(level>0) {
 		BasicStrut *childBasicStrut=new RotateStrut(this, longStrutModel, Vec3d(0,-30,0),Vec3d(0,30,0),1.0);
-		//BasicStrut *childBasicStrut=new BasicStrut(this, longStrutModel);
 		addChild(childBasicStrut, 3);
 
 		FanStrut *childFanStrut=new FanStrut(childBasicStrut, level-1, model);
@@ -48,7 +51,10 @@ void FanStrut::afterSetup() {
 	}
 }
 
+/**
+ FanStrut::FanStrut(GameObject *p, int l, Model *m)
+ Sets level
+ */
 FanStrut::FanStrut(GameObject *p, int l, Model *m) : BasicStrut(p, m) {
-	//cout<<"making a strut"<<endl;
 	level=l;
 }

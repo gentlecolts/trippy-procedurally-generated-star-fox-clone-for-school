@@ -7,9 +7,9 @@
 
 /**
  EnemyShip::EnemyShip(int n)
- Conveniently initializes it at a random location, setting t to 0 and dead to false
+ Conveniently initializes it at a random location, setting t to 0 and dead to false; never used.
  */
-EnemyShip::EnemyShip(int n) : GameShip(n)
+EnemyShip::EnemyShip() : GameShip()
 {
     t=0;
 	dead=false;
@@ -21,7 +21,7 @@ EnemyShip::EnemyShip(int n) : GameShip(n)
  EnemyShip::EnemyShip(int n)
  Conveniently initializes it at a specified location, setting t to 0 and dead to false
  */
-EnemyShip::EnemyShip(double x,double y, int n) : GameShip(n) {
+EnemyShip::EnemyShip(double x,double y) : GameShip() {
     t=0;
 	dead=false;
     init(x, y,-8,8);
@@ -37,18 +37,12 @@ void EnemyShip::init(double x,double y, int startPos, int time){
 
 /**
  void EnemyShip::update(double dt)
- Increments t by dt, then moves by xvel, yvel, and zvel, and does collision detection with lasers (and eventually other objects)
+ Increments t by dt, then moves by xvel, yvel, and zvel, and does collision detection with lasers
  */
 void EnemyShip::update(double dt) {
-//	cout<<"children model: "<<children[0]->model<<endl;
-//	cout<<"I'm "<<this<<endl;
-	
 	pos[2]-=thePlayerShip->vel[2]*dt;
-	//cout<<"subtracting "<<(thePlayerShip->zvel)<<endl;
-	//cout<<"dt "<<dt<<endl;
 
 	if(!dead) {
-		//pos+=vel*dt;
 		pos[0]+=vel[0]*dt;
 		pos[1]-=vel[1]*dt;
 		pos[2]-=vel[2]*dt;
@@ -66,7 +60,6 @@ void EnemyShip::update(double dt) {
 					setAnimation(new ExplodeAnimation(model,this));
 					
 					for(int i=0;i<numChildren;i++) {
-	//					cout<<"children["<<i<<"] "<<children[i]<<endl;
 						if(attachPointsFilled[i])
 							children[i]->setAnimation(new ExplodeAnimation(children[i]->model,NULL));
 					}

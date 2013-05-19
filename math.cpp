@@ -42,7 +42,7 @@ double radians(double degrees) {
  Gets the unit vector in the direction of (0,0,-1) (forward in OpenGL) rotated by xrot (pitch) and yrot (yaw), and stores it in vect
  */
 Vec3d getVector(double xrot,double yrot) {//TODO: consider only calulating once per frame
-	Vec3d vect=Vec3d(0,0,-1);
+	Vec3d vect;
 	vect[0]=-sin(radians(yrot));
     vect[1]=sin(radians(xrot))*cos(radians(yrot));
 	vect[2]=-cos(radians(xrot))*cos(radians(yrot));
@@ -50,35 +50,15 @@ Vec3d getVector(double xrot,double yrot) {//TODO: consider only calulating once 
 	return vect;
 }
 
+/**
+ Vec3d invGetVector(Vec3d vec)
+ Returns the 3 euler angles needed to rotate the vector (0,0,1) to point in the direction of vec
+ */
 Vec3d invGetVector(Vec3d vec) {
 	vec=vec.normalize();
-//	cout<<"vec: "<<vec<<endl;
 	
-	/*double yrot=atan2(-vec[0],sqrt(1-vec[0]*vec[0]))/pi*180;
-	
-	//double yrot=asin(-vec[0])/pi*180;
-	//std::cout<<"vec[0]: "<<-vec[0]<<std::endl;
-	double tmp=cos(radians(yrot));
-	double xrot=atan2(vec[1], sqrt(tmp*tmp-vec[1]*vec[1]))/pi*180;
-	
-	if(vec[2]>0) {
-		yrot=180-yrot;
-		xrot=-xrot;
-//		cout<<"angles changed to: "<<yrot<<endl;
-	}
-	//if(vec[2]>0)
-	//	yrot=-yrot;
-	
-//	cout<<"xrot: "<<xrot<<" yrot"<<yrot<<endl;
-	Vec3d v=Vec3d(0,0,-1);
-	v=rotate(v,Vec3d(0,1,0),yrot);
-	v=rotate(v,Vec3d(1,0,0),xrot);
-//	cout<<"becomes: "<<v<<endl;*/
-	
-	double xrot=-asin(vec[1])/pi*180;	//negative?
+	double xrot=-asin(vec[1])/pi*180;
 	double yrot=atan2(vec[0],vec[2])/pi*180;
-	//double xrot=asin(vec[1]);
-	//double yrot=asin(-vec[0]/cos(yrot));
 	
 	return Vec3d(xrot,yrot,0);
 }
@@ -88,12 +68,13 @@ Vec3d invGetVector(Vec3d vec) {
  Equivalent to Java Math.signum() because std doesn't have that apparently
  */
 int signum(double val) {
-    /*if(val<0.01 && val>-0.01)
-        return 0;
-    return val>0 ? 1 : -1;*/
     return (0<val)-(val<0);
 }
 
+/**
+ Vec3d rotate(Vec3d v, Vec3d axis, float degrees)
+ Returns the esult of rotating a vector around an axis
+ */
 Vec3d rotate(Vec3d v, Vec3d axis, float degrees) {
     axis = axis.normalize();
     float radians = degrees * pi / 180;
@@ -101,30 +82,3 @@ Vec3d rotate(Vec3d v, Vec3d axis, float degrees) {
     float c = cos(radians);
     return v * c + axis * axis.dot(v) * (1 - c) + v.cross(axis) * s;
 }
-
-/*Vec3d rotate(Vec3d, int axis, double degrees) {
-	switch (axis) {
-		case 0:
-			<#statements#>
-			break;
-			
-		default:
-			break;
-	}
-}*/
-
-/**
- double distSq(double x1,double y1,double x2,double y2)
- Quick method for getting the distance squared, for readability/less typing
- */
-double distSq(double x1,double y1,double x2,double y2) {
-	double dx=x1-x2;
-	double dy=y1-y2;
-	
-	return dx*dx+dy*dy;
-}
-
-/*long double longDoubleMod(long double a, long double b) {      //this probably is in std somewhere
-    int i=a/b;
-    return a-b*i;
-}*/
