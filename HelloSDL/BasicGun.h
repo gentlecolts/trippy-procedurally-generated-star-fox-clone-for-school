@@ -15,7 +15,6 @@
 class BasicGun : public GameObject {
 public:
 	virtual void init();
-	virtual void update(double dt);
 	virtual void doFire();
 	virtual void doDoFire();
 

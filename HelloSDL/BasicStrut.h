@@ -20,7 +20,6 @@ public:
 	BasicStrut(GameObject *p, Model *m);
 	void init(GameObject *p, Model *m);
 	virtual void initAttachPoints();
-	virtual void afterSetup();
 };
 
 extern ObjectType basicStrutType;

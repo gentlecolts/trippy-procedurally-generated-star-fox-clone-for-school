@@ -9,6 +9,8 @@
 #include "OpenUpAnimation.h"
 #include "../imports.h"
 
+//not used; was going to have the sides of the rocket launcher slide open to let the ammo slide in
+
 OpenUpAnimation::OpenUpAnimation(GameObject *obj, Model *m, double t, int f) : Animation(m, obj) {
 	time=t;
 	face=f;

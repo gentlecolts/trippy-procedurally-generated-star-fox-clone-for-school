@@ -13,6 +13,10 @@
 #include "../RamShip.h"
 #include "TrackingShip.h"
 
+/**
+ void registerHoverShipType()
+ Registers HoverShip with the factory
+ */
 void registerHoverShipType() {
 	ObjectType* hoverShipType = new ObjectType;
 
@@ -29,17 +33,24 @@ void registerHoverShipType() {
 	registerObjectType(hoverShipType);
 }
 
+/**
+ vector<ObjectType *>* hoverShipCandidateChildren()
+ Gets the objects that could be children of a hoverShip; this is passed in a as a function pointer.
+ */
 vector<ObjectType *>* hoverShipCandidateChildren() {
 	return objects;
 }
 
+/**
+ Model *hoverShipGetModel()
+ Gets a hoverShip's model
+ */
 Model *hoverShipGetModel() {
-//	cout<<"hoverShipGetModel?!"<<endl;
 	return ramShipModel;
 }
 
+//gets a HoverShip object
 GameObject* hoverShipGetGameObject(GameObject *parent, int seed) {
-	//srand(seed);
 
 	HoverShip *ship=new HoverShip(hoverShipGetModel());
 
@@ -47,7 +58,7 @@ GameObject* hoverShipGetGameObject(GameObject *parent, int seed) {
 	//create a random object
 }
 
-
+//registers RamShip with the factory
 void registerRamShipType() {
 	ObjectType* ramShipType = new ObjectType;
 
@@ -64,12 +75,12 @@ void registerRamShipType() {
 	registerObjectType(ramShipType);
 }
 
+//and so forth
 vector<ObjectType *>* ramShipCandidateChildren() {
 	return objects;
 }
 
 Model *ramShipGetModel() {
-//	cout<<"ramSHipShtegMoel?!"<<endl;
 	return playerShipModel;
 }
 

@@ -29,7 +29,10 @@
  (rocketLauncher)
  */
 
-
+/**
+ void registerAll()
+ Calls all the methods to register the different object parts to the ObjectFactory
+ */
 void registerAll() {
 	objects=new vector<ObjectType *>;
 	enemies=new vector<ObjectType *>;

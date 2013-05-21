@@ -8,6 +8,7 @@ using namespace std;
 #include "HelloSDL/menu.h"
 #include "GLHelper.h"
 
+//Main method...
 int main(int argc,char** argv){
     initSDL();
 

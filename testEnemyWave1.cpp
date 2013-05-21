@@ -19,7 +19,7 @@ TestEnemyWave1::TestEnemyWave1(double diff) {
 
 /**
  void TestEnemyWave1::init()
- Creates 3 RamShips and puts them in play
+ Creates 3 random ships and puts them in play
  */
 void TestEnemyWave1::init(){
 //	cout<<"wave"<<endl;

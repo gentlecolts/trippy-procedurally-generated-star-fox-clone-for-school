@@ -17,7 +17,10 @@
 #include "HelloSDL/BossWave.h"
 #include "GLHelper.h"
 
-
+/**
+ void doTests()
+ A function for arbitrary test code.
+ */
 void doTests() {
 	cout<<"TESTS!"<<endl;
 	getRandomObject(objects, 120, 40);
@@ -27,21 +30,9 @@ void doTests() {
 	cout<<"END TESTS!"<<endl;
 }
 
-/*
- dist: (0, 1, 0)
- ang: (90, -0, 0)
- mat: [(1, 0, 0, 0)
- (0, 6.12323e-17, -1, 0)
- (0, 1, 6.12323e-17, 0)
- (0, 0, 0, 1)]
- diff: (0, 1, -6.12323e-17)
- newAng: (90, -0, 0)
-
- */
-
 /**
  void setupGame()
- Calls initModels() from ModelConstants, creates the player ship, and creates the light applied to objects only
+ Calls initModels() from ModelConstants, creates the player ship, and registers objects for the object factory
  */
 void setupGame() {
 	didGameSetup=true;
@@ -50,17 +41,12 @@ void setupGame() {
 
 	registerAll();
 
-    //gameObjects.push_back(new PlayerShip(0));
 	thePlayerShip=new PlayerShip();
-
-    /*for(int i=1;i<numGameObjects;i++) {
-        gameObjects.push_back(new EnemyShip());
-    }*/
 }
 
 /**
  void updateObjects()
- Ticks each object and laser, creates a new EnemyWave if necessary, deletes the old if necessary
+ Ticks each object and laser, creates a new EnemyWave if necessary, deletes the old if necessary, scales the difficulty, and increases the player's score.
  */
 void updateObjects() {
 //	cout<<"tick"<<endl;
@@ -72,7 +58,7 @@ void updateObjects() {
 		waveTime*=0.98;
 		noiseScale*=0.95;
 		
-		cout<<"noiseScale: "<<noiseScale<<endl;
+//		cout<<"noiseScale: "<<noiseScale<<endl;
 		
 		thePlayerShip->health+=10;
 		thePlayerShip->health=min(playerHP,thePlayerShip->health);

@@ -25,26 +25,14 @@ Laser::Laser(Vec3d p, Vec3d a) : GameShip(){
 
 /**
  void Laser::init(double x, double y, double z, double xr, double yr, double zr)
- Sets the position to the given position, the rotation to the given rotation, and calculates the velocity based on the rotation, then moves forward slightly so it doesn't clip out of the back of objects firing it
+ Sets the position to the given position, the rotation to the given rotation, and calculates the velocity based on the rotation
  */
 void Laser::init(Vec3d p, Vec3d a){
 
     pos=p;
 
     rot=a;
-	//rot[0]*=-1;
 	
-	//if(!player)
-//		cout<<"laser rot: "<<rot<<endl;
-	
-	//Vec3d vect=getVector(xrot,yrot);
-	
-//	cout<<"rot: "<<rot<<endl;
-	
-//	Vec3d vect=Vec3d(0,0,-1);
-//	vect=rotate(vect,Vec3d(0,1,0),rot[1]);
-//	vect=rotate(vect,Vec3d(1,0,0),rot[0]);
-//	vect=rotate(vect,Vec3d(0,0,1),rot[2]);
 	Vec3d vect=Vec3d(
 					 cos(radians(rot[0]))*sin(radians(rot[1])),
 					 -sin(radians(rot[0])),
@@ -54,6 +42,7 @@ void Laser::init(Vec3d p, Vec3d a){
     vel=laserSpeed*vect;
 }
 
+//Turns off lighting so the lasers are easy to see; we could have just given it an emissive component to the material, but we didn't know that son enough
 void Laser::uniqueRenderFirst() {
 	
 	GameShip::uniqueRenderFirst();
@@ -61,12 +50,14 @@ void Laser::uniqueRenderFirst() {
 	glDisable(GL_LIGHTING);
 }
 
+//Turns on lighting so the things drawn later look pretty
 void Laser::uniqueRenderLast() {
 	glEnable(GL_LIGHTING);
 	
 	GameShip::uniqueRenderLast();
 }
 
+//Lasers are done when they hit the terrain or go too far away
 bool Laser::isDone() {
 	return (collidesWithNoise() || pos[2]<-frameSize*2 || pos[2]>cameraOffset);
 }
@@ -78,37 +69,3 @@ bool Laser::isDone() {
 void Laser::update(double dt) {
 	pos+=vel*dt;
 }
-
-/**
- bool Laser::collidesWithObject(GameObject* obj)
- Performs collision detection by checking against a sphere with radius equal to the average distance of each vertex of the object's model from the front and back of the laser
- */
-/*bool Laser::collidesWithObject(GameObject* obj) {
-	Vec3d d=pos-obj->pos;
-    
-    if(sqrt(d[0]*d[0]+d[1]*d[1]+d[2]*d[2])<obj->avgDist*3) {
-        return true;
-    }
-    
-    d[2]-=5*objScale;
-    
-    return sqrt(d[0]*d[0]+d[1]*d[1]+d[2]*d[2])<obj->avgDist*3;
-}*/
-
-/**
- bool Laser::collidesWithNoise()
- Does collision detection with the noise by checking at the front and back of the laser
- */
-/*bool Laser::collidesWithNoise() {
-    const double
-        x=pos[0]/frameSize *grid2+grid2,
-        y=pos[1]/frameSize *grid2+grid2,
-        z=-d*grid*(pos[2]/frameSize+d/2),
-        z2=-d*grid*((-5*objScale+pos[2])/frameSize+d/2)
-    ;
-    if(noise[precompindx(x,y,z+zshft)]>tolerance ||
-       noise[precompindx(x,y,z2+zshft)]>tolerance){
-        return true;
-    }
-    return false;
-}*/

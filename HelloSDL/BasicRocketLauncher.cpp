@@ -13,12 +13,20 @@
 #include "../Model.h"
 #include "SlideDownAnimation.h"
 
+/**
+ BasicRocketLauncher::BasicRocketLauncher(GameObject *obj)
+ Does setup, sets it is a big gun so it's fired with ' instead of enter
+ */
 BasicRocketLauncher::BasicRocketLauncher(GameObject *obj) : BasicGun(obj){
 	init();
 	bigGun=true;
 	health=3;
 }
 
+/**
+ void BasicRocketLauncher::init()
+ Sets the model, creates the ammo.
+ */
 void BasicRocketLauncher::init() {
 	model=rocketLauncherModel;
 	modelSize=rocketLauncherModel->length;
@@ -26,7 +34,6 @@ void BasicRocketLauncher::init() {
 	fireRate=1;
 
 	addChild(new Grenade(), 0);
-//	cout<<"launcher player: "<<player<<" ammo: "<<children[0]->player<<endl;
 	children[0]->parent=this;
 	addChild(new Grenade(), 1);
 	children[1]->parent=this;
@@ -36,6 +43,10 @@ void BasicRocketLauncher::init() {
 	children[3]->parent=this;
 }
 
+/**
+ void BasicRocketLauncher::doDoFire()
+ Applies an animation of the first remaining child sliding down into the gun. Passes in a callback function to fire the object once the animation completes.
+ */
 void BasicRocketLauncher::doDoFire() {
 	if(numChildren>0) {
 		for(int i=0;i<model->numAttachPoints;i++) {
@@ -47,7 +58,10 @@ void BasicRocketLauncher::doDoFire() {
 	}
 }
 
-
+/**
+ void BasicRocketLauncher::fireRocket(Grenade *g)
+ Removes the child and adds it as a projectile.
+ */
 void BasicRocketLauncher::fireRocket(Grenade *g) {
 	Vec3d pos=absolutePosition();
 
@@ -59,8 +73,6 @@ void BasicRocketLauncher::fireRocket(Grenade *g) {
 	g->setAnimation(NULL);
 
 	for(int i=0;i<model->numAttachPoints;i++) {
-//		cout<<"children: "<<children[i]<<"g: "<<g<<endl;
-//		cout<<"equal: "<<(children[i]==g)<<endl;
 		if(children[i]==g) {
 			children[i]=NULL;
 			attachPointsFilled[i]=false;
@@ -71,7 +83,10 @@ void BasicRocketLauncher::fireRocket(Grenade *g) {
 	addLaser(g, player);
 }
 
+/**
+ void fireCallback(GameObject *me, GameObject *o)
+ Passes the callback onto the rocket launcher object
+ */
 void fireCallback(GameObject *me, GameObject *o) {
-//	cout<<"callback!"<<endl;
 	((BasicRocketLauncher *)me)->fireRocket((Grenade *)o);
 }

@@ -9,6 +9,8 @@
 #include "TextureGenerator.h"
 #include "imports.h"
 
+//This was when we were trying to load textures. It's never used.
+
 void generateLaserGradient(int w,int h,GLubyte* data) {
 	int texW;
 	for(texW=1;texW<w || texW<h;texW*=2);

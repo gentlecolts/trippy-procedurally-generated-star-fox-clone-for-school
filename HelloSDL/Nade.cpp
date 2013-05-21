@@ -10,6 +10,7 @@
 #include "../ModelConstants.h"
 #include "../Model.h"
 
+//sets the model, doesn't start. init() is called later when it's ready to fire.
 Grenade::Grenade() : Laser() {
 	model=grenadeModel;
 	modelSize=grenadeModel->length;
@@ -17,6 +18,7 @@ Grenade::Grenade() : Laser() {
 	going=false;
 }
 
+//calls init, sets the model, starts the projectile
 Grenade::Grenade(Vec3d p, Vec3d v, Vec3d a, double r, long mt) : Laser() {
 	init(p, v, a, r, mt);
 
@@ -26,6 +28,7 @@ Grenade::Grenade(Vec3d p, Vec3d v, Vec3d a, double r, long mt) : Laser() {
 	going=true;
 }
 
+//initializes the grenade
 void Grenade::init(Vec3d p, Vec3d v, Vec3d a, double r, long mt) {
 	Vec3d vect=Vec3d(
 					 cos(radians(v[0]))*sin(radians(v[1])),
@@ -43,6 +46,7 @@ void Grenade::init(Vec3d p, Vec3d v, Vec3d a, double r, long mt) {
 	explodeTime=-1;
 }
 
+//gets the damage it would deal to another object. 3 before detonation, otherwise dependent on their distance.
 int Grenade::getDamage(GameObject *other) {
 	if(explodeTime<0 && t<maxTime) {
 		return 3;
@@ -53,10 +57,12 @@ int Grenade::getDamage(GameObject *other) {
 	return 30/(1+diff.magnitude());
 }
 
+//it's done if it's started moving and its offscreen in z
 bool Grenade::isDone() {
 	return going && (pos[2]<-frameSize*2 || pos[2]>cameraOffset);
 }
 
+//if the explosion is on, increase its radius. Otherwise if it has started moving, move it. If it gets close to an enemy or collides with noise, detonate it.
 void Grenade::update(double dt) {
 	if(going) {
 //		cout<<"explodeTime in update: "<<explodeTime<<" "<<this<<endl;
@@ -95,6 +101,7 @@ void Grenade::update(double dt) {
 	}
 }
 
+//draws its model normally if the explosion hasn't started; otherwise draws a perturbed circular form that is the actual animation
 void Grenade::render() {
 //	cout<<"explodeTime: "<<explodeTime<<" "<<this<<endl;
 	if(!going || (explodeTime<0 && t<maxTime)) {
@@ -114,18 +121,8 @@ void Grenade::render() {
 		glScalef(objScale, objScale, objScale);
 
 		glColor4f(1.0, 0.0, 0.0, avgDist/radius);
-//		glColor4f(1.0, 0.0, 0.0, 0.3);
-//		cout<<"alpha: "<<avgDist/radius<<endl;
-
-//		GLUquadric *quad=gluNewQuadric();
-//		gluQuadricOrientation(quad, GLU_OUTSIDE);
-
-//		glFrontFace(GL_CW);
-//		gluSphere(quad, avgDist, 10, 10);
+		
 		glBegin(GL_TRIANGLE_FAN);
-
-		//glFrontFace(GL_CCW);
-		//gluSphere(quad, avgDist, 10, 10);
 
 		glVertex3d(0,0,0);
 
@@ -142,13 +139,13 @@ void Grenade::render() {
 	}
 }
 
+//starts the motion; this allows it to go from sitting on a rocket launcher as a component to being a projectile
 void Grenade::activate() {
 	t=0;
 	going=true;
 }
 
-//custom draw code and collisions wheee
-
+//starts the explosion
 void Grenade::explode() {
 //	cout<<"exploding! "<<this<<endl;
 

@@ -19,11 +19,9 @@ SwarmWave::SwarmWave(double diff) {
 
 /**
  void SwarmWave::init()
- Creates 3 RamShips and puts them in play
+ Creates a random number of 3-HP (enough to die to 1 laser) RamShips with fairly easy difficulty
  */
 void SwarmWave::init(){
-//	cout<<"swarm wave"<<endl;
-	
 	double x=thePlayerShip->pos[0];
 	double y=thePlayerShip->pos[1];
 

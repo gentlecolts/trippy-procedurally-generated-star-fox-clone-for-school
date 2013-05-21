@@ -17,7 +17,7 @@ BossWave::BossWave(double diff) {
 
 /**
  void BossWave::init()
- Creates 3 RamShips and puts them in play
+ Creates 1 TrackingShip with hard difficulty and very large size
  */
 void BossWave::init(){
 	double x=thePlayerShip->pos[0];
@@ -26,7 +26,7 @@ void BossWave::init(){
 	ObjectType *type=typeForName("hoverShip");
 	 
 	ship=(EnemyShip *)expandTree(NULL, treeFun(type, 3+difficulty/4, 50+difficulty/10));
-	cout<<"diff: "<<difficulty<<endl;
+//	cout<<"diff: "<<difficulty<<endl;
 	
 	ship->init(x, y,-5,8);
 

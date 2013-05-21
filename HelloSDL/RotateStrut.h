@@ -14,7 +14,6 @@
 
 class RotateStrut : public BasicStrut {
 public:
-	RotateStrut();
 	RotateStrut(GameObject *p, Model *m, Vec3d s, Vec3d e, double t);
 	void init(GameObject *p, Model *m, Vec3d s, Vec3d e, double t);
 	void update(double dt);

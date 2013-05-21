@@ -10,6 +10,10 @@
 
 #include "HelloSDL/menu.h"
 
+/**
+ void initSDL()
+ Initializes the window
+ */
 void initSDL() {
     putenv("SDL_VIDEO_WINDOW_POS=center");
 	putenv("SDL_VIDEO_CENTERED=1");
@@ -43,12 +47,21 @@ void initSDL() {
 	SDL_WM_SetCaption("done",NULL);
 }
 
+/**
+ void quit(button *b)
+ Quits the game
+ */
 void quit(button *b) {
 	unloadGame();
 	SDL_Quit();
 	exit(0);
 }
 
+
+/**
+ void chkCloseEvent()
+ Handles keyboard input (the name doesn't make much sense), and closes the game if necessrily
+ */
 void chkCloseEvent(){
 	if(needToUnload) {
 		inGame=false;

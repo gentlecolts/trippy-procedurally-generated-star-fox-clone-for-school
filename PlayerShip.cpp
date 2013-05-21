@@ -40,6 +40,8 @@ void PlayerShip::init(){
  */
 void PlayerShip::uniqueRenderAfterPop() {
     glPushMatrix();
+	
+	glDisable(GL_LIGHTING);
 
 	Vec3d vect=getVector(rot[0],rot[1]);
 
@@ -97,12 +99,14 @@ void PlayerShip::uniqueRenderAfterPop() {
 	glVertex3d(-0.2, -.05,1);
 	glEnd();
 	
+	glEnable(GL_LIGHTING);
+	
 	glPopMatrix();
 }
 
 /**
  void PlayerShip::afterSetup()
- Sets up the guns: two forward and a rocket launcher also forward
+ Sets up the guns: two forward and a rocket launcher also forward but a bit up
  */
 void PlayerShip::afterSetup() {
 	addChild(new BasicStrut(this, basicStrutModel), 0, Vec3d(0,180,0));

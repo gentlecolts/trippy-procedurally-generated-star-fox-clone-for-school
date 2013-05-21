@@ -12,15 +12,27 @@
 #include "../ModelConstants.h"
 #include "BasicGun.h"
 
+/**
+ BasicStrut::BasicStrut()
+ Sets the health
+ */
 BasicStrut::BasicStrut() : GameObject() {
-	health=3;
+	health=2;
 }
 
+/**
+ BasicStrut::BasicStrut(GameObject *p, Model *m)
+ Sets the health
+ */
 BasicStrut::BasicStrut(GameObject *p, Model *m) : GameObject() {
 	init(p,m);
 	health=2;
 }
 
+/**
+ void BasicStrut::init(GameObject *p, Model *m)
+ Sets the model and generates attach points
+ */
 void BasicStrut::init(GameObject *p, Model *m) {
 	model=m;
 	modelSize=m->length;
@@ -29,10 +41,10 @@ void BasicStrut::init(GameObject *p, Model *m) {
 	parent=p;
 }
 
-void BasicStrut::afterSetup() {
-	GameObject::afterSetup();
-}
-
+/**
+ void BasicStrut::initAttachPoints()
+ Takes a model and calculates points to attach children. This was so we could generate other models for the basic struts such as polygonal pyramids (for creating shotgun-esque spreads)
+ */
 void BasicStrut::initAttachPoints() {
 	if(model->numAttachPoints==0) {
 		int numAttachPoints=0;

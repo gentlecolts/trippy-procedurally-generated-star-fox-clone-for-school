@@ -37,6 +37,10 @@ Model::Model(int l) {
 	type=GL_TRIANGLES;
 }
 
+/**
+ int Model::faces()
+ Gets the number of faces/polygons the model has.
+ */
 int Model::faces() {
 	switch(type) {
 		case GL_TRIANGLES:
@@ -48,6 +52,10 @@ int Model::faces() {
 	}
 }
 
+/**
+ int Model::verticesPerFace()
+ Gets the number of vertices in each poly
+ */
 int Model::verticesPerFace() {
 	switch (type) {
 		case GL_TRIANGLES:
@@ -102,6 +110,10 @@ void Model::addNormal(Vec3d n) {
 	lastAddedN++;
 }
 
+/**
+ void Model::addAttachPoint(Vec3d ap)
+ Adds an attach point position
+ */
 void Model::addAttachPoint(Vec3d ap) {
     if(!hasAP) {
         attachPoints=new Vec3d[numAttachPoints];
@@ -112,6 +124,10 @@ void Model::addAttachPoint(Vec3d ap) {
 	lastAddedAP++;
 }
 
+/**
+ void Model::addAttachPointAngle(Vec3d apn)
+ Adds an angle for an attach point to be facing.
+ */
 void Model::addAttachPointAngle(Vec3d apn) {
     if(!hasAPN) {
         attachPointAngles=new Vec3d[numAttachPoints];
@@ -155,6 +171,10 @@ void Model::computeNormals() {
 	lastAddedN=length/verticesPerFace();
 }
 
+/**
+ void Model::addRectPrism(Vec3d start, Vec3d end)
+ Adds a rectangular prism that goes from start to end to the model
+ */
 void Model::addRectPrism(Vec3d start, Vec3d end) {
 	addRect(
 			start,									//back
@@ -189,6 +209,11 @@ void Model::addRectPrism(Vec3d start, Vec3d end) {
 			Vec3d(start[0],end[1],start[2])
 			);
 }
+
+/**
+ void Model::addTriangle(Vec3d v1,Vec3d v2,Vec3d v3)
+ Adds a triangle independent of the type of poly
+ */
 void Model::addTriangle(Vec3d v1,Vec3d v2,Vec3d v3) {
 	addVertex(v1);
 	addVertex(v2);
@@ -197,6 +222,11 @@ void Model::addTriangle(Vec3d v1,Vec3d v2,Vec3d v3) {
 		addVertex(v3);
 	}
 }
+
+/**
+ void Model::addRect(Vec3d v1, Vec3d v2, Vec3d v3)
+ Adds a rectangle independent of the poly type that has corners at v1, v2, and v3 (this completely determines it)
+ */
 void Model::addRect(Vec3d v1, Vec3d v2, Vec3d v3) {
 	if(type==GL_QUADS) {
 		addVertex(v1);
@@ -218,9 +248,19 @@ void Model::addRect(Vec3d v1, Vec3d v2, Vec3d v3) {
 		addVertex(v3);
 	}
 }
+
+/**
+ void Model::addRect(Vec3d v1, Vec3d v2)
+ Adds a horizontal rectangle from v1 to v2
+ */
 void Model::addRect(Vec3d v1, Vec3d v2) {
 	addRect(v1, v2, Vec3d(v1[0],v1[1],v2[2]));
 }
+
+/**
+ void Model::addPolygon(Vec3d center, double sideLength, int v, Vec3d norm)
+ Adds a polygon with an arbitrary number of faces. This isn't actually used and has never even been tested.
+ */
 void Model::addPolygon(Vec3d center, double sideLength, int v, Vec3d norm) {
 	double degrees=360/v;
 	

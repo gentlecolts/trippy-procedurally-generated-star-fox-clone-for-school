@@ -12,20 +12,32 @@
 #include "../gameController.h"
 #include "../Vec3d.h"
 
+/**
+ void BasicGun::init()
+ Sets the model
+ */
 void BasicGun::init() {
 	model=basicGunModel;
     modelSize=model->length;
 }
 
+/**
+ BasicGun::BasicGun()
+ Does basic setup. Will not be usable as parent needs to be set.
+ */
 BasicGun::BasicGun() : GameObject() {
+	init();
 
 	lastFired=0;
 	fireRate=10;
 	parent=NULL;
-	lastFired=0;
 	health=1;
 }
 
+/**
+ BasicGun::BasicGun(GameObject *p)
+ Does basic setup. Parent is set, so it can be used immediately.
+ */
 BasicGun::BasicGun(GameObject *p) : GameObject() {
 	init();
 
@@ -35,6 +47,10 @@ BasicGun::BasicGun(GameObject *p) : GameObject() {
 	lastFired=0;
 }
 
+/**
+ void BasicGun::doFire()
+ Deals with capping the fire rate. doDoFire is another method so this can be subclassed easily.
+ */
 void BasicGun::doFire() {
 	if((int)((t-lastFired)*fireRate)>0) {
 		lastFired=t;
@@ -42,15 +58,14 @@ void BasicGun::doFire() {
 	}
 }
 
+/**
+ void BasicGun::doDoFire()
+ Creates the actual projectile and fires it.
+ */
 void BasicGun::doDoFire() {
 
 	Vec3d pos=absolutePosition();
 	
 	Vec3d ang=absoluteAngle();
 	addLaser(new Laser(pos, ang), player);
-}
-
-void BasicGun::update(double dt) {
-	//cout<<"rot: "<<rot<<endl;
-	//cout<<"abs: "<<absoluteAngle()<<endl;
 }
