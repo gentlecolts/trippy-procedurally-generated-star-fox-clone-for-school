@@ -25,9 +25,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "184"
-         endingLineNumber = "184"
-         landmarkName = "treeFun(ObjectType *type, double diff, double size)"
-         landmarkType = "7">
+         endingLineNumber = "184">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

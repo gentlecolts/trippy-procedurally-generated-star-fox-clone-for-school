@@ -29,7 +29,6 @@ void PlayerShip::init(){
 	model=playerShipModel;
     modelSize=model->length;
 	player=true;
-	health=playerHP;
 
     pos[2]=-playerOffset;
 }
@@ -92,7 +91,7 @@ void PlayerShip::uniqueRenderAfterPop() {
 	glTranslatef(-.7+pos[0],1+pos[1],pos[2]);
 	
 	glBegin(GL_QUADS);
-	glColor3f(((double)max(0,playerHP-health))/playerHP, ((double)max(0,health-playerHP))/playerHP, 0.3);
+	glColor3f(((double)max(0,playerHP-health))/playerHP, 1+((double)(health-playerHP))/playerHP, 0.3);
 	glVertex3d(-0.2, 0.05,1);
 	glVertex3d(0.2-(playerHP-(double)health)/playerHP*0.4, 0.05,1);
 	glVertex3d(0.3-(playerHP-(double)health)/playerHP*0.5, -0.05,1);
@@ -116,6 +115,9 @@ void PlayerShip::afterSetup() {
 
 	addChild(new BasicStrut(this, basicStrutModel), 1, Vec3d(0,180,0));
 		children[1]->addChild(new BasicGun(children[1]), 0);
+	
+	
+	health=playerHP;
 }
 
 /**

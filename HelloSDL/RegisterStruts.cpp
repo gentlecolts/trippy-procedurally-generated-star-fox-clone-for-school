@@ -124,13 +124,12 @@ Model *rotateStrutGetModel() {
 GameObject* rotateStrutGetGameObject(GameObject *parent, int seed) {
 	//srand(seed);
 
-	RotateStrut *ship=new RotateStrut();
 
 	Model *m=rotateStrutGetModel();
 
 	Vec3d s=Vec3d(rand()%90-45,rand()%90-45,rand()%90-45);
-
-	ship->init(parent, m, s, -s, ((double)rand())/RAND_MAX*5);
+	
+	RotateStrut *ship=new RotateStrut(parent, m, s, -s, ((double)rand())/RAND_MAX*5);
 
 	return ship;
 	//create a random object
