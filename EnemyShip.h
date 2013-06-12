@@ -7,6 +7,7 @@
 class EnemyShip : public GameShip
 {
 public:
+	virtual char* getType();
 	EnemyShip();
     EnemyShip(double x,double y);
     virtual void init(double x,double y, int startPos, int time);

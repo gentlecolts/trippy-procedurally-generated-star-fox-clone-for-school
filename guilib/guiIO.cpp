@@ -2,6 +2,10 @@
 #include <fstream>
 using namespace std;
 
+/**
+TODO: NONE OF THIS WORKS YET DUE TO GUIFONT NOT WORKING
+*/
+
 stringOutput::stringOutput(guifont* fontPntr,string str):font(fontPntr){
 //	init();
 	setString(str);

@@ -20,6 +20,8 @@ GameShip::GameShip() : GameObject() {
 	previous=NULL;
 }
 
+char* GameShip::getType(){return "GameShip";}
+
 /**
  void GameShip::uniqueRenderFirst()
  If it is the top node, scales itself by objScale, and disables the light for the terrain
@@ -27,7 +29,7 @@ GameShip::GameShip() : GameObject() {
 void GameShip::uniqueRenderFirst() {
 	if(parent==NULL)
 		glScalef(objScale,objScale,objScale);
-	
+
 	glDisable(GL_LIGHT0);
 }
 
@@ -85,7 +87,7 @@ void GameShip::destroy() {
 void GameShip::deleteAndDeleteChildren() {
 	if(next!=NULL)
 		next->deleteAndDeleteChildren();
-	
+
 	delete this;
 }
 
@@ -111,9 +113,9 @@ GameShip* GameShip::destroyAndGetNext() {
 		if(next!=NULL)
 			next->previous=NULL;
 	}
-	
+
 	delete this;
-	
+
 	return next;
 }
 
@@ -126,5 +128,5 @@ GameShip::~GameShip() {
 		parentWave->remove(this);
 		parentWave->release();
 	}
-	
+
 }

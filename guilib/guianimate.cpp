@@ -15,10 +15,15 @@ using namespace std;
 void aniPic::AniInit(){
 	state=0;
 }
-
+/**
+transition the alpha to a certian value over an amount of time
+*/
 void aniPic::alphaTo(float a,long millis){
 	alphaTo(alpha,a,millis);
 }
+/**
+same as above but also provide a starting alpha
+*/
 void aniPic::alphaTo(float a0,float a,long millis){
 	alpha0=a0;
 	alpha_target=a;
@@ -27,12 +32,18 @@ void aniPic::alphaTo(float a0,float a,long millis){
 	alpha_t_target=(millis*CLOCKS_PER_SEC)/1000+(alpha_t0=clock());
 }
 
+/**
+move this object to a specific point in an amount of time
+*/
 void aniPic::moveTo(point p,long millis){
 	moveTo(dest.x,dest.y,p.x,p.y,millis);
 }
 void aniPic::moveTo(int x,int y,long millis){
 	moveTo(dest.x,dest.y,x,y,millis);
 }
+/**
+move this object from a point to another point in an amount of time
+*/
 void aniPic::moveTo(point p0,point p,long millis){
 	moveTo(p0.x,p0.y,p.x,p.y,millis);
 }
@@ -46,6 +57,9 @@ void aniPic::moveTo(int x0,int y0,int x,int y,long millis){
 	p_t_target=(millis*CLOCKS_PER_SEC)/1000 + (p_t0=clock());
 }
 
+/**
+change the alpha over time as specified by the given function
+*/
 void aniPic::alphaFn(float (*a)(double t),long millis,double start,double stop){
 	alpha_a=start;
 	alpha_b=stop;
@@ -53,6 +67,9 @@ void aniPic::alphaFn(float (*a)(double t),long millis,double start,double stop){
 	alphaFunc=a;
 	alpha_t_target=(millis*CLOCKS_PER_SEC)/1000+(alpha_t0=clock());
 }
+/**
+move the object according to a function
+*/
 void aniPic::moveAlong(int (*x)(double t),int (*y)(double t),long millis,double start,double stop){
 	p_a=start;
 	p_b=stop;
@@ -70,13 +87,22 @@ void aniPic::moveAlong(point (*func)(double t),long millis,double start,double s
 	p_t_target=(millis*CLOCKS_PER_SEC)/1000+(alpha_t0=clock());
 }
 
+/**
+has the alpha finished animating
+*/
 bool aniPic::isAlphaDone(){
 	return clock()>alpha_t_target;
 }
+/**
+has the object finished moving
+*/
 bool aniPic::isMoveDone(){
 	return clock()>p_t_target;
 }
 
+/**
+update the alpha and position
+*/
 point p;
 void aniPic::checkAnm(){
 	long t=clock();
@@ -108,6 +134,9 @@ void aniPic::checkAnm(){
 	//cout<<"got here"<<endl;
 }
 
+/**
+update the object
+*/
 void aniPic::update(){
 	checkAnm();
 	draw();

@@ -59,11 +59,11 @@
 			<Add option="-march=core2" />
 			<Add option="-Wshadow" />
 			<Add option="-Winit-self" />
+			<Add option="-Wredundant-decls" />
 			<Add option="-Wcast-align" />
 			<Add option="-Wundef" />
 			<Add option="-Wunreachable-code" />
 			<Add option="-Wmissing-include-dirs" />
-			<Add option="-Weffc++" />
 			<Add option="-pedantic" />
 			<Add option="-Wextra" />
 			<Add option="-Wall" />
@@ -142,13 +142,11 @@
 		<Unit filename="camera.h" />
 		<Unit filename="constants.h" />
 		<Unit filename="enemyShip.cpp" />
-		<Unit filename="enemyShip.h" />
 		<Unit filename="enemyWave.cpp" />
 		<Unit filename="enemyWave.h" />
 		<Unit filename="gameController.cpp" />
 		<Unit filename="gameController.h" />
 		<Unit filename="gameObject.cpp" />
-		<Unit filename="gameObject.h" />
 		<Unit filename="gameShip.cpp" />
 		<Unit filename="gameShip.h" />
 		<Unit filename="glRender.cpp" />
@@ -174,7 +172,6 @@
 		<Unit filename="perlin3d.cpp" />
 		<Unit filename="perlin3d.h" />
 		<Unit filename="playerShip.cpp" />
-		<Unit filename="playerShip.h" />
 		<Unit filename="structs.h" />
 		<Unit filename="terrain.cpp" />
 		<Unit filename="terrain.h" />

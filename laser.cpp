@@ -13,6 +13,8 @@ using namespace std;
 Laser::Laser() : GameShip() {
 }
 
+char* Laser::getType(){return "Laser";}
+
 /**
  Laser::Laser(double x, double y, double z, double xr, double yr, double zr)
  Calls init
@@ -32,7 +34,7 @@ void Laser::init(Vec3d p, Vec3d a){
     pos=p;
 
     rot=a;
-	
+
 	Vec3d vect=Vec3d(
 					 cos(radians(rot[0]))*sin(radians(rot[1])),
 					 -sin(radians(rot[0])),
@@ -44,16 +46,16 @@ void Laser::init(Vec3d p, Vec3d a){
 
 //Turns off lighting so the lasers are easy to see; we could have just given it an emissive component to the material, but we didn't know that son enough
 void Laser::uniqueRenderFirst() {
-	
+
 	GameShip::uniqueRenderFirst();
-	
+
 	glDisable(GL_LIGHTING);
 }
 
 //Turns on lighting so the things drawn later look pretty
 void Laser::uniqueRenderLast() {
 	glEnable(GL_LIGHTING);
-	
+
 	GameShip::uniqueRenderLast();
 }
 

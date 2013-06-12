@@ -59,8 +59,8 @@ void GameObject::render() {
 	else
 		theAnimation->doModelTransform();
 
-    if(invinceStart>=0)
-        glColor3f(1.0,0,0);
+	if(invinceStart>=0)
+		glColor3f(1.0,0,0);
 
 	for(int i=0;i<modelSize;i++) {
 		if(i%model->verticesPerFace()==0 && theAnimation!=NULL) {
@@ -71,8 +71,8 @@ void GameObject::render() {
 			glNormal3f(model->normals[i/model->verticesPerFace()][0], model->normals[i/model->verticesPerFace()][1], model->normals[i/model->verticesPerFace()][2]);
 		}
 
-        if(invinceStart<0)
-            glColor4f(model->colors[i][0],model->colors[i][1],model->colors[i][2],model->colors[i][3]);
+		if(invinceStart<0)
+			glColor4f(model->colors[i][0],model->colors[i][1],model->colors[i][2],model->colors[i][3]);
 		glVertex3f(model->vertices[i][0],model->vertices[i][1],model->vertices[i][2]);
 
 		if(i%model->verticesPerFace()==model->verticesPerFace()-1 && theAnimation!=NULL) {
@@ -103,24 +103,40 @@ void GameObject::render() {
  Calls setup if necessary, tick the animation, end the invincibility timer if it ran out, call update
  */
 void GameObject::doUpdate(double dt) {
-    if(!didSetup){
-        setup();
-    }
+	printf("q\ndt");//=%d",dt);
+	if(!didSetup){
+		printf("\n");
+		printf("calling setup\n");
+		setup();
+		printf("setup done\n");
+	}
 
-    t+=dt;
+	t+=dt;
 
 	if(theAnimation!=NULL)
 		theAnimation->tick(dt);
 
-    if(invinceStart>=0 && clock()-invinceStart>invinceLength) {
-        invinceStart=-1;
-    }
+	if(invinceStart>=0 && clock()-invinceStart>invinceLength) {
+		invinceStart=-1;
+	}
 
-    update(dt);
+	update(dt);
 
 	for(int i=0;i<model->numAttachPoints;i++) {
-		if(attachPointsFilled[i])
+		/*the following might not work because sizeof only knows the size of an array in the scope it was declared
+		i believe in this context that means that sizeof only knows its size in the same scope as where it is allocated with new
+		See http://www.cplusplus.com/forum/beginner/3699/ for more
+		*/
+		printf("\nsize of children array: %i\n",sizeof(children));
+		printf("size of GameObject*: %i\n",sizeof(GameObject*));
+		printf("number of items in children: %f\n",double(sizeof(children))/sizeof(GameObject*));
+		printf("numAttachPoints: %i\n",model->numAttachPoints);
+		if(attachPointsFilled[i]){
+		//if(attachPointsFilled[i]&& children[i]!=NULL){///i dont think this makes a difference, but it might?
+			printf("g");
 			children[i]->doUpdate(dt);
+			printf("f");
+		}
 	}
 }
 
@@ -141,19 +157,24 @@ void GameObject::addUpHealth(int h) {
  Do setup that needs to be done after initialization: calculating the average vertex distance, initializing the child object arrays
  */
 void GameObject::setup() {
-    didSetup=true;
+	printf("setup start\t");
 
-    avgDist=0;
-    for(int i=0;i<modelSize;i++) {
+	didSetup=true;
+
+	avgDist=0;
+	for(int i=0;i<modelSize;i++) {
 		for(int j=0;j<3;j++) {
 			avgDist+=abs(model->vertices[i][j]);
 		}
-    }
-    avgDist/=model->verticesPerFace()*modelSize;
-    avgDist*=objScale;
+	}
+	avgDist/=model->verticesPerFace()*modelSize;
+	avgDist*=objScale;
+
+	//typedef GameObject* GameObjectPntr;
 
 	if(model->numAttachPoints>0) {
 		children=new GameObject*[model->numAttachPoints];
+		//children=new GameObjectPntr[model->numAttachPoints];
 
 		attachPointsFilled=new bool[model->numAttachPoints];
 
@@ -162,7 +183,9 @@ void GameObject::setup() {
 		}
 	}
 
+	printf("calling aftersetup\t");
 	afterSetup();
+	printf("setup done\n");
 }
 
 /**
@@ -170,16 +193,16 @@ void GameObject::setup() {
  Does hacky collision detection with the noise by checking at each vertex of the model
  */
 bool GameObject::collidesWithNoise() {
-    for(int i=0;i<modelSize;i++) {
-        const double
-            x=(model->vertices[i][0]*objScale+pos[0])/frameSize *grid2+grid2,
-            y=(model->vertices[i][1]*objScale+pos[1])/frameSize *grid2+grid2,
-            z=grid2-d*grid*((model->vertices[i][2]*objScale+pos[2])/frameSize+d/2);
-        if(noise[precompindx(x,y,z+zshft)]>tolerance){
-            return true;
-        }
-    }
-    return false;
+	for(int i=0;i<modelSize;i++) {
+		const double
+			x=(model->vertices[i][0]*objScale+pos[0])/frameSize *grid2+grid2,
+			y=(model->vertices[i][1]*objScale+pos[1])/frameSize *grid2+grid2,
+			z=grid2-d*grid*((model->vertices[i][2]*objScale+pos[2])/frameSize+d/2);
+		if(noise[precompindx(x,y,z+zshft)]>tolerance){
+			return true;
+		}
+	}
+	return false;
 }
 
 /**
@@ -217,7 +240,7 @@ void GameObject::addChild(GameObject *child, int index, Vec3d angle) {
 
 	if(index==-1)
 		index=numChildren;
-	
+
 	numChildren++;
 
 	children[index]=child;
@@ -229,9 +252,9 @@ void GameObject::addChild(GameObject *child, int index, Vec3d angle) {
 	attachPointsFilled[index]=true;
 
 	child->setPlayer(player);
-	
+
 	child->parent=this;
-	
+
 	addUpHealth(child->health);
 }
 
@@ -264,14 +287,14 @@ Matrix GameObject::getMatrix() {
 	if(parent!=NULL) {
 		mat=parent->getMatrix();
 	}
-	
+
 	mat=mat*Matrix(
 				   Vec4d(1, 0, 0, pos[0]),				//translation
 				   Vec4d(0, 1, 0, pos[1]),
 				   Vec4d(0, 0, 1, pos[2]),
 				   Vec4d(0, 0, 0, 1)
 				   );
-	
+
 	mat=mat*Matrix(rot);								//rotation
 
 	if(parent==NULL) {
@@ -322,7 +345,7 @@ bool GameObject::collidesWithObject(GameObject* obj) {      //crappy method
 	//cout<<"obj: "<<obj<<endl;
 	Vec3d diff=pos-obj->pos;
 
-    return diff.magnitude()<avgDist+obj->avgDist;
+	return diff.magnitude()<avgDist+obj->avgDist;
 }
 
 void GameObject::init(){}					//Do setup for subclasses

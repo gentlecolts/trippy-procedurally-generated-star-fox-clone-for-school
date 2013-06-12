@@ -18,10 +18,12 @@ private:
 	GameShip *next;
 protected:
 public:
+	virtual char* getType();
+
 	GameShip *previous;
 	EnemyWave* parentWave;
 	bool scheduledToDelete;
-	
+
 	GameShip* destroyAndGetNext();
 	GameShip* getNext();
 	GameShip* head();
@@ -31,7 +33,7 @@ public:
 	void destroy();
 	void uniqueRenderFirst();
 	void uniqueRenderLast();
-	
+
 	virtual ~GameShip();
 	GameShip();
 };

@@ -6,6 +6,9 @@
 class Laser : public GameShip
 {
 public:
+	virtual char* getType();
+
+	//static char* type;
 	Laser();
 	Laser(Vec3d p, Vec3d a);
 
@@ -18,5 +21,7 @@ public:
     //bool collidesWithNoise();
 	bool isDone();
 };
+
+//char* Laser::type="Laser";
 
 #endif // LASER_H_INCLUDED

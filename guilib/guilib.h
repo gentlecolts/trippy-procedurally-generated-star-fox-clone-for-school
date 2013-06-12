@@ -1,7 +1,7 @@
 #ifndef GUILIB_H_INCLUDED
 #define GUILIB_H_INCLUDED
 
-#include "imports.h"
+#include "../imports.h"
 
 #include "guiobj.h"
 #include "guianimate.h"

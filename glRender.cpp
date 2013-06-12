@@ -6,6 +6,9 @@
 #include "camera.h"
 #include "GLHelper.h"
 
+#include <ctime>
+using namespace std;
+
 void glRender() {
 	point3d corners[8];
 	point3d normals[8];
@@ -31,18 +34,23 @@ void glRender() {
 		z=grid-a*step;
 		if(z/grid>((double)playerOffset*5)/frameSize) {
 			counter+=sin(a/(grid/step))*2;
+			//counter+=500*sin(clock()/100.0*a/(grid/step))*2;
 		}
 	}
 	glRotatef(counter, 0.0, 1.0, 0.3);
-	
+	//glRotatef(counter*5, 0.0, 0.0, 0.3);
+
 	for(int a=0;a<grid/step;a++){
 		//x=grid*a/(grid/(delta/2));
 		z=grid-a*step;
-		
-		if(z/grid>((double)playerOffset*5)/frameSize)
-			glRotatef(-sin(a/(grid/step))*2, 0.0, 1.0, 0.3);
+
+		if(z/grid>((double)playerOffset*5)/frameSize) {
+			glRotatef(-sin(a/(grid/step)), 0.0, 1.0, 0.3);
+			//glRotatef(-sin(a/(grid/step))*5, 0.0, 0.0, 0.3);
+
+		}
 		glBegin(GL_QUADS);
-		
+
 		for(int b=0;b<grid/step;b++){
 		y=b*step;
 	//*/
@@ -55,7 +63,7 @@ void glRender() {
 			/*/
 			for(int c=0;c<grid/step;c++){
 			x=c*step;
-				
+
 			//*/
 				if(noise[precompindx(x,y,z+zshft)]>tolerance){
 //				if(perlin.get(x,y,z+zshft)>tolerance){
@@ -81,33 +89,33 @@ void glRender() {
 							corners[indx].y=(y-grid2+j*delt2)/grid2;
 							corners[indx].z=-(z-grid2+k*delt2)/(d*grid)-d/2+(fmod(zshft,step));
 							//corners[indx].z=-(lastz+(z-delta-lastz)*(k+1)/2+k*delt2)/(d*grid)-d/2+(zshft-(int)zshft)/frameSize;
-							
+
 							//*
 #if 0
 							normals[indx].x=i;
 							normals[indx].y=j;
 							normals[indx].z=k; //butts
 #else
-#define h 0.001							
-							
+#define h 0.001
+
 							double tmp=perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2, y+j*delt2, (z+k*delt2)/(d*grid)-d/2);
 							normals[indx].x=-(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2+h, y+j*delt2, (z+k*delt2)/(d*grid)-d/2)-tmp)/h;
 							normals[indx].y=-(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2, y+j*delt2+h, (z+k*delt2)/(d*grid)-d/2)-tmp)/h;
 							normals[indx].z=-(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2+h, y+j*delt2, (z+k*delt2)/(d*grid)-d/2)-tmp+h)/h;
-							
-							
+
+
 							/* //More correct, but spazzy
-							 
+
 							 double tmp=perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2, y+j*delt2, (z+k*delt2)/(d*grid)-d/2+zshft);
 							normals[indx].x=-(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2+h, y+j*delt2, (z+k*delt2)/(d*grid)-d/2+zshft)-tmp)/h;
 							normals[indx].y=-(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2, y+j*delt2+h, (z+k*delt2)/(d*grid)-d/2+zshft)-tmp)/h;
 							normals[indx].z=-(perlin.get(lastx+(x-lastx)*(i+1)/2+i*delt2+h, y+j*delt2, (z+k*delt2)/(d*grid)-d/2+zshft)-tmp+h)/h;*/
-							
+
 							/*
 							 Even more correct, but stupid-looking
-							 
+
 							 double mag=sqrt(normals[indx].x*normals[indx].x+normals[indx].y*normals[indx].y+normals[indx].z*normals[indx].z);
-							
+
 							normals[indx].x/=mag;
 							normals[indx].y/=mag;
 							normals[indx].z/=mag;*/
@@ -117,16 +125,16 @@ void glRender() {
 							normals[indx].x=rand();
 							normals[indx].y=rand();
 							normals[indx].z=rand();
-							
+
 							#define a normals[indx].x
 							#define b normals[indx].y
 							#define c normals[indx].z
-							
+
 							float bluh=sqrt(a*a+b*b+c*c);
 							a/=bluh;
 							b/=bluh;
 							c/=bluh;
-							
+
 							#undef a
 							#undef b
 							#undef c

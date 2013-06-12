@@ -86,7 +86,7 @@ void chkCloseEvent(){
 				screen=SDL_SetVideoMode(xmax,ymax,32,SDL_HWSURFACE | SDL_HWPALETTE | SDL_HWACCEL | SDL_DOUBLEBUF | SDL_SRCALPHA | SDL_ASYNCBLIT);
 			}
 
-			if(key==SDLK_SPACE){
+			if(key==SDLK_p){
 				play(NULL);
 			}
 

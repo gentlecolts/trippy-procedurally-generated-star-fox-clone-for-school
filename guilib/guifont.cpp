@@ -1,5 +1,5 @@
 #include "guifont.h"
-#include "imports.h"
+#include "../imports.h"
 #include <iostream>
 using namespace std;
 
@@ -10,7 +10,9 @@ bool fontchar::operator <(char C){return c<C;}
 bool fontchar::operator >=(char C){return c>=C;}
 bool fontchar::operator <=(char C){return c<=C;}
 
-
+/**
+do the steps for initializing a font object
+*/
 void guifont::init(string charlist,SDL_Surface* data,SDL_Surface* mapPic){
 	uint32_t *pixels,backcol,basecol;
 	if(mapPic==NULL){
@@ -72,16 +74,25 @@ void guifont::init(string charlist,SDL_Surface* data,SDL_Surface* mapPic){
 	}
 }
 
+/**
+constructors
+*/
 guifont::guifont(string chars,SDL_Surface* data){init(chars,data,NULL);}
 guifont::guifont(string chars,SDL_Surface* data,SDL_Surface* map){init(chars,data,map);}
 guifont::guifont(string chars,const char* datafile){init(chars,IMG_Load(datafile),NULL);}
 guifont::guifont(string chars,const char* datafile,const char* mapfile){init(chars,IMG_Load(datafile),IMG_Load(mapfile));}
 
+/**
+destructor
+*/
 guifont::~guifont(){
 	SDL_free(bitmap);
 	delete[] chars;
 }
 
+/**
+get the index of a character (used to refrence the correct pic)
+*/
 int guifont::getIndex(char c){
 	for(int i=0;i<numchars;i++){///TODO: use a binary search instead
 		if(chars[i]==c){
@@ -91,6 +102,9 @@ int guifont::getIndex(char c){
 	return -1;
 }
 
+/**
+lookup the fontchar object for a character (also returns its bounding box)
+*/
 SDL_Rect guifont::getChar(char c,fontchar* character){
 	int i=getIndex(c);
 	SDL_Rect rect;
@@ -112,6 +126,9 @@ SDL_Rect guifont::getChar(char c,fontchar* character){
 	return rect;
 }
 
+/**
+get the width of a character
+*/
 int guifont::getCharWidth(char c){
 	int i=getIndex(c);
 	if(i<0){
@@ -120,6 +137,9 @@ int guifont::getCharWidth(char c){
 		return chars[i].w;
 	}
 }
+/**
+get the width of a string
+*/
 int guifont::getStrWidth(string s){
 	int len=0,maxlen=0,linenum=1;
 	int charwid;
@@ -150,6 +170,9 @@ SDL_Rect guifont::getStrDims(string s){
 	return rect;
 }
 
+/**
+get a blitable surface representing a string
+*/
 SDL_Surface* guifont::getString(string s){
 	const uint32_t
 		rmask=0x00ff0000,

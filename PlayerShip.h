@@ -7,6 +7,8 @@
 class PlayerShip : public GameShip
 {
 public:
+	virtual char* getType();
+
 	void update(double dt);
 	PlayerShip();
 	void init();

@@ -21,6 +21,8 @@ PlayerShip::PlayerShip() : GameShip() {
 	init();
 }
 
+char* PlayerShip::getType(){return "PlayerShip";}
+
 /**
  void PlayerShip::init()
  Sets the model to the constant playerShipModel, sets the z position to -playerOffset, sets health to playerHP, and that it is on the player side
@@ -39,7 +41,7 @@ void PlayerShip::init(){
  */
 void PlayerShip::uniqueRenderAfterPop() {
     glPushMatrix();
-	
+
 	glDisable(GL_LIGHTING);
 
 	Vec3d vect=getVector(rot[0],rot[1]);
@@ -86,10 +88,10 @@ void PlayerShip::uniqueRenderAfterPop() {
 
     glEnd();
     glPopMatrix();
-	
+
 	glPushMatrix();
 	glTranslatef(-.7+pos[0],1+pos[1],pos[2]);
-	
+
 	glBegin(GL_QUADS);
 	glColor3f(((double)max(0,playerHP-health))/playerHP, 1+((double)(health-playerHP))/playerHP, 0.3);
 	glVertex3d(-0.2, 0.05,1);
@@ -97,9 +99,9 @@ void PlayerShip::uniqueRenderAfterPop() {
 	glVertex3d(0.3-(playerHP-(double)health)/playerHP*0.5, -0.05,1);
 	glVertex3d(-0.2, -.05,1);
 	glEnd();
-	
+
 	glEnable(GL_LIGHTING);
-	
+
 	glPopMatrix();
 }
 
@@ -115,8 +117,8 @@ void PlayerShip::afterSetup() {
 
 	addChild(new BasicStrut(this, basicStrutModel), 1, Vec3d(0,180,0));
 		children[1]->addChild(new BasicGun(children[1]), 0);
-	
-	
+
+
 	health=playerHP;
 }
 
@@ -133,10 +135,10 @@ void PlayerShip::update(double dt) {
 
 	pos[0]+=vel[0]*dt;
     pos[1]+=vel[1]*dt;
-	
+
 	pos[0]=max(min((double)pos[0],1.0*frameSize),-1.0*frameSize);
 	pos[1]=max(min((double)pos[1],1.0*frameSize),-1.0*frameSize);
-	
+
 
     if(invinceStart<0) {
         bool hit=false;

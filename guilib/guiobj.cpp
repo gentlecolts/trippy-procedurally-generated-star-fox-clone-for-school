@@ -7,6 +7,9 @@ linkedlist<picture*> picture::objects;
 SDL_Surface* picture::target;
 mouse picture::mousepos;
 
+/**
+initialize sdl_image library
+*/
 void initializeIMG(){
 	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF);
 }
@@ -46,6 +49,9 @@ void picture::init(){
 	//printf("created picture object at: %p\n",this);
 }
 
+/**
+remove itself from the list
+*/
 picture::~picture(){//dont forget: this is called after child destructor(s)
 	//cout<<"deleted "<<this<<endl;
 	node<picture*> *tmp=objects.head,*tmp2=tmp;
@@ -77,6 +83,9 @@ void picture::setPos(int x,int y){
 	dest.y=y;
 }
 
+/**
+update all picture objects (including subclasses)
+*/
 void picture::updateAll(SDL_Event* e){
 	mousepos.state=SDL_GetMouseState(&mousepos.x,&mousepos.y);
 	if(e->type==SDL_MOUSEBUTTONDOWN){
@@ -98,13 +107,22 @@ void picture::updateAll(SDL_Event* e){
 
 	mousepos.downPrev=mousepos.isDown;
 }
+/**
+update this object (is overridden by subclasses)
+*/
 void picture::update(){
 	draw();
 }
 
+/**
+draw this object's image to the screen
+*/
 void picture::draw(){
 	draw(pic);
 }
+/**
+draw a specific image to the screen (used by subclasses)
+*/
 void picture::draw(SDL_Surface* pic){
 	if(pic!=NULL){
 		dest.w=target->w;
@@ -145,6 +163,9 @@ void picture::scaleAlpha(SDL_Surface* src,float a){
 	#endif
 }
 
+/**
+free a picure object from memory
+*/
 void GUI_Free(picture* obj){
 	///TODO: make this thread safe
 	delete obj;
@@ -168,6 +189,9 @@ button::button(const char* file,const char* mouseover,const char* mousedown)
 	#endif
 }
 
+/**
+update the state of the button
+*/
 long tmp_lng;
 void button::updateBtn(){
 		const int x=mousepos.x-dest.x,y=mousepos.y-dest.y;
@@ -220,6 +244,7 @@ void button::updateBtn(){
 
 	isDown=( (x>0 && x<dest.w && y>0 && y<dest.h) && (
 #endif
+
 #if 1
 	/*
 	current+=(current==down && down==NULL)*(over-current);
@@ -252,6 +277,9 @@ void button::updateBtn(){
 #endif
 }
 
+/**
+overloaded update function
+*/
 void button::update(){
 	updateBtn();
 	draw(current);

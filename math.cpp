@@ -1,4 +1,6 @@
 #include "math.h"///WHY THE FLYING FUCK DO WE HAVE math.h?!?!?! see above line for my confusion
+///well...there appears to be no above line...
+///the confusion was that math.h is a standard library...
 
 #include "constants.h"
 #include "Vec3d.h"
@@ -6,8 +8,7 @@
 using namespace std;
 /**
  double invsqrt(double x)
- Fast inverse square root function is quicker than the standard way of doing it, although slightly less precise
-
+ Fast inverse square root function is quicker than the standard way of computing 1/sqrt(x), although slightly less precise
  */
 double invsqrt(double x) {
     double xhalf = x/2;
@@ -46,7 +47,7 @@ Vec3d getVector(double xrot,double yrot) {//TODO: consider only calulating once 
 	vect[0]=-sin(radians(yrot));
     vect[1]=sin(radians(xrot))*cos(radians(yrot));
 	vect[2]=-cos(radians(xrot))*cos(radians(yrot));
-	
+
 	return vect;
 }
 
@@ -56,10 +57,10 @@ Vec3d getVector(double xrot,double yrot) {//TODO: consider only calulating once 
  */
 Vec3d invGetVector(Vec3d vec) {
 	vec=vec.normalize();
-	
+
 	double xrot=-asin(vec[1])/pi*180;
 	double yrot=atan2(vec[0],vec[2])/pi*180;
-	
+
 	return Vec3d(xrot,yrot,0);
 }
 

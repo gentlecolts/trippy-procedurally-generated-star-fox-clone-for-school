@@ -4,6 +4,10 @@
 #include <iostream>
 using namespace std;
 
+/**
+this is a templated linked list class, it has some fancy features that makes using linked lists easier
+*/
+
 template<typename T>
 struct node{
 	T data;

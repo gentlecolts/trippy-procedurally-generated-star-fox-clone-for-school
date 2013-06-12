@@ -1,6 +1,11 @@
 #ifndef SDLINIT_H_INCLUDED
 #define SDLINIT_H_INCLUDED
 
+/**
+this just initializes sdl for guilib
+not much really here
+*/
+
 #if ogl
 void glPreInit(){
 	SDL_GL_SetAttribute(SDL_GL_RED_SIZE,8);

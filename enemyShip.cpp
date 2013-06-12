@@ -17,6 +17,8 @@ EnemyShip::EnemyShip() : GameShip()
 	health=3;
 }
 
+char* EnemyShip::getType(){return "EnemyShip";}
+
 /**
  EnemyShip::EnemyShip(int n)
  Conveniently initializes it at a specified location, setting t to 0 and dead to false
@@ -46,29 +48,29 @@ void EnemyShip::update(double dt) {
 		pos[0]+=vel[0]*dt;
 		pos[1]-=vel[1]*dt;
 		pos[2]-=vel[2]*dt;
-		
+
 		GameShip *obj=lasers;
-		
+
 		while(obj!=NULL) {
 			if(obj->collidesWithObject(this)) {
 				invinceStart=clock();
-				
+
 				health-=obj->getDamage(this);
-				
+
 				if(health<0) {
-					
+
 					setAnimation(new ExplodeAnimation(model,this));
-					
+
 					for(int i=0;i<numChildren;i++) {
 						if(attachPointsFilled[i])
 							children[i]->setAnimation(new ExplodeAnimation(children[i]->model,NULL));
 					}
-					
+
 					playerScore+=score;
-					
+
 					vel[0]=0;
 					vel[1]=0;
-					
+
 					dead=true;
 
 					break;

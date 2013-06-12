@@ -2,20 +2,26 @@
 #define GUIOBJ_H_INCLUDED
 
 #include <string>
-#include "imports.h"
+#include "../imports.h"
 
 #include "linkedlist.h"
 
+/**
+a simple struct for storing the mouse state
+*/
 struct mouse{
 	uint8_t state;
 	int x,y;
 	bool isDown,downPrev;
 };
 
-/**
+/*
 #define dbgType
 //*/
 
+/**
+this is the
+*/
 class picture{
 protected:
 	//unsigned int refcount;//assume that each one is unique

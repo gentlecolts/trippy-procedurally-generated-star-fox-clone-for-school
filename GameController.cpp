@@ -44,6 +44,34 @@ void setupGame() {
 	thePlayerShip=new PlayerShip();
 }
 
+void updateObjFrom(GameShip** base,double dt){
+	GameShip* obj=*base;
+
+	if(obj!=NULL){
+		printf(("\n---updating objects---\nobject type: "+string((*base)->getType())+"\n").c_str());
+	}
+
+	while(obj!=NULL) {
+		printf("obj before doUpdate: %p\n",obj);
+		printf("calling doUpdate\n");
+		obj->doUpdate(dt);
+		printf("doUpdate done");
+
+		printf("asdf\n");
+		printf("obj after doUpdate: %p\n",obj);
+		printf("blah\n");
+
+		if(obj->scheduledToDelete || obj->isDone()) {
+			if(obj==*base){
+				*base=obj->getNext();
+			}
+			obj=obj->destroyAndGetNext();
+		} else {
+			obj=obj->getNext();
+		}
+	}
+}
+
 /**
  void updateObjects()
  Ticks each object and laser, creates a new EnemyWave if necessary, deletes the old if necessary, scales the difficulty, and increases the player's score.
@@ -57,9 +85,9 @@ void updateObjects() {
         readyForNextWave=true;
 		waveTime*=0.98;
 		noiseScale*=0.95;
-		
+
 //		cout<<"noiseScale: "<<noiseScale<<endl;
-		
+
 		thePlayerShip->health+=10;
 		thePlayerShip->health=min(playerHP,thePlayerShip->health);
 		//cout<<gameObjects.size()<<endl;
@@ -71,51 +99,13 @@ void updateObjects() {
     }
 
 	double dt=(double)(curTime-prev)/1000;		//millis to seconds
-	
+
 	playerScore+=dt;
 	updateTerrain(dt);
 
-	GameShip* obj=thePlayerShip;
-//	cout<<"tick"<<endl;
-	while(obj!=NULL) {
-//		cout<<"obj: "<<obj<<endl;
-		obj->doUpdate(dt);
-
-
-		if(obj->scheduledToDelete || (obj->isDone() && (obj->parentWave==NULL || obj->parentWave->isDone()))) {
-
-			obj=obj->destroyAndGetNext();
-		} else {
-			obj=obj->getNext();
-		}
-	}
-
-	obj=lasers;
-	while(obj!=NULL) {
-		obj->doUpdate(dt);
-
-		if(obj->scheduledToDelete || obj->isDone()) {
-
-			if(obj==lasers)
-				lasers=obj->getNext();
-			obj=obj->destroyAndGetNext();
-		} else {
-			obj=obj->getNext();
-		}
-	}
-
-	obj=enemyLasers;
-	while(obj!=NULL) {
-		obj->doUpdate(dt);
-
-		if(obj->scheduledToDelete || obj->isDone()) {
-			if(obj==enemyLasers)
-				enemyLasers=obj->getNext();
-			obj=obj->destroyAndGetNext();
-		} else {
-			obj=obj->getNext();
-		}
-	}
+	updateObjFrom(&thePlayerShip,dt);
+	updateObjFrom(&lasers,dt);
+	updateObjFrom(&enemyLasers,dt);
 
 }
 

@@ -33,7 +33,7 @@ void launchMenu() {
 	initializeIMG();
 
 	#ifdef WIN32
-	//*
+	/*
 	#if false
 	SDL_Surface *s1=IMG_Load("Images/menuPlay.png"),
 		*s2=IMG_Load("Images/menuPlayH.png"),
@@ -53,10 +53,11 @@ void launchMenu() {
 		*s7=IMG_Load(".\\instructions.png");
 	#endif
 	/*/
-	string path=getpath();
+	string path=getpath()+"\\Images";
 	cout<<path<<endl;
 	cout<<(path+"\\menuPlay.png").c_str()<<endl;
-	SDL_Surface *s1=IMG_Load((path+"\\menuPlay.png").c_str()),
+	SDL_Surface
+		*s1=IMG_Load((path+"\\menuPlay.png").c_str()),
 		*s2=IMG_Load((path+"\\menuPlayH.png").c_str()),
 		*s3=IMG_Load((path+"\\menuPlayP.png").c_str()),
 		*s4=IMG_Load((path+"\\menuQuit.png").c_str()),
@@ -74,8 +75,26 @@ void launchMenu() {
 		*s7=IMG_Load("/Users/jonahchazan/Desktop/trippy-procedurally-generated-star-fox-clone-for-school/Images/instructions.png");
 	#endif
 
-	if(s1==NULL || s2==NULL || s3==NULL || s4==NULL || s5==NULL || s6==NULL) {
-		cout<<"Image not found: menuPlayTest"<<endl;
+	if(s1==NULL){
+		cout<<"could not load s1"<<endl;
+	}
+	if(s2==NULL){
+		cout<<"could not load s2"<<endl;
+	}
+	if(s3==NULL){
+		cout<<"could not load s3"<<endl;
+	}
+	if(s4==NULL){
+		cout<<"could not load s4"<<endl;
+	}
+	if(s5==NULL){
+		cout<<"could not load s5"<<endl;
+	}
+	if(s6==NULL){
+		cout<<"could not load s6"<<endl;
+	}
+	if(s7==NULL){
+		cout<<"could not load s7"<<endl;
 	}
 
 	delete instruct;

@@ -1,1 +1,207 @@
-./
+C:\Users\Jack\Documents\GitHub\trippy-procedurally-generated-star-fox-clone-for-school\Images
+C:\Users\Jack\Documents\GitHub\trippy-procedurally-generated-star-fox-clone-for-school\Images\menuPlay.png
+
+---updating objects---
+object type: PlayerShip
+obj before doUpdate: 009E9130
+calling doUpdate
+q
+dt
+calling setup
+setup start	calling aftersetup	setup start	calling aftersetup	setup done
+setup start	calling aftersetup	setup done
+setup start	calling aftersetup	setup done
+setup start	calling aftersetup	setup done
+setup done
+setup done
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 2
+gq
+dt
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+gq
+dt
+calling setup
+setup start	calling aftersetup	setup done
+setup done
+f
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+gq
+dt
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+gq
+dt
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 4
+gq
+dt
+calling setup
+setup start	calling aftersetup	setup done
+setup done
+f
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 4
+gq
+dt
+calling setup
+setup start	calling aftersetup	setup done
+setup done
+f
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 4
+gq
+dt
+calling setup
+setup start	calling aftersetup	setup done
+setup done
+f
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 4
+gq
+dt
+calling setup
+setup start	calling aftersetup	setup done
+setup done
+ffff
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 2
+gq
+dt
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+gq
+dt
+calling setup
+setup start	calling aftersetup	setup done
+setup done
+f
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 6
+fdoUpdate doneasdf
+obj after doUpdate: 009E9130
+blah
+obj before doUpdate: 009E9298
+calling doUpdate
+q
+dt
+calling setup
+setup start	calling aftersetup	setup done
+setup done
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 8
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 8
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 8
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 8
+
+size of children array: 4
+size of GameObject*: 4
+number of items in children: 1.000000
+numAttachPoints: 8
+
+size of children a
